@@ -20,10 +20,14 @@
 
   /* Blue-navy palette — NO black anywhere */
   --dark:      #0d1b2e;   /* page base — deep navy blue */
-  --charcoal:  #112238;   /* section alt — slightly lighter navy */
+  --charcoal:  #0f1e35;   /* section alt — warm navy */
   --surface:   #162d48;   /* cards — clear step up */
   --surface-2: #1d3858;   /* elevated / hover */
   --mid:       #244470;   /* active / selected */
+  --section-b: #0e1a2e;   /* products section */
+  --section-c: #11161e;   /* dark neutral */
+  --section-d: #0d1f18;   /* deep green-dark for sustainability */
+  --section-e: #160d1a;   /* deep purple-dark for competitive */
   --steel:     #2e5585;   /* borders */
   --steel-lite:#3a6a9e;   /* lighter borders */
 
@@ -43,8 +47,8 @@
 
   --section-alt: #112238;
 }
-html { scroll-behavior: smooth; }
-body { font-family: 'Barlow', sans-serif; font-size: 20px; background: var(--dark); color: var(--white); overflow-x: hidden; }
+html { scroll-behavior: smooth; font-size: 20px; }
+body { font-family: 'Barlow', sans-serif; font-size: 1rem; background: var(--dark); color: var(--white); overflow-x: hidden; }
 
 /* ── PAGE SYSTEM ── */
 .page { display: none; }
@@ -105,7 +109,7 @@ h2 { font-family: 'Barlow Condensed',sans-serif; font-weight: 900; font-size: cl
 h2 em { color: var(--red); font-style: normal; }
 .section { padding: 5.5rem 5rem; }
 .section-alt { background: var(--charcoal); }
-.section-mid { background: var(--mid); }
+.section-mid { background: #1a2e4a; }
 .section-label { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(200,16,46,0.25); }
 .intro-text { font-size: 0.95rem; line-height: 1.75; color: var(--silver); max-width: 620px; margin-bottom: 3rem; }
@@ -805,82 +809,361 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 </section>
 
 <!-- RESOURCES -->
-<section class="section" id="resources-section" style="background:var(--dark);padding:4rem 5rem;">
-  <div style="margin-bottom:2.5rem;">
-    <div class="section-label">Intelligence &amp; Resources</div>
-    <h2 style="margin-bottom:.75rem;">Eight Reasons<br><em>Foxmark Wins</em><br>in Chicago.</h2>
-    <p class="intro-text" style="max-width:620px;">Every card below is a full deep-dive — financial models, playbooks, case studies, channel partners, and competitive intelligence. Built for decision-makers evaluating the Chicago Studio Laboratory.</p>
+<section class="section" id="resources-section" style="background:#060c16;padding:4rem 5rem;">
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:2rem;margin-bottom:2.5rem;">
+    <div>
+      <div class="section-label">Intelligence &amp; Resources</div>
+      <h2 style="margin-bottom:0;">Eight Reasons<br><em>Foxmark Wins</em><br>in Chicago.</h2>
+    </div>
+    <p style="font-size:.88rem;color:#2a4060;line-height:1.8;max-width:340px;margin:0 0 .4rem auto;text-align:right;">Hover any section to illuminate it. Click to open the full deep-dive. Every tile connects to a complete intelligence briefing.</p>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(90,171,255,.08);">
-    <div onclick="openModal('modal-playbook')" style="background:linear-gradient(150deg,#C8102E22 0%,#C8102E0a 100%);border:1px solid #C8102E30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#C8102E38 0%,#C8102E18 100%)';this.style.borderColor='#C8102E55'" onmouseout="this.style.background='linear-gradient(150deg,#C8102E22 0%,#C8102E0a 100%)';this.style.borderColor='#C8102E30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#C8102E0c;line-height:1;user-select:none;">01</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#C8102E;border:1px solid #C8102E40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">PROJECT PLAYBOOK</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Master Project<br>Playbook</div>
-      <div style="width:28px;height:2px;background:#C8102E;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">Complete studio strategy — phases, equipment, staffing, RACI, and governance.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#C8102E;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-financial')" style="background:linear-gradient(150deg,#1a6b3a22 0%,#1a6b3a0a 100%);border:1px solid #1a6b3a30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#1a6b3a38 0%,#1a6b3a18 100%)';this.style.borderColor='#1a6b3a55'" onmouseout="this.style.background='linear-gradient(150deg,#1a6b3a22 0%,#1a6b3a0a 100%)';this.style.borderColor='#1a6b3a30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#1a6b3a0c;line-height:1;user-select:none;">02</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#1a6b3a;border:1px solid #1a6b3a40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">FINANCIAL MODEL</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Financial<br>Model v7</div>
-      <div style="width:28px;height:2px;background:#1a6b3a;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">P&L by year, KPIs, scenario sensitivities, and capital requirements.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#1a6b3a;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-market')" style="background:linear-gradient(150deg,#1a4a7a22 0%,#1a4a7a0a 100%);border:1px solid #1a4a7a30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#1a4a7a38 0%,#1a4a7a18 100%)';this.style.borderColor='#1a4a7a55'" onmouseout="this.style.background='linear-gradient(150deg,#1a4a7a22 0%,#1a4a7a0a 100%)';this.style.borderColor='#1a4a7a30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#1a4a7a0c;line-height:1;user-select:none;">03</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#1a4a7a;border:1px solid #1a4a7a40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">MARKET ANALYSIS</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Chicago Market<br>Intelligence</div>
-      <div style="width:28px;height:2px;background:#1a4a7a;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">$500–$750M market, growth drivers, competitor gaps, and segment targets.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#1a4a7a;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-products')" style="background:linear-gradient(150deg,#6b3a1a22 0%,#6b3a1a0a 100%);border:1px solid #6b3a1a30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#6b3a1a38 0%,#6b3a1a18 100%)';this.style.borderColor='#6b3a1a55'" onmouseout="this.style.background='linear-gradient(150deg,#6b3a1a22 0%,#6b3a1a0a 100%)';this.style.borderColor='#6b3a1a30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#6b3a1a0c;line-height:1;user-select:none;">04</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#6b3a1a;border:1px solid #6b3a1a40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">PRODUCT SUITE</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Flagship<br>Solutions</div>
-      <div style="width:28px;height:2px;background:#6b3a1a;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">Four core products — specs, pricing, margins, and use cases.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#6b3a1a;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-casestudy')" style="background:linear-gradient(150deg,#5a1a6b22 0%,#5a1a6b0a 100%);border:1px solid #5a1a6b30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#5a1a6b38 0%,#5a1a6b18 100%)';this.style.borderColor='#5a1a6b55'" onmouseout="this.style.background='linear-gradient(150deg,#5a1a6b22 0%,#5a1a6b0a 100%)';this.style.borderColor='#5a1a6b30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#5a1a6b0c;line-height:1;user-select:none;">05</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#5a1a6b;border:1px solid #5a1a6b40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">CASE STUDY</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Kraft Heinz<br>Opportunity</div>
-      <div style="width:28px;height:2px;background:#5a1a6b;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">How Foxmark's visual solutions align with Kraft Heinz's $600M turnaround strategy.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#5a1a6b;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-partner')" style="background:linear-gradient(150deg,#2a5a2a22 0%,#2a5a2a0a 100%);border:1px solid #2a5a2a30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#2a5a2a38 0%,#2a5a2a18 100%)';this.style.borderColor='#2a5a2a55'" onmouseout="this.style.background='linear-gradient(150deg,#2a5a2a22 0%,#2a5a2a0a 100%)';this.style.borderColor='#2a5a2a30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#2a5a2a0c;line-height:1;user-select:none;">06</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#2a5a2a;border:1px solid #2a5a2a40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">CHANNEL PARTNER</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">New Image<br>Technologies</div>
-      <div style="width:28px;height:2px;background:#2a5a2a;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">3M-certified Chicago installation partner — Pace Bus, Zipcar, national rollouts.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#2a5a2a;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-sales')" style="background:linear-gradient(150deg,#6b4a1a22 0%,#6b4a1a0a 100%);border:1px solid #6b4a1a30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#6b4a1a38 0%,#6b4a1a18 100%)';this.style.borderColor='#6b4a1a55'" onmouseout="this.style.background='linear-gradient(150deg,#6b4a1a22 0%,#6b4a1a0a 100%)';this.style.borderColor='#6b4a1a30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#6b4a1a0c;line-height:1;user-select:none;">07</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#6b4a1a;border:1px solid #6b4a1a40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">SALES BRIEF</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Executive<br>Sales Brief</div>
-      <div style="width:28px;height:2px;background:#6b4a1a;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">Go-to-market phases, team model, anchor strategy, and risk mitigation.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#6b4a1a;">EXPLORE →</div>
-    </div>
-    <div onclick="openModal('modal-downloads')" style="background:linear-gradient(150deg,#3a3a5a22 0%,#3a3a5a0a 100%);border:1px solid #3a3a5a30;padding:1.6rem 1.5rem 1.5rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s,border-color .2s;" onmouseover="this.style.background='linear-gradient(150deg,#3a3a5a38 0%,#3a3a5a18 100%)';this.style.borderColor='#3a3a5a55'" onmouseout="this.style.background='linear-gradient(150deg,#3a3a5a22 0%,#3a3a5a0a 100%)';this.style.borderColor='#3a3a5a30'">
-      <div style="position:absolute;top:-12px;right:-4px;font-family:'Barlow Condensed',sans-serif;font-size:88px;font-weight:900;color:#3a3a5a0c;line-height:1;user-select:none;">08</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;color:#3a3a5a;border:1px solid #3a3a5a40;display:inline-block;padding:.15rem .6rem;margin-bottom:.9rem;">DOWNLOADS</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:900;text-transform:uppercase;color:#e8f0ff;line-height:1.15;margin-bottom:.7rem;">Source<br>Documents</div>
-      <div style="width:28px;height:2px;background:#3a3a5a;margin-bottom:.75rem;"></div>
-      <div style="font-size:.83rem;color:#7a92b0;line-height:1.6;margin-bottom:1rem;">Download the original Playbook, Financial Model, and Decision Deck files.</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:#3a3a5a;">EXPLORE →</div>
+
+  <div id="spot-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;">
+    <div
+  class="spot-cell"
+  data-color="#C8102E"
+  data-modal="modal-playbook"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-playbook')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#C8102E,#C8102E88);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#C8102E;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">6 Phases</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#C8102E;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Project<br>Playbook</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">Phases · RACI · Governance</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </div>
   </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#22c55e"
+  data-modal="modal-financial"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-financial')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#22c55e,#22c55e88);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#22c55e;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">$3.5M Y3</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#22c55e;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Financial<br>Model v7</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">P&L · KPIs · Scenarios</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#5aabff"
+  data-modal="modal-market"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-market')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#5aabff,#5aabff88);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#5aabff;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">$750M TAM</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#5aabff;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Chicago<br>Market Intel</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">$750M TAM · 42 Targets</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#f59e0b"
+  data-modal="modal-products"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-products')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#f59e0b,#f59e0b88);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#f59e0b;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">75% Margin</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#f59e0b;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Flagship<br>Products</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">4 Lines · 60–75% GM</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#a855f7"
+  data-modal="modal-casestudy"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-casestudy')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#a855f7,#a855f788);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#a855f7;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">8,700 Locs</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#a855f7;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Kraft Heinz<br>Case Study</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">$600M Rebrand · F500</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#14b8a6"
+  data-modal="modal-partner"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-partner')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#14b8a6,#14b8a688);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#14b8a6;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">3M Certified</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#14b8a6;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Channel<br>Partner</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">3M Certified · Chicago</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#fb923c"
+  data-modal="modal-sales"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-sales')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#fb923c,#fb923c88);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#fb923c;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">3 GTM Phases</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#fb923c;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Executive<br>Sales Brief</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">GTM · Anchors · Risk</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+<div
+  class="spot-cell"
+  data-color="#94a3b8"
+  data-modal="modal-downloads"
+  onmouseenter="spotOn(this)"
+  onmouseleave="spotOff(this)"
+  onclick="openModal('modal-downloads')"
+  style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.6rem 1.8rem;min-height:260px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+
+  <!-- Full bleed color wash — hidden by default, revealed on hover -->
+  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#94a3b8,#94a3b888);opacity:0;transition:opacity .35s;"></div>
+
+  <!-- Diagonal geometric accent — brand language -->
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#94a3b8;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+
+  <!-- Stat badge — appears on hover -->
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">3 Core Files</div>
+
+  <!-- Vertical rule — always visible, color animates -->
+  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#94a3b8;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+
+  <!-- Label — muted by default -->
+  <div style="position:relative;z-index:2;">
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Source<br>Documents</div>
+    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">Playbook · Model · Deck</div>
+    <!-- CTA arrow — hidden until hover -->
+    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+</div>
+
+  </div>
+
 </section>
 
+<script>
+(function(){
+  var cells = document.querySelectorAll('.spot-cell');
+  var dimmed = false;
+
+  function spotOn(el) {
+    dimmed = true;
+    var color = el.getAttribute('data-color');
+    cells.forEach(function(c) {
+      if (c === el) {
+        // Active cell
+        c.querySelector('.spot-wash').style.opacity = '1';
+        c.querySelector('.spot-geo').style.opacity = '.18';
+        c.querySelector('.spot-geo').style.transform = 'rotate(20deg) scale(1)';
+        c.querySelector('.spot-stat').style.opacity = '1';
+        c.querySelector('.spot-stat').style.transform = 'translateY(0)';
+        c.querySelector('.spot-rule').style.opacity = '1';
+        c.querySelector('.spot-rule').style.top = '0';
+        c.querySelector('.spot-rule').style.bottom = '0';
+        c.querySelector('.spot-label').style.color = '#ffffff';
+        c.querySelector('.spot-label').style.fontSize = '1.5rem';
+        c.querySelector('.spot-meta').style.color = 'rgba(255,255,255,.75)';
+        c.querySelector('.spot-cta').style.opacity = '1';
+        c.querySelector('.spot-cta').style.transform = 'translateY(0)';
+        c.style.borderColor = color + '60';
+        c.style.zIndex = '2';
+      } else {
+        // Dimmed cells
+        c.querySelector('.spot-wash').style.opacity = '0';
+        c.querySelector('.spot-geo').style.opacity = '0';
+        c.querySelector('.spot-geo').style.transform = 'rotate(20deg) scale(.6)';
+        c.querySelector('.spot-stat').style.opacity = '0';
+        c.querySelector('.spot-stat').style.transform = 'translateY(-6px)';
+        c.querySelector('.spot-rule').style.opacity = '.08';
+        c.querySelector('.spot-rule').style.top = '20%';
+        c.querySelector('.spot-rule').style.bottom = '20%';
+        c.querySelector('.spot-label').style.color = 'rgba(255,255,255,.08)';
+        c.querySelector('.spot-label').style.fontSize = '1.35rem';
+        c.querySelector('.spot-meta').style.color = 'transparent';
+        c.querySelector('.spot-cta').style.opacity = '0';
+        c.querySelector('.spot-cta').style.transform = 'translateY(6px)';
+        c.style.borderColor = 'rgba(255,255,255,.02)';
+        c.style.zIndex = '1';
+        c.style.background = '#030710';
+      }
+    });
+    el.style.background = '#050d18';
+  }
+
+  function spotOff(el) {
+    dimmed = false;
+    setTimeout(function() {
+      if (!dimmed) {
+        cells.forEach(function(c) {
+          c.querySelector('.spot-wash').style.opacity = '0';
+          c.querySelector('.spot-geo').style.opacity = '0';
+          c.querySelector('.spot-geo').style.transform = 'rotate(20deg) scale(.6)';
+          c.querySelector('.spot-stat').style.opacity = '0';
+          c.querySelector('.spot-stat').style.transform = 'translateY(-6px)';
+          c.querySelector('.spot-rule').style.opacity = '.15';
+          c.querySelector('.spot-rule').style.top = '20%';
+          c.querySelector('.spot-rule').style.bottom = '20%';
+          c.querySelector('.spot-label').style.color = 'rgba(255,255,255,.25)';
+          c.querySelector('.spot-label').style.fontSize = '1.35rem';
+          c.querySelector('.spot-meta').style.color = 'transparent';
+          c.querySelector('.spot-cta').style.opacity = '0';
+          c.querySelector('.spot-cta').style.transform = 'translateY(6px)';
+          c.style.borderColor = 'rgba(255,255,255,.04)';
+          c.style.background = '#050d18';
+          c.style.zIndex = '1';
+        });
+      }
+    }, 80);
+  }
+
+  // Expose to global for inline handlers
+  window.spotOn  = spotOn;
+  window.spotOff = spotOff;
+})();
+</script>
+
 <!-- STUDIO -->
-<section class="section section-alt" id="studio-section">
+<section class="section section-alt" id="studio-section" style="background:#0e1d30;">
   <div class="section-label">The Studio Laboratory</div>
   <div class="two-col">
     <div>
@@ -1954,7 +2237,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 </div><!-- end modal-overlay -->
 
 <!-- CONTACT -->
-<section class="section section-alt" id="contact-section">
+<section class="section section-alt" id="contact-section" style="background:#111a28;">
   <div class="section-label">Get In Touch</div>
   <div class="contact-wrap">
     <div>
