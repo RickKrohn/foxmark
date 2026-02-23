@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+window.onerror = function(msg, src, line, col, err) {
+  var info = msg + '\n' + (src||'') + ':' + line + ':' + col;
+  if (err && err.stack) info += '\n' + err.stack;
+  // Show in a visible div so we can read it
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#ff000099;color:#fff;padding:8px;font-size:11px;font-family:monospace;z-index:99999;max-height:120px;overflow:auto;white-space:pre;';
+  d.textContent = 'JS ERROR: ' + info;
+  document.body.appendChild(d);
+  return false;
+};
+window.addEventListener('unhandledrejection', function(e){
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#ff990099;color:#fff;padding:8px;font-size:11px;font-family:monospace;z-index:99999;';
+  d.textContent = 'UNHANDLED: ' + (e.reason||e);
+  document.body.appendChild(d);
+});
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -781,8 +800,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">25+</div><div class="lbl">Years in Business</div></div>
       <div class="hero-stat"><div class="num">F500</div><div class="lbl">Client Portfolio</div></div>
-      <div class="hero-stat"><div class="num">87%</div><div class="lbl">Gross Margin Target</div></div>
-      <div class="hero-stat"><div class="num">~$3.5M</div><div class="lbl">Year 3 Revenue Target</div></div>
+      <div class="hero-stat"><div class="num">63%</div><div class="lbl">Gross Margin Target</div></div>
+      <div class="hero-stat"><div class="num">~$4.3M</div><div class="lbl">Year 3 Revenue Target</div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -796,12 +815,12 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       </div>
       <div style="background:rgba(255,255,255,.04);border:1px solid rgba(200,16,46,.15);border-left:3px solid #C8102E;padding:.9rem 1.1rem;border-radius:2px;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,16,46,.6);margin-bottom:.2rem;">Year 1</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Studio Launch · $1.45M</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Studio Launch · $1.52M</div>
         <div style="font-size:.78rem;color:#6e8aaa;margin-top:.2rem;">2–3 anchor accounts &middot; 20–30 mid-market clients</div>
       </div>
       <div style="background:rgba(255,255,255,.04);border:1px solid rgba(34,197,94,.15);border-left:3px solid #22c55e;padding:.9rem 1.1rem;border-radius:2px;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(34,197,94,.6);margin-bottom:.2rem;">Years 2–3</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Scale · $3.5M+</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Scale · $3.2M / $4.3M</div>
         <div style="font-size:.78rem;color:#6e8aaa;margin-top:.2rem;">National anchor scaling &middot; Midwest playbooks</div>
       </div>
     </div>
@@ -868,14 +887,14 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:#22c55e;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
 
   <!-- Stat badge — appears on hover -->
-  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">$3.5M Y3</div>
+  <div class="spot-stat" style="position:absolute;top:1.4rem;left:1.6rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">$4.3M Y3</div>
 
   <!-- Vertical rule — always visible, color animates -->
   <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#22c55e;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
 
   <!-- Label — muted by default -->
   <div style="position:relative;z-index:2;">
-    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Financial<br>Model v7</div>
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:1.35rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.15;letter-spacing:.03em;transition:color .3s,font-size .3s;">Financial<br>Model v8</div>
     <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.5rem;transition:color .3s .08s;">P&L · KPIs · Scenarios</div>
     <!-- CTA arrow — hidden until hover -->
     <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:.9rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;">
@@ -1083,6 +1102,9 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
 <script>
 (function(){
+
+  function qs(el, sel) { return el.querySelector(sel); }
+  function ss(el, sel, prop, val) { var x = el.querySelector(sel); if(x) x.style[prop] = val; }
   var cells = document.querySelectorAll('.spot-cell');
   var dimmed = false;
 
@@ -1092,36 +1114,36 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     cells.forEach(function(c) {
       if (c === el) {
         // Active cell
-        c.querySelector('.spot-wash').style.opacity = '1';
-        c.querySelector('.spot-geo').style.opacity = '.18';
-        c.querySelector('.spot-geo').style.transform = 'rotate(20deg) scale(1)';
-        c.querySelector('.spot-stat').style.opacity = '1';
-        c.querySelector('.spot-stat').style.transform = 'translateY(0)';
-        c.querySelector('.spot-rule').style.opacity = '1';
-        c.querySelector('.spot-rule').style.top = '0';
-        c.querySelector('.spot-rule').style.bottom = '0';
-        c.querySelector('.spot-label').style.color = '#ffffff';
-        c.querySelector('.spot-label').style.fontSize = '1.5rem';
-        c.querySelector('.spot-meta').style.color = 'rgba(255,255,255,.75)';
-        c.querySelector('.spot-cta').style.opacity = '1';
-        c.querySelector('.spot-cta').style.transform = 'translateY(0)';
+        ss(c, '.spot-wash', 'opacity', '1');
+        ss(c, '.spot-geo', 'opacity', '.18');
+        ss(c, '.spot-geo', 'transform', 'rotate(20deg) scale(1)');
+        ss(c, '.spot-stat', 'opacity', '1');
+        ss(c, '.spot-stat', 'transform', 'translateY(0)');
+        ss(c, '.spot-rule', 'opacity', '1');
+        ss(c, '.spot-rule', 'top', '0');
+        ss(c, '.spot-rule', 'bottom', '0');
+        ss(c, '.spot-label', 'color', '#ffffff');
+        ss(c, '.spot-label', 'fontSize', '1.5rem');
+        ss(c, '.spot-meta', 'color', 'rgba(255,255,255,.75)');
+        ss(c, '.spot-cta', 'opacity', '1');
+        ss(c, '.spot-cta', 'transform', 'translateY(0)');
         c.style.borderColor = color + '60';
         c.style.zIndex = '2';
       } else {
         // Dimmed cells
-        c.querySelector('.spot-wash').style.opacity = '0';
-        c.querySelector('.spot-geo').style.opacity = '0';
-        c.querySelector('.spot-geo').style.transform = 'rotate(20deg) scale(.6)';
-        c.querySelector('.spot-stat').style.opacity = '0';
-        c.querySelector('.spot-stat').style.transform = 'translateY(-6px)';
-        c.querySelector('.spot-rule').style.opacity = '.08';
-        c.querySelector('.spot-rule').style.top = '20%';
-        c.querySelector('.spot-rule').style.bottom = '20%';
-        c.querySelector('.spot-label').style.color = 'rgba(255,255,255,.32)';
-        c.querySelector('.spot-label').style.fontSize = '1.35rem';
-        c.querySelector('.spot-meta').style.color = 'transparent';
-        c.querySelector('.spot-cta').style.opacity = '0';
-        c.querySelector('.spot-cta').style.transform = 'translateY(6px)';
+        ss(c, '.spot-wash', 'opacity', '0');
+        ss(c, '.spot-geo', 'opacity', '0');
+        ss(c, '.spot-geo', 'transform', 'rotate(20deg) scale(.6)');
+        ss(c, '.spot-stat', 'opacity', '0');
+        ss(c, '.spot-stat', 'transform', 'translateY(-6px)');
+        ss(c, '.spot-rule', 'opacity', '.08');
+        ss(c, '.spot-rule', 'top', '20%');
+        ss(c, '.spot-rule', 'bottom', '20%');
+        ss(c, '.spot-label', 'color', 'rgba(255,255,255,.32)');
+        ss(c, '.spot-label', 'fontSize', '1.35rem');
+        ss(c, '.spot-meta', 'color', 'transparent');
+        ss(c, '.spot-cta', 'opacity', '0');
+        ss(c, '.spot-cta', 'transform', 'translateY(6px)');
         c.style.borderColor = 'rgba(255,255,255,.06)';
         c.style.zIndex = '1';
         c.style.background = '#0a1422';
@@ -1135,19 +1157,19 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     setTimeout(function() {
       if (!dimmed) {
         cells.forEach(function(c) {
-          c.querySelector('.spot-wash').style.opacity = '0';
-          c.querySelector('.spot-geo').style.opacity = '0';
-          c.querySelector('.spot-geo').style.transform = 'rotate(20deg) scale(.6)';
-          c.querySelector('.spot-stat').style.opacity = '0';
-          c.querySelector('.spot-stat').style.transform = 'translateY(-6px)';
-          c.querySelector('.spot-rule').style.opacity = '.15';
-          c.querySelector('.spot-rule').style.top = '20%';
-          c.querySelector('.spot-rule').style.bottom = '20%';
-          c.querySelector('.spot-label').style.color = 'rgba(255,255,255,.25)';
-          c.querySelector('.spot-label').style.fontSize = '1.35rem';
-          c.querySelector('.spot-meta').style.color = 'transparent';
-          c.querySelector('.spot-cta').style.opacity = '0';
-          c.querySelector('.spot-cta').style.transform = 'translateY(6px)';
+          ss(c, '.spot-wash', 'opacity', '0');
+          ss(c, '.spot-geo', 'opacity', '0');
+          ss(c, '.spot-geo', 'transform', 'rotate(20deg) scale(.6)');
+          ss(c, '.spot-stat', 'opacity', '0');
+          ss(c, '.spot-stat', 'transform', 'translateY(-6px)');
+          ss(c, '.spot-rule', 'opacity', '.15');
+          ss(c, '.spot-rule', 'top', '20%');
+          ss(c, '.spot-rule', 'bottom', '20%');
+          ss(c, '.spot-label', 'color', 'rgba(255,255,255,.25)');
+          ss(c, '.spot-label', 'fontSize', '1.35rem');
+          ss(c, '.spot-meta', 'color', 'transparent');
+          ss(c, '.spot-cta', 'opacity', '0');
+          ss(c, '.spot-cta', 'transform', 'translateY(6px)');
           c.style.borderColor = 'rgba(255,255,255,.04)';
           c.style.background = '#050d18';
           c.style.zIndex = '1';
@@ -1179,8 +1201,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div>
       <div class="box-red" style="margin-bottom:1.5rem;">
         <div class="kg-title">Key Goals &mdash; Chicago Studio</div>
-        <div class="kg-item"><div class="kg-dot"></div><span>Launch lean studio with <strong>$452K midpoint capital</strong> and 1&ndash;2 year payback</span></div>
-        <div class="kg-item"><div class="kg-dot"></div><span>Achieve <strong>Year 2 revenue of ~$2.9M</strong> at 40% EBITDA, 70% local mix</span></div>
+        <div class="kg-item"><div class="kg-dot"></div><span>Launch lean studio with <strong>$452K midpoint capital</strong> and 14-month payback</span></div>
+        <div class="kg-item"><div class="kg-dot"></div><span>Achieve <strong>Year 2 revenue of ~$3.2M</strong> at 33% EBITDA, 70% local mix</span></div>
         <div class="kg-item"><div class="kg-dot"></div><span>Differentiate via <strong>eco-overlays and lab proofing</strong> for 60&ndash;75% margins</span></div>
         <div class="kg-item"><div class="kg-dot"></div><span>Secure <strong>5 anchor accounts</strong> in 12&ndash;18 months for $800K&ndash;$1.2M Year 2</span></div>
         <div class="kg-item"><div class="kg-dot"></div><span>Operate from <strong>Elmhurst-area facility</strong> &mdash; central Chicagoland enterprise corridor</span></div>
@@ -1290,11 +1312,11 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 <section class="section section-alt">
   <div class="section-label">Financial Model</div>
   <h2>Strong ROI.<br><em>Fast Payback.</em><br>Premium Margins.</h2>
-  <p class="intro-text">Conservative assumptions: <strong>60% utilization, $15/ft&sup2; blended price, 190K ft&sup2;/year</strong> at 6 productive hours/day. Base case delivers 40% EBITDA by Year 2 with 1&ndash;2 year payback on $452K capital.</p>
+  <p class="intro-text">Conservative assumptions: <strong>60% utilization, $15/ft&sup2; blended price, 190K ft&sup2;/year</strong> at 6 productive hours/day. Base case delivers 33% EBITDA by Year 2 with 14-month payback on $452K capital.</p>
   <div class="fin-grid">
-    <div class="fin-card"><div class="fin-year">Year 1 &mdash; Soft Launch</div><div class="fin-revenue">$1.45M</div><div class="fin-label">Revenue &middot; 50% of Base</div><div class="fin-metrics"><div class="fin-metric"><span class="k">Gross Margin</span><span class="v green">87%</span></div><div class="fin-metric"><span class="k">EBITDA</span><span class="v green">14% &middot; $0.20M</span></div><div class="fin-metric"><span class="k">Volume</span><span class="v">~95K ft&sup2;</span></div><div class="fin-metric"><span class="k">Revenue/FTE</span><span class="v">$242K</span></div></div></div>
-    <div class="fin-card" style="border-top:3px solid var(--red)"><div class="fin-year">Year 2 &mdash; Full Ramp</div><div class="fin-revenue">$2.91M</div><div class="fin-label">Revenue &middot; Base Case</div><div class="fin-metrics"><div class="fin-metric"><span class="k">Gross Margin</span><span class="v green">87%</span></div><div class="fin-metric"><span class="k">EBITDA</span><span class="v green">40% &middot; $1.17M</span></div><div class="fin-metric"><span class="k">Volume</span><span class="v">~190K ft&sup2;</span></div><div class="fin-metric"><span class="k">Revenue/FTE</span><span class="v">$485K</span></div></div></div>
-    <div class="fin-card"><div class="fin-year">Year 3 &mdash; Growth</div><div class="fin-revenue">$3.49M</div><div class="fin-label">Revenue &middot; 120% of Base</div><div class="fin-metrics"><div class="fin-metric"><span class="k">Gross Margin</span><span class="v green">87%</span></div><div class="fin-metric"><span class="k">EBITDA</span><span class="v green">43% &middot; $1.49M</span></div><div class="fin-metric"><span class="k">Volume</span><span class="v">~228K ft&sup2;</span></div><div class="fin-metric"><span class="k">Revenue/FTE</span><span class="v">$582K</span></div></div></div>
+    <div class="fin-card"><div class="fin-year">Year 1 &mdash; Soft Launch</div><div class="fin-revenue">$1.52M</div><div class="fin-label">Revenue &middot; 50% of Base</div><div class="fin-metrics"><div class="fin-metric"><span class="k">Gross Margin</span><span class="v green">63%</span></div><div class="fin-metric"><span class="k">EBITDA</span><span class="v green">24.8% &middot; $377K</span></div><div class="fin-metric"><span class="k">Volume</span><span class="v">~95K ft&sup2;</span></div><div class="fin-metric"><span class="k">Revenue/FTE</span><span class="v">$253K</span></div></div></div>
+    <div class="fin-card" style="border-top:3px solid var(--red)"><div class="fin-year">Year 2 &mdash; Full Ramp</div><div class="fin-revenue">$3.23M</div><div class="fin-label">Revenue &middot; Base Case</div><div class="fin-metrics"><div class="fin-metric"><span class="k">Gross Margin</span><span class="v green">63%</span></div><div class="fin-metric"><span class="k">EBITDA</span><span class="v green">33.1% &middot; $1.07M</span></div><div class="fin-metric"><span class="k">Volume</span><span class="v">~190K ft&sup2;</span></div><div class="fin-metric"><span class="k">Revenue/FTE</span><span class="v">$380K</span></div></div></div>
+    <div class="fin-card"><div class="fin-year">Year 3 &mdash; Growth</div><div class="fin-revenue">$4.28M</div><div class="fin-label">Revenue &middot; 120% of Base</div><div class="fin-metrics"><div class="fin-metric"><span class="k">Gross Margin</span><span class="v green">63%</span></div><div class="fin-metric"><span class="k">EBITDA</span><span class="v green">36.0% &middot; $1.54M</span></div><div class="fin-metric"><span class="k">Volume</span><span class="v">~228K ft&sup2;</span></div><div class="fin-metric"><span class="k">Revenue/FTE</span><span class="v">$372K</span></div></div></div>
   </div>
   <div class="kpi-row">
     <div class="kpi-card"><div class="kpi-num">$15<span class="kpi-unit">/ft&sup2;</span></div><div class="kpi-label">Blended Price Target ($12&ndash;$18 range)</div></div>
@@ -1402,9 +1424,9 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;color:#4a9eff;">Phase 1 — Year 1</div>
               <div style="font-size:.88rem;color:#5a6880;">Month 4–15</div>
             </div>
-            <div style="font-size:.88rem;color:#9096a8;line-height:1.6;">2–3 anchor accounts + 20–30 mid-market · $1.45M revenue · 50% base volume</div>
+            <div style="font-size:.88rem;color:#9096a8;line-height:1.6;">2–3 anchor accounts + 20–30 mid-market · $1.52M revenue · 50% base volume</div>
             <div style="margin-top:.75rem;">
-              <div style="display:flex;justify-content:space-between;font-size:.88rem;color:#5a6880;margin-bottom:.25rem;"><span>Revenue target</span><span style="color:#4a9eff;">$1.45M</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.88rem;color:#5a6880;margin-bottom:.25rem;"><span>Revenue target</span><span style="color:#4a9eff;">$1.52M</span></div>
               <div style="height:5px;background:rgba(255,255,255,.05);border-radius:3px;"><div style="height:5px;width:37%;background:#4a9eff;border-radius:3px;"></div></div>
             </div>
           </div>
@@ -1418,9 +1440,9 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;color:#a855f7;">Phase 2 — Years 2–3</div>
               <div style="font-size:.88rem;color:#5a6880;">Month 16–36</div>
             </div>
-            <div style="font-size:.88rem;color:#9096a8;line-height:1.6;">Scale anchors nationally · $2.9M–$3.5M+ · Deepen Midwest playbooks</div>
+            <div style="font-size:.88rem;color:#9096a8;line-height:1.6;">Scale anchors nationally · $3.2M–$4.3M+ · Deepen Midwest playbooks</div>
             <div style="margin-top:.75rem;">
-              <div style="display:flex;justify-content:space-between;font-size:.88rem;color:#5a6880;margin-bottom:.25rem;"><span>Revenue target</span><span style="color:#a855f7;">$3.5M+</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.88rem;color:#5a6880;margin-bottom:.25rem;"><span>Revenue target</span><span style="color:#a855f7;">$4.3M+</span></div>
               <div style="height:5px;background:rgba(255,255,255,.05);border-radius:3px;"><div style="height:5px;width:90%;background:#a855f7;border-radius:3px;"></div></div>
             </div>
           </div>
@@ -1459,7 +1481,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
         <div style="display:flex;gap:.75rem;align-items:flex-start;background:#162d48;padding:.85rem;">
           <div style="width:6px;height:6px;background:#22c55e;flex-shrink:0;margin-top:.35rem;"></div>
-          <div style="font-size:.88rem;color:#b8c0d4;">$452K midpoint capital · <span style="color:#22c55e;font-weight:600;">1–2 year payback</span></div>
+          <div style="font-size:.88rem;color:#b8c0d4;">$452K midpoint capital · <span style="color:#22c55e;font-weight:600;">14-month payback</span></div>
         </div>
         <div style="display:flex;gap:.75rem;align-items:flex-start;background:#162d48;padding:.85rem;">
           <div style="width:6px;height:6px;background:#22c55e;flex-shrink:0;margin-top:.35rem;"></div>
@@ -1486,7 +1508,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;">
         <div style="background:#162d48;border:1px solid rgba(74,158,255,.2);border-top:2px solid #4a9eff;padding:1.25rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;color:#4a9eff;margin-bottom:.6rem;">CHICAGO SPOKE</div>
-          <div style="font-size:.82rem;color:#9096a8;line-height:1.8;">▶ Anchor origination + local selling<br>▶ Rapid proofing / client walkthroughs<br>▶ Eco testing + spec library<br>▶ $1.45M Y1 revenue</div>
+          <div style="font-size:.82rem;color:#9096a8;line-height:1.8;">▶ Anchor origination + local selling<br>▶ Rapid proofing / client walkthroughs<br>▶ Eco testing + spec library<br>▶ $1.52M Y1 revenue</div>
         </div>
         <div style="text-align:center;">
           <div style="font-size:1.5rem;color:#5a6880;">⇄</div>
@@ -1494,15 +1516,15 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         </div>
         <div style="background:#162d48;border:1px solid rgba(200,16,46,.2);border-top:2px solid #C8102E;padding:1.25rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;color:#C8102E;margin-bottom:.6rem;">HQ HUB (NATIONAL)</div>
-          <div style="font-size:.82rem;color:#9096a8;line-height:1.8;">▶ High-volume production at scale<br>▶ National rollout logistics<br>▶ Proven Chicago playbooks replicated<br>▶ $2.9M–$3.5M Y2–Y3</div>
+          <div style="font-size:.82rem;color:#9096a8;line-height:1.8;">▶ High-volume production at scale<br>▶ National rollout logistics<br>▶ Proven Chicago playbooks replicated<br>▶ $3.2M–$4.3M Y2–Y3</div>
         </div>
       </div>
     </div>
   </div>
 
   <div id="modal-financial" class="modal-content" style="display:none;padding:3rem;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#22c55e;margin-bottom:.75rem;">Financial Model v7 &middot; Source of Truth: Decision Deck v7.1</div>
-    <h2 style="font-size:2.5rem;margin-bottom:1.75rem;">52% Gross Margin.<br><em>27.8% EBITDA</em> by Year 2.</h2>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#22c55e;margin-bottom:.75rem;">Financial Model v8 &middot; Recalibrated vs. AlphaGraphics FDD 2024 · Feb 2026</div>
+    <h2 style="font-size:2.5rem;margin-bottom:1.75rem;">63% Gross Margin.<br><em>33.1% EBITDA</em> by Year 2.</h2>
 
     <!-- ── ANIMATED KPI COUNTERS ─────────────────────────────────────── -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;">
@@ -1524,6 +1546,28 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       </div>
     </div>
 
+    <!-- ── BENCHMARK COMPARISON ─────────────────────────────────────────── -->
+    <div style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2);padding:1rem 1.25rem;margin-bottom:2rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#22c55e;letter-spacing:.05em;">WHY v8 IS AGGRESSIVE BUT LEGITIMATE</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;font-size:.8rem;">
+        <div style="background:rgba(255,255,255,.04);padding:.6rem .75rem;">
+          <div style="color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-bottom:.25rem;">AlphaGraphics 2024 FDD</div>
+          <div style="color:#fff;font-weight:600;">72% GM · 17% EBITDA</div>
+          <div style="color:#5a6880;font-size:.72rem;">avg 221 franchise units · commodity mix</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);padding:.6rem .75rem;">
+          <div style="color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-bottom:.25rem;">Foxmark Chicago v8</div>
+          <div style="color:#22c55e;font-weight:600;">63% GM · 33% EBITDA</div>
+          <div style="color:#5a6880;font-size:.72rem;">pure B2B corporate EGD · no royalties</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);padding:.6rem .75rem;">
+          <div style="color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-bottom:.25rem;">Foxmark Structural Edge</div>
+          <div style="color:#f59e0b;font-weight:600;">No royalties (+7%) · Higher ASP (+14%)</div>
+          <div style="color:#5a6880;font-size:.72rem;">Chicago premium · anchor B2B contracts</div>
+        </div>
+      </div>
+    </div>
+
     <!-- ── REVENUE PROGRESSION CHART ──────────────────────────────────── -->
     <div style="margin-bottom:2rem;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:1rem;">Revenue Progression · 3-Year Ramp</div>
@@ -1536,8 +1580,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
             <div id="bar-y1" style="height:4px;width:0%;background:#4a9eff;border-radius:2px;transition:width 1.2s ease;"></div>
           </div>
           <div style="font-size:.82rem;color:#8A8A8A;line-height:1.6;">
-            <span style="color:#22c55e;font-weight:600;">52% GM &middot; $154K EBITDA</span><br>
-            11.5% EBITDA margin<br>~95K ft² &middot; 6 FTE
+            <span style="color:#22c55e;font-weight:600;">63% GM &middot; $377K EBITDA</span><br>
+            24.8% EBITDA margin<br>~95K ft² &middot; 6 FTE
           </div>
         </div>
         <!-- Y2 -->
@@ -1548,8 +1592,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
             <div id="bar-y2" style="height:4px;width:0%;background:#22c55e;border-radius:2px;transition:width 1.4s ease;"></div>
           </div>
           <div style="font-size:.82rem;color:#8A8A8A;line-height:1.6;">
-            <span style="color:#22c55e;font-weight:600;">52% GM &middot; $750K EBITDA</span><br>
-            27.8% EBITDA margin<br>~190K ft² &middot; 8.5 FTE
+            <span style="color:#22c55e;font-weight:600;">63% GM &middot; $1.07M EBITDA</span><br>
+            33.1% EBITDA margin<br>~190K ft² &middot; 8.5 FTE
           </div>
         </div>
         <!-- Y3 -->
@@ -1560,8 +1604,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
             <div id="bar-y3" style="height:4px;width:0%;background:#a855f7;border-radius:2px;transition:width 1.6s ease;"></div>
           </div>
           <div style="font-size:.82rem;color:#8A8A8A;line-height:1.6;">
-            <span style="color:#22c55e;font-weight:600;">52% GM &middot; $1.17M EBITDA</span><br>
-            30.1% EBITDA margin<br>~228K ft² &middot; 11.5 FTE
+            <span style="color:#22c55e;font-weight:600;">63% GM &middot; $1.54M EBITDA</span><br>
+            36.0% EBITDA margin<br>~228K ft² &middot; 11.5 FTE
           </div>
         </div>
       </div>
@@ -1569,7 +1613,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
     <!-- ── GROSS MARGIN WATERFALL ──────────────────────────────────────── -->
     <div style="margin-bottom:2rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#22c55e;margin-bottom:1rem;">Gross Margin Waterfall · Year 2 Base Case ($2.70M Revenue)</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#22c55e;margin-bottom:1rem;">Gross Margin Waterfall · Year 2 Base Case ($3.23M Revenue)</div>
       <div style="display:flex;flex-direction:column;gap:3px;" id="waterfall-wrap">
         <!-- rendered by JS -->
       </div>
@@ -1580,23 +1624,23 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;margin-bottom:1rem;">Unit Economics · Per Square Foot</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;">
         <div style="text-align:center;background:#162d48;padding:1rem;border-top:2px solid #4a9eff;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#4a9eff;">$14</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#4a9eff;">$16</div>
           <div style="font-size:.85rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;">Price/ft²</div>
         </div>
         <div style="text-align:center;background:#162d48;padding:1rem;border-top:2px solid #ef4444;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#ef4444;">$6.72</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#ef4444;">$5.90</div>
           <div style="font-size:.85rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;">COGS/ft²</div>
         </div>
         <div style="text-align:center;background:#162d48;padding:1rem;border-top:2px solid #22c55e;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#22c55e;">$7.28</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#22c55e;">$10.10</div>
           <div style="font-size:.85rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;">Gross Profit</div>
         </div>
         <div style="text-align:center;background:#162d48;padding:1rem;border-top:2px solid #f59e0b;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#f59e0b;">52%</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#f59e0b;">63%</div>
           <div style="font-size:.85rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;">Gross Margin</div>
         </div>
         <div style="text-align:center;background:#162d48;padding:1rem;border-top:2px solid #a855f7;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#a855f7;">$3.95</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#a855f7;">$5.30</div>
           <div style="font-size:.85rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem;">EBITDA/ft²</div>
         </div>
       </div>
@@ -1652,7 +1696,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#22c55e;margin-bottom:.75rem;">Base Assumptions &middot; Assumptions Tab</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;">
         <div style="font-size:.88rem;color:#8A8A8A;"><span style="color:#fff;">Utilization ramp:</span> 50% &rarr; 60% &rarr; 70% (Y1/Y2/Y3)</div>
-        <div style="font-size:.88rem;color:#8A8A8A;"><span style="color:#fff;">Avg price:</span> $14/ft² (Y1&ndash;Y2) &rarr; $14.75 (Y3)</div>
+        <div style="font-size:.88rem;color:#8A8A8A;"><span style="color:#fff;">Avg price:</span> $16/ft² blended (Y1&ndash;Y2) &rarr; $18.50 (Y3) &middot; <span style="color:#22c55e;">+14% vs. v7</span></div>
         <div style="font-size:.88rem;color:#8A8A8A;"><span style="color:#fff;">Throughput:</span> 200 ft²/hr &middot; Y2 volume: 190K ft²</div>
         <div style="font-size:.88rem;color:#8A8A8A;"><span style="color:#fff;">Shipped output:</span> 60% &middot; Facility: 7,500 sf</div>
         <div style="font-size:.88rem;color:#8A8A8A;"><span style="color:#fff;">Capital range:</span> $375K&ndash;$529K (mid: $452K)</div>
@@ -1814,6 +1858,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <button onclick="mktTab('ind')" id="mtab-ind" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Industrials</button>
           <button onclick="mktTab('rtl')" id="mtab-rtl" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Retail</button>
           <button onclick="mktTab('crm')" id="mtab-crm" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Pipeline</button>
+          <button onclick="mktTab('mid')" id="mtab-mid" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Mid-Market</button>
         </div>
         <div id="crm-pipeline-wrap" style="display:none;"></div>
         <div id="mkt-table-wrap" style="overflow-x:auto;">
@@ -1843,6 +1888,18 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;color:#8A8A8A;margin-bottom:.4rem;">Tier 3 · Statewide — Bloomington / Peoria / Moline / Downstate</div>
           <div style="font-size:.82rem;color:#8A8A8A;margin-bottom:.75rem;">Downstate IL anchors — large campus programs worth the drive once qualified. <strong style="color:#fff;">Virtual-first. Use Rick&#39;s network for warm intros.</strong></div>
           <div id="tier3-cards"></div>
+        </div>
+
+        <!-- MID-MARKET CALLOUT -->
+        <div style="margin-top:1rem;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);padding:1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;color:#f59e0b;margin-bottom:.4rem;">Mid-Market · The Overlooked Tier</div>
+          <div style="font-size:.82rem;color:#8A8A8A;line-height:1.65;margin-bottom:.6rem;">Private, PE-backed, and high-growth Chicago companies that <strong style="color:#e8f0ff;">move faster than F500</strong> and don't have procurement committees blocking every decision. Restaurant groups opening new locations, regional banks rebranding branches, developer-owned buildings needing tenant suites — these close in weeks, not quarters. <strong style="color:#e8f0ff;">See the Mid-Market tab above for targets.</strong></div>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">NO RFP REQUIRED</div>
+            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">OWNER DECISIONS</div>
+            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">REPEAT VOLUME</div>
+            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">BRAND-SENSITIVE</div>
+          </div>
         </div>
       </div>
     </div>
@@ -2082,87 +2139,203 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   </div>
 
   <div id="modal-partner" class="modal-content" style="display:none;padding:3rem;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#14b8a6;margin-bottom:.75rem;">Channel Partner — Installation</div>
-    <h2 style="font-size:2.2rem;margin-bottom:.5rem;">New Image Technologies</h2>
-    <div style="font-size:1rem;color:#14b8a6;font-weight:600;margin-bottom:1.75rem;">Chicago's Installation Backbone.</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#14b8a6;margin-bottom:.75rem;">Channel Partner Network — Installation &amp; Co-Sell</div>
+    <h2 style="font-size:2.2rem;margin-bottom:.4rem;">Installation &amp; Trade Partners</h2>
+    <div style="font-size:1rem;color:#9096a8;line-height:1.6;margin-bottom:2rem;">Foxmark's go-to-market relies on a layered partner network — a primary relationship with depth and trust, backed by a vetted bench of certified installers, trade referrers, and complementary service providers across Chicagoland.</div>
 
-    <!-- CREDENTIALS -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
-      <div style="background:#162d48;border:1px solid rgba(20,184,166,.2);border-top:2px solid #14b8a6;padding:1rem;text-align:center;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:#14b8a6;margin-bottom:.35rem;">3M Certified</div>
-        <div style="font-size:.88rem;color:#9096a8;line-height:1.5;">Authorized to install 3M films, wraps, and architectural graphics</div>
+    <!-- ── TIER 1: PRIMARY PARTNER ── -->
+    <div style="border:1px solid rgba(20,184,166,.35);border-top:3px solid #14b8a6;background:rgba(20,184,166,.04);padding:1.5rem;margin-bottom:2rem;">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;">
+        <div style="background:#14b8a6;color:#050d18;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.15em;padding:.25rem .6rem;">TIER 1 · PRIMARY</div>
+        <div style="font-size:.8rem;color:#14b8a6;font-weight:600;">Personal Relationship · Proven Track Record</div>
       </div>
-      <div style="background:#162d48;border:1px solid rgba(20,184,166,.15);border-top:2px solid rgba(20,184,166,.5);padding:1rem;text-align:center;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:#14b8a6;margin-bottom:.35rem;">UASG Member</div>
-        <div style="font-size:.88rem;color:#9096a8;line-height:1.5;">United Application Standards Group — industry quality standard</div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;margin-bottom:1.25rem;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.55rem;color:#f0f4ff;margin-bottom:.25rem;">New Image Technologies</div>
+          <div style="font-size:.92rem;color:#14b8a6;font-weight:600;margin-bottom:.6rem;">Chicago's Installation Backbone — Preferred Partner</div>
+          <div style="font-size:.88rem;color:#9096a8;line-height:1.6;">NIT is Foxmark's anchor installation partner with an established personal relationship. They handle any surface, any scale — walls, floors, glass, vehicles, transit — with permitting managed in-house. Their national project reach means Chicago-originated work can scale to multi-site enterprise rollouts without adding vendors.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;min-width:130px;">
+          <div style="background:#162d48;border:1px solid rgba(20,184,166,.25);padding:.6rem .8rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.92rem;color:#14b8a6;">3M Certified</div>
+            <div style="font-size:.75rem;color:#9096a8;margin-top:.15rem;">Films &amp; Architectural</div>
+          </div>
+          <div style="background:#162d48;border:1px solid rgba(20,184,166,.2);padding:.6rem .8rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.92rem;color:#14b8a6;">UASG Member</div>
+            <div style="font-size:.75rem;color:#9096a8;margin-top:.15rem;">Industry Gold Standard</div>
+          </div>
+          <div style="background:#162d48;border:1px solid rgba(20,184,166,.2);padding:.6rem .8rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.92rem;color:#14b8a6;">PDAA Affiliated</div>
+            <div style="font-size:.75rem;color:#9096a8;margin-top:.15rem;">Safety &amp; Quality</div>
+          </div>
+        </div>
       </div>
-      <div style="background:#162d48;border:1px solid rgba(20,184,166,.15);border-top:2px solid rgba(20,184,166,.3);padding:1rem;text-align:center;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:#14b8a6;margin-bottom:.35rem;">PDAA Affiliated</div>
-        <div style="font-size:.88rem;color:#9096a8;line-height:1.5;">Professional Decal Application Alliance — safety and quality certified</div>
+      <!-- Notable projects -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1.1rem;">
+        <div style="background:#0d2035;border:1px solid rgba(20,184,166,.12);padding:.7rem;display:flex;gap:.6rem;align-items:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#14b8a6;line-height:1;min-width:38px;text-align:center;">100</div>
+          <div><div style="font-size:.78rem;color:#f0f4ff;font-weight:600;">Pace Bus Contract</div><div style="font-size:.75rem;color:#9096a8;">100 buses wrapped · national rollout proof</div></div>
+        </div>
+        <div style="background:#0d2035;border:1px solid rgba(245,158,11,.12);padding:.7rem;display:flex;gap:.6rem;align-items:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#f59e0b;line-height:1;min-width:38px;text-align:center;">48h</div>
+          <div><div style="font-size:.78rem;color:#f0f4ff;font-weight:600;">Big Ten Zipcars</div><div style="font-size:.75rem;color:#9096a8;">14 vehicles · fast-turn event execution</div></div>
+        </div>
+        <div style="background:#0d2035;border:1px solid rgba(168,85,247,.12);padding:.7rem;display:flex;gap:.6rem;align-items:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#a855f7;line-height:1;min-width:38px;text-align:center;">Any</div>
+          <div><div style="font-size:.78rem;color:#f0f4ff;font-weight:600;">Grand Format</div><div style="font-size:.75rem;color:#9096a8;">Walls · floors · glass · permitting in-house</div></div>
+        </div>
+      </div>
+      <div style="background:rgba(20,184,166,.04);border:1px solid rgba(20,184,166,.15);padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:.82rem;color:#14b8a6;font-weight:600;">newimagetech.net &nbsp;·&nbsp; <span style="color:#5a6880;font-weight:400;">Chicagoland-based · national project reach</span></div>
+        <div style="font-size:.82rem;color:#9096a8;">(847) 741-2922</div>
       </div>
     </div>
 
-    <!-- NOTABLE PROJECTS -->
+    <!-- ── TIER 2: INSTALLATION BENCH ── -->
     <div style="margin-bottom:2rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#14b8a6;margin-bottom:1rem;">Notable Projects</div>
-      <div style="display:flex;flex-direction:column;gap:.6rem;">
-        <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;background:#162d48;border:1px solid rgba(20,184,166,.1);padding:.85rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#14b8a6;line-height:1;min-width:50px;text-align:center;">100</div>
-          <div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#f0f4ff;margin-bottom:.2rem;">Pace Bus Contract</div>
-            <div style="font-size:.82rem;color:#9096a8;">100 Pace buses wrapped — large-scale transit program demonstrating national rollout capability</div>
-          </div>
-          <div style="font-size:.88rem;color:#22c55e;font-weight:600;white-space:nowrap;">National scale</div>
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;background:#162d48;border:1px solid rgba(20,184,166,.1);padding:.85rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#f59e0b;line-height:1;min-width:50px;text-align:center;">48h</div>
-          <div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#f0f4ff;margin-bottom:.2rem;">Big Ten Tournament Zipcars</div>
-            <div style="font-size:.82rem;color:#9096a8;">14 Zipcars wrapped in 48 hours — proves fast-turnaround event execution</div>
-          </div>
-          <div style="font-size:.88rem;color:#f59e0b;font-weight:600;white-space:nowrap;">Fast turnaround</div>
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;background:#162d48;border:1px solid rgba(20,184,166,.1);padding:.85rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#a855f7;line-height:1;min-width:50px;text-align:center;">Any</div>
-          <div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#f0f4ff;margin-bottom:.2rem;">Grand Format Installation</div>
-            <div style="font-size:.82rem;color:#9096a8;">Any surface, any size — walls, floors, glass, vehicles, transit. Multi-location with permitting managed in-house</div>
-          </div>
-          <div style="font-size:.88rem;color:#a855f7;font-weight:600;white-space:nowrap;">Any surface</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <div style="background:#1e3a5f;color:#4a9eff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.15em;padding:.25rem .6rem;border:1px solid rgba(74,158,255,.3);">TIER 2 · INSTALL BENCH</div>
+        <div style="font-size:.8rem;color:#9096a8;">Backup capacity · specialty surfaces · union-required buildings</div>
       </div>
-    </div>
-
-    <!-- PARTNERSHIP VALUE -->
-    <div style="margin-bottom:1.5rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:1rem;">The Foxmark + NIT Partnership</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
-        <div style="background:#162d48;border:1px solid rgba(74,158,255,.1);padding:.85rem;display:flex;gap:.6rem;">
-          <div style="color:#22c55e;font-size:.9rem;flex-shrink:0;">✓</div>
-          <div style="font-size:.85rem;color:#b8c0d4;">Foxmark produces — NIT installs. Clean single-vendor experience for enterprise clients.</div>
+
+        <!-- B5 Installations -->
+        <div style="background:#0f1e2e;border:1px solid rgba(74,158,255,.12);border-left:3px solid #4a9eff;padding:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:.5rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;color:#f0f4ff;">B5 Installations</div>
+            <div style="font-size:.72rem;color:#4a9eff;font-weight:600;background:rgba(74,158,255,.1);padding:.15rem .45rem;">UNION LOCAL 830</div>
+          </div>
+          <div style="font-size:.8rem;color:#9096a8;line-height:1.55;margin-bottom:.65rem;">Chicagoland-based certified graphics installer. Sign Painters &amp; Decorators Local 830 union member — required for buildings over 80K sq ft in Chicago proper. Masters of Branding founding member. Handles glass films, wall murals, ADA signage, dimensional letters, and architectural finishes.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+            <span style="font-size:.72rem;color:#4a9eff;background:rgba(74,158,255,.08);padding:.15rem .4rem;">Large buildings</span>
+            <span style="font-size:.72rem;color:#4a9eff;background:rgba(74,158,255,.08);padding:.15rem .4rem;">Union labor</span>
+            <span style="font-size:.72rem;color:#4a9eff;background:rgba(74,158,255,.08);padding:.15rem .4rem;">Dimensional signage</span>
+          </div>
         </div>
-        <div style="background:#162d48;border:1px solid rgba(74,158,255,.1);padding:.85rem;display:flex;gap:.6rem;">
-          <div style="color:#22c55e;font-size:.9rem;flex-shrink:0;">✓</div>
-          <div style="font-size:.85rem;color:#b8c0d4;">NIT's national reach + Foxmark's Chicago production = turnkey enterprise rollout.</div>
+
+        <!-- Graphic Installations Inc. -->
+        <div style="background:#0f1e2e;border:1px solid rgba(74,158,255,.12);border-left:3px solid #4a9eff;padding:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:.5rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;color:#f0f4ff;">Graphic Installations Inc.</div>
+            <div style="font-size:.72rem;color:#14b8a6;font-weight:600;background:rgba(20,184,166,.1);padding:.15rem .45rem;">3M · KOROSEAL</div>
+          </div>
+          <div style="font-size:.8rem;color:#9096a8;line-height:1.55;margin-bottom:.65rem;">Specialist in environmental graphics and architectural film. Self-described as the leading installer of 3M DI-NOC and Koroseal Reatec architectural films in the U.S. Pre-install substrate testing, site surveys, and field-verified measurements minimize costly rework. 20+ years experience, CA contractor licensed. Ideal for high-end material installs.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+            <span style="font-size:.72rem;color:#14b8a6;background:rgba(20,184,166,.08);padding:.15rem .4rem;">Arch. film specialist</span>
+            <span style="font-size:.72rem;color:#14b8a6;background:rgba(20,184,166,.08);padding:.15rem .4rem;">DI-NOC / Koroseal</span>
+            <span style="font-size:.72rem;color:#14b8a6;background:rgba(20,184,166,.08);padding:.15rem .4rem;">Substrate testing</span>
+          </div>
         </div>
-        <div style="background:#162d48;border:1px solid rgba(74,158,255,.1);padding:.85rem;display:flex;gap:.6rem;">
-          <div style="color:#22c55e;font-size:.9rem;flex-shrink:0;">✓</div>
-          <div style="font-size:.85rem;color:#b8c0d4;">3M certification + PDAA affiliation satisfies enterprise procurement requirements.</div>
+
+        <!-- my-signguy.com -->
+        <div style="background:#0f1e2e;border:1px solid rgba(74,158,255,.12);border-left:3px solid rgba(74,158,255,.4);padding:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:.5rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;color:#f0f4ff;">My-SignGuy</div>
+            <div style="font-size:.72rem;color:#22c55e;font-weight:600;background:rgba(34,197,94,.1);padding:.15rem .4rem;">3M PREFERRED</div>
+          </div>
+          <div style="font-size:.8rem;color:#9096a8;line-height:1.55;margin-bottom:.65rem;">Chicago-area 3M Preferred Installer specializing in environmental and specialty graphics. Covers walls, floors, windows, barricades, column wraps, DI-NOC surface film, vehicle fleets, and retail/franchise rebranding roll-outs. Strong fit for suburban Chicagoland projects and mid-market volume.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+            <span style="font-size:.72rem;color:#22c55e;background:rgba(34,197,94,.08);padding:.15rem .4rem;">Roll-out capable</span>
+            <span style="font-size:.72rem;color:#22c55e;background:rgba(34,197,94,.08);padding:.15rem .4rem;">Suburban reach</span>
+            <span style="font-size:.72rem;color:#22c55e;background:rgba(34,197,94,.08);padding:.15rem .4rem;">DI-NOC surface film</span>
+          </div>
         </div>
-        <div style="background:#162d48;border:1px solid rgba(74,158,255,.1);padding:.85rem;display:flex;gap:.6rem;">
-          <div style="color:#22c55e;font-size:.9rem;flex-shrink:0;">✓</div>
-          <div style="font-size:.85rem;color:#b8c0d4;">Permitting and scheduling at scale — removes the #1 friction point for multi-site clients.</div>
+
+        <!-- Cushing -->
+        <div style="background:#0f1e2e;border:1px solid rgba(74,158,255,.12);border-left:3px solid rgba(74,158,255,.4);padding:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:.5rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;color:#f0f4ff;">Cushing Co.</div>
+            <div style="font-size:.72rem;color:#f59e0b;font-weight:600;background:rgba(245,158,11,.1);padding:.15rem .45rem;">EST. 1929</div>
+          </div>
+          <div style="font-size:.8rem;color:#9096a8;line-height:1.55;margin-bottom:.65rem;">Full-service Chicago print, fabrication, and installation firm since 1929. In-house design, fabrication, and installation with union and non-union crews. Handles branded environments, construction site signage, ADA, wayfinding, and dimensional letters. Potential overflow partner on complex union jobs in the Loop and downtown corridors.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+            <span style="font-size:.72rem;color:#f59e0b;background:rgba(245,158,11,.08);padding:.15rem .4rem;">Union &amp; non-union</span>
+            <span style="font-size:.72rem;color:#f59e0b;background:rgba(245,158,11,.08);padding:.15rem .4rem;">Loop presence</span>
+            <span style="font-size:.72rem;color:#f59e0b;background:rgba(245,158,11,.08);padding:.15rem .4rem;">EGD + fabrication</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── TIER 3: CO-SELL / REFERRAL ── -->
+    <div style="margin-bottom:2rem;">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;">
+        <div style="background:#1a1a35;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.72rem;letter-spacing:.15em;padding:.25rem .6rem;border:1px solid rgba(168,85,247,.3);">TIER 3 · CO-SELL &amp; REFERRAL</div>
+        <div style="font-size:.8rem;color:#9096a8;">Adjacent vendors who touch the same enterprise client · mutual referral upside</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;">
+
+        <!-- Parvin-Clauss -->
+        <div style="background:#0f1e2e;border:1px solid rgba(168,85,247,.12);padding:.85rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.98rem;color:#f0f4ff;margin-bottom:.2rem;">Parvin-Clauss Sign Co.</div>
+          <div style="font-size:.72rem;color:#a855f7;font-weight:600;margin-bottom:.5rem;">Custom signage · nationwide · HQ Chicago</div>
+          <div style="font-size:.78rem;color:#9096a8;line-height:1.5;margin-bottom:.5rem;">70+ year Chicago sign company handling exterior monument signs, illuminated fascia, and interior wayfinding at national scale. They design and fabricate — Foxmark prints and wraps interiors. Natural handoff: Parvin-Clauss wins the exterior sign contract → refers Foxmark for the interior EGD work.</div>
+          <div style="font-size:.75rem;color:#a855f7;">Referral angle: exterior signage → interior EGD</div>
+        </div>
+
+        <!-- Right Way Signs -->
+        <div style="background:#0f1e2e;border:1px solid rgba(168,85,247,.12);padding:.85rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.98rem;color:#f0f4ff;margin-bottom:.2rem;">Right Way Signs</div>
+          <div style="font-size:.72rem;color:#a855f7;font-weight:600;margin-bottom:.5rem;">Murals · hand lettering · custom interiors</div>
+          <div style="font-size:.78rem;color:#9096a8;line-height:1.5;margin-bottom:.5rem;">Chicago boutique shop known for hand-painted murals, custom wall coverings, and branded environments (LinkedIn, restaurant groups, Dollop Coffee). Complements Foxmark's digital large-format output with artisanal finishes. Co-project on brand-forward clients who want both precision print and handcrafted elements.</div>
+          <div style="font-size:.75rem;color:#a855f7;">Referral angle: artisan + digital hybrid projects</div>
+        </div>
+
+        <!-- BEST Imaging Solutions -->
+        <div style="background:#0f1e2e;border:1px solid rgba(168,85,247,.12);padding:.85rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.98rem;color:#f0f4ff;margin-bottom:.2rem;">BEST Imaging Solutions</div>
+          <div style="font-size:.72rem;color:#a855f7;font-weight:600;margin-bottom:.5rem;">AEC + construction site graphics · downtown Chicago</div>
+          <div style="font-size:.78rem;color:#9096a8;line-height:1.5;margin-bottom:.5rem;">Downtown Chicago imaging firm serving architects, engineers, and construction at 55 E. Monroe. Strong in construction site barricade wraps, CAD printing, and event graphics (Chicago Bears, Lollapalooza, Taylor Swift). Access point into AEC pipeline — when a building opens, the interior brand refresh opportunity follows.</div>
+          <div style="font-size:.75rem;color:#a855f7;">Referral angle: construction → post-build interior branding</div>
+        </div>
+
+        <!-- Sunrise Hitek -->
+        <div style="background:#0f1e2e;border:1px solid rgba(168,85,247,.12);padding:.85rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.98rem;color:#f0f4ff;margin-bottom:.2rem;">Sunrise Hitek Group</div>
+          <div style="font-size:.72rem;color:#a855f7;font-weight:600;margin-bottom:.5rem;">Environmental branding + installation · NW Chicago</div>
+          <div style="font-size:.78rem;color:#9096a8;line-height:1.5;margin-bottom:.5rem;">Full-service Chicago print and installation firm on N. Northwest Hwy. Produces and installs environmental branding, office graphics, and trade show displays. Potential white-label or overflow relationship on high-volume periods — they absorb capacity spikes Foxmark can't handle in-house during Year 1 ramp.</div>
+          <div style="font-size:.75rem;color:#a855f7;">Referral angle: overflow / white-label production</div>
+        </div>
+
+        <!-- Interior Designer / A&D -->
+        <div style="background:#0f1e2e;border:1px solid rgba(168,85,247,.12);padding:.85rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.98rem;color:#f0f4ff;margin-bottom:.2rem;">A&amp;D / Interior Design Firms</div>
+          <div style="font-size:.72rem;color:#a855f7;font-weight:600;margin-bottom:.5rem;">Gensler · Perkins&amp;Will · HOK Chicago offices</div>
+          <div style="font-size:.78rem;color:#9096a8;line-height:1.5;margin-bottom:.5rem;">Chicago's top architecture and interior design firms specify branded environments into corporate workplace projects. Foxmark positions as the preferred large-format production and install vendor embedded in their project pipeline. A single Gensler relationship can open 5–10 enterprise clients per year without direct sales effort.</div>
+          <div style="font-size:.75rem;color:#a855f7;">Referral angle: spec'd into A&amp;D project pipeline</div>
+        </div>
+
+        <!-- General Contractors -->
+        <div style="background:#0f1e2e;border:1px solid rgba(168,85,247,.12);padding:.85rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.98rem;color:#f0f4ff;margin-bottom:.2rem;">Commercial General Contractors</div>
+          <div style="font-size:.72rem;color:#a855f7;font-weight:600;margin-bottom:.5rem;">Leopardo · Turner · Skender · Power Construction</div>
+          <div style="font-size:.78rem;color:#9096a8;line-height:1.5;margin-bottom:.5rem;">Chicago GCs managing corporate tenant build-outs and workplace remodels naturally need a branded graphics subcontractor. Foxmark becomes a preferred sub on their approved vendor lists. GCs handle permits and site coordination — Foxmark delivers production and finish. Reduces Foxmark's direct permitting burden on complex union sites.</div>
+          <div style="font-size:.75rem;color:#a855f7;">Referral angle: approved vendor list · TI build-outs</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PARTNER STRATEGY SUMMARY ── -->
+    <div style="background:#0a1422;border:1px solid rgba(255,255,255,.07);padding:1.25rem 1.5rem;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.85rem;">Partner Strategy — How It Fits Together</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+        <div style="display:flex;gap:.6rem;">
+          <div style="color:#14b8a6;font-size:.85rem;flex-shrink:0;margin-top:.05rem;">→</div>
+          <div style="font-size:.82rem;color:#b8c0d4;"><span style="color:#14b8a6;font-weight:600;">NIT first.</span> Default every install job to the primary relationship. Protects quality, simplifies billing, builds NIT's dependency on Foxmark volume.</div>
+        </div>
+        <div style="display:flex;gap:.6rem;">
+          <div style="color:#4a9eff;font-size:.85rem;flex-shrink:0;margin-top:.05rem;">→</div>
+          <div style="font-size:.82rem;color:#b8c0d4;"><span style="color:#4a9eff;font-weight:600;">Bench for overflow.</span> B5 (union buildings), GII (architectural film), My-SignGuy (suburban volume). Activates when NIT is at capacity or a project requires specialist skills.</div>
+        </div>
+        <div style="display:flex;gap:.6rem;">
+          <div style="color:#a855f7;font-size:.85rem;flex-shrink:0;margin-top:.05rem;">→</div>
+          <div style="font-size:.82rem;color:#b8c0d4;"><span style="color:#a855f7;font-weight:600;">Co-sell for pipeline.</span> A&amp;D firms and GCs are the highest-leverage referral channel. One relationship seeds 5–10 enterprise clients. Pursue Gensler and Leopardo in Year 1.</div>
         </div>
       </div>
     </div>
 
-    <div style="background:rgba(20,184,166,.04);border:1px solid rgba(20,184,166,.2);padding:.85rem 1.25rem;display:flex;justify-content:space-between;align-items:center;">
-      <div>
-        <div style="font-size:.82rem;color:#14b8a6;font-weight:600;margin-bottom:.2rem;">newimagetech.net</div>
-        <div style="font-size:.88rem;color:#5a6880;">Chicagoland-based · national project reach</div>
-      </div>
-      <div style="font-size:.82rem;color:#9096a8;">(847) 741-2922</div>
-    </div>
   </div>
 
   <div id="modal-sales" class="modal-content" style="display:none;padding:3rem;">
@@ -2294,7 +2467,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <p style="font-size:0.9rem; color:var(--silver); line-height:1.8; margin-bottom:2.5rem; max-width:420px;">Whether you're planning a single flagship interior or a multi-site Chicagoland rollout, the Foxmark team is ready to scope your project and deliver a tailored enterprise proposal.</p>
       <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Foxmark HQ</div><div class="ci-val">21601 Park Row Drive, Katy, TX 77449</div></div></div>
       <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Phone</div><div class="ci-val">713.686.8300</div></div></div>
-      <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Email</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d64636b624d79686c606b6275606c7f66236e6260">[email&#160;protected]</a></div></div></div>
+      <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:rick@foxmark.com" style="color:#5aabff;">rick@foxmark.com</a></div></div></div>
       <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Chicago Studio</div><div class="ci-val">Elmhurst Area &middot; Opening Soon</div></div></div>
     </div>
     <form class="contact-form" onsubmit="event.preventDefault(); this.innerHTML='<div style=\'padding:3rem; text-align:center;\'><div style=\'font-family:Barlow Condensed,sans-serif; font-weight:900; font-size:2rem; text-transform:uppercase; color:var(--red); margin-bottom:1rem;\'>Message Received.</div><p style=\'color:var(--silver); font-size:0.9rem;\'>The Foxmark Chicago team will be in touch shortly.</p></div>'">
@@ -2596,41 +2769,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   </div>
 </section>
 
-<!-- FORTE PARTNER CALLOUT -->
-<section class="section" style="background:#060f18;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
-    <div>
-      <div class="section-label" style="color:#14b8a6;">Strategic Partnership</div>
-      <h2>FORTÉ + Foxmark.<br><em>Complete Space</em><br>Transformation.</h2>
-      <p style="font-size:.9rem;color:#4a6080;line-height:1.8;margin-top:1rem;">No Chicago competitor can offer what this partnership delivers: the physical branded environment <em>and</em> the AV/digital layer fully integrated in a single client engagement.</p>
-    </div>
-    <div>
-      <!-- Split diagram -->
-      <div style="border:1px solid rgba(20,184,166,.2);padding:1.5rem;background:rgba(20,184,166,.03);margin-bottom:1rem;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#14b8a6;margin-bottom:.8rem;">What FORTÉ Brings</div>
-        <div style="display:flex;flex-direction:column;gap:.4rem;">
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#14b8a6" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#14b8a6" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Video walls, interactive displays, digital kiosks</div>
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#14b8a6" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#14b8a6" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> AV integration, boardrooms, collaboration rooms</div>
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#14b8a6" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#14b8a6" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> $576M revenue · #1 AV integrator · 42 US locations</div>
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#14b8a6" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#14b8a6" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Deep Chicago F500 relationships · U of Chicago · corporate</div>
-        </div>
-      </div>
-      <div style="border:1px solid rgba(200,16,46,.2);padding:1.5rem;background:rgba(200,16,46,.03);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C8102E;margin-bottom:.8rem;">What Foxmark Brings</div>
-        <div style="display:flex;flex-direction:column;gap:.4rem;">
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#C8102E" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#C8102E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Wall murals, window film, floor graphics, wayfinding</div>
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#C8102E" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#C8102E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Full interior branded environment surrounding the screens</div>
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#C8102E" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#C8102E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> HQ-backed production · eco-certified · AI-accelerated design</div>
-          <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:#6e8aaa;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#C8102E" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#C8102E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Chicago studio installation via New Image Technologies</div>
-        </div>
-      </div>
-      <div style="margin-top:1rem;padding:1rem 1.25rem;background:rgba(255,255,255,.03);border-left:3px solid #14b8a6;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;color:#e8f0ff;">The Joint Pitch:</div>
-        <div style="font-size:.8rem;color:#4a6080;margin-top:.3rem;line-height:1.6;">One call. One scope. Screens + environment. No other Chicago vendor can say that.</div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- COMPETITOR PROFILES -->
 <section class="section">
@@ -2688,7 +2827,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   </div>
 </section>
 
-id="page-rick">
+<div id="page-rick">
 
 <section class="bio-hero">
   <div class="bio-photo">
@@ -2702,7 +2841,7 @@ id="page-rick">
     <div class="hero-tagline">He doesn&apos;t need to build a territory.<br><em>He already owns one.</em></div>
     <p style="font-size:0.95rem; line-height:1.75; font-weight:300; color:var(--silver); max-width:460px; margin-bottom:2.5rem;">Nearly <strong style="color:var(--white);">30 years of enterprise sales</strong> across Chicago and the Midwest. Thomson Reuters. Trading Technologies. Verizon. Lumen. Deep relationships inside the same Fortune 500 companies that are Foxmark&apos;s ideal customers.</p>
     <div class="hero-actions">
-      <a href="/cdn-cgi/l/email-protection#98eaf1fbf3f3eaf7f0f6d8fff5f9f1f4b6fbf7f5" class="btn btn-red"><span class="__cf_email__" data-cfemail="c4b6ada7afafb6abacaa84a3a9a5ada8eaa7aba9">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#98eaf1fbf3f3eaf7f0f6d8fff5f9f1f4b6fbf7f5" class="btn btn-red">rick@foxmark.com</a>
       <a href="https://www.linkedin.com/in/rick-k" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
     </div>
     <div class="bio-stats">
@@ -2792,7 +2931,7 @@ id="page-rick">
 <footer>
   <div><div class="footer-logo">FOX<span>MARK</span></div><div class="footer-sub">Rick Krohn &middot; Sales Leadership</div></div>
   <div class="footer-note">&copy; 2025 Foxmark Corporation &middot; teamfoxmark.com</div>
-  <div class="footer-links"><a onclick="showPage('main')" style="cursor:pointer;">Main Site</a><a onclick="showPage('competitive')" style="cursor:pointer;">Competitive</a><a href="/cdn-cgi/l/email-protection#0c7e656f67677e6364624c6b616d6560226f6361"><span class="__cf_email__" data-cfemail="54263d373f3f263b3c3a143339353d387a373b39">[email&#160;protected]</span></a></div>
+  <div class="footer-links"><a onclick="showPage('main')" style="cursor:pointer;">Main Site</a><a onclick="showPage('competitive')" style="cursor:pointer;">Competitive</a><a href="/cdrick@foxmark.com</a></div>
 </footer>
 </div><!-- end page-rick -->
 
@@ -2815,7 +2954,7 @@ function openModal(id) {
   document.body.style.overflow='hidden';
 }
 function closeModal() {
-  document.getElementById('modal-overlay').style.display='none';
+  var _mo = document.getElementById('modal-overlay'); if(_mo) _mo.style.display='none';
   document.body.style.overflow='';
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
@@ -2864,7 +3003,7 @@ function dlFile(key) {
 }
 
 // ── INIT ──────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { try {
   // Hide pages 2+3 via inline style (overrides CSS)
   document.getElementById('page-competitive').style.display = 'none';
   document.getElementById('page-rick').style.display = 'none';
@@ -2872,6 +3011,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function checkWidth() {
     var bn = document.getElementById('bnav');
+    if (!bn) return;
     if (window.innerWidth < 961) {
       bn.style.display = 'flex';
       document.body.style.paddingBottom = '52px';
@@ -2882,6 +3022,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   checkWidth();
   window.addEventListener('resize', checkWidth);
+  } catch(e) { console.error('DOMContentLoaded error:', e.stack || e); }
 });
 
 // ── MARKET INTELLIGENCE CHARTS ───────────────────────────
@@ -2960,6 +3101,93 @@ var MKT_TABLES = {
     ['Molex (Koch Industries)','$3.8B','$145M','40+ sites','CMO, VP Facilities — Lisle IL HQ; electronic connectors; Koch subsidiary; 40K employees; global manufacturing'],
     ['Tempus AI','$0.6B','$25M','1 HQ','CMO, VP Facilities — Chicago HQ; AI-driven genomic data; high-growth; 1,000+ employees; premium office environment'],
     ['OMRON (NA HQ)','$7.2B','$270M','23','CMO, VP Facilities — Hoffman Estates IL; automation + robotics; NA headquarters for Japanese parent; 28K employees']
+  ],
+  mid: [
+    // ── FOOD & BEVERAGE / DISTRIBUTION ──
+    ['Newly Weds Foods','$800M est.','—','30+ plants','VP Facilities, CMO — Chicago HQ (8550 W Bryn Mawr); privately held since 1932; recently acquired by Redwood Holdings; 29 US plants + global; HQ buildout 2023; food coating + ingredient mfg'],
+    ['OSI Group','$7.0B est.','—','75 facilities','COO, VP Facilities — Aurora IL HQ; privately held; McDonald\'s primary beef supplier; 75 global plants; major facility branding at each site'],
+    ['Reyes Beverage Group','$10B+ est.','—','60+ facilities','CMO, VP Real Estate — Rosemont IL HQ; private; Miller/Coors + Heineken distributor for 11+ states; warehouse + distribution center graphics program'],
+    ['Topco Associates','$15B+ est.','—','HQ + member cos','CMO, VP Facilities — Elk Grove Village IL; cooperative buying org for 50+ grocery chains; HQ + member company signage'],
+    ['Network Distribution','$25B','—','1,100+ DCs','CMO, VP Real Estate — Itasca IL HQ; Crain\'s largest private list 2025; B2B distributor, janitorial + foodservice + industrial packaging; 52 countries'],
+    ['Performance Food Group (Chicago ops)','$60B','$800M','150+ DCs','COO, VP Operations — Chicago area distribution; publicly traded but major local DC footprint; foodservice distribution; 150+ DCs = signage rollout target'],
+    ['US Cellular (rebrand)','$3.8B','$145M','500+ retail','CMO, VP Retail — Chicago HQ; T-Mobile acquisition completed 2025; full retail store rebrand across 500+ locations = massive signage opportunity'],
+    // ── HOSPITALITY & RESTAURANTS ──
+    ['Lettuce Entertain You (LEYE)','$1.0B est.','—','110+ restaurants','CMO, VP Design — Chicago HQ; est. 1971; RPM, Beatrix, Summer House, Big Bowl; every new opening = full environmental package'],
+    ['DineAmic Hospitality','$150M est.','—','15+ venues','CEO/Owner — Chicago HQ; Prime & Provisions, Ballyhoo, Booth One, London House Hotel; brand-forward design at every venue'],
+    ['Ballyhoo Hospitality','$75M est.','—','10+ locations','CEO/Owner — Chicago HQ; Ryan O\'Donnell; DeNucci\'s, Sophia Steak, Gemini; multiple suburban + city openings 2025–26'],
+    ['One Off Hospitality','$50M est.','—','8 restaurants','CEO/Owner — Chicago HQ; Paul Kahan group; Avec, Big Star, Publican; design-forward operator; each concept = unique environmental build'],
+    ['Gibsons Restaurant Group','$120M est.','—','12 locations','CEO/Owner — Chicago HQ; Gibsons, Hugo\'s Frog Bar, Luxbar, Quartino; multi-location Chicago institution; consistent brand environment needs'],
+    ['Cornerstone Restaurant Group','$80M est.','—','15+ locations','COO, VP Operations — Chicago; Rosebud family; Italian restaurant group; steady location expansion'],
+    ['Foxtrot Market','$150M est.','—','35+ locations','CMO, VP Retail Design — Chicago HQ; upscale grab-and-go + cafe; retail environment is core to brand; reopening after 2024 closure with new backing'],
+    ['Sushi-san / Lettuce group new concepts','—','—','expanding','CMO — Chicago; new concept openings need environmental build-out'],
+    // ── BANKING & FINANCIAL SERVICES ──
+    ['Wintrust Financial','$2.2B revenue','$85M','190+ branches','CMO, VP Marketing — Rosemont IL HQ; 15+ community bank brands; $65B assets; every branch acquisition = rebrand kit + environmental refresh'],
+    ['Inland Western / InvenTrust','$450M','$18M','60+ properties','VP Real Estate, CMO — Oak Brook IL; retail REIT; owns open-air shopping centers; tenant signage + property identity programs'],
+    ['MB Financial (now Fifth Third)','—','—','50+ Chicago branches','VP Retail — acquired by Fifth Third 2019; branch refresh program ongoing; Chicago-heavy footprint'],
+    ['Byline Bank','$175M','$7M','35 branches','CMO, VP Facilities — Chicago HQ; community bank; steady branch footprint; consistent interior brand environment'],
+    ['Inland Bank and Trust','$120M','$5M','20 branches','CMO, VP Facilities — Oak Brook IL; community bank; branch signage + interior program'],
+    ['Heartland Bank (IL)','$90M','$3M','15 branches','CMO — Normal IL with Chicago presence; regional community bank; branch branding refresh cycle'],
+    ['William Blair & Company','$1.2B','$45M','10 offices','CMO, VP Facilities — Chicago Loop HQ; investment bank; +40% revenue 2024; premium office environment; Crain\'s top private list 2025'],
+    ['Duff & Phelps (Kroll)','$800M','$30M','5 offices','CMO, VP Facilities — Chicago HQ; valuation + advisory; premium downtown office environment buyer'],
+    // ── REAL ESTATE & CONSTRUCTION ──
+    ['Clayco Inc.','$5.0B est.','—','7 offices','CMO, VP Marketing — Chicago HQ; private design-build; corporate campuses, data centers, mixed-use; buys environmental graphics for client projects'],
+    ['Walsh Group','$5.5B est.','—','20+ offices','COO, VP Marketing — Chicago HQ; largest private construction firm in Chicago area; builds major public + private projects; environmental graphics in finished spaces'],
+    ['Pepper Construction','$2.0B est.','—','8 offices','CMO, VP Marketing — Chicago HQ; private general contractor; corporate + institutional + healthcare; installs Foxmark products in finished builds'],
+    ['Summit Design + Build','$123M','—','1 HQ','CEO, VP Marketing — Chicago HQ; Crain\'s fastest-growing 2024 (+111%); commercial interiors + ground-up; direct buyer of branded environment packages'],
+    ['Golub & Company','$500M est.','—','Chicago focus','VP Real Estate — Chicago HQ; privately held real estate developer; owns Class A office buildings including Old Post Office; tenant suite signage'],
+    ['Sterling Bay','$2.0B est.','—','Chicago focus','VP Real Estate — Chicago HQ; Lincoln Yards developer; Google\'s Chicago HQ landlord; branded environments in all managed properties'],
+    ['Equity Lifestyle Properties','$1.4B','$50M','450+ communities','VP Marketing — Chicago HQ; manufactured homes + RV communities; community entrance + amenity signage programs'],
+    ['InSite Real Estate','$300M est.','—','60+ properties','VP Real Estate — Oak Brook IL; retail + mixed-use developer; tenant ID + property signage for each development'],
+    // ── HEALTHCARE (MID-MARKET) ──
+    ['Advocate Physician Partners','$1.0B est.','—','400+ clinics','VP Facilities — Downers Grove IL; physician management org; clinic + office environment branding across network'],
+    ['Presence Health (Ascension IL)','$2.5B est.','—','25+ facilities','VP Facilities — Chicago; Catholic health system absorbed by Ascension; ongoing facility rebranding + wayfinding'],
+    ['Rush System for Health','$2.4B','$85M','4 hospitals + clinics','VP Facilities — Chicago Medical District; academic medical center; ongoing campus expansion + interior environment programs'],
+    ['Heartland Health Centers','$80M est.','—','10+ clinics','CEO, VP Facilities — Chicago; FQHC network; clinic buildouts; environmental branding for community health settings'],
+    ['Elmhurst Memorial (Edward-Elmhurst)','$1.5B est.','—','3 hospitals + clinics','VP Facilities — Elmhurst IL; community hospital system; facility expansion + rebrand programs'],
+    ['Resurgens Hospitality / Navos','—','—','boutique hotels','VP Design — Chicago; boutique hotel group; each property = unique branded environment build'],
+    // ── PROFESSIONAL SERVICES ──
+    ['Morningstar Inc.','$2.3B','$90M','30+ offices','CMO, VP Workplace — Chicago Loop HQ (Merchandise Mart); investment research; 12K employees; premium corporate HQ environment'],
+    ['GATX Corporation','$1.6B','$55M','30+ offices','CMO, VP Facilities — Chicago Loop HQ; rail car leasing; 2,000 employees; premium office + global maintenance facility signage'],
+    ['Grant Thornton LLP','$2.0B','$75M','57 offices','CMO, VP Facilities — Chicago HQ (founded 1924); accounting + advisory; office interior refresh buyer; 6,000 employees'],
+    ['Navigant Consulting (Guidehouse)','$1.5B est.','—','15 offices','CMO, VP Facilities — Chicago HQ; management consulting; premium office interiors; post-merger rebrand to Guidehouse'],
+    ['A.T. Kearney (Kearney)','$1.5B est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago Loop HQ; global management consulting; premium office environment; Chicago flagship'],
+    ['Hyatt Hotels Corporation','$6.6B','$180M','1,300+ hotels','CMO, VP Design — Chicago HQ (Fulton Market); lifestyle brands Andaz, Alila, Thompson; every hotel opening = full environmental brand program'],
+    ['Heico Companies','$1.8B est.','—','Multi-division','COO, VP Facilities — Chicago HQ; family-owned holding co; construction + industrial divisions; environmental for owned buildings + client sites'],
+    ['Wirtz Corporation','$3.5B est.','—','Multi-sector','CMO, VP Real Estate — Chicago HQ; family-owned; Blackhawks, United Center stake, Wirtz Beverage (9 states); arena + corporate environments'],
+    ['CC Industries / Crown Family','$2.0B est.','—','Multi-division','CMO, President — 222 N LaSalle Chicago; Crown family holding co; diversified mfg + real estate; premium office + facility environments'],
+    // ── MANUFACTURING & INDUSTRIAL (MID-MARKET) ──
+    ['Elkay Manufacturing','$1.0B est.','—','10+ facilities','CMO, VP Facilities — Downers Grove IL; private; water delivery products (sinks, fountains); plants + HQ need facility branding'],
+    ['Hollister Incorporated','$2.0B est.','—','Libertyville HQ','VP Facilities, CMO — Libertyville IL; employee-owned; ostomy + wound care products; premium campus environment; Crain\'s most innovative 2024'],
+    ['MAT Holdings','$1.6B','$70M','41 sites','COO, VP Facilities — Long Grove IL; private; hardware + tools manufacturer; 5K employees; multi-site program buyer'],
+    ['Anixter International (Wesco)','$9.5B','—','Chicago roots','VP Facilities — Glenview IL origin; network + security infrastructure; acquired by Wesco 2020; ongoing integration rebrand at facilities'],
+    ['R.R. Donnelley (Chatham Asset)','$5.0B','$185M','100+ facilities','CMO, CIO — Chicago HQ; went private 2022; print + marketing services; 40K employees; major multi-site rebrand buyer'],
+    ['Medela AG (US HQ)','$500M est.','—','Chicago HQ','VP Facilities — McHenry IL; breastfeeding + medical device; US headquarters; premium branded environment'],
+    ['Flexo-Craft Printing','$50M est.','—','Chicago','VP Operations — Chicago; flexible packaging printer; plant + office environment'],
+    ['Golin (IPG)','$800M est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago HQ; global PR agency (IPG subsidiary); premium office environment; Loop HQ refresh cycle'],
+    // ── LOGISTICS & SUPPLY CHAIN ──
+    ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO — Chicago River North HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees; large modern office campus'],
+    ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
+    ['AIT Worldwide Logistics','$2.6B','—','50+ offices','COO, VP Facilities — Itasca IL; Crain\'s fastest-growing 2025 (+42%); freight forwarding + logistics; acquired European cos; multi-site rebranding'],
+    ['RIM Logistics','$236M','—','Chicago area','COO, VP Facilities — Roselle IL; Crain\'s private list; logistics; warehouse + office signage'],
+    ['Loadsmart','$152M','$8M','Chicago HQ','CMO — Chicago; freight tech platform; PE-backed; modern office environment'],
+    ['Transplace (Uber Freight)','—','—','Chicago','VP Facilities — Chicago; logistics software; acquired by Uber Freight; office rebrand'],
+    // ── TECHNOLOGY (MID-MARKET) ──
+    ['Avant (fintech)','$250M est.','$18M','1 HQ','CMO, VP Brand — Chicago Merchandise Mart HQ; consumer lending; raised $800M+; remodels HQ office for brand presence'],
+    ['Tempus AI','$600M','$25M','Chicago HQ','CMO, VP Facilities — Chicago; AI-driven genomics; 1,000+ employees; premium office environment; rapidly expanding'],
+    ['Instawork','$200M est.','$10M','Chicago HQ','CMO — Chicago HQ; labor marketplace; Series D funded; growing HQ space'],
+    ['Basis Technologies','$200M est.','$8M','Chicago HQ','CMO — Chicago; programmatic media buying; 700+ clients; premium River North office'],
+    ['Provi','$100M est.','$5M','Chicago HQ','CMO — Chicago; beverage alcohol B2B marketplace; fast-growing; modern office environment'],
+    // ── SPORTS & ENTERTAINMENT ──
+    ['Chicago Fire FC','$100M est.','—','Soldier Field','VP Brand — Chicago; MLS; stadium graphics, training facility, community center signage; Toyota Park rebrand'],
+    ['Chicago Red Stars (NWSL)','$30M est.','—','SeatGeek Stadium','CMO — Bridgeview IL; professional women\'s soccer; venue + brand environment'],
+    ['Advocate Aurora Sports','—','—','training facilities','VP Facilities — Chicago; team training facility sponsor + branded environment partner'],
+    ['Second City Entertainment','$50M est.','—','Chicago HQ + venues','VP Brand — Chicago; comedy + improv institution; venue rebrand + touring productions need graphics'],
+    // ── EDUCATION & INSTITUTIONS ──
+    ['DePaul University','$600M','$22M','2 campuses','VP Facilities — Chicago; largest private university in IL; ongoing campus identity + wayfinding programs; Loop + Lincoln Park'],
+    ['Loyola University Chicago','$700M','$26M','4 campuses','VP Facilities — Chicago; Jesuit university; Rogers Park + Water Tower campuses; ongoing environmental identity programs'],
+    ['Rush University Medical Center','$2.4B','$85M','Medical District','VP Facilities — Chicago; academic medical center; major campus expansion + interior environment programs'],
+    ['Columbia College Chicago','$175M','$7M','1 campus','VP Facilities — South Loop; design-focused school; highly brand-conscious; campus environment programs'],
+    ['Illinois Institute of Technology','$250M','$9M','Bronzeville campus','VP Facilities — Chicago; Mies van der Rohe campus; premium architectural environment; ongoing signage + wayfinding']
   ]
 };
 var mktCurrentTab = 'svc';
@@ -3372,7 +3600,204 @@ var MKT_ORGS = {
       {title:'VP Marketing, Americas', name:'(Verify on LinkedIn)', owns:'Brand, marketing, automation/robotics', target:true, note:'Automation brand — showroom-quality interior environments for demos + clients'},
       {title:'VP Facilities, Americas', name:'(Verify on LinkedIn)', owns:'23 NA offices, IL campus', target:true, note:'Primary facilities buyer for NA; strong cultural emphasis on workplace environment'}
     ]
+  },
+
+  // ── MID-MARKET ORGS ─────────────────────────────────────────────────────
+  'Newly Weds Foods': {
+    ceo: {name:'Brian Johnson', title:'CEO (since 2022, prev CFO since 2006)'},
+    nodes:[
+      {title:'VP Operations', name:'(verify LinkedIn)', owns:'30+ US plants, supply chain, facilities', target:true, note:'Controls plant + facility branding across 30 US sites; recent HQ buildout 2023 = active buyer'},
+      {title:'VP Marketing / Brand', name:'(verify LinkedIn)', owns:'Brand, trade marketing, innovation', target:true, note:'HQ at 8550 W Bryn Mawr Chicago; recently acquired by Redwood Holdings — rebrand cycle likely'},
+      {title:'VP Human Resources', name:'(verify LinkedIn)', owns:'Employee experience, culture', target:false}
+    ]
+  },
+  'OSI Group': {
+    ceo: {name:'David McDonald', title:'President & CEO'},
+    nodes:[
+      {title:'SVP Operations', name:'(verify LinkedIn)', owns:'75 global manufacturing facilities', target:true, note:'75 plants worldwide; Chicago-area HQ in Aurora; massive multi-site facility branding program'},
+      {title:'VP Marketing', name:'(verify LinkedIn)', owns:'Brand, B2B marketing', target:true, note:'McDonald\'s primary beef supplier; premium facility environments at each site'},
+      {title:'VP Human Resources', name:'(verify LinkedIn)', owns:'HR, facilities, workplace', target:false}
+    ]
+  },
+  'Lettuce Entertain You (LEYE)': {
+    ceo: {name:'R.J. Melman', title:'President'},
+    nodes:[
+      {title:'VP Design & Construction', name:'(verify LinkedIn)', owns:'New openings, interior build-outs', target:true, note:'Every new restaurant opening = full environmental graphics package; 110+ restaurants, steady pipeline'},
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, loyalty', target:true, note:'Brand-forward operator; RPM, Beatrix, Summer House, Big Bowl — each concept unique visual environment'},
+      {title:'VP Real Estate', name:'(verify LinkedIn)', owns:'Site selection, lease negotiation', target:false}
+    ]
+  },
+  'DineAmic Hospitality': {
+    ceo: {name:'Luke Stoioff & David Rekhson', title:'Co-Founders / Co-CEOs'},
+    nodes:[
+      {title:'Co-CEO / Owner', name:'Luke Stoioff', owns:'Operations, design, brand direction', target:true, note:'Owner-operator; Prime & Provisions, Ballyhoo, London House Hotel; design is core to concept'},
+      {title:'Co-CEO / Owner', name:'David Rekhson', owns:'Finance, real estate, expansion', target:true, note:'Direct decision-maker; no procurement committee; closes fast'},
+      {title:'VP Operations', name:'(verify LinkedIn)', owns:'Day-to-day ops, vendor management', target:false}
+    ]
+  },
+  'Gibsons Restaurant Group': {
+    ceo: {name:'Steve Lombardo', title:'CEO'},
+    nodes:[
+      {title:'CEO', name:'Steve Lombardo', owns:'Overall strategy, brand, expansion', target:true, note:'Chicago institution; Gibsons Bar & Steakhouse, Hugo\'s Frog Bar, Quartino; multi-location consistent brand environments'},
+      {title:'VP Operations', name:'(verify LinkedIn)', owns:'Restaurant operations, facilities', target:true, note:'Manages 12+ locations; ongoing interior refresh + signage needs'}
+    ]
+  },
+  'Wintrust Financial': {
+    ceo: {name:'Timothy Crane', title:'President & CEO'},
+    nodes:[
+      {title:'CMO / EVP Marketing', name:'(verify LinkedIn)', owns:'Brand, marketing across 15+ bank brands', target:true, note:'Every community bank acquisition triggers full branch rebrand + environmental signage refresh; 190+ branches'},
+      {title:'EVP Real Estate & Facilities', name:'(verify LinkedIn)', owns:'Branch network, corporate real estate', target:true, note:'Primary buyer; Rosemont IL HQ; steady acquisition pipeline = repeat Foxmark business'},
+      {title:'EVP Human Resources', name:'(verify LinkedIn)', owns:'Culture, employee experience', target:false}
+    ]
+  },
+  'William Blair & Company': {
+    ceo: {name:'Brent Gledhill', title:'CEO'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, thought leadership', target:true, note:'$1.2B revenue, +40% in 2024; premium Loop HQ; investment bank brand environments require quality'},
+      {title:'Managing Director, Real Estate', name:'(verify LinkedIn)', owns:'Offices, facilities', target:true, note:'Crain\'s top private list 2025; growing headcount = office expansion / refresh cycle'}
+    ]
+  },
+  'Clayco Inc.': {
+    ceo: {name:'Bob Clark', title:'Founder & CEO'},
+    nodes:[
+      {title:'CEO', name:'Bob Clark', owns:'Strategy, client relationships, design vision', target:true, note:'Direct relationship target; Clayco builds corporate campuses and spec suites — Foxmark as preferred subcontractor for environmental graphics'},
+      {title:'VP Marketing', name:'(verify LinkedIn)', owns:'Brand, business development', target:true, note:'$5B private design-build firm; every client project they finish is a Foxmark opportunity'},
+      {title:'SVP Operations', name:'(verify LinkedIn)', owns:'Construction operations, vendor selection', target:false}
+    ]
+  },
+  'Walsh Group': {
+    ceo: {name:'Matthew Walsh', title:'CEO'},
+    nodes:[
+      {title:'CEO', name:'Matthew Walsh', owns:'Overall strategy, client delivery', target:false},
+      {title:'VP Marketing & Business Development', name:'(verify LinkedIn)', owns:'BD, brand, proposals', target:true, note:'Largest private contractor in Chicago area; Foxmark as subcontractor for finished-space environmental graphics on client projects'},
+      {title:'SVP Operations', name:'(verify LinkedIn)', owns:'Construction, vendor management', target:true, note:'Controls subcontractor relationships; key for embedding Foxmark into Walsh project specs'}
+    ]
+  },
+  'Pepper Construction Group': {
+    ceo: {name:'David Pepper', title:'CEO'},
+    nodes:[
+      {title:'CEO', name:'David Pepper', owns:'Strategy, client relationships', target:false},
+      {title:'VP Marketing', name:'(verify LinkedIn)', owns:'Brand, business development, proposals', target:true, note:'Private general contractor; corporate + institutional + healthcare builds; Foxmark as finishing-layer subcontractor'},
+      {title:'Director of Preconstruction', name:'(verify LinkedIn)', owns:'Estimating, subcontractor selection', target:true, note:'Key to getting Foxmark specified in Pepper project budgets early'}
+    ]
+  },
+  'Sterling Bay': {
+    ceo: {name:'Andy Gloor', title:'Managing Principal'},
+    nodes:[
+      {title:'Managing Principal', name:'Andy Gloor', owns:'Development strategy, major relationships', target:true, note:'Google\'s Chicago HQ landlord (Fulton Market); Lincoln Yards developer; branded environments in every managed building'},
+      {title:'VP Real Estate / Asset Management', name:'(verify LinkedIn)', owns:'Property management, tenant experience', target:true, note:'Manages Class A office portfolio; tenant suite graphics + property identity programs; ongoing pipeline'}
+    ]
+  },
+  'Hyatt Hotels Corporation': {
+    ceo: {name:'Mark Hoplamazian', title:'President & CEO'},
+    nodes:[
+      {title:'EVP, Global Head of Design', name:'(verify LinkedIn)', owns:'Hotel design, brand standards, FF&E', target:true, note:'Chicago HQ (Fulton Market); growing lifestyle brands Andaz, Alila, Thompson; every new hotel opening = full environmental brand program'},
+      {title:'SVP, Brand & Marketing', name:'(verify LinkedIn)', owns:'Brand identity, guest experience', target:true, note:'Direct buyer for branded environment standards across 1,300+ hotels; lifecycle refresh programs'},
+      {title:'VP, Corporate Real Estate', name:'(verify LinkedIn)', owns:'Chicago HQ facilities', target:false}
+    ]
+  },
+  'Morningstar Inc.': {
+    ceo: {name:'Kunal Kapila', title:'CEO (effective 2025)'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, communications', target:true, note:'Merchandise Mart HQ + 29 global offices; premium corporate environment; growing headcount = office expansion'},
+      {title:'VP Workplace / Real Estate', name:'(verify LinkedIn)', owns:'Chicago HQ + global offices, facilities', target:true, note:'Chicago Loop flagship is showpiece office; ongoing environment refresh; 12K employees globally'},
+      {title:'VP Human Resources', name:'(verify LinkedIn)', owns:'Culture, employee experience', target:false}
+    ]
+  },
+  'GATX Corporation': {
+    ceo: {name:'Brian Kenney', title:'President & CEO'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(verify LinkedIn)', owns:'Brand, communications', target:true, note:'Premium Loop HQ; rail car leasing leader; 2,000 employees; high-quality office environment buyer'},
+      {title:'VP Facilities & Real Estate', name:'(verify Lincoln)', owns:'Chicago HQ + global maintenance facilities', target:true, note:'Multiple railcar maintenance facilities globally = branded facility environments; ongoing program'}
+    ]
+  },
+  'Wirtz Corporation': {
+    ceo: {name:'Danny Wirtz', title:'CEO'},
+    nodes:[
+      {title:'CEO', name:'Danny Wirtz', owns:'Overall strategy, Blackhawks, real estate', target:true, note:'Family-owned; owns Blackhawks, United Center stake, Wirtz Beverage (9 states); arenas + corporate offices + retail environments'},
+      {title:'CMO, Chicago Blackhawks', name:'(verify LinkedIn)', owns:'Team brand, fan experience, arena environment', target:true, note:'United Center + practice facility environmental graphics; Blackhawks brand refresh ongoing'},
+      {title:'VP Real Estate', name:'(verify LinkedIn)', owns:'Corporate real estate portfolio', target:false}
+    ]
+  },
+  'Grant Thornton LLP': {
+    ceo: {name:'Seth Siegel', title:'CEO'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, thought leadership', target:true, note:'Chicago HQ founded 1924; 57 US offices; premium professional services office environment; growing advisory practice'},
+      {title:'National Managing Principal, Real Estate', name:'(verify LinkedIn)', owns:'Office facilities, workplace strategy', target:true, note:'6,000 employees across 57 offices; Loop HQ refresh cycle; Foxmark for wayfinding + branded interiors'}
+    ]
+  },
+  'Heico Companies': {
+    ceo: {name:'Michael Heisley Jr.', title:'CEO'},
+    nodes:[
+      {title:'CEO', name:'Michael Heisley Jr.', owns:'Portfolio strategy, M&A, operations', target:true, note:'Family-owned Chicago holding co; construction + industrial + manufacturing divisions; buys environmental for owned buildings + client sites'},
+      {title:'VP Operations', name:'(verify LinkedIn)', owns:'Facilities, construction division ops', target:true, note:'Multiple divisions = multiple facility branding programs; Heico as Foxmark channel partner for their construction clients'}
+    ]
+  },
+  'Elkay Manufacturing': {
+    ceo: {name:'Tim Jahnke', title:'President & CEO'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(verify LinkedIn)', owns:'Brand, product marketing', target:true, note:'Downers Grove IL; private; water delivery products (sinks, drinking fountains); HQ + 10+ plants'},
+      {title:'VP Facilities', name:'(verify LinkedIn)', owns:'Plant environments, corporate real estate', target:true, note:'Manufacturing + HQ environments; Elkay places high value on branded facility identity'}
+    ]
+  },
+  'Hollister Incorporated': {
+    ceo: {name:'Larry Gies', title:'President & CEO'},
+    nodes:[
+      {title:'President & CEO', name:'Larry Gies', owns:'Strategy, innovation, culture', target:false},
+      {title:'VP Marketing', name:'(verify LinkedIn)', owns:'Brand, product marketing, communications', target:true, note:'Libertyville IL; employee-owned; ostomy + wound care; premium campus environment; Crain\'s most innovative 2024'},
+      {title:'VP Facilities & Engineering', name:'(verify LinkedIn)', owns:'Campus environment, facilities management', target:true, note:'Premium Libertyville campus; strong brand values = environmental graphics program buyer'}
+    ]
+  },
+  'AIT Worldwide Logistics': {
+    ceo: {name:'Vaughn Moore', title:'CEO'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, communications', target:true, note:'Itasca IL; Crain\'s fastest-growing 2025 (+42%); acquired European cos; multi-site rebranding across new facilities'},
+      {title:'COO', name:'(verify LinkedIn)', owns:'Operations, 50+ facilities, vendor management', target:true, note:'50+ global offices; every acquisition = integration rebrand + signage refresh; ongoing pipeline'}
+    ]
+  },
+  'Echo Global Logistics': {
+    ceo: {name:'Doug Waggoner', title:'CEO'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, digital', target:true, note:'Chicago River North HQ; TPG-backed; modern tech-forward office; 2,200 employees'},
+      {title:'COO', name:'(verify LinkedIn)', owns:'Operations, technology, facilities', target:true, note:'Large River North campus; growing headcount; office environment buyer'}
+    ]
+  },
+  'Avant (fintech)': {
+    ceo: {name:'James Paris', title:'CEO'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, product marketing, growth', target:true, note:'Merchandise Mart HQ; consumer fintech; $800M+ raised; premium office environment; regular HQ remodels'},
+      {title:'VP Real Estate / Facilities', name:'(verify LinkedIn)', owns:'Chicago HQ, workspace', target:true, note:'Merchandise Mart = high-visibility branded environment; Foxmark intro through building management'}
+    ]
+  },
+  'Tempus AI': {
+    ceo: {name:'Eric Lefkofsky', title:'Founder & CEO'},
+    nodes:[
+      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, communications', target:true, note:'Chicago HQ; AI-driven genomics; 1,000+ employees; premium River North office; high-growth = expansion cycle'},
+      {title:'VP Real Estate', name:'(verify LinkedIn)', owns:'Chicago HQ, facilities', target:true, note:'Growing rapidly; multiple office expansions; design-conscious environment buyer'}
+    ]
+  },
+  'DePaul University': {
+    ceo: {name:'Robert Manuel', title:'President'},
+    nodes:[
+      {title:'VP Facilities', name:'(verify LinkedIn)', owns:'Two campuses, capital projects, signage', target:true, note:'Largest private university in IL; Loop + Lincoln Park campuses; ongoing wayfinding + environmental identity programs'},
+      {title:'VP Marketing & Communications', name:'(verify LinkedIn)', owns:'Brand, communications, campus identity', target:true, note:'Heavy brand investment; frequent campus environment refresh + new building openings'}
+    ]
+  },
+  'Rush System for Health': {
+    ceo: {name:'Omar Lateef', title:'President & CEO'},
+    nodes:[
+      {title:'VP Facilities Management', name:'(verify LinkedIn)', owns:'Campus facilities, capital projects', target:true, note:'Chicago Medical District; major campus expansion ongoing; interior environment + wayfinding programs'},
+      {title:'CMO / VP Marketing', name:'(verify LinkedIn)', owns:'Brand, patient experience, communications', target:true, note:'Academic medical center; premium branded environment throughout campus'}
+    ]
+  },
+  'Chicago Fire FC': {
+    ceo: {name:'Joe Mansueto', title:'Owner'},
+    nodes:[
+      {title:'President', name:'(verify LinkedIn)', owns:'Club strategy, commercial, brand', target:true, note:'Soldier Field + training facility; MLS club; stadium graphics, training center branding, community spaces'},
+      {title:'CMO / VP Marketing', name:'(verify LinkedIn)', owns:'Brand, fan experience, sponsorships', target:true, note:'Stadium environmental graphics; SeatGeek Stadium potential; growing MLS brand investment'}
+    ]
   }
+
 };
 
 function buildOrgHtml(org) {
@@ -3481,7 +3906,97 @@ function renderMktTable(key) {
   var wrap = document.getElementById('mkt-table-wrap');
   if (!wrap) return;
   var rows = MKT_TABLES[key] || [];
-  var t = '<table style="width:100%;border-collapse:collapse;font-size:.88rem;">';
+
+  // Mid-market: render with sector grouping cards instead of flat table
+  if (key === 'mid') {
+    var sectorDefs = [
+      { label: 'Food & Beverage / Distribution', color: '#f59e0b' },
+      { label: 'Hospitality & Restaurants', color: '#14b8a6' },
+      { label: 'Banking & Financial Services', color: '#5aabff' },
+      { label: 'Real Estate & Construction', color: '#a78bfa' },
+      { label: 'Healthcare', color: '#34d399' },
+      { label: 'Professional Services', color: '#f97316' },
+      { label: 'Manufacturing & Industrial', color: '#94a3b8' },
+      { label: 'Logistics & Supply Chain', color: '#fb7185' },
+      { label: 'Technology', color: '#60a5fa' },
+      { label: 'Sports & Entertainment', color: '#fbbf24' },
+      { label: 'Education & Institutions', color: '#86efac' }
+    ];
+    var sectorMap = {
+      'Newly Weds':0,'OSI Group':0,'Reyes Beverage':0,'Topco':0,'Network Distribution':0,'Performance Food':0,'US Cellular':0,
+      'Lettuce Entertain':1,'DineAmic':1,'Ballyhoo':1,'One Off':1,'Gibsons':1,'Cornerstone':1,'Foxtrot':1,'Sushi-san':1,
+      'Wintrust':2,'Inland Western':2,'MB Financial':2,'Byline Bank':2,'Inland Bank':2,'Heartland Bank':2,'William Blair':2,'Duff & Phelps':2,
+      'Clayco':3,'Walsh Group':3,'Pepper Construction':3,'Summit Design':3,'Golub':3,'Sterling Bay':3,'Equity Lifestyle':3,'InSite Real':3,
+      'Advocate Physician':4,'Presence Health':4,'Rush System':4,'Heartland Health':4,'Elmhurst Memorial':4,'Resurgens':4,
+      'Morningstar':5,'GATX':5,'Grant Thornton':5,'Navigant':5,'A.T. Kearney':5,'Hyatt':5,'Heico':5,'Wirtz':5,'CC Industries':5,
+      'Elkay':6,'Hollister':6,'MAT Holdings':6,'Anixter':6,'R.R. Donnelley':6,'Medela':6,'Flexo-Craft':6,'Golin':6,
+      'Echo Global':7,'Coyote':7,'AIT Worldwide':7,'RIM Logistics':7,'Loadsmart':7,'Transplace':7,
+      'Avant':8,'Tempus':8,'Instawork':8,'Basis Technologies':8,'Provi':8,
+      'Chicago Fire':9,'Chicago Red Stars':9,'Advocate Aurora Sports':9,'Second City':9,
+      'DePaul':10,'Loyola':10,'Rush University Medical':10,'Columbia College':10,'Illinois Institute':10
+    };
+    rows.forEach(function(r) {
+      var sidx = 5;
+      for (var k in sectorMap) { if (r[0].indexOf(k) === 0) { sidx = sectorMap[k]; break; } }
+      r._sector = sidx;
+    });
+    var t = '<div style="margin-bottom:.6rem;font-family:\'Barlow Condensed\',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#3a5070;">' + rows.length + ' Chicago Mid-Market Targets &middot; Expand any row for contacts</div>';
+    sectorDefs.forEach(function(sec, sidx) {
+      var secRows = rows.filter(function(r){ return r._sector === sidx; });
+      if (!secRows.length) return;
+      t += '<div style="margin-bottom:.5rem;">';
+      t += '<div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:' + sec.color + ';border-left:3px solid ' + sec.color + ';padding-left:.5rem;margin-bottom:.25rem;margin-top:.4rem;">' + sec.label + ' &middot; ' + secRows.length + ' targets</div>';
+      t += '<table style="width:100%;border-collapse:collapse;font-size:.82rem;">';
+      t += '<tr style="border-bottom:1px solid rgba(255,255,255,.06);">';
+      t += '<th style="text-align:left;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Company</th>';
+      t += '<th style="text-align:right;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Revenue</th>';
+      t += '<th style="text-align:right;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Locations</th>';
+      t += '<th style="text-align:left;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Contacts / Notes</th>';
+      t += '</tr>';
+      secRows.forEach(function(r, i) {
+        var coName = r[0];
+        var hasOrg = MKT_ORGS && MKT_ORGS[coName];
+        var rowId = 'org-mid-' + coName.replace(/[^a-z0-9]/gi,'_');
+        var bg = i % 2 === 0 ? 'rgba(255,255,255,.02)' : 'transparent';
+        t += '<tr style="background:' + bg + ';border-bottom:1px solid rgba(255,255,255,.03);">';
+        t += '<td style="padding:.28rem .4rem;font-weight:600;color:#e8f0ff;width:22%;">';
+        if (hasOrg) {
+          t += '<span class="org-toggle" data-orgid="' + rowId + '" style="cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;">';
+          t += '<span style="display:inline-flex;align-items:center;gap:.2rem;background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.2);border-radius:3px;padding:.08rem .35rem;">';
+          t += '<span id="arr-' + rowId + '" style="color:#4a9eff;font-size:.8rem;transition:transform .2s;display:inline-block;">&#9654;</span>';
+          t += '<span style="font-size:.62rem;color:#4a9eff;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:.08em;">EXPAND</span>';
+          t += '</span>' + coName + '</span>';
+        } else { t += coName; }
+        t += '</td>';
+        t += '<td style="padding:.28rem .4rem;text-align:right;color:#22c55e;width:10%;">' + r[1] + '</td>';
+        t += '<td style="padding:.28rem .4rem;text-align:right;color:#9096a8;width:9%;">' + r[3] + '</td>';
+        t += '<td style="padding:.28rem .4rem;color:#5a7090;font-size:.77rem;">' + r[4] + '</td>';
+        t += '</tr>';
+        if (hasOrg) {
+          var org = MKT_ORGS[coName];
+          org._coKey = coName;
+          t += '<tr id="' + rowId + '" style="display:none;">';
+          t += '<td colspan="4" style="padding:0 .4rem .75rem 1.5rem;background:rgba(200,16,46,.03);border-bottom:1px solid rgba(255,255,255,.06);">';
+          t += buildOrgHtml(org);
+          t += '</td></tr>';
+        }
+      });
+      t += '</table></div>';
+    });
+    wrap.innerHTML = t;
+    wrap.onclick = function(e) {
+      var el = e.target;
+      while (el && el !== wrap) {
+        if (el.classList && el.classList.contains('org-toggle')) {
+          toggleOrg(el.getAttribute('data-orgid')); return;
+        }
+        el = el.parentNode;
+      }
+    };
+    return;
+  }
+
+    var t = '<table style="width:100%;border-collapse:collapse;font-size:.88rem;">';
   t += '<tr style="border-bottom:1px solid rgba(255,255,255,.1);">';
   t += '<th style="text-align:left;padding:.35rem .5rem;color:#8A8A8A;font-weight:600;">Company</th>';
   t += '<th style="text-align:right;padding:.35rem .5rem;color:#8A8A8A;font-weight:600;">Revenue</th>';
@@ -3559,7 +4074,7 @@ function mktTab(key) {
     var pipeline = document.getElementById('crm-pipeline-wrap');
     if (pipeline) { pipeline.style.display = 'block'; renderCrmPipeline(); }
     // Update tab styles
-    ['svc','fin','hlth','ind','rtl','tch','crm'].forEach(function(k) {
+    ['svc','fin','hlth','ind','rtl','tch','crm','mid'].forEach(function(k) {
       var btn = document.getElementById('mtab-' + k);
       if (!btn) return;
       btn.style.background = k === key ? '#C8102E' : 'rgba(255,255,255,.07)';
@@ -3573,7 +4088,7 @@ function mktTab(key) {
   var pipeline = document.getElementById('crm-pipeline-wrap');
   if (pipeline) pipeline.style.display = 'none';
   mktCurrentTab = key;
-  ['svc','fin','hlth','ind','rtl','tch','crm'].forEach(function(k){
+  ['svc','fin','hlth','ind','rtl','tch','crm','mid'].forEach(function(k){
     var btn = document.getElementById('mtab-'+k);
     if (btn) { btn.style.background = k===key ? '#C8102E' : 'rgba(255,255,255,.07)'; btn.style.color = k===key ? '#fff' : '#8A8A8A'; }
   });
@@ -3581,10 +4096,14 @@ function mktTab(key) {
 }
 
 function initMktCharts() {
-  drawMktDonut();
-  buildBar('mkt-loc-bars', MKT_LOC_DATA, 13500, '#C8102E', 'loc');
-  buildBar('mkt-it-bars', MKT_IT_DATA, 3200, '#22c55e', 'M');
-  renderMktTable('svc');
+  try {
+    drawMktDonut();
+    buildBar('mkt-loc-bars', MKT_LOC_DATA, 13500, '#C8102E', 'loc');
+    buildBar('mkt-it-bars', MKT_IT_DATA, 3200, '#22c55e', 'M');
+    renderMktTable('svc');
+  } catch(e) {
+    console.error('initMktCharts error:', e.stack || e);
+  }
 }
 
 // ── TIER COMPANY DATA ──────────────────────────────────────────────────────
@@ -3864,13 +4383,13 @@ function buildWaterfall() {
   var wrap = document.getElementById('waterfall-wrap');
   if (!wrap || wrap.children.length > 0) return;
   var items = [
-    { label: 'Revenue',          val: 2700, color: '#4a9eff',  pct: 100,  type: 'total' },
-    { label: 'Materials (COGS)', val: -648, color: '#ef4444',  pct: 24,   type: 'cost'  },
-    { label: 'Direct Labor',     val: -540, color: '#f97316',  pct: 20,   type: 'cost'  },
-    { label: 'Equipment/Ops',    val: -108, color: '#eab308',  pct: 4,    type: 'cost'  },
-    { label: 'Gross Profit',     val: 1404, color: '#22c55e',  pct: 52,   type: 'subtotal' },
-    { label: 'SG&A / Overhead',  val: -654, color: '#8b5cf6',  pct: 24.2, type: 'cost'  },
-    { label: 'EBITDA',           val: 750,  color: '#22c55e',  pct: 27.8, type: 'total' }
+    { label: 'Revenue',          val: 3230, color: '#4a9eff',  pct: 100,  type: 'total' },
+    { label: 'Materials (COGS)', val: -362, color: '#ef4444',  pct: 11.2, type: 'cost'  },
+    { label: 'Direct Labor',     val: -579, color: '#f97316',  pct: 17.9, type: 'cost'  },
+    { label: 'Equipment/Ops',    val: -224, color: '#eab308',  pct: 6.9,  type: 'cost'  },
+    { label: 'Gross Profit',     val: 2065, color: '#22c55e',  pct: 63.9, type: 'subtotal' },
+    { label: 'SG&A / Overhead',  val: -995, color: '#8b5cf6',  pct: 30.8, type: 'cost'  },
+    { label: 'EBITDA',           val: 1070, color: '#22c55e',  pct: 33.1, type: 'total' }
   ];
   items.forEach(function(item, i) {
     var div = document.createElement('div');
@@ -3894,22 +4413,22 @@ function buildWaterfall() {
 
 function initFinancialViz() {
   // KPI counters
-  animateCounter('kpi-price',   14,    '$', '',   800);
+  animateCounter('kpi-price',   16,    '$', '',   800);
   animateCounter('kpi-capital', 452000, '', '',  1200);
-  animateCounter('kpi-payback', 17,    '',  'mo', 900);
-  animateCounter('kpi-fte',     451000, '', '',  1400);
+  animateCounter('kpi-payback', 14,    '',  'mo', 900);
+  animateCounter('kpi-fte',     380000, '', '',  1400);
   // Fix capital and FTE display after counter (they need $ prefix)
   setTimeout(function() {
     var c = document.getElementById('kpi-capital'); if(c) c.textContent = '$452K';
-    var f = document.getElementById('kpi-fte');     if(f) f.textContent = '$451K';
+    var f = document.getElementById('kpi-fte');     if(f) f.textContent = '$380K';
   }, 1300);
   // Revenue bars
-  animateRevCounter('rev-y1', '$1.34M', 1000);
-  animateRevCounter('rev-y2', '$2.70M', 1300);
-  animateRevCounter('rev-y3', '$3.89M', 1600);
+  animateRevCounter('rev-y1', '$1.52M', 1000);
+  animateRevCounter('rev-y2', '$3.23M', 1300);
+  animateRevCounter('rev-y3', '$4.28M', 1600);
   setTimeout(function() {
-    var b1 = document.getElementById('bar-y1'); if(b1) b1.style.width = '34%';
-    var b2 = document.getElementById('bar-y2'); if(b2) b2.style.width = '69%';
+    var b1 = document.getElementById('bar-y1'); if(b1) b1.style.width = '36%';
+    var b2 = document.getElementById('bar-y2'); if(b2) b2.style.width = '75%';
     var b3 = document.getElementById('bar-y3'); if(b3) b3.style.width = '100%';
   }, 100);
   // Utilization bars
