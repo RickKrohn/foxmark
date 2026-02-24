@@ -1888,14 +1888,16 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <!-- ROW 3: Sector account table with tabs -->
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.9rem;">Top Accounts by Sector &amp; Decision-Maker</div>
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem;">
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem;">
           <button onclick="mktTab('svc')" id="mtab-svc" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:#C8102E;color:#fff;border:none;padding:.25rem .75rem;cursor:pointer;">Services</button>
           <button onclick="mktTab('fin')" id="mtab-fin" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Financial</button>
           <button onclick="mktTab('hlth')" id="mtab-hlth" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Healthcare</button>
           <button onclick="mktTab('ind')" id="mtab-ind" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Industrials</button>
           <button onclick="mktTab('rtl')" id="mtab-rtl" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Retail</button>
-          <button onclick="mktTab('crm')" id="mtab-crm" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Pipeline</button>
           <button onclick="mktTab('mid')" id="mtab-mid" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Mid-Market</button>
+        </div>
+        <div style="display:flex;gap:.4rem;margin-bottom:.9rem;">
+          <button onclick="mktTab('crm')" id="mtab-crm" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.45rem 1.4rem;cursor:pointer;">Pipeline</button>
         </div>
         <div id="crm-pipeline-wrap" style="display:none;"></div>
         <div id="mkt-table-wrap" style="overflow-x:auto;">
@@ -3150,6 +3152,11 @@ var MKT_TABLES = {
     ['Network Distribution','$25B','—','1,100+ DCs','CMO, VP Real Estate — Itasca IL HQ; Crain\'s largest private list 2025; B2B distributor, janitorial + foodservice + industrial packaging; 52 countries'],
     ['Performance Food Group (Chicago ops)','$60B','$800M','150+ DCs','COO, VP Operations — Chicago area distribution; publicly traded but major local DC footprint; foodservice distribution; 150+ DCs = signage rollout target'],
     ['US Cellular (rebrand)','$3.8B','$145M','500+ retail','CMO, VP Retail — Chicago HQ; T-Mobile acquisition completed 2025; full retail store rebrand across 500+ locations = massive signage opportunity'],
+    ['TreeHouse Foods','$4.6B','$90M','30+ plants','CMO, VP Facilities — Oak Brook IL HQ; private-label food manufacturer; NYSE: THS; 8K employees; plant + HQ rebrand buyer after major portfolio restructuring 2024'],
+    ['Mondelez Chicago Brands (US ops)','—','—','Chicago offices','VP Brand, VP Facilities — Chicago Loop presence; Oreo, Ritz, Chips Ahoy US brand teams; office environment refresh; Foxmark entry through facilities manager'],
+    ['Mariano\'s / Roundy\'s (Kroger IL)','—','—','40+ stores','VP Real Estate — IL division; Kroger-owned banner; ongoing store remodel program = interior signage packages per location'],
+    ['Jewel-Osco (Albertsons IL)','—','—','185 stores','VP Real Estate, VP Marketing — Itasca IL; dominant IL grocery; store remodel cycle + seasonal environmental graphics; 185 locations = program volume'],
+    ['US Foods Chicago Division','$37B total','—','Chicago div.','VP Operations, Regional VP — Rosemont IL; publicly traded distributor; large local DCs + fleet; facility + fleet graphics program'],
     // ── HOSPITALITY & RESTAURANTS ──
     ['Lettuce Entertain You (LEYE)','$1.0B est.','—','110+ restaurants','CMO, VP Design — Chicago HQ; est. 1971; RPM, Beatrix, Summer House, Big Bowl; every new opening = full environmental package'],
     ['DineAmic Hospitality','$150M est.','—','15+ venues','CEO/Owner — Chicago HQ; Prime & Provisions, Ballyhoo, Booth One, London House Hotel; brand-forward design at every venue'],
@@ -3158,16 +3165,24 @@ var MKT_TABLES = {
     ['Gibsons Restaurant Group','$120M est.','—','12 locations','CEO/Owner — Chicago HQ; Gibsons, Hugo\'s Frog Bar, Luxbar, Quartino; multi-location Chicago institution; consistent brand environment needs'],
     ['Cornerstone Restaurant Group','$80M est.','—','15+ locations','COO, VP Operations — Chicago; Rosebud family; Italian restaurant group; steady location expansion'],
     ['Foxtrot Market','$150M est.','—','35+ locations','CMO, VP Retail Design — Chicago HQ; upscale grab-and-go + cafe; retail environment is core to brand; reopening after 2024 closure with new backing'],
-    ['Sushi-san / Lettuce group new concepts','—','—','expanding','CMO — Chicago; new concept openings need environmental build-out'],
+    ['Land & Sea Dept.','$40M est.','—','6 venues','Owner/CMO — Chicago; Longman & Eagle, Parson\'s Chicken, Lost Lake; indie hospitality group; each venue = bespoke branded environment'],
+    ['Portillo\'s Hot Dogs','$700M','—','80+ locations','VP Facilities, CMO — Oak Brook IL; growth into FL + TX = new location signage program; heritage brand with strong environmental identity'],
+    ['Eataly Chicago','$100M est.','—','1 flagship','VP Marketing — River North; Italian food hall; ongoing environmental refresh + seasonal campaign graphics'],
+    ['Life Fitness (KPS Capital)','$850M est.','—','10 sites','CMO, VP Facilities — Rosemont IL HQ; fitness equipment manufacturer; showroom + HQ brand environment; post-PE acquisition rebrand in progress'],
+    ['IHOP / Applebee\'s (DineEquity – IL franchise)','—','—','200+ IL locations','VP Franchise Ops — Chicago area; franchise remodel program cycle; interior signage per remodel = recurring program revenue'],
     // ── BANKING & FINANCIAL SERVICES ──
     ['Wintrust Financial','$2.2B revenue','$85M','190+ branches','CMO, VP Marketing — Rosemont IL HQ; 15+ community bank brands; $65B assets; every branch acquisition = rebrand kit + environmental refresh'],
     ['Inland Western / InvenTrust','$450M','$18M','60+ properties','VP Real Estate, CMO — Oak Brook IL; retail REIT; owns open-air shopping centers; tenant signage + property identity programs'],
-    ['MB Financial (now Fifth Third)','—','—','50+ Chicago branches','VP Retail — acquired by Fifth Third 2019; branch refresh program ongoing; Chicago-heavy footprint'],
     ['Byline Bank','$175M','$7M','35 branches','CMO, VP Facilities — Chicago HQ; community bank; steady branch footprint; consistent interior brand environment'],
     ['Inland Bank and Trust','$120M','$5M','20 branches','CMO, VP Facilities — Oak Brook IL; community bank; branch signage + interior program'],
     ['Heartland Bank (IL)','$90M','$3M','15 branches','CMO — Normal IL with Chicago presence; regional community bank; branch branding refresh cycle'],
     ['William Blair & Company','$1.2B','$45M','10 offices','CMO, VP Facilities — Chicago Loop HQ; investment bank; +40% revenue 2024; premium office environment; Crain\'s top private list 2025'],
     ['Duff & Phelps (Kroll)','$800M','$30M','5 offices','CMO, VP Facilities — Chicago HQ; valuation + advisory; premium downtown office environment buyer'],
+    ['Enova International','$2.3B','$75M','Chicago HQ','CMO, VP Facilities — Chicago; online lending; 2,000 employees; premium office environment; Crain\'s fastest growing 2024'],
+    ['Belvedere Trading','$500M est.','—','Chicago HQ','COO — Chicago Loop; proprietary trading firm; 400+ employees; premium office environment; discreet buyer'],
+    ['DRW Holdings','$1.5B est.','—','Chicago HQ','COO — Chicago; proprietary trading; 1,300 employees; high-end workspace; Fulton Market office expansion 2024'],
+    ['Aon Center tenants (managed)','—','—','83 floors','VP Building Ops — Chicago; Piedmont Office Realty manages; tenant suite signage + lobby identity programs across Class A tower'],
+    ['BancTec / PNC IL Division','—','—','80+ IL branches','VP Retail — Chicago region; PNC acquired BBCN/Midwest banks; ongoing branch refresh; interior brand environment program'],
     // ── REAL ESTATE & CONSTRUCTION ──
     ['Clayco Inc.','$5.0B est.','—','7 offices','CMO, VP Marketing — Chicago HQ; private design-build; corporate campuses, data centers, mixed-use; buys environmental graphics for client projects'],
     ['Walsh Group','$5.5B est.','—','20+ offices','COO, VP Marketing — Chicago HQ; largest private construction firm in Chicago area; builds major public + private projects; environmental graphics in finished spaces'],
@@ -3177,56 +3192,100 @@ var MKT_TABLES = {
     ['Sterling Bay','$2.0B est.','—','Chicago focus','VP Real Estate — Chicago HQ; Lincoln Yards developer; Google\'s Chicago HQ landlord; branded environments in all managed properties'],
     ['Equity Lifestyle Properties','$1.4B','$50M','450+ communities','VP Marketing — Chicago HQ; manufactured homes + RV communities; community entrance + amenity signage programs'],
     ['InSite Real Estate','$300M est.','—','60+ properties','VP Real Estate — Oak Brook IL; retail + mixed-use developer; tenant ID + property signage for each development'],
+    ['Murphy Development','$300M est.','—','Chicago focus','VP Development — Chicago; mixed-use developer; North Side projects; each new building = branded lobby + tenant way-finding package'],
+    ['Fifield Companies','$400M est.','—','Chicago focus','VP Development — Chicago; luxury multifamily developer; River North, Gold Coast; building identity + amenity space branding'],
+    ['Related Midwest','$600M est.','—','Chicago projects','VP Development — Chicago; NYC-based Related local arm; major mixed-use; The 78 megadevelopment; building identity + retail podium signage'],
+    ['Leopardo Companies','$1.2B est.','—','10+ offices','CMO, VP Marketing — Hoffman Estates IL; commercial GC; corporate interiors + healthcare + education; buys Foxmark-type products in finished builds'],
+    ['Skender Construction','$750M est.','—','Chicago HQ','CMO, VP Marketing — Chicago; top-25 US interior contractor; Crain\'s list 2024; heavy corporate interiors + branded environments'],
+    ['Inland Real Estate Income Trust','$200M est.','—','Chicago area','VP Real Estate — Oak Brook IL; non-traded REIT; retail centers; tenant signage + property identity programs across portfolio'],
     // ── HEALTHCARE (MID-MARKET) ──
     ['Advocate Physician Partners','$1.0B est.','—','400+ clinics','VP Facilities — Downers Grove IL; physician management org; clinic + office environment branding across network'],
     ['Presence Health (Ascension IL)','$2.5B est.','—','25+ facilities','VP Facilities — Chicago; Catholic health system absorbed by Ascension; ongoing facility rebranding + wayfinding'],
     ['Rush System for Health','$2.4B','$85M','4 hospitals + clinics','VP Facilities — Chicago Medical District; academic medical center; ongoing campus expansion + interior environment programs'],
     ['Heartland Health Centers','$80M est.','—','10+ clinics','CEO, VP Facilities — Chicago; FQHC network; clinic buildouts; environmental branding for community health settings'],
     ['Elmhurst Memorial (Edward-Elmhurst)','$1.5B est.','—','3 hospitals + clinics','VP Facilities — Elmhurst IL; community hospital system; facility expansion + rebrand programs'],
-    ['Resurgens Hospitality / Navos','—','—','boutique hotels','VP Design — Chicago; boutique hotel group; each property = unique branded environment build'],
+    ['DuPage Medical Group (Duly Health)','$800M est.','—','130+ locations','VP Facilities, CMO — Downers Grove IL; rebranded to Duly Health 2022; 130+ IL clinics = large-scale interior rebrand program in progress'],
+    ['Endeavor Health (formerly NorthShore)','$5.0B','$175M','Chicago North','VP Facilities — Evanston IL; merged NorthShore + Swedish Covenant + Northwest Community; campus rebrand program across merged network'],
+    ['Kovler Diabetes Center (U of C)','—','—','Chicago','VP Facilities — Chicago; specialty center; interior patient environment program'],
+    ['Sinai Chicago','$500M est.','—','5 hospitals','VP Facilities — Chicago; safety-net hospital system; West Side campus; ongoing facility graphics + wayfinding'],
+    ['National Kidney Foundation (Midwest)','—','—','Chicago offices','VP Ops — Chicago; nonprofit; office + event environment; smaller program opportunity'],
     // ── PROFESSIONAL SERVICES ──
     ['Morningstar Inc.','$2.3B','$90M','30+ offices','CMO, VP Workplace — Chicago Loop HQ (Merchandise Mart); investment research; 12K employees; premium corporate HQ environment'],
     ['GATX Corporation','$1.6B','$55M','30+ offices','CMO, VP Facilities — Chicago Loop HQ; rail car leasing; 2,000 employees; premium office + global maintenance facility signage'],
     ['Grant Thornton LLP','$2.0B','$75M','57 offices','CMO, VP Facilities — Chicago HQ (founded 1924); accounting + advisory; office interior refresh buyer; 6,000 employees'],
-    ['Navigant Consulting (Guidehouse)','$1.5B est.','—','15 offices','CMO, VP Facilities — Chicago HQ; management consulting; premium office interiors; post-merger rebrand to Guidehouse'],
     ['A.T. Kearney (Kearney)','$1.5B est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago Loop HQ; global management consulting; premium office environment; Chicago flagship'],
     ['Hyatt Hotels Corporation','$6.6B','$180M','1,300+ hotels','CMO, VP Design — Chicago HQ (Fulton Market); lifestyle brands Andaz, Alila, Thompson; every hotel opening = full environmental brand program'],
     ['Heico Companies','$1.8B est.','—','Multi-division','COO, VP Facilities — Chicago HQ; family-owned holding co; construction + industrial divisions; environmental for owned buildings + client sites'],
     ['Wirtz Corporation','$3.5B est.','—','Multi-sector','CMO, VP Real Estate — Chicago HQ; family-owned; Blackhawks, United Center stake, Wirtz Beverage (9 states); arena + corporate environments'],
     ['CC Industries / Crown Family','$2.0B est.','—','Multi-division','CMO, President — 222 N LaSalle Chicago; Crown family holding co; diversified mfg + real estate; premium office + facility environments'],
+    ['Navigant Consulting (Guidehouse)','$1.5B est.','—','15 offices','CMO, VP Facilities — Chicago HQ; management consulting; premium office interiors; post-merger rebrand to Guidehouse 2020; ongoing office refresh cycle'],
+    ['Edelman','$1.0B est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago HQ; world\'s largest PR firm; privately held by Dan Edelman family; Loop HQ premium environment; global offices follow Chicago brand standards'],
+    ['Foley & Lardner LLP','$900M','$35M','20 offices','CMO, VP Facilities — Milwaukee/Chicago; Am Law 100; Chicago office (321 N Clark); law firm office refresh buyer; branded environment in reception + hallways'],
+    ['Kirkland & Ellis LLP','$7.0B','$250M','Chicago HQ','CMO, Dir. Facilities — Chicago Loop HQ; #1 Am Law firm by revenue; 300 S Wacker; premium trophy office; significant branded environment buyer'],
+    ['Jones Lang LaSalle (JLL)','$20.8B','$350M','Chicago HQ','VP Workplace — Chicago HQ; commercial RE services; manages client environments globally; Foxmark entry as preferred vendor in JLL-managed facilities'],
+    ['Cushman & Wakefield','$9.4B','$150M','Chicago HQ','VP Facilities, CMO — Chicago HQ; commercial RE; manages/leases 4.4B SF globally; embed as preferred environmental graphics sub in C&W-managed projects'],
+    ['USG Corporation (Knauf)','$3.5B','$130M','Chicago HQ','CMO, VP Facilities — Chicago HQ; building products manufacturer; acquired by Knauf 2019; ongoing integration rebrand across North American facilities'],
     // ── MANUFACTURING & INDUSTRIAL (MID-MARKET) ──
     ['Elkay Manufacturing','$1.0B est.','—','10+ facilities','CMO, VP Facilities — Downers Grove IL; private; water delivery products (sinks, fountains); plants + HQ need facility branding'],
     ['Hollister Incorporated','$2.0B est.','—','Libertyville HQ','VP Facilities, CMO — Libertyville IL; employee-owned; ostomy + wound care products; premium campus environment; Crain\'s most innovative 2024'],
     ['MAT Holdings','$1.6B','$70M','41 sites','COO, VP Facilities — Long Grove IL; private; hardware + tools manufacturer; 5K employees; multi-site program buyer'],
-    ['Anixter International (Wesco)','$9.5B','—','Chicago roots','VP Facilities — Glenview IL origin; network + security infrastructure; acquired by Wesco 2020; ongoing integration rebrand at facilities'],
     ['R.R. Donnelley (Chatham Asset)','$5.0B','$185M','100+ facilities','CMO, CIO — Chicago HQ; went private 2022; print + marketing services; 40K employees; major multi-site rebrand buyer'],
-    ['Medela AG (US HQ)','$500M est.','—','Chicago HQ','VP Facilities — McHenry IL; breastfeeding + medical device; US headquarters; premium branded environment'],
-    ['Flexo-Craft Printing','$50M est.','—','Chicago','VP Operations — Chicago; flexible packaging printer; plant + office environment'],
+    ['Medela AG (US HQ)','$500M est.','—','McHenry HQ','VP Facilities — McHenry IL; breastfeeding + medical device; US headquarters; premium branded environment'],
     ['Golin (IPG)','$800M est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago HQ; global PR agency (IPG subsidiary); premium office environment; Loop HQ refresh cycle'],
+    ['Chamberlain Group','$1.5B est.','—','Oak Brook HQ','CMO, VP Facilities — Oak Brook IL; garage door openers + smart access; 5,500 employees; Blackstone-backed; premium campus after PE acquisition'],
+    ['Atkore International','$2.8B','$100M','50+ plants','CMO, VP Facilities — Harvey IL HQ; electrical raceway + mechanical products; NYSE: ATKR; plant + HQ facility branding program'],
+    ['CIRCOR International (Chicago ops)','$1.0B est.','—','Chicago area','VP Facilities — IL operations; flow control systems; industrial facility branding'],
+    ['Packaging Corporation of America (IL div)','$8.0B','—','Chicago area','VP Operations — Lake Forest IL HQ; corrugated packaging; publicly traded; IL plant + HQ signage program'],
+    ['UFP Technologies','$400M est.','—','Illinois sites','VP Facilities — IL operations; specialty packaging + protective materials; plant environment graphics'],
+    ['Meridian Industries','$1.0B est.','—','10 facilities','COO, VP Facilities — Evanston IL; private; aluminum die casting; auto + industrial; multi-plant facility branding'],
     // ── LOGISTICS & SUPPLY CHAIN ──
     ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO — Chicago River North HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees; large modern office campus'],
     ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
     ['AIT Worldwide Logistics','$2.6B','—','50+ offices','COO, VP Facilities — Itasca IL; Crain\'s fastest-growing 2025 (+42%); freight forwarding + logistics; acquired European cos; multi-site rebranding'],
     ['RIM Logistics','$236M','—','Chicago area','COO, VP Facilities — Roselle IL; Crain\'s private list; logistics; warehouse + office signage'],
     ['Loadsmart','$152M','$8M','Chicago HQ','CMO — Chicago; freight tech platform; PE-backed; modern office environment'],
-    ['Transplace (Uber Freight)','—','—','Chicago','VP Facilities — Chicago; logistics software; acquired by Uber Freight; office rebrand'],
+    ['XPO (Chicago operations)','—','—','IL facilities','VP Operations — Chicago area; less-than-truckload; multiple IL terminals = facility signage + safety graphics'],
+    ['GlobalTranz (Chicago office)','$1.8B est.','—','Chicago area','VP Operations — Chicago; freight brokerage; PE-backed; modern office environment; post-acquisition rebrand'],
+    ['GreenBriar Equity / XL Parts (IL)','—','—','Chicago area','VP Operations — IL; auto parts distribution; warehouse + retail counter signage'],
+    ['Hub Group','$4.5B','$150M','Chicago HQ','CMO, VP Facilities — Downers Grove IL; publicly traded intermodal; 5,000 employees; premium HQ + terminal facility branding'],
     // ── TECHNOLOGY (MID-MARKET) ──
     ['Avant (fintech)','$250M est.','$18M','1 HQ','CMO, VP Brand — Chicago Merchandise Mart HQ; consumer lending; raised $800M+; remodels HQ office for brand presence'],
     ['Tempus AI','$600M','$25M','Chicago HQ','CMO, VP Facilities — Chicago; AI-driven genomics; 1,000+ employees; premium office environment; rapidly expanding'],
     ['Instawork','$200M est.','$10M','Chicago HQ','CMO — Chicago HQ; labor marketplace; Series D funded; growing HQ space'],
     ['Basis Technologies','$200M est.','$8M','Chicago HQ','CMO — Chicago; programmatic media buying; 700+ clients; premium River North office'],
     ['Provi','$100M est.','$5M','Chicago HQ','CMO — Chicago; beverage alcohol B2B marketplace; fast-growing; modern office environment'],
+    ['Paylocity','$870M','$35M','Schaumburg HQ','CMO, VP Facilities — Schaumburg IL HQ; cloud HR + payroll; NASDAQ: PCTY; 5,000 employees; premium suburban campus environment'],
+    ['Relativity (software)','$800M est.','$30M','Chicago HQ','CMO, VP Facilities — Chicago; legal tech + e-discovery; Silver Lake-backed; 1,200 employees; premium Fulton Market office environment'],
+    ['Braintree (PayPal Chicago)','—','—','Chicago office','VP Facilities — Chicago; PayPal subsidiary; premium Fulton Market office; ongoing environment refresh cycle'],
+    ['Textura (Oracle Chicago)','—','—','Chicago office','VP Facilities — Chicago; Oracle construction management platform; office environment program'],
+    ['Outcome Health','$250M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; healthcare point-of-care media; premium office + showroom environment'],
+    ['Project44','$450M est.','$18M','Chicago HQ','CMO — Chicago; supply chain visibility platform; Series E-funded; Fulton Market HQ; fast-growing + premium environment'],
+    ['ActiveCampaign','$250M est.','$10M','Chicago HQ','CMO — Chicago; marketing automation; $3B valuation; 900+ employees; premium modern office environment'],
     // ── SPORTS & ENTERTAINMENT ──
-    ['Chicago Fire FC','$100M est.','—','Soldier Field','VP Brand — Chicago; MLS; stadium graphics, training facility, community center signage; Toyota Park rebrand'],
+    ['Chicago Fire FC','$100M est.','—','Soldier Field','VP Brand — Chicago; MLS; stadium graphics, training facility, community center signage; new Soldier Field naming rights deal = large signage refresh'],
     ['Chicago Red Stars (NWSL)','$30M est.','—','SeatGeek Stadium','CMO — Bridgeview IL; professional women\'s soccer; venue + brand environment'],
-    ['Advocate Aurora Sports','—','—','training facilities','VP Facilities — Chicago; team training facility sponsor + branded environment partner'],
     ['Second City Entertainment','$50M est.','—','Chicago HQ + venues','VP Brand — Chicago; comedy + improv institution; venue rebrand + touring productions need graphics'],
+    ['Chicago Shakespeare Theater','$30M est.','—','Navy Pier','VP Marketing — Chicago; world-class theater; Navy Pier venue; seasonal campaign + lobby environmental graphics'],
+    ['Steppenwolf Theatre','$25M est.','—','Lincoln Park','VP Marketing — Chicago; Tony Award-winning theater; expanded campus 2024; lobby + building identity environment'],
+    ['Chicago Architecture Center','$10M est.','—','Chicago River','VP Marketing — Chicago; architecture tourism + education; premium location on the river; rotating exhibit + wayfinding graphics'],
+    ['Levy Restaurants (Compass)','$2.0B est.','—','30+ venues','VP Brand — Chicago HQ; premium sports + entertainment food service; United Center, Wrigley, Chase; branded venue environments inside client facilities'],
+    ['Oak View Group (Chicago venues)','—','—','Chicago area','VP Design — Chicago; venue development + management; emerging venues + arena upgrades = full environmental brand packages'],
     // ── EDUCATION & INSTITUTIONS ──
     ['DePaul University','$600M','$22M','2 campuses','VP Facilities — Chicago; largest private university in IL; ongoing campus identity + wayfinding programs; Loop + Lincoln Park'],
     ['Loyola University Chicago','$700M','$26M','4 campuses','VP Facilities — Chicago; Jesuit university; Rogers Park + Water Tower campuses; ongoing environmental identity programs'],
-    ['Rush University Medical Center','$2.4B','$85M','Medical District','VP Facilities — Chicago; academic medical center; major campus expansion + interior environment programs'],
     ['Columbia College Chicago','$175M','$7M','1 campus','VP Facilities — South Loop; design-focused school; highly brand-conscious; campus environment programs'],
-    ['Illinois Institute of Technology','$250M','$9M','Bronzeville campus','VP Facilities — Chicago; Mies van der Rohe campus; premium architectural environment; ongoing signage + wayfinding']
+    ['Illinois Institute of Technology','$250M','$9M','Bronzeville campus','VP Facilities — Chicago; Mies van der Rohe campus; premium architectural environment; ongoing signage + wayfinding'],
+    ['School of the Art Institute (SAIC)','$150M est.','$5M','Loop campus','VP Facilities — Chicago Loop; art + design school; brand-conscious environment; rotating gallery + campus identity graphics'],
+    ['Roosevelt University','$120M','$5M','Chicago HQ','VP Facilities — Auditorium Building + Wabash campus; ongoing campus identity + wayfinding programs'],
+    ['Chicago Public Schools (CPS) Facilities','$7.0B','—','630+ schools','VP Capital Programs — Chicago; bond-funded school renovation program; school interior wayfinding + identity graphics at scale'],
+    ['Chicago Housing Authority','$1.0B est.','—','100+ buildings','VP Development — Chicago; housing authority; building lobby + community space branded environment programs'],
+    // ── MEDIA & ADVERTISING ──
+    ['Leo Burnett (Publicis)','$1.5B est.','—','Chicago HQ','CMO, VP Facilities — Chicago HQ; Publicis subsidiary; Merchandise Mart office; premium creative agency environment; rotating campaign + client-facing spaces'],
+    ['DDB Chicago (Omnicom)','$800M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; Wrigleyville office; creative agency; client-facing environments need premium large-format display'],
+    ['FCB Chicago (IPG)','$600M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; IPG agency; premium office environment in River North; client presentation spaces = high-value Foxmark targets'],
+    ['Chicago Tribune Media (Tribune Publishing)','$600M est.','—','Chicago HQ','VP Facilities — Chicago Freedom Center; large-format print heritage; office + newsroom environment refresh'],
+    ['Sun-Times Media Network','$100M est.','—','Chicago HQ','VP Facilities — Chicago; local news; office environment; smaller opportunity'],
+    ['Envestnet','$1.5B','$55M','Chicago HQ','CMO, VP Facilities — Chicago; wealth management platform; 4,000 employees; premium Magnificent Mile office environment']
   ]
 };
 var mktCurrentTab = 'svc';
@@ -3959,20 +4018,28 @@ function renderMktTable(key) {
       { label: 'Logistics & Supply Chain', color: '#fb7185' },
       { label: 'Technology', color: '#60a5fa' },
       { label: 'Sports & Entertainment', color: '#fbbf24' },
-      { label: 'Education & Institutions', color: '#86efac' }
+      { label: 'Education & Institutions', color: '#86efac' },
+      { label: 'Media & Advertising', color: '#e879f9' }
     ];
     var sectorMap = {
       'Newly Weds':0,'OSI Group':0,'Reyes Beverage':0,'Topco':0,'Network Distribution':0,'Performance Food':0,'US Cellular':0,
-      'Lettuce Entertain':1,'DineAmic':1,'Ballyhoo':1,'One Off':1,'Gibsons':1,'Cornerstone':1,'Foxtrot':1,'Sushi-san':1,
+      'TreeHouse':0,'Mondelez':0,"Mariano's":0,'Jewel-Osco':0,'US Foods':0,
+      'Lettuce Entertain':1,'DineAmic':1,'Ballyhoo':1,'One Off':1,'Gibsons':1,'Cornerstone':1,'Foxtrot':1,'Land & Sea':1,'Portillo':1,'Eataly':1,'Life Fitness':1,'IHOP':1,
       'Wintrust':2,'Inland Western':2,'MB Financial':2,'Byline Bank':2,'Inland Bank':2,'Heartland Bank':2,'William Blair':2,'Duff & Phelps':2,
+      'Enova':2,'Belvedere':2,'DRW':2,'Aon Center':2,'BancTec':2,
       'Clayco':3,'Walsh Group':3,'Pepper Construction':3,'Summit Design':3,'Golub':3,'Sterling Bay':3,'Equity Lifestyle':3,'InSite Real':3,
+      'Murphy Development':3,'Fifield':3,'Related Midwest':3,'Leopardo':3,'Skender':3,'Inland Real Estate Income':3,
       'Advocate Physician':4,'Presence Health':4,'Rush System':4,'Heartland Health':4,'Elmhurst Memorial':4,'Resurgens':4,
+      'DuPage Medical':4,'Endeavor Health':4,'Kovler':4,'Sinai Chicago':4,'National Kidney':4,
       'Morningstar':5,'GATX':5,'Grant Thornton':5,'Navigant':5,'A.T. Kearney':5,'Hyatt':5,'Heico':5,'Wirtz':5,'CC Industries':5,
+      'Edelman':5,'Foley & Lardner':5,'Kirkland & Ellis':5,'Jones Lang':5,'Cushman':5,'USG':5,
       'Elkay':6,'Hollister':6,'MAT Holdings':6,'Anixter':6,'R.R. Donnelley':6,'Medela':6,'Flexo-Craft':6,'Golin':6,
-      'Echo Global':7,'Coyote':7,'AIT Worldwide':7,'RIM Logistics':7,'Loadsmart':7,'Transplace':7,
-      'Avant':8,'Tempus':8,'Instawork':8,'Basis Technologies':8,'Provi':8,
-      'Chicago Fire':9,'Chicago Red Stars':9,'Advocate Aurora Sports':9,'Second City':9,
-      'DePaul':10,'Loyola':10,'Rush University Medical':10,'Columbia College':10,'Illinois Institute':10
+      'Chamberlain':6,'Atkore':6,'CIRCOR':6,'Packaging Corporation':6,'UFP':6,'Meridian Industries':6,
+      'Echo Global':7,'Coyote':7,'AIT Worldwide':7,'RIM Logistics':7,'Loadsmart':7,'Transplace':7,'XPO':7,'GlobalTranz':7,'GreenBriar':7,'Hub Group':7,
+      'Avant':8,'Tempus':8,'Instawork':8,'Basis Technologies':8,'Provi':8,'Paylocity':8,'Relativity':8,'Braintree':8,'Textura':8,'Outcome Health':8,'Project44':8,'ActiveCampaign':8,
+      'Chicago Fire':9,'Chicago Red Stars':9,'Advocate Aurora Sports':9,'Second City':9,'Chicago Shakespeare':9,'Steppenwolf':9,'Chicago Architecture':9,'Levy Restaurants':9,'Oak View':9,
+      'DePaul':10,'Loyola':10,'Rush University Medical':10,'Columbia College':10,'Illinois Institute':10,'School of the Art':10,'Roosevelt University':10,'Chicago Public Schools':10,'Chicago Housing':10,
+      'Leo Burnett':11,'DDB Chicago':11,'FCB Chicago':11,'Chicago Tribune':11,'Sun-Times':11,'Envestnet':11
     };
     rows.forEach(function(r) {
       var sidx = 5;
