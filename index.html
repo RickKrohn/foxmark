@@ -2990,6 +2990,191 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     </div>
   </div>
 </section>
+<!-- ── FOXMARK FRANCHISE CONTACTS ─────────────────────────────────────────── -->
+<section style="padding:5rem 2rem;background:var(--dark);border-top:1px solid rgba(200,16,46,.15);">
+  <div style="max-width:900px;margin:0 auto;">
+
+    <div class="section-label" style="margin-bottom:2rem;">Foxmark HQ — Chicago Franchise Decision Team</div>
+
+    <!-- Email pattern notice -->
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;background:rgba(200,16,46,.05);border:1px solid rgba(200,16,46,.18);padding:.7rem 1.1rem;margin-bottom:1.5rem;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#C8102E;white-space:nowrap;">&#9993; Email Pattern</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.72rem;color:#8ab4d4;">firstinitiallastname@teamfoxmark.com</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:#22c55e;">&#10003; Confirmed via rfox@teamfoxmark.com</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(46,85,133,.3);">
+
+      <!-- Richard Fox -->
+      <div class="fc-card" onclick="fcCopy('Richard Fox','CEO','rfox@teamfoxmark.com','713-686-8300')">
+        <div class="fc-role">Founder &middot; CEO</div>
+        <div class="fc-name">Richard Fox</div>
+        <div class="fc-title">Chief Executive Officer &middot; est. 1995</div>
+        <div class="fc-email">rfox@teamfoxmark.com <span class="fc-verified">&#10003; confirmed</span></div>
+        <div class="fc-note">Your existing relationship. Franchise development runs through him directly.</div>
+      </div>
+
+      <!-- Gary Paczosa -->
+      <div class="fc-card" onclick="fcCopy('Gary Paczosa','VP Operations','gpaczosa@teamfoxmark.com','713-686-8300')">
+        <div class="fc-role">Operations</div>
+        <div class="fc-name">Gary Paczosa</div>
+        <div class="fc-title">VP of Operations</div>
+        <div class="fc-email">gpaczosa@teamfoxmark.com <span class="fc-pattern">pattern</span></div>
+        <div class="fc-note">Territory logistics, equipment specs, hub-and-spoke integration with HQ.</div>
+      </div>
+
+      <!-- Jason Pearl -->
+      <div class="fc-card" onclick="fcCopy('Jason Pearl','VP Manufacturing','jpearl@teamfoxmark.com','713-686-8300')">
+        <div class="fc-role">Manufacturing</div>
+        <div class="fc-name">Jason Pearl</div>
+        <div class="fc-title">VP of Manufacturing</div>
+        <div class="fc-email">jpearl@teamfoxmark.com <span class="fc-pattern">pattern</span></div>
+        <div class="fc-note">What production capability transfers to Chicago vs. stays at HQ. Owns the equipment model.</div>
+      </div>
+
+      <!-- Jamie Garza Graney -->
+      <div class="fc-card" onclick="fcCopy('Jamie Garza Graney','Director of Sales','jgarza@foxmarkcorp.com','713-305-1438')">
+        <div class="fc-role">Sales</div>
+        <div class="fc-name">Jamie Garza Graney</div>
+        <div class="fc-title">Director of Sales &amp; Senior Account Manager</div>
+        <div class="fc-email">jgarza@foxmarkcorp.com &nbsp;·&nbsp; jgraney@teamfoxmark.com <span class="fc-verified">&#10003; confirmed</span></div>
+        <div class="fc-note">Only confirmed direct line: 713-305-1438. Handles national accounts — territory transfer conversations run through her.</div>
+      </div>
+
+      <!-- Chris Chance -->
+      <div class="fc-card" onclick="fcCopy('Chris Chance','Manager Operations','cchance@teamfoxmark.com','713-686-8300')">
+        <div class="fc-role">Operations / Client Services</div>
+        <div class="fc-name">Chris Chance</div>
+        <div class="fc-title">Manager, Operations (prev. Dir. Client Services)</div>
+        <div class="fc-email">cchance@teamfoxmark.com <span class="fc-pattern">pattern</span></div>
+        <div class="fc-note">Service standards, SLAs, and escalation paths between spoke and HQ.</div>
+      </div>
+
+      <!-- Thomas Fox -->
+      <div class="fc-card" onclick="fcCopy('Thomas Fox','Controller','tfox@foxmarkcorp.com','713-686-8300')">
+        <div class="fc-role">Finance</div>
+        <div class="fc-name">Thomas Fox</div>
+        <div class="fc-title">Controller &mdash; Foxmark Corporation</div>
+        <div class="fc-email">tfox@foxmarkcorp.com <span class="fc-pattern">pattern</span></div>
+        <div class="fc-note">Loop in at term sheet stage — royalty rates, capital requirements, P&amp;L structure.</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:.75rem;font-size:.7rem;color:#3a5070;line-height:1.6;">
+      Click any card to copy contact details. Emails marked <em>pattern</em> follow confirmed firstinitiallastname@ format — verify on LinkedIn before first outreach.
+    </div>
+
+  </div>
+</section>
+
+<div id="fc-toast" style="position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(2rem);background:#C8102E;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem 1.2rem;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;z-index:99999;">Copied &#10003;</div>
+
+<style>
+.fc-card {
+  background: #162d48;
+  padding: 1.25rem 1.4rem;
+  cursor: pointer;
+  position: relative;
+  transition: background .18s;
+  border-left: 3px solid transparent;
+}
+.fc-card:hover { background: #1d3858; border-left-color: #C8102E; }
+.fc-role {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: .58rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: #C8102E;
+  margin-bottom: .25rem;
+}
+.fc-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin-bottom: .15rem;
+  color: #e8f0ff;
+}
+.fc-title {
+  font-size: .74rem;
+  color: #6e8aaa;
+  margin-bottom: .55rem;
+  line-height: 1.4;
+}
+.fc-email {
+  font-family: 'Courier New', monospace;
+  font-size: .68rem;
+  color: #5a9ed4;
+  margin-bottom: .5rem;
+  line-height: 1.5;
+}
+.fc-verified {
+  display: inline-block;
+  background: rgba(34,197,94,.12);
+  color: #22c55e;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .05rem .3rem;
+  margin-left: .3rem;
+}
+.fc-pattern {
+  display: inline-block;
+  background: rgba(90,171,255,.1);
+  color: #5aabff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .05rem .3rem;
+  margin-left: .3rem;
+}
+.fc-note {
+  font-size: .73rem;
+  color: #4a6480;
+  line-height: 1.5;
+  border-left: 2px solid rgba(200,16,46,.2);
+  padding-left: .55rem;
+}
+@media (max-width:600px) {
+  .fc-card:nth-child(n) { grid-column: span 1; }
+  [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<script>
+function fcCopy(name, title, email, phone) {
+  var text = name + '\n' + title + '\nFoxmark Corporation\n' + email + '\n' + phone + '\nteamfoxmark.com';
+  var toast = document.getElementById('fc-toast');
+  var show = function() {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    setTimeout(function(){
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(2rem)';
+    }, 1800);
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(show);
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    show();
+  }
+}
+</script>
+
+
 
 <footer>
   <div><div class="footer-logo">FOX<span>MARK</span></div><div class="footer-sub">Rick Krohn &middot; Sales Leadership</div></div>
