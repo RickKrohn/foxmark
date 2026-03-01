@@ -1749,21 +1749,32 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <!-- ROW 3: Sector account table with tabs -->
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.9rem;">Top Accounts by Sector &amp; Decision-Maker</div>
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem;">
-          <button onclick="mktTab('f500')" id="mtab-f500" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:#C8102E;color:#fff;border:none;padding:.25rem .75rem;cursor:pointer;">F500 Overview</button>
-          <button onclick="mktTab('svc')" id="mtab-svc" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Services</button>
-          <button onclick="mktTab('fin')" id="mtab-fin" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Financial</button>
-          <button onclick="mktTab('hlth')" id="mtab-hlth" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Healthcare</button>
-          <button onclick="mktTab('ind')" id="mtab-ind" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Industrials</button>
-          <button onclick="mktTab('rtl')" id="mtab-rtl" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Retail</button>
-          <button onclick="mktTab('mid')" id="mtab-mid" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.25rem .75rem;cursor:pointer;">Mid-Market</button>
+        <style>
+          .mkt-tab { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; background:rgba(255,255,255,.07); color:#8A8A8A; border:none; padding:.28rem .8rem; cursor:pointer; transition:color .15s; }
+          .mkt-tab:hover { color:#c8d8f0; }
+        </style>
+        <div style="margin-bottom:.2rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Sector Targets</div>
+          <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+            <button onclick="mktTab('f500')" id="mtab-f500" class="mkt-tab" style="background:#C8102E;color:#fff;">F500 Overview</button>
+            <button onclick="mktTab('svc')" id="mtab-svc" class="mkt-tab">Services</button>
+            <button onclick="mktTab('fin')" id="mtab-fin" class="mkt-tab">Financial</button>
+            <button onclick="mktTab('hlth')" id="mtab-hlth" class="mkt-tab">Healthcare</button>
+            <button onclick="mktTab('ind')" id="mtab-ind" class="mkt-tab">Industrials</button>
+            <button onclick="mktTab('rtl')" id="mtab-rtl" class="mkt-tab">Retail</button>
+            <button onclick="mktTab('mid')" id="mtab-mid" class="mkt-tab">Mid-Market</button>
+          </div>
         </div>
-        <div style="display:flex;gap:.4rem;margin-bottom:.9rem;">
-          <button onclick="mktTab('crm')" id="mtab-crm" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.45rem 1.4rem;cursor:pointer;">Pipeline</button>
-          <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.45rem 1.4rem;cursor:pointer;">Sales Analysis</button>
-          <button onclick="mktTab('casestudies')" id="mtab-casestudies" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.45rem 1.4rem;cursor:pointer;">Case Studies</button>
-          <button onclick="mktTab('partners')" id="mtab-partners" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.45rem 1.4rem;cursor:pointer;">Channel Partners</button>
-          <button onclick="mktTab('competitive')" id="mtab-competitive" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.45rem 1.4rem;cursor:pointer;">Competitive Intel</button>
+        <div style="border-top:1px solid rgba(255,255,255,.08);margin:.55rem 0 .35rem;"></div>
+        <div style="margin-bottom:.9rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Strategy & Intelligence</div>
+          <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+            <button onclick="mktTab('crm')" id="mtab-crm" class="mkt-tab">Pipeline</button>
+            <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" class="mkt-tab">Sales Analysis</button>
+            <button onclick="mktTab('casestudies')" id="mtab-casestudies" class="mkt-tab">Case Studies</button>
+            <button onclick="mktTab('partners')" id="mtab-partners" class="mkt-tab">Channel Partners</button>
+            <button onclick="mktTab('competitive')" id="mtab-competitive" class="mkt-tab">Competitive Intel</button>
+          </div>
         </div>
         <div id="crm-pipeline-wrap" style="display:none;"></div>
         <div id="f500-overview-wrap" style="display:none;"></div>
@@ -1776,42 +1787,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         </div>
       </div>
 
-      <!-- GTM OUTREACH PRIORITY -->
-      <div style="margin-top:1.25rem;">
-
-        <!-- TIER 1 -->
-        <div style="background:rgba(200,16,46,.06);border:1px solid rgba(200,16,46,.2);padding:1rem;margin-bottom:.75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;color:#C8102E;margin-bottom:.4rem;">Tier 1 · Immediate — Chicago Loop / River North</div>
-          <div style="font-size:.82rem;color:#8A8A8A;margin-bottom:.75rem;">High-density corridor walkable from studio. <strong style="color:#fff;">Target: CMO + VP Facilities.</strong> Lead with Studio Lab invite + same-day delivery capability.</div>
-          <div id="tier1-cards"></div>
-        </div>
-
-        <!-- TIER 2 -->
-        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);padding:1rem;margin-bottom:.75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;color:#f59e0b;margin-bottom:.4rem;">Tier 2 · Rollout Scale — Western I-88 Corridor</div>
-          <div style="font-size:.82rem;color:#8A8A8A;margin-bottom:.75rem;">Lisle · Downers Grove · Glenview · Moline corridor. Manufacturing + industrial HQs with massive multi-site programs. <strong style="color:#fff;">Target: COO + VP Operations.</strong> Lead with volume pricing and rollout logistics.</div>
-          <div id="tier2-cards"></div>
-        </div>
-
-        <!-- TIER 3 -->
-        <div style="background:rgba(100,116,139,.06);border:1px solid rgba(100,116,139,.2);padding:1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;color:#8A8A8A;margin-bottom:.4rem;">Tier 3 · Statewide — Bloomington / Peoria / Moline / Downstate</div>
-          <div style="font-size:.82rem;color:#8A8A8A;margin-bottom:.75rem;">Downstate IL anchors — large campus programs worth the drive once qualified. <strong style="color:#fff;">Virtual-first. Use Rick&#39;s network for warm intros.</strong></div>
-          <div id="tier3-cards"></div>
-        </div>
-
-        <!-- MID-MARKET CALLOUT -->
-        <div style="margin-top:1rem;background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);padding:1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.15em;text-transform:uppercase;color:#f59e0b;margin-bottom:.4rem;">Mid-Market · The Overlooked Tier</div>
-          <div style="font-size:.82rem;color:#8A8A8A;line-height:1.65;margin-bottom:.6rem;">Private, PE-backed, and high-growth Chicago companies that <strong style="color:#e8f0ff;">move faster than F500</strong> and don't have procurement committees blocking every decision. Restaurant groups opening new locations, regional banks rebranding branches, developer-owned buildings needing tenant suites — these close in weeks, not quarters. <strong style="color:#e8f0ff;">See the Mid-Market tab above for targets.</strong></div>
-          <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
-            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">NO RFP REQUIRED</div>
-            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">OWNER DECISIONS</div>
-            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">REPEAT VOLUME</div>
-            <div style="font-size:.78rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);padding:.25rem .65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;">BRAND-SENSITIVE</div>
-          </div>
-        </div>
-      </div>
+      <!-- Hidden tier card anchors for JS rendering -->
+      <div style="display:none;"><div id="tier1-cards"></div><div id="tier2-cards"></div><div id="tier3-cards"></div></div>
 
 
     </div>
@@ -6055,11 +6032,11 @@ function renderF500Dashboard() {
   // ── KPI STRIP ─────────────────────────────────────────────────────────────
   h += '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1.25rem;">';
   var kpis = [
-    { v:'52',    label:'F500 Targets',      sub:'Named IL accounts',      color:'#C8102E' },
-    { v:'$32B',  label:'Combined Foxmark TAM', sub:'Across 6 sectors',   color:'#22c55e' },
-    { v:'22',    label:'Active Catalysts',  sub:'Rebrands · PE · Acquisitions', color:'#f59e0b' },
-    { v:'3,500+',label:'Total Locations',   sub:'Multi-site rollout TAM', color:'#4a9eff' },
-    { v:'6',     label:'Sectors Covered',   sub:'Services → Technology',  color:'#a855f7' }
+    { v:'52',    label:'F500 Targets',        sub:'Named IL accounts',            color:'#C8102E' },
+    { v:'$414B',   label:'Combined Revenue',     sub:'Public filings · IL F500 HQs',  color:'#22c55e' },
+    { v:'$50–125M', label:'Chicago Addressable', sub:'Foxmark-relevant signage spend', color:'#C8102E' },
+    { v:'22',    label:'Active Catalysts',    sub:'Rebrands · PE · Acquisitions', color:'#f59e0b' },
+    { v:'3,500+',label:'Total Locations',     sub:'Multi-site rollout TAM',       color:'#a855f7' }
   ];
   kpis.forEach(function(k) {
     h += '<div style="background:#0d1e2e;border:1px solid rgba(255,255,255,.07);border-top:3px solid ' + k.color + ';padding:.9rem;text-align:center;">';
@@ -6071,11 +6048,58 @@ function renderF500Dashboard() {
   h += '</div>';
 
   // ── 2-COL: TAM bars + Hot targets ─────────────────────────────────────────
+  // ── MARKET SIZING: THREE-TIER FUNNEL ─────────────────────────────────────
+  h += '<div style="margin-bottom:1rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#5a6880;margin-bottom:.6rem;">Market Sizing · How Big Is The Opportunity?</div>';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;">';
+
+  // Tier 1: Total Revenue
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(34,197,94,.08) 0%,rgba(34,197,94,.02) 100%);border:1px solid rgba(34,197,94,.25);padding:1rem 1rem .85rem;overflow:hidden;">';
+  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#22c55e;"></div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#22c55e;margin-bottom:.5rem;opacity:.9;">Tier 1 · Total Revenue Universe</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#22c55e;line-height:1;margin-bottom:.35rem;">$414B</div>';
+  h += '<div style="font-size:.7rem;color:#c8e8c8;margin-bottom:.6rem;line-height:1.5;">Combined annual revenue of all 52 IL-based F500 targets</div>';
+  h += '<div style="border-top:1px solid rgba(34,197,94,.15);padding-top:.55rem;">';
+  h += '<div style="font-size:.62rem;color:#3a6040;line-height:1.6;">Source: Public annual filings<br>Verified · Fortune 500 2025 list</div>';
+  h += '</div>';
+  h += '</div>';
+
+  // Tier 2: National Signage Spend
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(245,158,11,.08) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.25);padding:1rem 1rem .85rem;overflow:hidden;">';
+  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#f59e0b;"></div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;margin-bottom:.5rem;opacity:.9;">Tier 2 · National Signage Spend</div>';
+  h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#f59e0b;line-height:1;">$500M</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:1rem;color:#f59e0b;opacity:.6;">–$800M</div>';
+  h += '</div>';
+  h += '<div style="font-size:.7rem;color:#e8d8b8;margin-bottom:.6rem;line-height:1.5;">Est. total annual signage &amp; environmental graphics spend across all locations, nationwide</div>';
+  h += '<div style="border-top:1px solid rgba(245,158,11,.15);padding-top:.55rem;">';
+  h += '<div style="font-size:.62rem;color:#5a4820;line-height:1.6;">~0.12–0.20% of revenue<br>SEGD industry benchmark · all sectors</div>';
+  h += '</div>';
+  h += '</div>';
+
+  // Tier 3: Foxmark Chicago-Addressable
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(200,16,46,.1) 0%,rgba(200,16,46,.03) 100%);border:1px solid rgba(200,16,46,.35);padding:1rem 1rem .85rem;overflow:hidden;">';
+  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#C8102E;"></div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;margin-bottom:.5rem;opacity:.9;">Tier 3 · Foxmark Chicago-Addressable</div>';
+  h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#C8102E;line-height:1;">$50M</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:1rem;color:#C8102E;opacity:.6;">–$125M</div>';
+  h += '</div>';
+  h += '<div style="font-size:.7rem;color:#e8c8c8;margin-bottom:.6rem;line-height:1.5;">IL-footprint share of national spend. Catalyst events (rebrands, PE, new builds) expand scope and compress timelines.</div>';
+  h += '<div style="border-top:1px solid rgba(200,16,46,.2);padding-top:.55rem;">';
+  h += '<div style="font-size:.62rem;color:#602020;line-height:1.6;">5–15% IL location share est.<br>Upside: 22 active catalyst events</div>';
+  h += '</div>';
+  h += '</div>';
+
+  h += '</div>'; // grid
+  h += '</div>'; // wrapper
+
   h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">';
 
   // LEFT: TAM by sector bars
   h += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.85rem;">Foxmark TAM by Sector · $32B Total</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.85rem;">National Signage Spend by Sector · $500M–$800M Est.</div>';
   var maxTam = 8.7;
   sectors.forEach(function(s) {
     var tamVal = parseFloat(s.tam.replace(/[$B]/g,''));
@@ -6160,6 +6184,93 @@ function renderF500Dashboard() {
 
   h += '</div>'; // end bottom 2-col
 
+  // ── ALL 52 TARGETS TABLE ──────────────────────────────────────────────────
+  // angle: [label, color]  urg: [label, color, bgColor]
+  var allTargets = [
+    { name:'United Airlines (UAL)',           sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['MULTI-SITE ROLLOUT','#4a9eff'],    urg:null },
+    { name:'RR Donnelley (RRD)',              sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['ACQUISITION 2024','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'JLL',                             sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['WORKPLACE PROGRAMS','#4a9eff'],    urg:['MULTI-SITE','#4a9eff','rgba(74,158,255,.12)'] },
+    { name:'Echo Global Logistics',           sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['HQ ENVIRONMENT','#a855f7'],        urg:['PE-BACKED','#a855f7','rgba(168,85,247,.12)'] },
+    { name:'Coyote Logistics (UPS)',          sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
+    { name:'MAT Holdings',                    sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['MULTI-PLANT','#f59e0b'],           urg:null },
+    { name:'National Express / NXPT',         sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['REBRAND 2024','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'State Farm',                      sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['MULTI-SITE ROLLOUT','#4a9eff'],    urg:null },
+    { name:'Allstate',                        sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['REBRAND CYCLE','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Zurich North America',            sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
+    { name:'Discover Financial (Capital One)',sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['ACQUISITION','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'CNA Financial',                   sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['HQ + BRANCHES','#4a9eff'],         urg:null },
+    { name:'Northern Trust',                  sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['PREMIUM HQ','#a855f7'],            urg:null },
+    { name:'Arthur J. Gallagher',             sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['80+ ACQUISITIONS','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Health Care Service Corp (HCSC)', sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['CAMPUS FOOTPRINT','#4a9eff'],      urg:null },
+    { name:'AbbVie',                          sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
+    { name:'Abbott Laboratories',             sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['CAMPUS REMODEL','#22c55e'],        urg:null },
+    { name:'Baxter International',            sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['POST-SPIN REBRAND','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'Medline Industries',              sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['PE CAPEX CYCLE','#a855f7'],        urg:['PE-BACKED','#a855f7','rgba(168,85,247,.12)'] },
+    { name:'Northwestern Medicine',           sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['FACILITY EXPANSION','#22c55e'],    urg:['EXPANSION','#22c55e','rgba(34,197,94,.12)'] },
+    { name:'Advocate Health (merged)',        sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['POST-MERGER','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Boeing Company',                  sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['MANUFACTURING CAMPUSES','#f59e0b'], urg:['HQ RELOCATION','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Caterpillar Inc.',                sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['DEALER NETWORK','#f59e0b'],        urg:null },
+    { name:'John Deere (Deere & Co.)',        sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['DEALER NETWORK','#f59e0b'],        urg:null },
+    { name:'Illinois Tool Works (ITW)',       sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['84 DIVISIONS ROLLOUT','#f59e0b'],  urg:null },
+    { name:'W.W. Grainger',                   sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['982-BRANCH ROLLOUT','#22c55e'],    urg:['982 BRANCHES','#4a9eff','rgba(74,158,255,.12)'] },
+    { name:'International Motors (Traton/VW)',sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['REBRAND OCT 2024','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'Dover Corporation',               sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['MULTI-SEGMENT','#f59e0b'],         urg:null },
+    { name:'Walgreens (Sycamore Partners)',   sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['GONE PRIVATE 2025','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'Reyes Holdings',                  sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['200+ FACILITIES','#4a9eff'],       urg:null },
+    { name:'US Foods',                        sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['70+ DC ROLLOUT','#4a9eff'],        urg:null },
+    { name:'ALDI US',                         sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['225 NEW STORES','#22c55e'],        urg:['225 NEW STORES','#22c55e','rgba(34,197,94,.12)'] },
+    { name:"McDonald's Corp",                 sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REMODEL CYCLE','#22c55e'],         urg:null },
+    { name:'Ace Hardware',                    sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['DEALER NETWORK','#f59e0b'],        urg:null },
+    { name:'Univar Solutions (Apollo)',       sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['PE REBRAND','#a855f7'],            urg:['GONE PRIVATE 2023','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'True Value Company',              sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['SOLD TO DO IT BEST','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'Potbelly Corporation',            sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REMODEL PROGRAM','#22c55e'],       urg:['REMODEL PROGRAM','#22c55e','rgba(34,197,94,.12)'] },
+    { name:'Wintrust Arena / GB Properties', sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['VENUE ENVIRONMENTS','#4a9eff'],    urg:null },
+    { name:"Jewel-Osco (Albertsons IL)",      sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['185-STORE ROLLOUT','#22c55e'],     urg:['185-STORE ROLLOUT','#4a9eff','rgba(74,158,255,.12)'] },
+    { name:'Motorola Solutions',              sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['GLOBAL CAMPUS','#4a9eff'],         urg:null },
+    { name:'CDW Corporation',                 sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['PREMIUM HQ','#a855f7'],            urg:null },
+    { name:'Zebra Technologies',              sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['POST-ACQUISITION','#C8102E'],      urg:['ACQUISITION 2025','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'U.S. Cellular (T-Mobile)',        sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['T-MOBILE REBRAND','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'Molex (Koch Industries)',         sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['MULTI-SITE MFGR','#f59e0b'],       urg:null },
+    { name:'Tempus AI',                       sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['PREMIUM HQ','#a855f7'],            urg:['HIGH GROWTH','#22c55e','rgba(34,197,94,.12)'] },
+    { name:'OMRON (NA HQ)',                   sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['NA HQ ENVIRONMENT','#4a9eff'],     urg:null },
+    { name:'Enova International',             sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['PREMIUM HQ','#a855f7'],            urg:['FASTEST GROWING','#22c55e','rgba(34,197,94,.12)'] },
+    { name:'Relativity (software)',           sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['FULTON MKT OFFICE','#a855f7'],     urg:['PE-BACKED','#a855f7','rgba(168,85,247,.12)'] },
+    { name:'Paylocity',                       sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
+    { name:'Enfusion',                        sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['HQ ENVIRONMENT','#a855f7'],        urg:['NYSE LISTED','#4a9eff','rgba(74,158,255,.12)'] },
+    { name:'SMS Assist / Lessen',             sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['PE CAPEX CYCLE','#a855f7'],        urg:['PE-BACKED','#a855f7','rgba(168,85,247,.12)'] },
+    { name:'Outcome Health',                  sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['SHOWROOM + HQ','#4a9eff'],         urg:null }
+  ];
+
+  h += '<div style="margin-top:1.25rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.1rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">All 52 F500 Targets · Master List</div>';
+  h += '<table style="width:100%;border-collapse:collapse;font-size:.74rem;">';
+  h += '<thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);">';
+  h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">#</th>';
+  h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">Company</th>';
+  h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">Sector</th>';
+  h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">Foxmark Angle</th>';
+  h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">Active Catalyst</th>';
+  h += '</tr></thead><tbody>';
+
+  allTargets.forEach(function(t, i) {
+    var rowBg = i % 2 === 0 ? 'rgba(255,255,255,.015)' : 'transparent';
+    h += '<tr style="background:' + rowBg + ';border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;" onclick="mktTab(\'' + t.skey + '\')">';
+    h += '<td style="padding:.3rem .5rem;color:#3a5060;font-size:.68rem;">' + (i+1) + '</td>';
+    h += '<td style="padding:.3rem .5rem;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:700;color:#c8d8f0;">' + t.name + '</span></td>';
+    h += '<td style="padding:.3rem .5rem;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:' + t.sc + ';">' + t.sector + '</span></td>';
+    h += '<td style="padding:.3rem .5rem;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:' + t.angle[1] + ';">' + t.angle[0] + '</span></td>';
+    if (t.urg) {
+      h += '<td style="padding:.3rem .5rem;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.1em;padding:.15rem .4rem;background:' + t.urg[2] + ';color:' + t.urg[1] + ';border:1px solid ' + t.urg[1] + '44;">' + t.urg[0] + '</span></td>';
+    } else {
+      h += '<td style="padding:.3rem .5rem;color:#2a3a4a;font-size:.68rem;">—</td>';
+    }
+    h += '</tr>';
+  });
+
+  h += '</tbody></table>';
+  h += '<div style="margin-top:.6rem;font-size:.67rem;color:#2a4050;">Click any row to open that sector\'s full org chart + contact tree</div>';
+  h += '</div>';
+
   wrap.innerHTML = h;
 }
 
@@ -6174,27 +6285,38 @@ var MKT_DASHBOARD_HTML = `
           <div style="font-size:.72rem;color:#3a5060;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;">Updated Mar 2026</div>
         </div>
 
-        <!-- TOP KPI ROW -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.25rem;">
-          <div style="background:#0d1e2e;border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;">159</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Total Named Targets</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F500 + Mid-Market</div>
-          </div>
-          <div style="background:#0d1e2e;border:1px solid rgba(34,197,94,.25);border-top:3px solid #22c55e;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#22c55e;line-height:1;">111</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Org Charts Built</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Contact trees + CRM panels</div>
-          </div>
-          <div style="background:#0d1e2e;border:1px solid rgba(74,158,255,.25);border-top:3px solid #4a9eff;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:1;">12</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Mid-Market Sectors</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F&amp;B · Hospitality · Tech · RE…</div>
-          </div>
-          <div style="background:#0d1e2e;border:1px solid rgba(245,158,11,.25);border-top:3px solid #f59e0b;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#f59e0b;line-height:1;">400+</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Named Decision-Makers</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">CMO · COO · VP Facilities</div>
+        <!-- NEW TARGETS PILL STRIP -->
+        <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);padding:1rem;margin-bottom:1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#4a6070;margin-bottom:.7rem;">New Targets Added This Session · 28 Companies</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
+            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · True Value</div>
+            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · Potbelly</div>
+            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · Jewel-Osco</div>
+            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Enfusion</div>
+            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Enova</div>
+            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · SMS Assist</div>
+            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · G2</div>
+            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · SpotHero</div>
+            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Outcome Health</div>
+            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Bradford Allen</div>
+            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Pangea Properties</div>
+            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · R2 Companies</div>
+            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Fulton Market</div>
+            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Lou Malnati's</div>
+            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Protein Bar</div>
+            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Portillo's</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Relativity</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Paylocity</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · ActiveCampaign</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Project44</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Cameo</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Fooda</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Instawork</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Loadsmart</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Hub Group</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Steppenwolf</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Kirkland &amp; Ellis</div>
+            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Edelman</div>
           </div>
         </div>
 
@@ -6332,38 +6454,27 @@ var MKT_DASHBOARD_HTML = `
           </div>
         </div>
 
-        <!-- BOTTOM: New additions pill strip -->
-        <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);padding:1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#4a6070;margin-bottom:.7rem;">New Targets Added This Session · 28 Companies</div>
-          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
-            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · True Value</div>
-            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · Potbelly</div>
-            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · Jewel-Osco</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Enfusion</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Enova</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · SMS Assist</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · G2</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · SpotHero</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Outcome Health</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Bradford Allen</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Pangea Properties</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · R2 Companies</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Fulton Market</div>
-            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Lou Malnati's</div>
-            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Protein Bar</div>
-            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Portillo's</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Relativity</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Paylocity</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · ActiveCampaign</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Project44</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Cameo</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Fooda</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Instawork</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Loadsmart</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Hub Group</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Steppenwolf</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Kirkland &amp; Ellis</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Edelman</div>
+        <!-- BOTTOM KPI ROW -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1rem;">
+          <div style="background:#0d1e2e;border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:1rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;">159</div>
+            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Total Named Targets</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F500 + Mid-Market</div>
+          </div>
+          <div style="background:#0d1e2e;border:1px solid rgba(34,197,94,.25);border-top:3px solid #22c55e;padding:1rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#22c55e;line-height:1;">111</div>
+            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Org Charts Built</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Contact trees + CRM panels</div>
+          </div>
+          <div style="background:#0d1e2e;border:1px solid rgba(74,158,255,.25);border-top:3px solid #4a9eff;padding:1rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:1;">12</div>
+            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Mid-Market Sectors</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F&amp;B · Hospitality · Tech · RE…</div>
+          </div>
+          <div style="background:#0d1e2e;border:1px solid rgba(245,158,11,.25);border-top:3px solid #f59e0b;padding:1rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#f59e0b;line-height:1;">400+</div>
+            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Named Decision-Makers</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">CMO · COO · VP Facilities</div>
           </div>
         </div>
 
@@ -6461,8 +6572,7 @@ function renderMktTable(key) {
       });
       t += '</table></div>';
     });
-    t += MKT_DASHBOARD_HTML;
-    wrap.innerHTML = t;
+    wrap.innerHTML = MKT_DASHBOARD_HTML + t;
 
   // Wire email buttons directly — bypasses all delegation/bubbling issues
   (function() {
