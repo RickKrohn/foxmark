@@ -880,7 +880,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <p class="hero-mission">This is the market case for a Foxmark Chicago Studio Laboratory &#8212; the opportunity, the numbers, and the path to get there.</p>
     <div class="hero-actions">
       <button class="btn btn-outline" onclick="document.getElementById('resources-section').scrollIntoView({behavior:'smooth'})">See the Intelligence</button>
-      <button class="btn btn-outline" onclick="openModal('modal-rick')" style="border-color:rgba(200,16,46,.5);color:#e8f0ff;">About Rick &#8594;</button>
+      <button class="btn btn-outline" onclick="openModal('modal-rick')" style="border-color:rgba(200,16,46,.5);color:#e8f0ff;">Territory Owner &#8594;</button>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">$900M–$1.1B</div><div class="lbl">Chicago TAM</div></div>
@@ -1511,20 +1511,10 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
     <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.25em;text-transform:uppercase;color:#94a3b8;margin-bottom:1.25rem;">Source Documents — Download the Original Files</div>
     <div style="display:flex;flex-direction:column;gap:.75rem;">
-      <div onclick="dlFile('playbook')" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:1.25rem;display:flex;align-items:center;gap:1.25rem;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor='#C8102E'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
-        <div style="font-size:2rem;">📋</div>
-        <div style="flex:1;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;">Master Project Playbook</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.1rem;">Word Document (.docx) · Complete studio strategy</div></div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#C8102E;white-space:nowrap;">&#11015; Download</div>
-      </div>
       <div onclick="dlFile('model')" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:1.25rem;display:flex;align-items:center;gap:1.25rem;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor='#22c55e'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
         <div style="font-size:2rem;">💹</div>
         <div style="flex:1;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;">Financial Model + Playbook Tables</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.1rem;">Excel Spreadsheet (.xlsx) · Full P&amp;L and KPI model</div></div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#22c55e;white-space:nowrap;">&#11015; Download</div>
-      </div>
-      <div onclick="dlFile('deck')" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:1.25rem;display:flex;align-items:center;gap:1.25rem;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor='#4a9eff'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
-        <div style="font-size:2rem;">📊</div>
-        <div style="flex:1;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;">Executive Decision Deck</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.1rem;">PowerPoint (.pptx) · Model-aligned executive presentation</div></div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#4a9eff;white-space:nowrap;">&#11015; Download</div>
       </div>
     </div>
   </div>
@@ -1819,7 +1809,6 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
             <button onclick="mktTab('crm')" id="mtab-crm" class="mkt-tab">Pipeline</button>
             <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" class="mkt-tab">Sales Analysis</button>
-            <button onclick="mktTab('casestudies')" id="mtab-casestudies" class="mkt-tab">Case Studies</button>
             <button onclick="mktTab('partners')" id="mtab-partners" class="mkt-tab">Channel Partners</button>
             <button onclick="mktTab('competitive')" id="mtab-competitive" class="mkt-tab">Competitive Intel</button>
           </div>
@@ -1967,6 +1956,21 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   </div>
 
   <!-- PRODUCTS MODAL -->
+  <div id="modal-casestudy" class="modal-content" style="display:none;padding:2.5rem 3rem;max-width:900px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:#f59e0b;">Proof of Concept · Case Study</div>
+      <button onclick="closeModal()" style="background:none;border:none;color:#4a6080;font-size:1.2rem;cursor:pointer;">✕</button>
+    </div>
+    <!-- Tab buttons -->
+    <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <button onclick="csTab('kh')" id="cstab-kh" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:#f59e0b;color:#000;border:none;padding:.3rem .85rem;cursor:pointer;">Kraft Heinz</button>
+      <button onclick="csTab('mc')" id="cstab-mc" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.3rem .85rem;cursor:pointer;">McDonald's HQ</button>
+      <button onclick="csTab('ua')" id="cstab-ua" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.3rem .85rem;cursor:pointer;">United Airlines</button>
+      <button onclick="csTab('al')" id="cstab-al" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.3rem .85rem;cursor:pointer;">Allstate</button>
+    </div>
+    <div id="cs-modal-content"></div>
+  </div>
+
   <div id="modal-products" class="modal-content" style="display:none;padding:3rem;">
     <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Flagship Product Suite</div>
     <h2 style="font-size:2.2rem;margin-bottom:1.75rem;">Four Products. <em style="color:#22c55e;">60–75% Margins.</em></h2>
@@ -3231,13 +3235,6 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
     <div class="section-label" style="margin-bottom:2rem;">Foxmark HQ — Chicago Franchise Decision Team</div>
 
-    <!-- Email pattern notice -->
-    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;background:rgba(200,16,46,.05);border:1px solid rgba(200,16,46,.18);padding:.7rem 1.1rem;margin-bottom:1.5rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#C8102E;white-space:nowrap;">&#9993; Email Pattern</div>
-      <div style="font-family:'DM Mono',monospace;font-size:.72rem;color:#8ab4d4;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92f4fbe0e1e6fbfcfbe6fbf3fefef3e1e6fcf3fff7d2e6f7f3fff4fdeafff3e0f9bcf1fdff">[email&#160;protected]</a></div>
-      <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:#22c55e;">&#10003; Confirmed via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8cfeeae3f4ccf8e9ede1eae3f4e1edfee7a2efe3e1">[email&#160;protected]</a></div>
-    </div>
-
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(46,85,133,.3);">
 
       <!-- Richard Fox -->
@@ -3544,6 +3541,11 @@ function fcCopy(name, title, email, phone) {
         if (c) c.style.display = k===key ? 'block' : 'none';
         if (b) { b.style.background = k===key ? '#f59e0b' : 'rgba(255,255,255,.07)'; b.style.color = k===key ? '#000' : '#8A8A8A'; }
       });
+      var modalContent = document.getElementById('cs-modal-content');
+      if (modalContent) {
+        var src = document.getElementById('cs-'+key);
+        if (src) modalContent.innerHTML = src.innerHTML;
+      }
     }
     </script></div>
 <div id="tpl-partners" style="display:none;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#14b8a6;margin-bottom:.75rem;">Channel Partner Network — Installation &amp; Co-Sell</div>
@@ -4235,6 +4237,17 @@ function fcCopy(name, title, email, phone) {
 
 <script>
 // ── MODAL SYSTEM ─────────────────────────────────────────
+function openCaseStudy(key) {
+  var tpl = document.getElementById('tpl-casestudies');
+  if (tpl && !document.getElementById('cs-kh')) {
+    var tmp = document.createElement('div');
+    tmp.style.display = 'none';
+    tmp.innerHTML = tpl.innerHTML;
+    document.body.appendChild(tmp);
+  }
+  openModal('modal-casestudy');
+  setTimeout(function(){ csTab(key); }, 80);
+}
 function openModal(id) {
   var overlay = document.getElementById('modal-overlay');
   var contents = document.querySelectorAll('.modal-content');
@@ -6442,6 +6455,31 @@ function renderF500Dashboard() {
   h += '</tbody></table>';
   h += '<div style="margin-top:.6rem;font-size:.67rem;color:#2a4050;">Click any row to open that sector\'s full org chart + contact tree</div>';
   h += '</div>';
+
+  // ── PROOF STRIP: Case Studies ─────────────────────────────────────────────
+  h += '<div style="margin-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.25rem;">';
+  h += '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;">Proof of Concept · Comparable F500 Work</div>';
+  h += '<div style="font-size:.68rem;color:#2a4050;">Same sector archetypes · Same decision-maker profiles</div>';
+  h += '</div>';
+  h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">';
+  var proofCases = [
+    { co:"Kraft Heinz", sector:"CORP HQ", color:"#f59e0b", csKey:"kh", insight:"Multi-floor branded environments across Chicago HQ. Interior culture graphics program, $280K scope.", why:"Replicable at McDonald's, United, Allstate — same HQ footprint model." },
+    { co:"McDonald's HQ", sector:"CORP HQ", color:"#C8102E", csKey:"mc", insight:"Fulton Market relocation — full environmental identity package for new global headquarters.", why:"Active remodel cycle + Oak Brook campus still in play." },
+    { co:"United Airlines", sector:"SERVICES", color:"#4a9eff", csKey:"ua", insight:"Willis Tower HQ rebrand — interior wayfinding, branded zones, sustainability materials required.", why:"Procurement prefers local certified studio. 20 min from Elmhurst." },
+    { co:"Allstate", sector:"FINANCIAL", color:"#a855f7", csKey:"al", insight:"2022–23 rebrand drove full interior refresh across Northbrook campus. Eco-cert required by facilities.", why:"New brand standards still rolling out to regional offices." }
+  ];
+  proofCases.forEach(function(c) {
+    h += '<div onclick="openCaseStudy(\''+c.csKey+'\')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid ' + c.color + ';padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'rgba(255,255,255,.02)\'">';
+    h += '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;">';
+    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">' + c.co + '</div>';
+    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:' + c.color + ';">' + c.sector + '</div>';
+    h += '</div>';
+    h += '<div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">' + c.insight + '</div>';
+    h += '<div style="font-size:.68rem;color:' + c.color + ';opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ ' + c.why + '</div>';
+    h += '</div>';
+  });
+  h += '</div></div>';
 
   wrap.innerHTML = h;
 }
