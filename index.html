@@ -39,6 +39,13 @@ function closeModal() {
 
 function mktTab(key) {
   var ALL_TABS = ['f500','svc','fin','hlth','ind','rtl','tch','crm','mid','sales_analysis','casestudies','partners','competitive'];
+  // Show header strip and market context only on F500 tab
+  var headerStrip = document.getElementById('market-header-strip');
+  if (headerStrip) headerStrip.style.display = key === 'f500' ? 'flex' : 'none';
+  var mktCtx = document.getElementById('market-context-wrap');
+  if (mktCtx) mktCtx.style.display = key === 'f500' ? 'block' : 'none';
+  var talWrap = document.getElementById('market-tal-wrap');
+  if (talWrap) talWrap.style.display = key === 'f500' ? 'block' : 'none';
   // Scroll modal to top
   var overlay = document.getElementById('modal-overlay');
   if (overlay) overlay.scrollTop = 0;
@@ -1714,8 +1721,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
   <!-- MARKET MODAL -->
   <div id="modal-market" class="modal-content" style="display:none;padding:2rem 3rem;">
-    <!-- Compact header strip -->
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
+    <!-- Compact header strip — F500 tab only -->
+    <div id="market-header-strip" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
       <div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:#4a9eff;margin-bottom:.3rem;">Market Intelligence · Chicago</div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;line-height:1.1;">$900M–$1.1B Market · <em style="color:#C8102E;">Underserved.</em> 15 Competitors · <em style="color:#22c55e;">None Full-Stack.</em></div>
@@ -1734,11 +1741,12 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">F500 Anchors</div>
         </div>
         <div style="text-align:center;background:rgba(200,16,46,.06);border:1px solid rgba(200,16,46,.2);padding:.6rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#C8102E;">0</div>
-          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Full-Stack Rivals</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#C8102E;">+15%</div>
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Eco Premium</div>
         </div>
       </div>
     </div>
+<div id="market-context-wrap">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);margin-bottom:2rem;">
 
       <!-- Row 1 -->
@@ -1763,8 +1771,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
       <!-- Row 3 -->
       <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #C8102E;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:80px;">50+</div>
-        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Chicago Competitors</strong><br>Top 8 control 40–50% — gap at interior/eco level</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:80px;">$8.2B</div>
+        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Facilities &amp; Marketing Spend</strong><br>Chicago metro annual budget across target sectors</div>
       </div>
       <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">20%</div>
@@ -1782,6 +1790,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       </div>
 
     </div>
+</div>
 <!-- TOP: Sector account table with tabs -->
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;margin-bottom:1.5rem;">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem;">
@@ -1827,6 +1836,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       </div>
 
 
+  <div id="market-tal-wrap">
   <!-- TAL DATA VISUALIZATIONS — appended to market modal -->
     <div style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:1.25rem;">Illinois TAL · 1,262 Accounts · Visualized</div>
@@ -1953,6 +1963,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
 
     </div>
+  </div> <!-- end market-tal-wrap -->
   </div>
 
   <!-- PRODUCTS MODAL -->
