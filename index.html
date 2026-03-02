@@ -39,6 +39,9 @@ function closeModal() {
 
 function mktTab(key) {
   var ALL_TABS = ['f500','svc','fin','hlth','ind','rtl','tch','crm','mid','sales_analysis','casestudies','partners','competitive'];
+  // Scroll modal to top
+  var overlay = document.getElementById('modal-overlay');
+  if (overlay) overlay.scrollTop = 0;
   // Hide all panels first
   var tableWrap    = document.getElementById('mkt-table-wrap');
   var pipelineWrap = document.getElementById('crm-pipeline-wrap');
@@ -852,7 +855,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div class="nav-tabs">
       <button class="nav-tab active" onclick="showPage('main')" id="tab-main">Studio &amp; Overview</button>
     </div>
-    <button class="nav-cta" onclick="showPage('main'); setTimeout(()=>document.getElementById('contact-section').scrollIntoView({behavior:'smooth'}),100)">Request Meeting</button>
+    <div style="width:160px;"></div>
   </div>
 </nav>
 
@@ -869,7 +872,6 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <p class="hero-sub">A $900M&#8211;$1.1B branded interiors market. Fortune 500 headquarters. No dominant competitor. Foxmark&#39;s model is built for exactly this &#8212; and the territory relationships are already in place.</p>
     <p class="hero-mission">This is the market case for a Foxmark Chicago Studio Laboratory &#8212; the opportunity, the numbers, and the path to get there.</p>
     <div class="hero-actions">
-      <button class="btn btn-red" onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth'})">Let&#39;s Talk</button>
       <button class="btn btn-outline" onclick="document.getElementById('resources-section').scrollIntoView({behavior:'smooth'})">See the Intelligence</button>
       <button class="btn btn-outline" onclick="openModal('modal-rick')" style="border-color:rgba(200,16,46,.5);color:#e8f0ff;">About Rick &#8594;</button>
     </div>
@@ -4205,28 +4207,6 @@ function fcCopy(name, title, email, phone) {
 <!-- CONTACT -->
 
 
-<section class="section section-alt" id="contact-section" style="background:#111a28;">
-  <div class="section-label">Get In Touch</div>
-  <div class="contact-wrap">
-    <div>
-      <h2>Let's Build<br>Something <em>Remarkable</em><br>in Chicago.</h2>
-      <p style="font-size:0.9rem; color:var(--silver); line-height:1.8; margin-bottom:2.5rem; max-width:420px;">Whether you're planning a single flagship interior or a multi-site Chicagoland rollout, the Foxmark team is ready to scope your project and deliver a tailored enterprise proposal.</p>
-      <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Foxmark HQ</div><div class="ci-val">21601 Park Row Drive, Katy, TX 77449</div></div></div>
-      <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Phone</div><div class="ci-val">713.686.8300</div></div></div>
-      <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Email</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection#c5b7aca6ae85a3aabda8a4b7aeeba6aaa8" style="color:#5aabff;"><span class="__cf_email__" data-cfemail="d4a6bdb7bf94b2bbacb9b5a6bffab7bbb9">[email&#160;protected]</span></a></div></div></div>
-      <div class="ci-item"><div class="ci-line"></div><div><div class="ci-label">Chicago Studio</div><div class="ci-val">Elmhurst Area &middot; Opening Soon</div></div></div>
-    </div>
-    <form class="contact-form" onsubmit="event.preventDefault(); this.innerHTML='<div style=\'padding:3rem; text-align:center;\'><div style=\'font-family:Barlow Condensed,sans-serif; font-weight:900; font-size:2rem; text-transform:uppercase; color:var(--red); margin-bottom:1rem;\'>Message Received.</div><p style=\'color:var(--silver); font-size:0.9rem;\'>The Foxmark Chicago team will be in touch shortly.</p></div>'">
-      <div class="form-row"><div class="form-group"><label class="form-label">First Name *</label><input class="form-input" type="text" placeholder="Jane" required></div><div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" type="text" placeholder="Smith" required></div></div>
-      <div class="form-group"><label class="form-label">Company *</label><input class="form-input" type="text" placeholder="Acme Corporation" required></div>
-      <div class="form-row"><div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" placeholder="jane@acmecorp.com" required></div><div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="312-555-0100"></div></div>
-      <div class="form-group"><label class="form-label">Primary Interest</label><select class="form-select form-input"><option value="">Select a service area...</option><option>Premium Wall Murals (PVC-Free)</option><option>Glass &amp; Window Branding</option><option>Floor Graphics &amp; Wayfinding Kits</option><option>Rigid Interior Signage Kits</option><option>Fleet &amp; Vehicle Wraps</option><option>Tradeshow &amp; Exhibit (McCormick Place)</option><option>Multi-Site Enterprise Rollout</option><option>Eco-Sustainable Branding Program</option></select></div>
-      <div class="form-group"><label class="form-label">Project Description</label><textarea class="form-textarea" placeholder="Scope, timeline, number of locations, or any questions..."></textarea></div>
-      <button type="submit" class="btn btn-red" style="width:100%; padding:1.1rem;">Send Message &rarr;</button>
-    </form>
-  </div>
-</section>
-
 <footer>
   <div><div class="footer-logo">FOX<span>MARK</span></div><div class="footer-sub">Chicago Studio Laboratory</div></div>
   <div class="footer-note">&copy; 2025 Foxmark Corporation &middot; teamfoxmark.com &middot; Confidential</div>
@@ -6274,50 +6254,52 @@ function renderF500Dashboard() {
   h += '</div>'; // grid
   h += '</div>'; // wrapper
 
-  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">';
+  h += '<div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1rem;">';
 
-  // LEFT: TAM by sector bars
+  // TOP: TAM by sector bars - full width
   h += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.85rem;">National Signage Spend by Sector · $500M–$800M Est.</div>';
+  h += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem 1.5rem;">';
   var maxTam = 8.7;
   sectors.forEach(function(s) {
     var tamVal = parseFloat(s.tam.replace(/[$B]/g,''));
     var pct = Math.round(tamVal / maxTam * 100);
-    h += '<div style="margin-bottom:.5rem;">';
+    h += '<div style="margin-bottom:.3rem;">';
     h += '<div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;margin-bottom:.2rem;">';
-    h += '<span style="color:#5a6880;min-width:80px;white-space:nowrap;">' + s.label + '</span>';
+    h += '<span style="color:#5a6880;min-width:72px;white-space:nowrap;">' + s.label + '</span>';
     h += '<div style="flex:1;background:rgba(255,255,255,.05);height:9px;position:relative;">';
     h += '<div style="height:100%;width:' + pct + '%;background:' + s.color + ';opacity:.8;"></div>';
     h += '</div>';
     h += '<span style="color:' + s.color + ';font-family:Barlow Condensed,sans-serif;font-weight:700;min-width:36px;text-align:right;">' + s.tam + '</span>';
+    h += '</div>';
     if (s.badge) {
-      h += '</div>';
-      h += '<div style="margin-left:84px;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;color:' + s.color + ';opacity:.7;">↑ ' + s.badge + '</span></div>';
-    } else {
-      h += '</div>';
+      h += '<div style="margin-left:76px;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;color:' + s.color + ';opacity:.7;">↑ ' + s.badge + '</span></div>';
     }
     h += '</div>';
   });
-  // Clickable hint
-  h += '<div style="margin-top:.9rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.05);font-size:.68rem;color:#2a4050;">Click any sector tab above to drill into targets &amp; org charts</div>';
-  h += '</div>';
+  h += '</div>'; // end 3-col grid
+  h += '<div style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.05);font-size:.68rem;color:#2a4050;">Click any sector tab above to drill into targets &amp; org charts</div>';
+  h += '</div>'; // end TAM panel
 
-  // RIGHT: 🔥 Call This Week
+  // BOTTOM: Call This Week — full width, 2-col catalyst grid
   h += '<div style="background:rgba(200,16,46,.03);border:1px solid rgba(200,16,46,.18);padding:1.1rem;">';
   h += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;">&#9888; Call This Week · Active Catalysts</div>';
   h += '</div>';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">';
   hotTargets.forEach(function(t) {
-    h += '<div style="margin-bottom:.7rem;padding:.6rem;background:rgba(255,255,255,.02);border-left:3px solid ' + t.color + ';border-bottom:1px solid rgba(255,255,255,.04);">';
+    var tabKey = t.sector === 'Retail' ? 'rtl' : t.sector === 'Financial' ? 'fin' : t.sector === 'Industrials' ? 'ind' : t.sector === 'Healthcare' ? 'hlth' : t.sector === 'Technology' ? 'tch' : 'svc';
+    h += '<div onclick="openModal(\'modal-market\');setTimeout(function(){mktTab(\'' + tabKey + '\')},60)" style="padding:.6rem;background:rgba(255,255,255,.02);border-left:3px solid ' + t.color + ';border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .15s;" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'rgba(255,255,255,.02)\'">';
     h += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.2rem;">';
     h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">' + t.name + '</span>';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#5a6880;padding:.1rem .4rem;white-space:nowrap;flex-shrink:0;">' + t.sector + '</span>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#5a6880;padding:.1rem .4rem;white-space:nowrap;flex-shrink:0;">' + t.sector + ' ↗</span>';
     h += '</div>';
     h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.12em;color:' + t.color + ';margin-bottom:.2rem;">&#9654; ' + t.urgency + '</div>';
     h += '<div style="font-size:.73rem;color:#5a7090;line-height:1.45;">' + t.why + '</div>';
     h += '</div>';
   });
-  h += '</div>';
+  h += '</div>'; // end 2-col catalyst grid
+  h += '</div>'; // end catalyst panel
 
   h += '</div>'; // end 2-col
 
