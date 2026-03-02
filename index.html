@@ -883,34 +883,139 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <div class="hero-right">
     <div class="hero-tag">Now Serving Chicagoland</div>
     <div class="big-bg">CHI</div>
-    <div class="hero-right-content" style="display:flex;flex-direction:column;gap:1rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(90,171,255,.5);margin-bottom:.25rem;">Chicago Studio Roadmap</div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(90,171,255,.15);border-left:3px solid #5aabff;padding:1.1rem 1.3rem;border-radius:2px;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(90,171,255,.6);margin-bottom:.2rem;">Now — 3 Months</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Pre-Launch &amp; Pilots</div>
-        <div style="font-size:.78rem;color:#6e8aaa;margin-top:.2rem;">$200K–$300K pilot commitments &middot; 200–300 prospects</div>
-      </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(200,16,46,.15);border-left:3px solid #C8102E;padding:1.1rem 1.3rem;border-radius:2px;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,16,46,.6);margin-bottom:.2rem;">Year 1</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Studio Launch · $1.52M</div>
-        <div style="font-size:.78rem;color:#6e8aaa;margin-top:.2rem;">2–3 anchor accounts &middot; 20–30 mid-market clients</div>
-      </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(34,197,94,.15);border-left:3px solid #22c55e;padding:1.1rem 1.3rem;border-radius:2px;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(34,197,94,.6);margin-bottom:.2rem;">Years 2–3</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;text-transform:uppercase;color:#e8f0ff;letter-spacing:.04em;">Scale · $3.2M / $4.3M</div>
-        <div style="font-size:.78rem;color:#6e8aaa;margin-top:.2rem;">National anchor scaling &middot; Midwest playbooks</div>
-      </div>
-      <div style="margin-top:.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.75rem 1rem;text-align:center;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;line-height:1;">63%</div>
-          <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.2rem;">Gross Margin</div>
+    <div class="hero-right-content" style="display:flex;flex-direction:column;gap:.85rem;">
+
+      <!-- F500 Target Teaser -->
+      <div style="border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:.85rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.6rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(90,171,255,.5);">F500 Anchor Targets · Chicago</div>
+          <button onclick="openModal('modal-market')" style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:#C8102E;cursor:pointer;padding:0;">Full Intel →</button>
         </div>
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.75rem 1rem;text-align:center;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;line-height:1;">~$4.3M</div>
-          <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.2rem;">Year 3 Target</div>
+        <div style="display:flex;flex-direction:column;gap:.3rem;">
+          <div onclick="openModal('modal-market')" style="display:grid;grid-template-columns:1fr auto;align-items:center;background:rgba(255,255,255,.03);border-left:2px solid #C8102E;padding:.45rem .75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(200,16,46,.08)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">United Airlines</span><span style="font-size:.72rem;color:#4a6080;margin-left:.5rem;">Global HQ · Willis Tower</span></div>
+            <div style="font-size:.65rem;color:#C8102E;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">CORP HQ</div>
+          </div>
+          <div onclick="openModal('modal-market')" style="display:grid;grid-template-columns:1fr auto;align-items:center;background:rgba(255,255,255,.03);border-left:2px solid #C8102E;padding:.45rem .75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(200,16,46,.08)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">McDonald's Corp</span><span style="font-size:.72rem;color:#4a6080;margin-left:.5rem;">Global HQ · Oak Brook</span></div>
+            <div style="font-size:.65rem;color:#C8102E;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">CORP HQ</div>
+          </div>
+          <div onclick="openModal('modal-market');setTimeout(function(){mktTab('svc')},60)" style="display:grid;grid-template-columns:1fr auto;align-items:center;background:rgba(255,255,255,.03);border-left:2px solid #f59e0b;padding:.45rem .75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(245,158,11,.08)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">JLL</span><span style="font-size:.72rem;color:#4a6080;margin-left:.5rem;">Facilities mgmt · 300+ sites</span></div>
+            <div style="font-size:.65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">ROLLOUT</div>
+          </div>
+          <div onclick="openModal('modal-market');setTimeout(function(){mktTab('rtl')},60)" style="display:grid;grid-template-columns:1fr auto;align-items:center;background:rgba(255,255,255,.03);border-left:2px solid #f59e0b;padding:.45rem .75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(245,158,11,.08)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">Walgreens</span><span style="font-size:.72rem;color:#4a6080;margin-left:.5rem;">Retail rebrand · 8,000 locations</span></div>
+            <div style="font-size:.65rem;color:#f59e0b;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">ROLLOUT</div>
+          </div>
+          <div onclick="openModal('modal-market');setTimeout(function(){mktTab('hlth')},60)" style="display:grid;grid-template-columns:1fr auto;align-items:center;background:rgba(255,255,255,.03);border-left:2px solid #5aabff;padding:.45rem .75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(90,171,255,.08)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">Advocate Health</span><span style="font-size:.72rem;color:#4a6080;margin-left:.5rem;">Wayfinding · 27 hospitals</span></div>
+            <div style="font-size:.65rem;color:#5aabff;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HEALTHCARE</div>
+          </div>
+          <div onclick="openModal('modal-market');setTimeout(function(){mktTab('fin')},60)" style="display:grid;grid-template-columns:1fr auto;align-items:center;background:rgba(255,255,255,.03);border-left:2px solid #5aabff;padding:.45rem .75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(90,171,255,.08)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+            <div><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">Allstate</span><span style="font-size:.72rem;color:#4a6080;margin-left:.5rem;">Corp HQ rebrand · Northbrook</span></div>
+            <div style="font-size:.65rem;color:#5aabff;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">FINANCIAL</div>
+          </div>
+          <div onclick="openModal('modal-market')" style="text-align:center;padding:.35rem;background:rgba(200,16,46,.05);border:1px solid rgba(200,16,46,.12);cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(200,16,46,.12)'" onmouseout="this.style.background='rgba(200,16,46,.05)'">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#C8102E;">+ 44 more enterprise targets →</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(90,171,255,.5);margin-bottom:.1rem;">Account Pipeline · Chicago Territory</div>
+
+      <!-- Tier rows -->
+      <div id="pipeline-rows" style="display:flex;flex-direction:column;gap:.5rem;">
+
+        <!-- Enterprise Anchors -->
+        <div onclick="openModal('modal-market')" style="background:rgba(255,255,255,.04);border:1px solid rgba(200,16,46,.18);border-left:3px solid #C8102E;padding:1rem 1.2rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(200,16,46,.07)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,16,46,.7);margin-bottom:.15rem;">Enterprise Anchors</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;color:#b0bcd4;line-height:1.3;">F500 HQs · Multi-site rollouts<br><span style="font-size:.75rem;color:#5a6880;">Avg. contract $280K–$800K</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;" id="pipe-anchor">0</div>
+            <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.1rem;">targets ↗</div>
+          </div>
+        </div>
+
+        <!-- Mid-Market -->
+        <div onclick="openModal('modal-market');setTimeout(function(){mktTab('mid')},60)" style="background:rgba(255,255,255,.04);border:1px solid rgba(90,171,255,.18);border-left:3px solid #5aabff;padding:1rem 1.2rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(90,171,255,.07)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(90,171,255,.7);margin-bottom:.15rem;">Mid-Market</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;color:#b0bcd4;line-height:1.3;">Regional brands · Growth cos<br><span style="font-size:.75rem;color:#5a6880;">Avg. contract $40K–$120K</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#5aabff;line-height:1;" id="pipe-mid">0</div>
+            <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.1rem;">targets ↗</div>
+          </div>
+        </div>
+
+        <!-- Total TAM bar -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.9rem 1.2rem;border-radius:2px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#4a6080;">Total Addressable Accounts</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#22c55e;line-height:1;" id="pipe-total">0</div>
+          </div>
+          <!-- Progress bar showing enterprise vs mid split -->
+          <div style="height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;">
+            <div id="pipe-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#C8102E 0%,#5aabff 100%);transition:width 1.2s ease;border-radius:2px;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:.35rem;">
+            <div style="font-size:.6rem;color:#C8102E;letter-spacing:.06em;">■ ENTERPRISE</div>
+            <div style="font-size:.6rem;color:#5aabff;letter-spacing:.06em;">MID-MARKET ■</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom stat pair -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.1rem;">
+        <div onclick="openModal('modal-market')" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.75rem 1rem;text-align:center;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.06)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#22c55e;line-height:1;">$900M+</div>
+          <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.2rem;">Chicago TAM ↗</div>
+        </div>
+        <div onclick="openModal('modal-market');setTimeout(function(){mktTab('competitive')},60)" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.75rem 1rem;text-align:center;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(200,16,46,.06)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#C8102E;line-height:1;">15</div>
+          <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.2rem;">Competitors · None Full-Stack ↗</div>
         </div>
       </div>
     </div>
+
+    <script>
+    (function() {
+      // Count from MKT_TABLES — svc(7) + fin(7) + hlth(7) + ind(7) + ret(9) + tech(13) = 50 enterprise
+      // mid: 138 mid-market
+      var enterprise = 50, midMkt = 138, total = enterprise + midMkt;
+      function animCount(id, target, duration, color) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var start = null;
+        requestAnimationFrame(function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / duration, 1);
+          var ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(ease * target);
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        });
+      }
+      function initPipeline() {
+        animCount('pipe-anchor', enterprise, 900, '#C8102E');
+        animCount('pipe-mid', midMkt, 1200, '#5aabff');
+        animCount('pipe-total', total, 1400, '#22c55e');
+        setTimeout(function() {
+          var bar = document.getElementById('pipe-bar');
+          if (bar) bar.style.width = Math.round((enterprise / total) * 100) + '%';
+        }, 200);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPipeline);
+      } else {
+        setTimeout(initPipeline, 300);
+      }
+    })();
+    </script>
   </div>
 </section>
 
@@ -920,30 +1025,24 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <div style="display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:2rem;margin-bottom:2.5rem;">
     <div>
       <div class="section-label">Intelligence &amp; Resources</div>
-      <h2 style="margin-bottom:0;">Two Briefs.<br><em>Everything</em><br>Inside.</h2>
+      <h2 style="margin-bottom:0;">Chicago Market.<br><em>Everything</em><br>Inside.</h2>
     </div>
     <p style="font-size:.88rem;color:#2a4060;line-height:1.8;max-width:340px;margin:0 0 .4rem auto;text-align:right;">Hover any section to illuminate it. Click to open the full deep-dive. Every tile connects to a complete intelligence briefing.</p>
   </div>
 
-  <div id="spot-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;">
-<div class="spot-cell" data-color="#C8102E" data-modal="modal-playbook" onmouseenter="spotOn(this)" onmouseleave="spotOff(this)" onclick="openModal('modal-playbook')" style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2.5rem 2.5rem;min-height:320px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
-  <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#C8102E,#C8102E88);opacity:0;transition:opacity .35s;"></div>
-  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:#C8102E;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
-  <div class="spot-stat" style="position:absolute;top:1.6rem;left:2.5rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">Playbook · Financials · Products · Sales</div>
-  <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#C8102E;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
-  <div style="position:relative;z-index:2;">
-    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.1;letter-spacing:.03em;transition:color .3s,font-size .3s;">Franchise<br>Intelligence</div>
-    <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.6rem;transition:color .3s .08s;">Playbook &middot; Financials &middot; Products &middot; Sales</div>
-    <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:1.1rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;"><span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN BRIEF</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-  </div>
-</div>
-<div class="spot-cell" data-color="#5aabff" data-modal="modal-market" onmouseenter="spotOn(this)" onmouseleave="spotOff(this)" onclick="openModal('modal-market')" style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2.5rem 2.5rem;min-height:320px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
+  <div id="spot-grid">
+<div class="spot-cell" data-color="#5aabff" data-modal="modal-market" onmouseenter="spotOn(this)" onmouseleave="spotOff(this)" onclick="openModal('modal-market')" style="position:relative;overflow:hidden;cursor:pointer;background:#050d18;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2.5rem 2.5rem;min-height:420px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s;">
   <div class="spot-wash" style="position:absolute;inset:0;background:linear-gradient(145deg,#5aabff,#5aabff88);opacity:0;transition:opacity .35s;"></div>
-  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:#5aabff;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
-  <div class="spot-stat" style="position:absolute;top:1.6rem;left:2.5rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">Market · Cases · Partners · Competitive</div>
+  <div class="spot-geo" style="position:absolute;top:-40px;right:-40px;width:320px;height:320px;background:#5aabff;opacity:0;transform:rotate(20deg) scale(.6);transition:opacity .35s,transform .4s;border-radius:2px;"></div>
+  <div class="spot-stat" style="position:absolute;top:1.6rem;left:2.5rem;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:white;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);padding:.25rem .65rem;opacity:0;transform:translateY(-6px);transition:opacity .3s .05s,transform .3s .05s;">Market &middot; Cases &middot; Partners &middot; Competitive</div>
   <div class="spot-rule" style="position:absolute;left:0;top:20%;bottom:20%;width:2px;background:#5aabff;opacity:.15;transition:opacity .3s,top .3s,bottom .3s;"></div>
+  <!-- Franchise Intelligence subordinate button — bottom right, stops propagation -->
+  <button onclick="event.stopPropagation();openModal('modal-playbook')" style="position:absolute;bottom:1.5rem;right:2.5rem;z-index:10;background:rgba(10,18,35,.85);border:1px solid rgba(255,255,255,.18);padding:.65rem 1.25rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:border-color .2s,background .2s;" onmouseenter="this.style.borderColor='#C8102E';this.style.background='rgba(200,16,46,.12)';" onmouseleave="this.style.borderColor='rgba(255,255,255,.18)';this.style.background='rgba(10,18,35,.85)';">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#e8f0ff;">Franchise Intelligence</span>
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#e8f0ff" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+  </button>
   <div style="position:relative;z-index:2;">
-    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.25);line-height:1.1;letter-spacing:.03em;transition:color .3s,font-size .3s;">Chicago<br>Market</div>
+    <div class="spot-label" style="font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,.2);line-height:1;letter-spacing:.02em;transition:color .3s,font-size .3s;">Chicago<br>Market</div>
     <div class="spot-meta" style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:transparent;margin-top:.6rem;transition:color .3s .08s;">Market Intel &middot; Case Studies &middot; Partners &middot; Competitive</div>
     <div class="spot-cta" style="display:flex;align-items:center;gap:.4rem;margin-top:1.1rem;opacity:0;transform:translateY(6px);transition:opacity .25s .1s,transform .25s .1s;"><span style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:white;">OPEN BRIEF</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
   </div>
@@ -1609,154 +1708,89 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   </div>
 
   <!-- MARKET MODAL -->
-  <div id="modal-market" class="modal-content" style="display:none;padding:3rem;">
-    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Market Intelligence</div>
-    <h2 style="font-size:2.5rem;margin-bottom:1.5rem;">Chicago&apos;s<br><em>$900M&ndash;$1.1B Market</em><br>Is Underserved.</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;">
+  <div id="modal-market" class="modal-content" style="display:none;padding:2rem 3rem;">
+    <!-- Compact header strip -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
       <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Market Size &amp; Growth</div>
-        <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem;">
-          <div style="display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.03);padding:1rem;border-left:3px solid #4a9eff;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;min-width:80px;">$9.82B</div><div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Global Wide-Format Market</strong><br>+2.6&ndash;5.0% CAGR vs US printing&apos;s &minus;2.8%</div></div>
-          <div style="display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.03);padding:1rem;border-left:3px solid #4a9eff;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;min-width:80px;">4.8%</div><div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Chicago Regional Growth</strong><br>Branded interior graphics fastest-growing segment</div></div>
-          <div style="display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.03);padding:1rem;border-left:3px solid #C8102E;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:80px;">50+</div><div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Chicago Competitors</strong><br>Top 8 control 40&ndash;50% &mdash; gap at interior/eco level</div></div>
-          <div style="display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.03);padding:1rem;border-left:3px solid #f59e0b;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#f59e0b;min-width:80px;">+15%</div><div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Sustainability Premium</strong><br>40&ndash;50% enterprise clients require eco-materials</div></div>
-        </div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:#4a9eff;margin-bottom:.3rem;">Market Intelligence · Chicago</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;line-height:1.1;">$900M–$1.1B Market · <em style="color:#C8102E;">Underserved.</em> 15 Competitors · <em style="color:#22c55e;">None Full-Stack.</em></div>
       </div>
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Target Segments</div>
-        <div style="display:flex;flex-direction:column;gap:.6rem;">
-          <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.2);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#C8102E;min-width:50px;">40%</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;">Corporate / Office HQs</div><div style="font-size:.82rem;color:#8A8A8A;">McDonald&apos;s, United, Allstate, Chase &mdash; anchor targets</div></div></div>
-          <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;min-width:50px;">30%</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;">Retail &amp; Hospitality</div><div style="font-size:.82rem;color:#8A8A8A;">Store environments, POP, window graphics</div></div></div>
-          <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;min-width:50px;">20%</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;">Events &amp; Non-Profits</div><div style="font-size:.82rem;color:#8A8A8A;">McCormick Place &mdash; one of the nation&apos;s busiest venues</div></div></div>
-          <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;min-width:50px;">10%</div><div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;">Healthcare &amp; Education</div><div style="font-size:.82rem;color:#8A8A8A;">Wayfinding, compliance signage &mdash; recession-resistant</div></div></div>
+      <div style="display:flex;gap:.75rem;flex-shrink:0;">
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#4a9eff;">4.8%</div>
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Regional Growth</div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#22c55e;">188</div>
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Targets Mapped</div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#f59e0b;">50</div>
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">F500 Anchors</div>
+        </div>
+        <div style="text-align:center;background:rgba(200,16,46,.06);border:1px solid rgba(200,16,46,.2);padding:.6rem 1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#C8102E;">0</div>
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Full-Stack Rivals</div>
         </div>
       </div>
     </div>
-  <!-- TAL DATA VISUALIZATIONS — appended to market modal -->
-    <div style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:1.25rem;">Illinois TAL · 1,262 Accounts · Visualized</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);margin-bottom:2rem;">
 
-      <!-- KPI STRIP -->
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1.5rem;">
-        <div style="background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#4a9eff;line-height:1;">1,262</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Target Accounts</div></div>
-        <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#22c55e;line-height:1;">$1.2T</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Combined Revenue</div></div>
-        <div style="background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#C8102E;line-height:1;">$25B</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">IT Budgets</div></div>
-        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#f59e0b;line-height:1;">25K</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Total Locations</div></div>
-        <div style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#a855f7;line-height:1;">2.5M</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Employees</div></div>
+      <!-- Row 1 -->
+      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #4a9eff;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;min-width:80px;">$9.82B</div>
+        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Global Wide-Format Market</strong><br>+2.6–5.0% CAGR vs US printing's −2.8%</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #C8102E;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:60px;">40%</div>
+        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Corporate / Office HQs</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">McDonald's, United, Allstate, Chase — anchor targets</div></div>
       </div>
 
-      <!-- ROW 1: Sector donut + Territory SVG map -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
-
-        <!-- SECTOR DONUT -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.9rem;">Sector Distribution</div>
-          <div style="display:flex;gap:1rem;align-items:center;">
-            <canvas id="mkt-donut" width="150" height="150" style="flex-shrink:0;"></canvas>
-            <div style="display:flex;flex-direction:column;gap:.3rem;font-size:.88rem;">
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#C8102E;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Services <strong style="color:#fff;">282</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#4a9eff;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Industrials <strong style="color:#fff;">187</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#22c55e;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Healthcare <strong style="color:#fff;">179</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#f59e0b;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Financial <strong style="color:#fff;">162</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#a855f7;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Tech <strong style="color:#fff;">114</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#ec4899;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Consumer Goods <strong style="color:#fff;">107</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#06b6d4;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Higher Ed/Gov <strong style="color:#fff;">88</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#84cc16;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Retail <strong style="color:#fff;">84</strong></span></div>
-              <div style="display:flex;align-items:center;gap:.45rem;"><span style="width:9px;height:9px;background:#64748b;display:inline-block;flex-shrink:0;"></span><span style="color:#8A8A8A;">Energy/Misc <strong style="color:#fff;">59</strong></span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TERRITORY SVG MAP -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.6rem;">Hub-and-Spoke Territory</div>
-          <svg viewBox="0 0 310 210" style="width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg">
-            <rect width="310" height="210" fill="#111" rx="4"/>
-            <!-- Lake Michigan -->
-            <path d="M252,0 Q270,25 266,75 Q262,125 258,175 Q255,200 252,210 L310,210 L310,0 Z" fill="rgba(74,158,255,.07)"/>
-            <text x="270" y="48" fill="rgba(74,158,255,.25)" font-size="5.5" font-family="sans-serif">LAKE</text>
-            <text x="267" y="56" fill="rgba(74,158,255,.25)" font-size="5.5" font-family="sans-serif">MICHIGAN</text>
-            <!-- Spoke lines -->
-            <line x1="150" y1="105" x2="78" y2="55" stroke="rgba(200,16,46,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-            <line x1="150" y1="105" x2="55" y2="108" stroke="rgba(200,16,46,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-            <line x1="150" y1="105" x2="75" y2="158" stroke="rgba(200,16,46,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-            <line x1="150" y1="105" x2="115" y2="183" stroke="rgba(200,16,46,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-            <line x1="150" y1="105" x2="195" y2="170" stroke="rgba(200,16,46,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-            <!-- HUB -->
-            <circle cx="150" cy="105" r="20" fill="rgba(200,16,46,.12)" stroke="#C8102E" stroke-width="1.5"/>
-            <circle cx="150" cy="105" r="7" fill="#C8102E"/>
-            <text x="150" y="88" text-anchor="middle" fill="#fff" font-size="6.5" font-weight="700" font-family="sans-serif">CHICAGO</text>
-            <text x="150" y="97" text-anchor="middle" fill="#C8102E" font-size="5.5" font-family="sans-serif">HUB · ~500 accts</text>
-            <!-- ELMHURST star -->
-            <polygon points="126,112 128,117 133,117 129,120 131,125 126,122 121,125 123,120 119,117 124,117" fill="#f59e0b" opacity=".95"/>
-            <text x="126" y="132" text-anchor="middle" fill="#f59e0b" font-size="5" font-family="sans-serif">ELMHURST</text>
-            <!-- NORTH -->
-            <circle cx="78" cy="55" r="13" fill="rgba(34,197,94,.1)" stroke="#22c55e" stroke-width="1"/>
-            <text x="78" y="52" text-anchor="middle" fill="#22c55e" font-size="5.5" font-weight="700" font-family="sans-serif">NORTH</text>
-            <text x="78" y="60" text-anchor="middle" fill="#8A8A8A" font-size="4.5" font-family="sans-serif">Lake Forest</text>
-            <text x="78" y="67" text-anchor="middle" fill="#8A8A8A" font-size="4" font-family="sans-serif">~300 accts</text>
-            <!-- NW -->
-            <circle cx="55" cy="108" r="12" fill="rgba(245,158,11,.1)" stroke="#f59e0b" stroke-width="1"/>
-            <text x="55" y="105" text-anchor="middle" fill="#f59e0b" font-size="5.5" font-weight="700" font-family="sans-serif">N.WEST</text>
-            <text x="55" y="113" text-anchor="middle" fill="#8A8A8A" font-size="4.5" font-family="sans-serif">Schaumburg</text>
-            <text x="55" y="120" text-anchor="middle" fill="#8A8A8A" font-size="4" font-family="sans-serif">~150 accts</text>
-            <!-- WEST -->
-            <circle cx="75" cy="160" r="13" fill="rgba(168,85,247,.1)" stroke="#a855f7" stroke-width="1"/>
-            <text x="75" y="157" text-anchor="middle" fill="#a855f7" font-size="5.5" font-weight="700" font-family="sans-serif">WEST</text>
-            <text x="75" y="165" text-anchor="middle" fill="#8A8A8A" font-size="4.5" font-family="sans-serif">Downers Gr.</text>
-            <text x="75" y="172" text-anchor="middle" fill="#8A8A8A" font-size="4" font-family="sans-serif">~200 accts</text>
-            <!-- SOUTH -->
-            <circle cx="115" cy="185" r="11" fill="rgba(74,158,255,.1)" stroke="#4a9eff" stroke-width="1"/>
-            <text x="115" y="182" text-anchor="middle" fill="#4a9eff" font-size="5.5" font-weight="700" font-family="sans-serif">SOUTH</text>
-            <text x="115" y="190" text-anchor="middle" fill="#8A8A8A" font-size="4.5" font-family="sans-serif">Oak Brook</text>
-            <text x="115" y="197" text-anchor="middle" fill="#8A8A8A" font-size="4" font-family="sans-serif">~100 accts</text>
-            <!-- STATE -->
-            <circle cx="195" cy="172" r="11" fill="rgba(100,116,139,.1)" stroke="#64748b" stroke-width="1"/>
-            <text x="195" y="169" text-anchor="middle" fill="#64748b" font-size="5.5" font-weight="700" font-family="sans-serif">STATE</text>
-            <text x="195" y="177" text-anchor="middle" fill="#8A8A8A" font-size="4.5" font-family="sans-serif">Peoria/Bloom.</text>
-            <text x="195" y="184" text-anchor="middle" fill="#8A8A8A" font-size="4" font-family="sans-serif">~100 accts</text>
-            <!-- Legend -->
-            <polygon points="238,10 240,15 245,15 241,18 243,23 238,20 233,23 235,18 231,15 236,15" fill="#f59e0b"/>
-            <text x="249" y="19" fill="#f59e0b" font-size="5" font-family="sans-serif">Rick (Elmhurst)</text>
-            <circle cx="239" cy="31" r="4" fill="#C8102E"/>
-            <text x="249" y="35" fill="#8A8A8A" font-size="5" font-family="sans-serif">Hub</text>
-            <circle cx="239" cy="44" r="4" fill="none" stroke="#22c55e" stroke-width="1"/>
-            <text x="249" y="48" fill="#8A8A8A" font-size="5" font-family="sans-serif">Spoke</text>
-          </svg>
-        </div>
+      <!-- Row 2 -->
+      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid #4a9eff;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;min-width:80px;">4.8%</div>
+        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Chicago Regional Growth</strong><br>Branded interior graphics fastest-growing segment</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">30%</div>
+        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Retail &amp; Hospitality</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">Store environments, POP, window graphics</div></div>
       </div>
 
-      <!-- ROW 2: Location bar chart + IT Budget bars -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
-
-        <!-- TIER A: TOP ROLLOUT TARGETS -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#C8102E;margin-bottom:.9rem;">Tier A · Top Rollout Targets by Locations</div>
-          <div style="display:flex;flex-direction:column;gap:.55rem;" id="mkt-loc-bars">
-            <!-- rendered by JS -->
-          </div>
-        </div>
-
-        <!-- TIER B: IT BUDGET WHALES -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#22c55e;margin-bottom:.9rem;">Tier B · Budget Whales (IT Spend $M)</div>
-          <div style="display:flex;flex-direction:column;gap:.55rem;" id="mkt-it-bars">
-            <!-- rendered by JS -->
-          </div>
-        </div>
+      <!-- Row 3 -->
+      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #C8102E;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:80px;">50+</div>
+        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Chicago Competitors</strong><br>Top 8 control 40–50% — gap at interior/eco level</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">20%</div>
+        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Events &amp; Non-Profits</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">McCormick Place — one of the nation's busiest venues</div></div>
       </div>
 
-      <!-- ROW 3: Sector account table with tabs -->
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.9rem;">Top Accounts by Sector &amp; Decision-Maker</div>
+      <!-- Row 4 -->
+      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid #f59e0b;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#f59e0b;min-width:80px;">+15%</div>
+        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Sustainability Premium</strong><br>40–50% enterprise clients require eco-materials</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">10%</div>
+        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Healthcare &amp; Education</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">Wayfinding, compliance signage — recession-resistant</div></div>
+      </div>
+
+    </div>
+<!-- TOP: Sector account table with tabs -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;margin-bottom:1.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;">Top Accounts by Sector &amp; Decision-Maker</div>
+          <div style="font-size:.72rem;color:#4a6080;font-family:'Barlow Condensed',sans-serif;">188 targets · select a sector to drill in →</div>
+        </div>
         <style>
-          .mkt-tab { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; background:rgba(255,255,255,.07); color:#8A8A8A; border:none; padding:.28rem .8rem; cursor:pointer; transition:color .15s; }
-          .mkt-tab:hover { color:#c8d8f0; }
+          .mkt-tab { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; background:rgba(255,255,255,.06); color:#c0cfe8; border:1px solid rgba(255,255,255,.12); border-left:2px solid rgba(90,171,255,.4); padding:.28rem .8rem; cursor:pointer; transition:all .15s; }
+          .mkt-tab:hover { color:#fff; background:rgba(90,171,255,.12); border-color:rgba(90,171,255,.4); border-left-color:#5aabff; }
         </style>
         <div style="margin-bottom:.2rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Sector Targets</div>
           <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
-            <button onclick="mktTab('f500')" id="mtab-f500" class="mkt-tab" style="background:#C8102E;color:#fff;">F500 Overview</button>
+            <button onclick="mktTab('f500')" id="mtab-f500" class="mkt-tab" style="background:#C8102E;color:#fff;border-color:#C8102E;border-left-color:#C8102E;">F500 Overview</button>
             <button onclick="mktTab('svc')" id="mtab-svc" class="mkt-tab">Services</button>
             <button onclick="mktTab('fin')" id="mtab-fin" class="mkt-tab">Financial</button>
             <button onclick="mktTab('hlth')" id="mtab-hlth" class="mkt-tab">Healthcare</button>
@@ -1767,7 +1801,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         </div>
         <div style="border-top:1px solid rgba(255,255,255,.08);margin:.55rem 0 .35rem;"></div>
         <div style="margin-bottom:.9rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Strategy & Intelligence</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Strategy &amp; Intelligence</div>
           <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
             <button onclick="mktTab('crm')" id="mtab-crm" class="mkt-tab">Pipeline</button>
             <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" class="mkt-tab">Sales Analysis</button>
@@ -1787,7 +1821,129 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         </div>
       </div>
 
-      <!-- Hidden tier card anchors for JS rendering -->
+
+  <!-- TAL DATA VISUALIZATIONS — appended to market modal -->
+    <div style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:1.25rem;">Illinois TAL · 1,262 Accounts · Visualized</div>
+
+      <!-- KPI STRIP -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1.5rem;">
+        <div style="background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#4a9eff;line-height:1;">1,262</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Target Accounts</div></div>
+        <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#22c55e;line-height:1;">$1.2T</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Combined Revenue</div></div>
+        <div style="background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#C8102E;line-height:1;">$8.2B</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Facilities &amp; Mktg Spend</div></div>
+        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#f59e0b;line-height:1;">25K</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Total Locations</div></div>
+        <div style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#a855f7;line-height:1;">2.5M</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Employees</div></div>
+      </div>
+
+      <!-- ROW 1: Sector donut + Territory SVG map -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;align-items:stretch;">
+
+        <!-- SECTOR BAR CHART -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;display:flex;flex-direction:column;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:1rem;">Sector Distribution</div>
+          <div style="display:flex;flex-direction:column;gap:.55rem;">
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Services</span><strong style="color:#fff;">282</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:100%;background:#C8102E;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Industrials</span><strong style="color:#fff;">187</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:66%;background:#4a9eff;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Healthcare</span><strong style="color:#fff;">179</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:63%;background:#22c55e;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Financial</span><strong style="color:#fff;">162</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:57%;background:#f59e0b;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Tech</span><strong style="color:#fff;">114</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:40%;background:#a855f7;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Consumer Goods</span><strong style="color:#fff;">107</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:38%;background:#ec4899;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Higher Ed/Gov</span><strong style="color:#fff;">88</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:31%;background:#06b6d4;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Retail</span><strong style="color:#fff;">84</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:30%;background:#84cc16;border-radius:2px;"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Energy/Misc</span><strong style="color:#fff;">59</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:21%;background:#64748b;border-radius:2px;"></div></div></div>
+          </div>
+        </div>
+
+        <!-- TERRITORY SVG MAP -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;display:flex;flex-direction:column;flex:1;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Hub-and-Spoke Territory</div>
+          <svg viewBox="0 0 500 420" style="width:100%;flex:1;display:block;min-height:0;" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <rect width="500" height="420" fill="#0d1520" rx="4"/>
+            <!-- Lake Michigan shading -->
+            <path d="M420,0 Q450,60 445,140 Q440,220 435,300 Q430,370 425,420 L500,420 L500,0 Z" fill="rgba(74,158,255,.08)"/>
+            <text x="440" y="100" fill="rgba(74,158,255,.18)" font-size="10" font-family="'Barlow Condensed',sans-serif" font-weight="700" letter-spacing="2">LAKE</text>
+            <text x="433" y="116" fill="rgba(74,158,255,.18)" font-size="10" font-family="'Barlow Condensed',sans-serif" font-weight="700" letter-spacing="2">MICHIGAN</text>
+
+            <!-- Spoke lines from Chicago hub -->
+            <line x1="255" y1="200" x2="130" y2="75"  stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
+            <line x1="255" y1="200" x2="65"  y2="210" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
+            <line x1="255" y1="200" x2="105" y2="335" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
+            <line x1="255" y1="200" x2="255" y2="365" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
+            <line x1="255" y1="200" x2="380" y2="340" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
+
+            <!-- CHICAGO HUB - center -->
+            <circle cx="255" cy="200" r="44" fill="rgba(200,16,46,.07)" stroke="#C8102E" stroke-width="2"/>
+            <circle cx="255" cy="200" r="16" fill="#C8102E"/>
+            <text x="255" y="163" text-anchor="middle" fill="#fff" font-size="15" font-weight="700" font-family="'Barlow Condensed',sans-serif" letter-spacing="1">CHICAGO</text>
+            <text x="255" y="179" text-anchor="middle" fill="rgba(200,16,46,.85)" font-size="10" font-family="'Barlow Condensed',sans-serif">HUB · ~500 accounts</text>
+
+            <!-- ELMHURST star -->
+            <polygon points="215,208 218,219 230,219 221,227 224,238 215,231 206,238 209,227 200,219 212,219" fill="#f59e0b"/>
+            <text x="215" y="254" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700" font-family="'Barlow Condensed',sans-serif">ELMHURST</text>
+            <text x="215" y="267" text-anchor="middle" fill="rgba(245,158,11,.55)" font-size="9" font-family="'Barlow Condensed',sans-serif">Rick's base</text>
+
+            <!-- NORTH - top center -->
+            <circle cx="130" cy="75" r="52" fill="rgba(34,197,94,.07)" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="130" y="68" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">NORTH</text>
+            <text x="130" y="83" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Lake Forest</text>
+            <text x="130" y="98" text-anchor="middle" fill="rgba(34,197,94,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~300 accts</text>
+
+            <!-- N.WEST - left middle -->
+            <circle cx="65" cy="210" r="48" fill="rgba(245,158,11,.07)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="65" y="203" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">N.WEST</text>
+            <text x="65" y="218" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Schaumburg</text>
+            <text x="65" y="233" text-anchor="middle" fill="rgba(245,158,11,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~150 accts</text>
+
+            <!-- WEST - lower left -->
+            <circle cx="105" cy="335" r="48" fill="rgba(168,85,247,.07)" stroke="#a855f7" stroke-width="1.5"/>
+            <text x="105" y="328" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">WEST</text>
+            <text x="105" y="343" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Downers Grove</text>
+            <text x="105" y="358" text-anchor="middle" fill="rgba(168,85,247,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~200 accts</text>
+
+            <!-- SOUTH - bottom center -->
+            <circle cx="255" cy="370" r="44" fill="rgba(74,158,255,.07)" stroke="#4a9eff" stroke-width="1.5"/>
+            <text x="255" y="363" text-anchor="middle" fill="#4a9eff" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">SOUTH</text>
+            <text x="255" y="378" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Oak Brook</text>
+            <text x="255" y="393" text-anchor="middle" fill="rgba(74,158,255,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~100 accts</text>
+
+            <!-- STATE - lower right -->
+            <circle cx="380" cy="340" r="48" fill="rgba(100,116,139,.07)" stroke="#64748b" stroke-width="1.5"/>
+            <text x="380" y="333" text-anchor="middle" fill="#64748b" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">STATE</text>
+            <text x="380" y="348" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Peoria / Bloom.</text>
+            <text x="380" y="363" text-anchor="middle" fill="rgba(100,116,139,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~100 accts</text>
+
+            <!-- Legend top-right -->
+            <polygon points="352,18 355,27 365,27 357,33 360,42 352,36 344,42 347,33 339,27 349,27" fill="#f59e0b"/>
+            <text x="370" y="30" fill="#f59e0b" font-size="10" font-family="'Barlow Condensed',sans-serif">Rick (Elmhurst)</text>
+            <circle cx="353" cy="52" r="7" fill="#C8102E"/>
+            <text x="366" y="56" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Hub</text>
+            <circle cx="353" cy="72" r="7" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+            <text x="366" y="76" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Spoke</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ROW 2: Location bar chart + Facilities & Mktg spend bars -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
+
+        <!-- TIER A: TOP ROLLOUT TARGETS -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#C8102E;margin-bottom:.9rem;">Tier A · Top Rollout Targets by Locations</div>
+          <div style="display:flex;flex-direction:column;gap:.55rem;" id="mkt-loc-bars">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+
+        <!-- TIER B: FACILITIES & MARKETING SPEND LEADERS -->
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#22c55e;margin-bottom:.9rem;">Tier B · Facilities &amp; Marketing Spend ($M)</div>
+          <div style="display:flex;flex-direction:column;gap:.55rem;" id="mkt-it-bars">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+            <!-- Hidden tier card anchors for JS rendering -->
       <div style="display:none;"><div id="tier1-cards"></div><div id="tier2-cards"></div><div id="tier3-cards"></div></div>
 
 
@@ -2496,7 +2652,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div style="padding:2.5rem 3rem 2rem;background:linear-gradient(135deg,#0d1829 0%,#141d2e 100%);border-bottom:1px solid rgba(200,16,46,0.2);">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:#C8102E;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;"><span style="width:2rem;height:1px;background:#C8102E;display:inline-block;flex-shrink:0;"></span>Competitive Intelligence · Chicago Metro</div>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,3vw,2.8rem);text-transform:uppercase;line-height:.95;margin-bottom:1rem;">Where Foxmark<br><em style="color:#C8102E;">Wins</em> the Room.</h2>
-      <p style="font-size:.9rem;line-height:1.75;color:#6e8aaa;max-width:560px;"><strong style="color:#e8f0ff;">14 competitors</strong> in the Chicagoland commercial graphics market mapped across six capability dimensions. Foxmark is the only player delivering integrated branded environments, rapid in-house production, eco-certified materials, and program-level rollout management from a single local Chicago studio.</p>
+      <p style="font-size:.9rem;line-height:1.75;color:#6e8aaa;max-width:560px;"><strong style="color:#e8f0ff;">15 competitors</strong> in the Chicagoland commercial graphics market mapped across six capability dimensions. Foxmark is the only player delivering integrated branded environments, rapid in-house production, eco-certified materials, and program-level rollout management from a single local Chicago studio.</p>
     </div>
     <div style="padding:2.5rem 3rem;">
 
@@ -2624,7 +2780,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 <!-- FULL COMPETITIVE MATRIX -->
 <section class="section section-alt">
   <div class="section-label">Full Competitive Matrix</div>
-  <h2>14 Competitors.<br><em>One Clear Winner.</em></h2>
+  <h2>15 Competitors.<br><em>One Clear Winner.</em></h2>
 
   <!-- Legend -->
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;">
@@ -2768,6 +2924,16 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".1"/><rect x="7" y="11" width="10" height="2.2" rx="1.1" fill="#f59e0b" opacity=".7"/></svg></td>
           <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
           <td style="font-size:.72rem;padding:.25rem .4rem;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.04);"><span style="color:#4a6070">Broad local capability. Franchise prevents multi-site enterprise scale.</span></td>
+        </tr>
+        <tr>
+          <td style="padding:.3rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#e8f0ff;">AlphaGraphics Chicago</div><div style="font-size:.68rem;color:#2a4050;margin-top:.1rem;">Franchise · 300+ US locations · B2B Print</div></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".1"/><rect x="7" y="11" width="10" height="2.2" rx="1.1" fill="#f59e0b" opacity=".7"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".1"/><rect x="7" y="11" width="10" height="2.2" rx="1.1" fill="#f59e0b" opacity=".7"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#22c55e" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#22c55e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
+          <td style="font-size:.72rem;padding:.25rem .4rem;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.04);"><span style="color:#4a6070">National franchise — royalty-capped margins. No eco standard. No enterprise interior EGD. B2B print focus, not branded environments.</span></td>
         </tr>
         <tr>
           <td style="padding:.3rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#e8f0ff;">Chicago Print Group</div><div style="font-size:.68rem;color:#2a4050;margin-top:.1rem;">Est. 1996 · Digital Print · Loop</div></td>
@@ -2967,7 +3133,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div class="eyebrow">Foxmark Chicago &middot; Sales Leadership</div>
     <h1>Rick<br>Krohn</h1>
     <div class="hero-title">Enterprise Sales &middot; Greater Chicago Area</div>
-    <div class="hero-tagline">He doesn&apos;t need to build a territory.<br><em>He already owns one.</em></div>
+    <div class="hero-tagline">I don&apos;t need to build a territory.<br><em>I already own one.</em></div>
     <p style="font-size:0.95rem; line-height:1.75; font-weight:300; color:var(--silver); max-width:460px; margin-bottom:2.5rem;">Nearly <strong style="color:var(--white);">30 years of enterprise sales</strong> across Chicago and the Midwest. Thomson Reuters. Trading Technologies. Verizon. Lumen. Deep relationships inside the same Fortune 500 companies that are Foxmark&apos;s ideal customers.</p>
     <div class="hero-actions">
       <a href="/cdn-cgi/l/email-protection#98eaf1fbf3f3eaf7f0f6d8fff5f9f1f4b6fbf7f5" class="btn btn-red"><span class="__cf_email__" data-cfemail="0e7c676d654e686176636f7c65206d6163">[email&#160;protected]</span></a>
@@ -2990,16 +3156,16 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <p style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.5rem; line-height:1.3; text-transform:uppercase; margin-bottom:1rem;">Foxmark makes brands come alive visually. To grow that business, you need a salesperson who <em style="color:var(--red); font-style:normal;">doesn&apos;t have to introduce themselves</em> to the room.</p>
       </div>
       <div style="font-size:0.9rem; line-height:1.8; color:var(--silver);">
-        <p style="margin-bottom:1.25rem;">Foxmark transforms corporate interiors, retail spaces, fleet graphics, and trade show exhibits into powerful brand experiences for Fortune 500 companies. <strong style="color:var(--white);">Rick Krohn has spent nearly 30 years selling enterprise solutions across the Chicago and Midwest market.</strong></p>
-        <p style="margin-bottom:1.25rem;">His career reads like a who&apos;s who of Chicago enterprise sales &mdash; Thomson Reuters, Trading Technologies, SunGard, Verizon, and Lumen &mdash; building deep relationships across financial services, corporate headquarters, and major enterprise accounts. <strong style="color:var(--white);">Those same companies are Foxmark&apos;s ideal customers.</strong></p>
-        <p>He&apos;s already in the boardrooms. He already has the trust. He understands solution selling, national program management, and navigating complex enterprise procurement cycles &mdash; skills that translate directly to selling Foxmark&apos;s end-to-end graphics, interior, and installation programs.</p>
+        <p style="margin-bottom:1.25rem;">Foxmark transforms corporate interiors, retail spaces, fleet graphics, and trade show exhibits into powerful brand experiences for Fortune 500 companies. <strong style="color:var(--white);">I&apos;ve spent nearly 30 years selling enterprise solutions across the Chicago and Midwest market.</strong></p>
+        <p style="margin-bottom:1.25rem;">My career reads like a who&apos;s who of Chicago enterprise sales &mdash; Thomson Reuters, Trading Technologies, SunGard, Verizon, and Lumen &mdash; building deep relationships across financial services, corporate headquarters, and major enterprise accounts. <strong style="color:var(--white);">Those same companies are Foxmark&apos;s ideal customers.</strong></p>
+        <p>I&apos;m already in the boardrooms. I already have the trust. I understand solution selling, national program management, and navigating complex enterprise procurement cycles &mdash; skills that translate directly to selling Foxmark&apos;s end-to-end graphics, interior, and installation programs.</p>
       </div>
     </div>
     <div class="value-cards">
-      <div class="value-card"><div class="vc-title"><span>🏙️</span> The Territory Is Already Built</div><div class="vc-body">Rick has spent three decades cultivating relationships inside Chicago&apos;s most valuable enterprise accounts. <strong>No ramp time. No cold outreach.</strong> He walks in as a trusted advisor.</div></div>
-      <div class="value-card"><div class="vc-title"><span>📈</span> Solution Selling at Enterprise Scale</div><div class="vc-body">From Trading Technologies to Lumen, Rick has consistently sold complex, high-value solutions through long procurement cycles. <strong>Foxmark&apos;s branded interior programs are exactly that kind of sale.</strong></div></div>
-      <div class="value-card"><div class="vc-title"><span>🌐</span> National Program Experience</div><div class="vc-body">Rick understands how to <strong>originate a program in Chicago and scale it nationally</strong> &mdash; precisely the hub-and-spoke model Foxmark is building.</div></div>
-      <div class="value-card"><div class="vc-title"><span>🏆</span> Proven Performance Record</div><div class="vc-body">$670K on a $600K quota at Firm58. Top 3 ranking at Dow Jones against 12 peers. <strong>Consistent overperformance</strong> across finance, tech, and enterprise communications.</div></div>
+      <div class="value-card"><div class="vc-title"><span>🏙️</span> The Territory Is Already Built</div><div class="vc-body">I&apos;ve spent three decades cultivating relationships inside Chicago&apos;s most valuable enterprise accounts. <strong>No ramp time. No cold outreach.</strong> I walk in as a trusted advisor.</div></div>
+      <div class="value-card"><div class="vc-title"><span>📈</span> Solution Selling at Enterprise Scale</div><div class="vc-body">From Trading Technologies to Lumen, I&apos;ve consistently sold complex, high-value solutions through long procurement cycles. <strong>Foxmark&apos;s branded interior programs are exactly that kind of sale.</strong></div></div>
+      <div class="value-card"><div class="vc-title"><span>🌐</span> National Program Experience</div><div class="vc-body">I understand how to <strong>originate a program in Chicago and scale it nationally</strong> &mdash; precisely the hub-and-spoke model Foxmark is building.</div></div>
+      <div class="value-card"><div class="vc-title"><span>🏆</span> Proven Performance Record</div><div class="vc-body">At Verizon, I hit 140% of my TCV quota &mdash; $2.36M on a $1.68M target &mdash; ranking <strong>#1 of 89 in my region</strong>. Named a Top CP with 792% attainment in a single month. <strong>Consistent overperformance</strong> across finance, tech, and enterprise communications.</div></div>
     </div>
   </div>
 </section>
@@ -3010,14 +3176,14 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <div class="two-col">
     <div>
       <h2>30 Years.<br><em>One Market.</em><br>Deep Roots.</h2>
-      <p style="font-size:0.9rem; color:var(--silver); line-height:1.75; margin-bottom:2rem; max-width:400px;">Every role Rick has held has deepened his presence in the same Chicago enterprise ecosystem Foxmark is targeting. His network doesn&apos;t overlap with Foxmark&apos;s target accounts &mdash; it <strong style="color:var(--white);">is</strong> Foxmark&apos;s target accounts.</p>
+      <p style="font-size:0.9rem; color:var(--silver); line-height:1.75; margin-bottom:2rem; max-width:400px;">Every role I&apos;ve held has deepened my presence in the same Chicago enterprise ecosystem Foxmark is targeting. My network doesn&apos;t overlap with Foxmark&apos;s target accounts &mdash; it <strong style="color:var(--white);">is</strong> Foxmark&apos;s target accounts.</p>
       <div class="edu-card"><div style="font-size:2rem; opacity:0.5; flex-shrink:0;">🎓</div><div><div class="edu-school">DePaul University</div><div class="edu-degree">MBA &middot; Finance &mdash; Charles H. Kellstadt Graduate School of Business</div></div></div>
       <div class="edu-card"><div style="font-size:2rem; opacity:0.5; flex-shrink:0;">🎓</div><div><div class="edu-school">Indiana University Bloomington</div><div class="edu-degree">Undergraduate Degree</div></div></div>
       <div class="edu-card"><div style="font-size:2rem; opacity:0.5; flex-shrink:0;">🏅</div><div><div class="edu-school">SAP Certified</div><div class="edu-degree">SAP Hybris Commerce Business Analyst</div><div class="edu-cert">Certified Associate</div></div></div>
     </div>
     <div class="timeline">
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Apr 2022 &mdash; Present</div><div class="tl-company">Lumen Technologies</div><div class="tl-role">Senior Account Manager</div><div class="tl-body">Enterprise technology solutions across Chicagoland&apos;s largest accounts. Senior C-level relationships across financial services, corporate HQs, and major enterprise clients &mdash; <strong>the same accounts Foxmark is targeting.</strong></div></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Feb 2020 &mdash; May 2022</div><div class="tl-company">Verizon Business</div><div class="tl-role">Sr. Client Executive &mdash; Acquisition</div><div class="tl-body">Enterprise acquisition sales in Chicago. Hunting new Fortune 500 logos and navigating complex multi-stakeholder procurement cycles.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Feb 2020 &mdash; May 2022</div><div class="tl-company">Verizon Business</div><div class="tl-role">Sr. Client Executive &mdash; Acquisition</div><div class="tl-body">Enterprise acquisition sales in Chicago. Hunting new Fortune 500 logos and navigating complex multi-stakeholder procurement cycles.</div><div class="tl-highlight">#1 of 89 in Region &middot; 140% TCV Attainment &middot; 792% Top CP &middot; YTD Over Achiever</div></div>
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Jan 2018 &mdash; Feb 2020</div><div class="tl-company">Windstream Enterprise</div><div class="tl-role">Senior Account Director</div><div class="tl-body">SD-WAN, MPLS, and UCaaS solution selling to C-level executives. Led extended teams of sales engineers and technical SMEs. <strong>Built and sustained consultative relationships</strong> with senior executives &mdash; exactly the model Foxmark needs.</div></div>
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Sep 2016 &mdash; Jan 2018</div><div class="tl-company">Commerce Factor</div><div class="tl-role">Director of Sales</div><div class="tl-body">SAP Hybris e-commerce platform sales to enterprise clients globally. Complex, multi-stakeholder technology deployments.</div><div class="tl-highlight">SAP Hybris Certified</div></div>
       <div class="tl-item"><div class="tl-dot"></div><div class="tl-period">Aug 2011 &mdash; Jun 2012</div><div class="tl-company">Dow Jones</div><div class="tl-role">Digital Media Executive</div><div class="tl-body">Great Lakes East territory, targeting large brand-aware prospects in corporate communications and PR departments.</div><div class="tl-highlight">80% of $600K quota in 3 quarters &middot; Ranked 3rd of 12</div></div>
@@ -3034,7 +3200,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <div class="cta-inner">
     <div>
       <div class="cta-title">Ready to Put<br>30 Years to Work.</div>
-      <p class="cta-sub">Rick Krohn brings a Chicagoland enterprise network that took three decades to build &mdash; and it maps directly onto Foxmark&apos;s target customer base.</p>
+      <p class="cta-sub">I bring a Chicagoland enterprise network that took three decades to build &mdash; and it maps directly onto Foxmark&apos;s target customer base.</p>
     </div>
     <div class="cta-btns">
       <a href="/cdn-cgi/l/email-protection#512338323a3a233e393f11363c30383d7f323e3c" class="btn-white">Email Rick &rarr;</a>
@@ -3563,7 +3729,7 @@ function fcCopy(name, title, email, phone) {
 <div id="tpl-competitive" style="display:none;"><div style="padding:2.5rem 3rem 2rem;background:linear-gradient(135deg,#0d1829 0%,#141d2e 100%);border-bottom:1px solid rgba(200,16,46,0.2);">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:#C8102E;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;"><span style="width:2rem;height:1px;background:#C8102E;display:inline-block;flex-shrink:0;"></span>Competitive Intelligence · Chicago Metro</div>
       <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,3vw,2.8rem);text-transform:uppercase;line-height:.95;margin-bottom:1rem;">Where Foxmark<br><em style="color:#C8102E;">Wins</em> the Room.</h2>
-      <p style="font-size:.9rem;line-height:1.75;color:#6e8aaa;max-width:560px;"><strong style="color:#e8f0ff;">14 competitors</strong> in the Chicagoland commercial graphics market mapped across six capability dimensions. Foxmark is the only player delivering integrated branded environments, rapid in-house production, eco-certified materials, and program-level rollout management from a single local Chicago studio.</p>
+      <p style="font-size:.9rem;line-height:1.75;color:#6e8aaa;max-width:560px;"><strong style="color:#e8f0ff;">15 competitors</strong> in the Chicagoland commercial graphics market mapped across six capability dimensions. Foxmark is the only player delivering integrated branded environments, rapid in-house production, eco-certified materials, and program-level rollout management from a single local Chicago studio.</p>
     </div>
     <div style="padding:2.5rem 3rem;">
 
@@ -3691,7 +3857,7 @@ function fcCopy(name, title, email, phone) {
 <!-- FULL COMPETITIVE MATRIX -->
 <section class="section section-alt">
   <div class="section-label">Full Competitive Matrix</div>
-  <h2>14 Competitors.<br><em>One Clear Winner.</em></h2>
+  <h2>15 Competitors.<br><em>One Clear Winner.</em></h2>
 
   <!-- Legend -->
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;">
@@ -3837,8 +4003,17 @@ function fcCopy(name, title, email, phone) {
           <td style="font-size:.72rem;padding:.25rem .4rem;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.04);"><span style="color:#4a6070">Broad local capability. Franchise prevents multi-site enterprise scale.</span></td>
         </tr>
         <tr>
-          <td style="padding:.3rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#e8f0ff;">Chicago Print Group</div><div style="font-size:.68rem;color:#2a4050;margin-top:.1rem;">Est. 1996 · Digital Print · Loop</div></td>
+          <td style="padding:.3rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#e8f0ff;">AlphaGraphics Chicago</div><div style="font-size:.68rem;color:#2a4050;margin-top:.1rem;">Franchise · 300+ US locations · B2B Print</div></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".1"/><rect x="7" y="11" width="10" height="2.2" rx="1.1" fill="#f59e0b" opacity=".7"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".1"/><rect x="7" y="11" width="10" height="2.2" rx="1.1" fill="#f59e0b" opacity=".7"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#22c55e" opacity=".3"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#22c55e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
           <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
+          <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
+          <td style="font-size:.72rem;padding:.25rem .4rem;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.04);"><span style="color:#4a6070">National franchise — royalty-capped margins. No eco standard. No enterprise interior EGD. B2B print focus, not branded environments.</span></td>
+        </tr>
+        <tr>
+          <td style="padding:.3rem .5rem;border-bottom:1px solid rgba(255,255,255,.04);"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#e8f0ff;">Chicago Print Group</div><div style="font-size:.68rem;color:#2a4050;margin-top:.1rem;">Est. 1996 · Digital Print · Loop</div></td>
           <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#ffffff" opacity=".05"/><line x1="8" y1="8" x2="16" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/><line x1="16" y1="8" x2="8" y2="16" stroke="#ffffff" stroke-width="1.5" opacity=".2" stroke-linecap="round"/></svg></td>
           <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#22c55e" opacity=".15"/><path d="M7 12.5l3.5 3.5 6-7" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
           <td style="text-align:center;padding:.25rem .2rem;border-bottom:1px solid rgba(255,255,255,.04);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle"><circle cx="12" cy="12" r="11" fill="#f59e0b" opacity=".1"/><rect x="7" y="11" width="10" height="2.2" rx="1.1" fill="#f59e0b" opacity=".7"/></svg></td>
@@ -4074,6 +4249,7 @@ function openModal(id) {
   if (target) target.style.display='block';
   overlay.style.display='block';
   document.body.style.overflow='hidden';
+  if (id === 'modal-market') { setTimeout(function(){ mktTab('f500'); }, 50); }
 }
 function closeModal() {
   var _mo = document.getElementById('modal-overlay'); if(_mo) _mo.style.display='none';
@@ -4392,7 +4568,7 @@ var MKT_TABLES = {
     ['SpotHero','$100M est.','—','Chicago HQ','CMO — Chicago; parking marketplace; modern office environment; River North HQ; brand-forward culture']
   ]
 };
-var mktCurrentTab = 'svc';
+var mktCurrentTab = 'f500';
 
 function drawMktDonut() {
   var c = document.getElementById('mkt-donut');
@@ -6920,7 +7096,7 @@ function renderTierCards(companies, containerId) {
   html += '<tr style="border-bottom:1px solid rgba(255,255,255,.1);">';
   html += '<th style="text-align:left;padding:.3rem .5rem;color:#8A8A8A;font-weight:600;">Company</th>';
   html += '<th style="text-align:right;padding:.3rem .5rem;color:#8A8A8A;font-weight:600;">Revenue</th>';
-  html += '<th style="text-align:right;padding:.3rem .5rem;color:#8A8A8A;font-weight:600;">IT Budget</th>';
+  html += '<th style="text-align:right;padding:.3rem .5rem;color:#8A8A8A;font-weight:600;">Fac. &amp; Mktg</th>';
   html += '<th style="text-align:right;padding:.3rem .5rem;color:#8A8A8A;font-weight:600;">Locations</th>';
   html += '<th style="text-align:left;padding:.3rem .5rem;color:#8A8A8A;font-weight:600;">Strategy</th>';
   html += '</tr>';
