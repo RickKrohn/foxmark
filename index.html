@@ -45,7 +45,7 @@ function mktTab(key) {
   var mktCtx = document.getElementById('market-context-wrap');
   if (mktCtx) mktCtx.style.display = key === 'f500' ? 'block' : 'none';
   var talWrap = document.getElementById('market-tal-wrap');
-  if (talWrap) talWrap.style.display = key === 'f500' ? 'block' : 'none';
+  if (talWrap) talWrap.style.display = 'block';
   // Scroll modal to top
   var overlay = document.getElementById('modal-overlay');
   if (overlay) overlay.scrollTop = 0;
@@ -64,6 +64,9 @@ function mktTab(key) {
   if (csWrap)       csWrap.style.display       = 'none';
   if (partnersWrap) partnersWrap.style.display = 'none';
   if (compWrap)     compWrap.style.display     = 'none';
+  // Also hide TAL inner on non-F500 tabs
+  var talInner = document.getElementById('market-tal-inner');
+  if (talInner) talInner.style.display = 'none';
   // Highlight active tab
   ALL_TABS.forEach(function(k) {
     var btn = document.getElementById('mtab-' + k);
@@ -73,6 +76,7 @@ function mktTab(key) {
   });
   if (key === 'f500') {
     if (f500Wrap) { f500Wrap.style.display = 'block'; if (!f500Wrap.innerHTML.trim()) renderF500Dashboard(); }
+    if (talInner) talInner.style.display = 'block';
     return;
   }
   if (key === 'crm') {
@@ -1793,7 +1797,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         </style>
         <div style="margin-bottom:.2rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Sector Targets</div>
-          <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+          <div style="display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;">
             <button onclick="mktTab('f500')" id="mtab-f500" class="mkt-tab" style="background:#C8102E;color:#fff;border-color:#C8102E;border-left-color:#C8102E;">F500 Overview</button>
             <button onclick="mktTab('svc')" id="mtab-svc" class="mkt-tab">Services</button>
             <button onclick="mktTab('fin')" id="mtab-fin" class="mkt-tab">Financial</button>
@@ -1806,7 +1810,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <div style="border-top:1px solid rgba(255,255,255,.08);margin:.55rem 0 .35rem;"></div>
         <div style="margin-bottom:.9rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Strategy &amp; Intelligence</div>
-          <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+          <div style="display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;">
             <button onclick="mktTab('crm')" id="mtab-crm" class="mkt-tab">Pipeline</button>
             <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" class="mkt-tab">Sales Analysis</button>
             <button onclick="mktTab('partners')" id="mtab-partners" class="mkt-tab">Channel Partners</button>
@@ -1826,8 +1830,8 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
 
   <div id="market-tal-wrap">
-  <!-- TAL DATA VISUALIZATIONS — appended to market modal -->
-    <div style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;">
+  <!-- TAL DATA VISUALIZATIONS — F500 tab only -->
+    <div id="market-tal-inner" style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:1.25rem;">Illinois TAL · 1,262 Accounts · Visualized</div>
 
       <!-- KPI STRIP -->
@@ -6495,38 +6499,69 @@ var MKT_DASHBOARD_HTML = `
           <div style="font-size:.72rem;color:#3a5060;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;">Updated Mar 2026</div>
         </div>
 
-        <!-- NEW TARGETS PILL STRIP -->
-        <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);padding:1rem;margin-bottom:1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:#4a6070;margin-bottom:.7rem;">New Targets Added This Session · 28 Companies</div>
-          <div style="display:flex;flex-wrap:wrap;gap:.35rem;">
-            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · True Value</div>
-            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · Potbelly</div>
-            <div style="font-size:.7rem;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.2);padding:.18rem .5rem;color:#84cc16;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RTL · Jewel-Osco</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Enfusion</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Enova</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · SMS Assist</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · G2</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · SpotHero</div>
-            <div style="font-size:.7rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);padding:.18rem .5rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">TCH · Outcome Health</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Bradford Allen</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Pangea Properties</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · R2 Companies</div>
-            <div style="font-size:.7rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.18rem .5rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">RE · Fulton Market</div>
-            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Lou Malnati's</div>
-            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Protein Bar</div>
-            <div style="font-size:.7rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);padding:.18rem .5rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">HOSP · Portillo's</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Relativity</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Paylocity</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · ActiveCampaign</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Project44</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Cameo</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Fooda</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Instawork</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Loadsmart</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Hub Group</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Steppenwolf</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Kirkland &amp; Ellis</div>
-            <div style="font-size:.7rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.18rem .5rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;">MID · Edelman</div>
+        <!-- MIDWEST GROWTH COMPANIES -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#5aabff;">Midwest Growth Companies · Beyond the F500</div>
+            <div style="font-size:.68rem;color:#2a4050;">138 mid-market targets · faster decisions · no 18-month procurement cycles</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">
+
+            <!-- Growth Tech -->
+            <div style="background:rgba(6,182,212,.03);border:1px solid rgba(6,182,212,.12);border-top:2px solid #06b6d4;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#06b6d4;margin-bottom:.4rem;">Growth Tech</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born SaaS and fintech scaling fast — new offices, new brand standards, minimal red tape.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Enfusion</span>
+                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Enova</span>
+                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">G2</span>
+                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">SpotHero</span>
+                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Paylocity</span>
+                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Project44</span>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#06b6d4;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Office culture = brand statement. Quick approvals.</div>
+            </div>
+
+            <!-- Hospitality & Experience -->
+            <div style="background:rgba(236,72,153,.03);border:1px solid rgba(236,72,153,.12);border-top:2px solid #ec4899;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#ec4899;margin-bottom:.4rem;">Hospitality &amp; Experience</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born brands with multi-location footprints — every location is a brand environment opportunity.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Lou Malnati&apos;s</span>
+                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Portillo&apos;s</span>
+                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Protein Bar</span>
+                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Steppenwolf</span>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#ec4899;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Expansion-mode brands. Each new location = full interior package.</div>
+            </div>
+
+            <!-- Real Estate & Developers -->
+            <div style="background:rgba(34,197,94,.03);border:1px solid rgba(34,197,94,.12);border-top:2px solid #22c55e;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#22c55e;margin-bottom:.4rem;">Real Estate &amp; Developers</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Fulton Market and River North developers building tenant-ready environments — wayfinding, lobby branding, EGD at scale.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Bradford Allen</span>
+                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Pangea Properties</span>
+                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">R2 Companies</span>
+                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Fulton Market Dev</span>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#22c55e;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Recurring project pipeline. Every buildout is a Foxmark opportunity.</div>
+            </div>
+
+            <!-- Professional Services -->
+            <div style="background:rgba(168,85,247,.03);border:1px solid rgba(168,85,247,.12);border-top:2px solid #a855f7;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#a855f7;margin-bottom:.4rem;">Professional Services</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Law firms, PR agencies, and logistics companies with Loop presence — brand-conscious, facilities-driven decisions.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Kirkland &amp; Ellis</span>
+                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Edelman</span>
+                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Relativity</span>
+                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Hub Group</span>
+                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Loadsmart</span>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#a855f7;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Prestige-driven. Interior brand = client confidence signal.</div>
+            </div>
+
           </div>
         </div>
 
@@ -6603,31 +6638,24 @@ var MKT_DASHBOARD_HTML = `
           <!-- RIGHT: Coverage progress + why mid-market -->
           <div style="display:flex;flex-direction:column;gap:.85rem;">
 
-            <!-- Expand coverage progress -->
+            <!-- Decision-maker coverage -->
             <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Org Chart Coverage · Mid-Market</div>
-              <div style="margin-bottom:.65rem;">
-                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;">
-                  <span style="font-size:.72rem;color:#5a6880;">Decision-maker trees built</span>
-                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#22c55e;">111 <span style="font-size:.72rem;color:#5a6880;font-weight:400;">of 143</span></span>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Decision-Maker Coverage · Mid-Market</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.75rem;">
+                <div style="background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.2);padding:.75rem;text-align:center;">
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#22c55e;line-height:1;">111</div>
+                  <div style="font-size:.62rem;color:#2a6040;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Org Trees Mapped</div>
                 </div>
-                <div style="background:rgba(255,255,255,.06);height:10px;border-radius:1px;overflow:hidden;">
-                  <div style="height:100%;width:77.6%;background:linear-gradient(90deg,#22c55e,#4a9eff);"></div>
+                <div style="background:rgba(74,158,255,.04);border:1px solid rgba(74,158,255,.2);padding:.75rem;text-align:center;">
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;line-height:1;">143</div>
+                  <div style="font-size:.62rem;color:#2a4060;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Total Targets</div>
                 </div>
-                <div style="font-size:.68rem;color:#2a6040;margin-top:.3rem;">77% · up from 24% before this session</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.6rem;">
-                <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);padding:.6rem;text-align:center;">
-                  <div style="font-size:.65rem;color:#3a5060;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;">Before</div>
-                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#4a5060;line-height:1;">35</div>
-                  <div style="font-size:.65rem;color:#3a5060;">expandable rows</div>
-                </div>
-                <div style="background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.2);padding:.6rem;text-align:center;">
-                  <div style="font-size:.65rem;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;">Now</div>
-                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#22c55e;line-height:1;">111</div>
-                  <div style="font-size:.65rem;color:#2a6040;">expandable rows</div>
+                <div style="background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);padding:.75rem;text-align:center;">
+                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#f59e0b;line-height:1;">77%</div>
+                  <div style="font-size:.62rem;color:#4a3010;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Coverage</div>
                 </div>
               </div>
+              <div style="font-size:.72rem;color:#5a7090;line-height:1.5;">CMO, VP Facilities, and VP Real Estate contacts identified for 111 of 143 mid-market targets — enough to start outreach today without a single cold call.</div>
             </div>
 
             <!-- Why mid-market -->
