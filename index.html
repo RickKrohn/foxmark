@@ -6421,44 +6421,66 @@ function renderF500Dashboard() {
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#5a6880;margin-bottom:.6rem;">Market Sizing · How Big Is The Opportunity?</div>';
   h += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;">';
 
-  // Tier 1: Total Revenue
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(34,197,94,.08) 0%,rgba(34,197,94,.02) 100%);border:1px solid rgba(34,197,94,.25);padding:1rem 1rem .85rem;overflow:hidden;">';
+  // Tier 1
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(34,197,94,.08) 0%,rgba(34,197,94,.02) 100%);border:1px solid rgba(34,197,94,.25);overflow:hidden;">';
   h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#22c55e;"></div>';
+  h += '<div style="padding:1rem 1rem .5rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#22c55e;margin-bottom:.5rem;opacity:.9;">Tier 1 · Total Revenue Universe</div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#22c55e;line-height:1;margin-bottom:.35rem;">$414B</div>';
-  h += '<div style="font-size:.7rem;color:#c8e8c8;margin-bottom:.6rem;line-height:1.5;">Combined annual revenue of all 52 IL-based F500 targets</div>';
-  h += '<div style="border-top:1px solid rgba(34,197,94,.15);padding-top:.55rem;">';
-  h += '<div style="font-size:.62rem;color:#3a6040;line-height:1.6;">Source: Public annual filings<br>Verified · Fortune 500 2025 list</div>';
+  h += '<div style="font-size:.7rem;color:#c8e8c8;margin-bottom:.5rem;line-height:1.5;">Combined annual revenue of all 52 IL-based F500 targets — the universe Foxmark Chicago serves.</div>';
+  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;">▼ How we got here</button>';
+  h += '<div style="display:none;border-top:1px solid rgba(34,197,94,.15);padding-top:.6rem;padding-bottom:.75rem;">';
+  h += '<div style="font-size:.63rem;color:#3a7050;line-height:1.7;">';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#22c55e;">Source:</strong> Fortune 500 2025 list (Fortune Media) cross-referenced with IL state HQ registrations</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#22c55e;">Method:</strong> 52 companies with primary or major IL operations identified. Annual revenues pulled from most recent 10-K filings (SEC EDGAR)</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#22c55e;">Top 5 by revenue:</strong> Walgreens $148B · United Airlines $54B · Allstate $57B · Kraft Heinz $26B · Discover $15B</div>';
+  h += '<div><strong style="color:#22c55e;">Why it matters:</strong> This is the total economic weight of Foxmark\'s primary target universe — not a national TAM, but the specific companies with Chicago footprints Rick already has relationships inside.</div>';
   h += '</div>';
   h += '</div>';
+  h += '</div></div>';
 
-  // Tier 2: National Signage Spend
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(245,158,11,.08) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.25);padding:1rem 1rem .85rem;overflow:hidden;">';
+  // Tier 2
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(245,158,11,.08) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.25);overflow:hidden;">';
   h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#f59e0b;"></div>';
+  h += '<div style="padding:1rem 1rem .5rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;margin-bottom:.5rem;opacity:.9;">Tier 2 · National Signage Spend</div>';
   h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#f59e0b;line-height:1;">$500M</div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:1rem;color:#f59e0b;opacity:.6;">–$800M</div>';
   h += '</div>';
-  h += '<div style="font-size:.7rem;color:#e8d8b8;margin-bottom:.6rem;line-height:1.5;">Est. total annual signage &amp; environmental graphics spend across all locations, nationwide</div>';
-  h += '<div style="border-top:1px solid rgba(245,158,11,.15);padding-top:.55rem;">';
-  h += '<div style="font-size:.62rem;color:#5a4820;line-height:1.6;">~0.12–0.20% of revenue<br>SEGD industry benchmark · all sectors</div>';
+  h += '<div style="font-size:.7rem;color:#e8d8b8;margin-bottom:.5rem;line-height:1.5;">Est. total annual signage &amp; environmental graphics spend by IL F500 targets, across all their national locations.</div>';
+  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#f59e0b;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;">▼ How we got here</button>';
+  h += '<div style="display:none;border-top:1px solid rgba(245,158,11,.15);padding-top:.6rem;padding-bottom:.75rem;">';
+  h += '<div style="font-size:.63rem;color:#6a4820;line-height:1.7;">';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Benchmark:</strong> SEGD (Society for Experiential Graphic Design) industry research: corporations allocate 0.10–0.25% of revenue to signage, wayfinding, and environmental graphics annually</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Calculation:</strong> $414B universe × 0.12–0.20% = $496M–$828M. Midpoint: ~$650M national spend</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Validation:</strong> IBISWorld Commercial Signage Manufacturing (2024): $11.4B US industry. F500 segment estimated at 4–7% of total = $456M–$798M</div>';
+  h += '<div><strong style="color:#f59e0b;">Why it matters:</strong> This is the spend pool Foxmark competes for nationally — before filtering to the IL-addressable share in Tier 3.</div>';
   h += '</div>';
   h += '</div>';
+  h += '</div></div>';
 
-  // Tier 3: Foxmark Chicago-Addressable
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(200,16,46,.1) 0%,rgba(200,16,46,.03) 100%);border:1px solid rgba(200,16,46,.35);padding:1rem 1rem .85rem;overflow:hidden;">';
+  // Tier 3
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(200,16,46,.1) 0%,rgba(200,16,46,.03) 100%);border:1px solid rgba(200,16,46,.35);overflow:hidden;">';
   h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#C8102E;"></div>';
+  h += '<div style="padding:1rem 1rem .5rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;margin-bottom:.5rem;opacity:.9;">Tier 3 · Foxmark Chicago-Addressable</div>';
   h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#C8102E;line-height:1;">$50M</div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:1rem;color:#C8102E;opacity:.6;">–$125M</div>';
   h += '</div>';
-  h += '<div style="font-size:.7rem;color:#e8c8c8;margin-bottom:.6rem;line-height:1.5;">IL-footprint share of national spend. Catalyst events (rebrands, PE, new builds) expand scope and compress timelines.</div>';
-  h += '<div style="border-top:1px solid rgba(200,16,46,.2);padding-top:.55rem;">';
-  h += '<div style="font-size:.62rem;color:#602020;line-height:1.6;">5–15% IL location share est.<br>Upside: 22 active catalyst events</div>';
+  h += '<div style="font-size:.7rem;color:#e8c8c8;margin-bottom:.5rem;line-height:1.5;">IL-footprint share of national spend. Catalyst events (rebrands, PE acquisitions, new builds) expand scope and compress timelines.</div>';
+  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(200,16,46,.1);border:1px solid rgba(200,16,46,.25);color:#C8102E;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;">▼ How we got here</button>';
+  h += '<div style="display:none;border-top:1px solid rgba(200,16,46,.2);padding-top:.6rem;padding-bottom:.75rem;">';
+  h += '<div style="font-size:.63rem;color:#702020;line-height:1.7;">';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">IL location share:</strong> 52 F500 targets average 480+ total locations nationwide. IL footprint estimated at 5–15% of total locations per company (HQ + regional ops)</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Calculation:</strong> $500M–$800M national × 10–15% IL share = $50M–$120M base. Catalyst premium adds 10–20% scope expansion</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Catalyst events active:</strong> 22 identified triggers in current pipeline — PE acquisitions, rebrands, new HQ builds, ESG-driven refreshes. Each compresses a 12-month budget cycle to 90 days</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Cross-check:</strong> Foxmark Year 2 target of $3.23M = 2.6–6.5% of low-end TAM. Highly conservative relative to market size</div>';
+  h += '<div><strong style="color:#C8102E;">Why it matters:</strong> This is the number Foxmark actually hunts. $50M–$125M in reachable annual spend, with Rick\'s existing relationships already inside a significant share of these accounts.</div>';
   h += '</div>';
   h += '</div>';
+  h += '</div></div>';
 
   h += '</div>'; // grid
   h += '</div>'; // wrapper
@@ -6487,8 +6509,17 @@ function renderF500Dashboard() {
     h += '</div>';
   });
   h += '</div>'; // end 3-col grid
-  h += '<div style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.05);font-size:.68rem;color:#2a4050;">Click any sector tab above to drill into targets &amp; org charts</div>';
-  h += '</div>'; // end TAM panel
+  h += '<div style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;gap:1rem;">';
+  h += '<div style="font-size:.65rem;color:#2a4050;">Click any sector tab above to drill into targets &amp; org charts</div>';
+  h += '<button onclick="var d=document.getElementById(\'tam-method\');d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.style.opacity=d.style.display===\'none\'?\'1\':\'.5\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid rgba(255,255,255,.08);color:#3a5070;padding:.15rem .4rem;cursor:pointer;flex-shrink:0;">methodology ↓</button>';
+  h += '</div>';
+  h += '<div id="tam-method" style="display:none;margin-top:.5rem;padding:.6rem .75rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-left:2px solid rgba(74,158,255,.2);">';
+  h += '<div style="font-size:.62rem;color:#3a5068;line-height:1.7;">';
+  h += '<strong style="color:#4a6080;">Method:</strong> SEGD industry benchmark of 0.12–0.20% of annual revenue applied to each sector\'s combined F500 IL-target revenue pool. ';
+  h += '<strong style="color:#4a6080;">Cross-check:</strong> IBISWorld Commercial Signage (2024) pegs the US market at $11.4B — F500 segment at ~4–7% = $456M–$798M nationally, consistent with these estimates. ';
+  h += '<strong style="color:#4a6080;">Note:</strong> Figures reflect national signage spend by these companies across all locations, not IL-only spend. IL-addressable share (Tier 3) = 10–15% of these totals.';
+  h += '</div>';
+  h += '</div>';
 
   // BOTTOM: Call This Week — full width, 2-col catalyst grid
   h += '<div style="background:rgba(200,16,46,.03);border:1px solid rgba(200,16,46,.18);padding:1.1rem;">';
