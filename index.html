@@ -4442,37 +4442,6 @@ function fcCopy(name, title, email, phone) {
     </div><!-- end inner padding div --></div>
 </div><!-- end modal-overlay -->
 
-<!-- ── 90-DAY LAUNCH TIMELINE ──────────────────────────────────────────── -->
-<!-- ── TERRITORY MAP ────────────────────────────────────────────────────── -->
-<!-- ── NEXT CONVERSATION ───────────────────────────────────────────────── -->
-<section class="section" style="padding:3.5rem 5rem;background:#0a1628;" id="next-conversation">
-  <div style="max-width:780px;margin:0 auto;text-align:center;">
-    <div class="section-label" style="text-align:center;margin-bottom:1.25rem;">Where This Goes Next</div>
-    <h2 style="font-size:2.2rem;margin-bottom:1rem;">This Is a Starting Point,<br><em>Not a Final Ask.</em></h2>
-    <p style="font-size:.92rem;color:#5a7090;line-height:1.85;margin-bottom:2.5rem;">Everything in this presentation is built to support a conversation — not replace one. The market data, the financial model, the contacts, the competitive analysis — it's here to give that conversation a solid foundation. The right next step is simply to talk through it together.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);margin-bottom:2.5rem;">
-      <div style="background:#0a1628;padding:1.5rem 1.25rem;text-align:center;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#5aabff;margin-bottom:.4rem;">Review Together</div>
-        <div style="font-size:.8rem;color:#5a7090;line-height:1.6;">Walk through the financial model and market data with Richard Fox and the Foxmark team — test the assumptions, ask the hard questions.</div>
-      </div>
-      <div style="background:#0a1628;padding:1.5rem 1.25rem;text-align:center;border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#22c55e;margin-bottom:.4rem;">Validate in Market</div>
-        <div style="font-size:.8rem;color:#5a7090;line-height:1.6;">Run 2–3 warm conversations with existing contacts. Real feedback from real buyers is worth more than any model.</div>
-      </div>
-      <div style="background:#0a1628;padding:1.5rem 1.25rem;text-align:center;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#f59e0b;margin-bottom:.4rem;">Decide Together</div>
-        <div style="font-size:.8rem;color:#5a7090;line-height:1.6;">If the numbers hold and the market responds, the capital case becomes straightforward. That's the conversation worth having.</div>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="/cdn-cgi/l/email-protection#423029302d2a2c023627232f242d3a2f2330296c212d2f" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;background:#C8102E;color:#fff;padding:.75rem 2rem;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Email Rick to Schedule a Call</a>
-      <button onclick="openModal('modal-financial')" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1px solid rgba(255,255,255,.2);color:#c8d8e8;padding:.75rem 2rem;cursor:pointer;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(255,255,255,.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,.2)'">Review the Financial Model</button>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
 
 
@@ -6497,10 +6466,9 @@ function renderF500Dashboard() {
   h += '</div>';
 
   // ── KPI STRIP ─────────────────────────────────────────────────────────────
-  h += '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1.25rem;">';
+  h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.25rem;">';
   var kpis = [
     { v:'52',    label:'F500 Targets',        sub:'Named IL accounts',            color:'#C8102E' },
-    { v:'$414B',   label:'Combined Revenue',     sub:'Public filings · IL F500 HQs',  color:'#22c55e' },
     { v:'$50–125M', label:'Chicago Addressable', sub:'Foxmark-relevant signage spend', color:'#C8102E' },
     { v:'22',    label:'Active Catalysts',    sub:'Rebrands · PE · Acquisitions', color:'#f59e0b' },
     { v:'3,500+',label:'Total Locations',     sub:'Multi-site rollout TAM',       color:'#a855f7' }
@@ -6518,25 +6486,7 @@ function renderF500Dashboard() {
   // ── MARKET SIZING: THREE-TIER FUNNEL ─────────────────────────────────────
   h += '<div style="margin-bottom:1rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#5a6880;margin-bottom:.6rem;">Market Sizing · How Big Is The Opportunity?</div>';
-  h += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;">';
-
-  // Tier 1
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(34,197,94,.08) 0%,rgba(34,197,94,.02) 100%);border:1px solid rgba(34,197,94,.25);overflow:hidden;">';
-  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#22c55e;"></div>';
-  h += '<div style="padding:1rem 1rem .5rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#22c55e;margin-bottom:.5rem;opacity:.9;">Tier 1 · Total Revenue Universe</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#22c55e;line-height:1;margin-bottom:.35rem;">$414B</div>';
-  h += '<div style="font-size:.7rem;color:#c8e8c8;margin-bottom:.5rem;line-height:1.5;">Combined annual revenue of all 52 IL-based F500 targets — the universe Foxmark Chicago serves.</div>';
-  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#22c55e;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology" >▼</button>';
-  h += '<div style="display:none;border-top:1px solid rgba(34,197,94,.15);padding-top:.6rem;padding-bottom:.75rem;">';
-  h += '<div style="font-size:.63rem;color:#3a7050;line-height:1.7;">';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#22c55e;">Source:</strong> Fortune 500 2025 list (Fortune Media) cross-referenced with IL state HQ registrations</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#22c55e;">Method:</strong> 52 companies with primary or major IL operations identified. Annual revenues pulled from most recent 10-K filings (SEC EDGAR)</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#22c55e;">Top 5 by revenue:</strong> Walgreens $148B · United Airlines $54B · Allstate $57B · Kraft Heinz $26B · Discover $15B</div>';
-  h += '<div><strong style="color:#22c55e;">Why it matters:</strong> This is the total economic weight of Foxmark\'s primary target universe — not a national TAM, but the specific companies with Chicago footprints Rick already has relationships inside.</div>';
-  h += '</div>';
-  h += '</div>';
-  h += '</div></div>';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">';
 
   // Tier 2
   h += '<div style="position:relative;background:linear-gradient(160deg,rgba(245,158,11,.08) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.25);overflow:hidden;">';
