@@ -1198,7 +1198,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:2rem;">
       <div class="section-label" style="margin-bottom:1rem;">The Person Running This</div>
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#e8f0ff;margin-bottom:.75rem;line-height:1.1;">Nearly 30 years of enterprise sales<br>inside this exact market.</div>
-      <p style="font-size:.85rem;color:#5a7090;line-height:1.7;margin-bottom:1.25rem;">Crate &amp; Barrel. Kirkland &amp; Ellis. Portillo&#39;s. Relationships developed over decades &#8212; inside the same Chicago enterprises Foxmark is targeting. Chicago isn&#39;t a cold start. There&#39;s existing context to build from.</p>
+      <p style="font-size:.85rem;color:#5a7090;line-height:1.7;margin-bottom:1.25rem;">United Airlines. JLL. Advocate Health. Relationships developed over decades &#8212; inside the same Fortune 500 companies Foxmark is targeting. Chicago isn&#39;t a cold start. There&#39;s existing context to build from.</p>
       <button onclick="openModal('modal-rick')" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid rgba(200,16,46,.4);color:#C8102E;padding:.5rem 1.2rem;cursor:pointer;">Rick Krohn → Full Background</button>
     </div>
   </div>
@@ -6948,7 +6948,56 @@ function renderF500Dashboard() {
   h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">53 Targets · 6 Sectors</div>';
   h += '</div>';
 
-  // (funnel + matrix moved to bottom)
+  // ── MARKET SIZING: HORIZONTAL FUNNEL ────────────────────────────────────────
+  // Replaces the 3-col card grid with a compact inline funnel strip
+  h += '<div style="margin-bottom:1rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#3a4a60;margin-bottom:.55rem;">Market Opportunity · Funnel View</div>';
+
+  // Funnel strip — 4 panels joined by arrows
+  h += '<div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:0;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.06);overflow:hidden;">';
+
+  // Panel helper styles (inline)
+  var panelBase = 'padding:.7rem .85rem;display:flex;flex-direction:column;justify-content:center;';
+
+  // ── Panel 1: Industry (neutral)
+  h += '<div style="' + panelBase + 'border-right:1px solid rgba(255,255,255,.05);">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.25rem;">US Industry TAM</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.6rem;color:#4a9eff;line-height:1;">$11.4B</div>';
+  h += '<div style="font-size:.58rem;color:#3a5070;margin-top:.2rem;line-height:1.4;">Wide-format signage<br>+4.8% CAGR</div>';
+  h += '</div>';
+
+  // Arrow 1
+  h += '<div style="display:flex;align-items:center;padding:0 .4rem;color:rgba(255,255,255,.12);font-size:.9rem;">▶</div>';
+
+  // ── Panel 2: National F500
+  h += '<div style="' + panelBase + 'border-right:1px solid rgba(255,255,255,.05);background:rgba(74,158,255,.03);">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(74,158,255,.5);margin-bottom:.25rem;">IL F500 · National Spend</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.6rem;color:#4a9eff;line-height:1;">$500M<span style="font-size:.9rem;opacity:.55;">–$800M</span></div>';
+  h += '<div style="font-size:.58rem;color:#3a5070;margin-top:.2rem;line-height:1.4;">53 targets · all locations</div>';
+  h += '</div>';
+
+  // Arrow 2
+  h += '<div style="display:flex;align-items:center;padding:0 .4rem;color:rgba(255,255,255,.12);font-size:.9rem;">▶</div>';
+
+  // ── Panel 3: Chicago addressable (highlighted)
+  h += '<div style="' + panelBase + 'border-right:1px solid rgba(200,16,46,.2);background:rgba(200,16,46,.05);">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,16,46,.6);margin-bottom:.25rem;">Chicago-Addressable</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.6rem;color:#C8102E;line-height:1;">$50M<span style="font-size:.9rem;opacity:.55;">–$125M</span></div>';
+  h += '<div style="font-size:.58rem;color:#6a3040;margin-top:.2rem;line-height:1.4;">IL footprint share</div>';
+  h += '</div>';
+
+  // Arrow 3
+  h += '<div style="display:flex;align-items:center;padding:0 .4rem;color:rgba(200,16,46,.3);font-size:.9rem;">▶</div>';
+
+  // ── Panel 4: $8.2B pool stat (the hero number, now integrated here)
+  h += '<div style="' + panelBase + 'background:linear-gradient(135deg,rgba(200,16,46,.1) 0%,rgba(200,16,46,.03) 100%);border-left:3px solid #C8102E;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,16,46,.5);margin-bottom:.25rem;">Total Facilities &amp; Mktg · Metro Chicago</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2rem;color:#C8102E;line-height:1;">$8.2B</div>';
+  h += '<div style="font-size:.58rem;color:#6a3040;margin-top:.2rem;line-height:1.4;">Combined annual spend pool<br>Foxmark competes for</div>';
+  h += '</div>';
+
+  h += '</div>'; // funnel strip grid
+  h += '</div>'; // wrapper
 
   // ── ALL 52 TARGETS TABLE ──────────────────────────────────────────────────
   // angle: [label, color]  urg: [label, color, bgColor]
@@ -7060,41 +7109,7 @@ function renderF500Dashboard() {
   h += '</div>';
   h += '</div>';
 
-  // ── MARKET OPPORTUNITY FUNNEL — moved to bottom ──────────────────────────
-  h += '<div style="margin-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);padding-top:1.25rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.65rem;">Market Opportunity · Funnel</div>';
-  h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:1.25rem;">';
-
-  h += '<div style="background:linear-gradient(160deg,#0c1e38 0%,#0e2244 100%);border:1px solid rgba(74,158,255,.2);border-top:3px solid #4a9eff;padding:1rem 1rem .9rem;position:relative;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(74,158,255,.5);margin-bottom:.45rem;">US Industry TAM</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:.95;margin-bottom:.35rem;">$11.4B</div>';
-  h += '<div style="font-size:.65rem;color:rgba(74,158,255,.4);line-height:1.5;">Wide-format signage · +4.8% CAGR</div>';
-  h += '<div style="position:absolute;top:50%;right:-.5rem;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:7px solid rgba(74,158,255,.3);z-index:2;"></div>';
-  h += '</div>';
-
-  h += '<div style="background:linear-gradient(160deg,#0e2040 0%,#122850 100%);border:1px solid rgba(74,158,255,.3);border-top:3px solid #5aabff;padding:1rem 1rem .9rem;position:relative;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(90,171,255,.55);margin-bottom:.45rem;">IL F500 · National Spend</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.2rem;color:#5aabff;line-height:.95;margin-bottom:.35rem;">$500–800M</div>';
-  h += '<div style="font-size:.65rem;color:rgba(90,171,255,.35);line-height:1.5;">53 targets · all locations</div>';
-  h += '<div style="position:absolute;top:50%;right:-.5rem;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:7px solid rgba(200,16,46,.3);z-index:2;"></div>';
-  h += '</div>';
-
-  h += '<div style="background:linear-gradient(160deg,#1c0810 0%,#240c16 100%);border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:1rem 1rem .9rem;position:relative;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,16,46,.6);margin-bottom:.45rem;">Chicago-Addressable</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:.95;margin-bottom:.35rem;">$50–125M</div>';
-  h += '<div style="font-size:.65rem;color:rgba(200,16,46,.4);line-height:1.5;">IL footprint share</div>';
-  h += '<div style="position:absolute;top:50%;right:-.5rem;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:7px solid rgba(200,16,46,.5);z-index:2;"></div>';
-  h += '</div>';
-
-  h += '<div style="background:linear-gradient(160deg,#2a0810 0%,#380c18 100%);border:1px solid rgba(200,16,46,.5);border-top:3px solid #ff1a3a;border-left:3px solid #C8102E;padding:1rem 1rem .9rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,60,80,.55);margin-bottom:.45rem;">Metro Chicago Spend Pool</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.6rem;color:#ff2244;line-height:.9;margin-bottom:.35rem;text-shadow:0 0 24px rgba(200,16,46,.35);">$8.2B</div>';
-  h += '<div style="font-size:.65rem;color:rgba(200,16,46,.45);line-height:1.5;">Facilities &amp; marketing Foxmark competes for</div>';
-  h += '</div>';
-
-  h += '</div>'; // 4-panel grid
-
-  // ── SECTOR INTELLIGENCE MATRIX ────────────────────────────────────────────
+  // ── SECTOR INTELLIGENCE MATRIX (unified TAM + cycle + catalyst) ──────────
   var sectorMatrix = [
     { key:'ind',  label:'Industrials', color:'#f59e0b', targets:7,  tam:8.7, weeks:12, catalysts:['HQ RELOCATION','DEALER ROLLOUT'], badge:'LARGEST TAM' },
     { key:'fin',  label:'Financial',   color:'#a855f7', targets:7,  tam:7.1, weeks:12, catalysts:['2 ACQUISITIONS','REBRAND CYCLE'],  badge:'HOT M&A' },
@@ -7105,74 +7120,74 @@ function renderF500Dashboard() {
   ];
   var maxTam = 8.7;
 
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.6rem;">Sector Intelligence Matrix</div>';
-  h += '<div style="border:1px solid rgba(255,255,255,.08);overflow:hidden;margin-bottom:1rem;">';
+  h += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);margin-top:1.25rem;overflow:hidden;">';
 
-  h += '<div style="display:grid;grid-template-columns:130px 1fr 70px 90px 1fr 130px;gap:0;border-bottom:2px solid rgba(255,255,255,.08);padding:.5rem 1rem;background:rgba(255,255,255,.03);">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);">Sector</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);">Signage TAM</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:center;">Targets</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:center;">Close</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);">Catalysts</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:right;">Signal</div>';
+  // Header row
+  h += '<div style="display:grid;grid-template-columns:110px 1fr 56px 80px 1fr 120px;gap:0;border-bottom:1px solid rgba(255,255,255,.07);padding:.45rem .9rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);">Sector</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);">Est. Signage TAM</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);text-align:center;">Targets</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);text-align:center;">Close</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);">Active Catalysts</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.2);text-align:right;padding-right:.2rem;">Signal</div>';
   h += '</div>';
 
   sectorMatrix.forEach(function(s, i) {
     var pct = Math.round(s.tam / maxTam * 100);
     var isLast = i === sectorMatrix.length - 1;
     var border = isLast ? '' : 'border-bottom:1px solid rgba(255,255,255,.05);';
-    var speedColor = s.weeks <= 6 ? '#22c55e' : s.weeks <= 8 ? '#f59e0b' : '#ef4444';
+    var speedColor = s.weeks <= 6 ? '#22c55e' : s.weeks <= 8 ? '#f59e0b' : '#ff6b6b';
     var speedLabel = s.weeks <= 6 ? 'FAST' : s.weeks <= 8 ? 'MED' : 'SLOW';
-    var rowBg = i % 2 === 0 ? 'rgba(255,255,255,.01)' : 'transparent';
 
-    h += '<div onclick="mktTab(\'' + s.key + '\')" style="display:grid;grid-template-columns:130px 1fr 70px 90px 1fr 130px;gap:0;align-items:center;padding:.7rem 1rem;cursor:pointer;background:' + rowBg + ';transition:background .12s;' + border + '" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'' + rowBg + '\'">';
+    h += '<div onclick="mktTab(\'' + s.key + '\')" style="display:grid;grid-template-columns:110px 1fr 56px 80px 1fr 120px;gap:0;align-items:center;padding:.6rem .9rem;cursor:pointer;transition:background .12s;' + border + '" onmouseover="this.style.background=\'rgba(255,255,255,.03)\'" onmouseout="this.style.background=\'transparent\'">';
 
-    h += '<div style="display:flex;align-items:center;gap:.55rem;">';
-    h += '<div style="width:4px;height:1.8rem;background:' + s.color + ';flex-shrink:0;"></div>';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.9rem;letter-spacing:.05em;color:' + s.color + ';text-transform:uppercase;">' + s.label + '</span>';
+    h += '<div style="display:flex;align-items:center;gap:.45rem;">';
+    h += '<div style="width:3px;height:1.4rem;background:' + s.color + ';flex-shrink:0;border-radius:1px;"></div>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.06em;color:' + s.color + ';text-transform:uppercase;">' + s.label + '</span>';
     h += '</div>';
 
-    h += '<div style="display:flex;align-items:center;gap:.6rem;padding-right:.75rem;">';
-    h += '<div style="flex:1;background:rgba(255,255,255,.06);height:8px;border-radius:1px;">';
-    h += '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,' + s.color + 'bb,' + s.color + ');border-radius:1px;"></div>';
+    h += '<div style="display:flex;align-items:center;gap:.55rem;padding-right:.5rem;">';
+    h += '<div style="flex:1;background:rgba(255,255,255,.05);height:7px;border-radius:1px;">';
+    h += '<div style="height:100%;width:' + pct + '%;background:' + s.color + ';border-radius:1px;"></div>';
     h += '</div>';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.92rem;color:' + s.color + ';white-space:nowrap;min-width:40px;">$' + s.tam + 'B</span>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.82rem;color:' + s.color + ';white-space:nowrap;min-width:36px;">$' + s.tam + 'B</span>';
     h += '</div>';
-
-    h += '<div style="text-align:center;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.4rem;color:#e8f0ff;line-height:1;">' + s.targets + '</span></div>';
 
     h += '<div style="text-align:center;">';
-    h += '<div style="display:inline-block;background:rgba(0,0,0,.3);border:1px solid ' + speedColor + '44;border-radius:2px;padding:.18rem .45rem;">';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.85rem;color:' + speedColor + ';">' + s.weeks + 'wk</span>';
-    h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.45rem;letter-spacing:.12em;color:' + speedColor + ';opacity:.65;">' + speedLabel + '</div>';
-    h += '</div></div>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.1rem;color:rgba(255,255,255,.7);line-height:1;">' + s.targets + '</span>';
+    h += '</div>';
 
-    h += '<div style="display:flex;flex-direction:column;gap:.28rem;padding-left:.2rem;">';
+    h += '<div style="text-align:center;">';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.85rem;color:' + speedColor + ';">' + s.weeks + 'wk</span>';
+    h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.42rem;letter-spacing:.1em;color:' + speedColor + ';opacity:.6;">' + speedLabel + '</div>';
+    h += '</div>';
+
+    h += '<div style="display:flex;flex-direction:column;gap:.2rem;">';
     s.catalysts.forEach(function(cat) {
-      h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;">' + cat + '</span>';
+      h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.5rem;letter-spacing:.08em;color:rgba(255,255,255,.35);text-transform:uppercase;">' + cat + '</span>';
     });
     h += '</div>';
 
     h += '<div style="text-align:right;">';
     if (s.badge) {
-      h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:' + s.color + ';background:rgba(0,0,0,.4);border:1px solid ' + s.color + ';padding:.18rem .5rem;white-space:nowrap;">' + s.badge + '</span>';
+      h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:' + s.color + ';background:rgba(0,0,0,.3);border:1px solid ' + s.color + ';border-radius:2px;padding:.15rem .4rem;">' + s.badge + '</span>';
     }
     h += '</div>';
 
-    h += '</div>';
+    h += '</div>'; // row
   });
 
-  h += '<div style="border-top:1px solid rgba(255,255,255,.06);padding:.5rem 1rem;display:flex;justify-content:space-between;background:rgba(255,255,255,.02);">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;letter-spacing:.1em;color:rgba(255,255,255,.2);text-transform:uppercase;">Click any row → sector targets · TAM = est. annual signage spend</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;letter-spacing:.1em;color:rgba(255,255,255,.16);text-transform:uppercase;">Close = weeks to decision</div>';
-  h += '</div>';
-  h += '</div>'; // matrix
-
-  h += '<div style="padding:.75rem 1rem;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-left:4px solid #f59e0b;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.6;"><span style="color:#f59e0b;font-weight:900;letter-spacing:.04em;">STRATEGY · </span>Anchor on Industrials &amp; Financial TAM — highest spend, active catalysts. Retail &amp; Tech close fastest — use for early wins and case studies that unlock F500 conversations.</div>';
+  h += '<div style="border-top:1px solid rgba(255,255,255,.06);padding:.5rem .9rem;display:flex;align-items:center;justify-content:space-between;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.1em;color:rgba(255,255,255,.2);text-transform:uppercase;">Click any row to drill into sector targets · TAM = est. annual signage spend across all locations</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.1em;color:rgba(255,255,255,.18);text-transform:uppercase;">Close = weeks to decision</div>';
   h += '</div>';
 
-  h += '</div>'; // bottom section wrapper
+  h += '</div>'; // matrix card
+
+  // Strategy callout
+  h += '<div style="margin-top:1rem;padding:.6rem .9rem;background:rgba(245,158,11,.05);border-left:3px solid #f59e0b;display:flex;align-items:center;gap:1rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.72rem;color:rgba(255,255,255,.55);line-height:1.5;"><span style="color:#f59e0b;font-weight:700;">Strategy:</span> Anchor on Industrials &amp; Financial TAM — highest spend, active catalysts. Retail &amp; Tech close fastest — use for early wins and case studies that unlock F500 conversations.</div>';
+  h += '</div>';
 
   wrap.innerHTML = h;
 }
@@ -7186,72 +7201,6 @@ var MKT_DASHBOARD_HTML = `
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#e8f0ff;">Market Coverage Dashboard</div>
           <div style="flex:1;height:1px;background:rgba(255,255,255,.06);"></div>
           <div style="font-size:.72rem;color:#3a5060;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;">Updated Mar 2026</div>
-        </div>
-
-        <!-- MIDWEST GROWTH COMPANIES -->
-        <div style="margin-bottom:1.25rem;">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#5aabff;">Midwest Growth Companies · Beyond the F500</div>
-            <div style="font-size:.68rem;color:#2a4050;">150 mid-market targets · faster decisions · no 18-month procurement cycles</div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">
-
-            <!-- Growth Tech -->
-            <div style="background:rgba(6,182,212,.03);border:1px solid rgba(6,182,212,.12);border-top:2px solid #06b6d4;padding:.85rem;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#06b6d4;margin-bottom:.4rem;">Growth Tech</div>
-              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born SaaS and fintech scaling fast — new offices, new brand standards, minimal red tape.</div>
-              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <a href="https://www.enfusion.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Enfusion</span></a>
-                <a href="https://www.enova.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Enova</span></a>
-                <a href="https://www.g2.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">G2</span></a>
-                <a href="https://www.paylocity.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Paylocity</span></a>
-                <a href="https://www.project44.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Project44</span></a>
-                <a href="https://www.spothero.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">SpotHero</span></a>
-              </div>
-              <div style="margin-top:.5rem;font-size:.65rem;color:#06b6d4;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Office culture = brand statement. Quick approvals.</div>
-            </div>
-
-            <!-- Hospitality & Experience -->
-            <div style="background:rgba(236,72,153,.03);border:1px solid rgba(236,72,153,.12);border-top:2px solid #ec4899;padding:.85rem;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#ec4899;margin-bottom:.4rem;">Hospitality &amp; Experience</div>
-              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born brands with multi-location footprints — every location is a brand environment opportunity.</div>
-              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <a href="https://www.loumalnatis.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Lou Malnati&apos;s</span></a>
-                <a href="https://www.portillos.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Portillo&apos;s</span></a>
-                <a href="https://www.theproteinbar.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Protein Bar</span></a>
-                <a href="https://www.steppenwolf.org" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Steppenwolf</span></a>
-              </div>
-              <div style="margin-top:.5rem;font-size:.65rem;color:#ec4899;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Expansion-mode brands. Each new location = full interior package.</div>
-            </div>
-
-            <!-- Real Estate & Developers -->
-            <div style="background:rgba(34,197,94,.03);border:1px solid rgba(34,197,94,.12);border-top:2px solid #22c55e;padding:.85rem;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#22c55e;margin-bottom:.4rem;">Real Estate &amp; Developers</div>
-              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Fulton Market and River North developers building tenant-ready environments — wayfinding, lobby branding, EGD at scale.</div>
-              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <a href="https://www.bradfordallen.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Bradford Allen</span></a>
-                <a href="https://www.fultonmarketdistrict.org" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Fulton Market Dev</span></a>
-                <a href="https://www.pangeare.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Pangea Properties</span></a>
-                <a href="https://www.r2companies.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">R2 Companies</span></a>
-              </div>
-              <div style="margin-top:.5rem;font-size:.65rem;color:#22c55e;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Recurring project pipeline. Every buildout is a Foxmark opportunity.</div>
-            </div>
-
-            <!-- Professional Services -->
-            <div style="background:rgba(168,85,247,.03);border:1px solid rgba(168,85,247,.12);border-top:2px solid #a855f7;padding:.85rem;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#a855f7;margin-bottom:.4rem;">Professional Services</div>
-              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Law firms, PR agencies, and logistics companies with Loop presence — brand-conscious, facilities-driven decisions.</div>
-              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <a href="https://www.edelman.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Edelman</span></a>
-                <a href="https://www.hubgroup.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Hub Group</span></a>
-                <a href="https://www.kirkland.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Kirkland &amp; Ellis</span></a>
-                <a href="https://www.loadsmart.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Loadsmart</span></a>
-                <a href="https://www.relativity.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Relativity</span></a>
-              </div>
-              <div style="margin-top:.5rem;font-size:.65rem;color:#a855f7;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Prestige-driven. Interior brand = client confidence signal.</div>
-            </div>
-
-          </div>
         </div>
 
         <!-- MAIN 2-COL -->
@@ -7378,6 +7327,72 @@ var MKT_DASHBOARD_HTML = `
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:1;">3,500+</div>
             <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Total Locations</div>
             <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Multi-site rollout TAM</div>
+          </div>
+        </div>
+
+        <!-- MIDWEST GROWTH COMPANIES -->
+        <div style="margin-top:1.25rem;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#5aabff;">Midwest Growth Companies · Beyond the F500</div>
+            <div style="font-size:.68rem;color:#2a4050;">150 mid-market targets · faster decisions · no 18-month procurement cycles</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">
+
+            <!-- Growth Tech -->
+            <div style="background:rgba(6,182,212,.03);border:1px solid rgba(6,182,212,.12);border-top:2px solid #06b6d4;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#06b6d4;margin-bottom:.4rem;">Growth Tech</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born SaaS and fintech scaling fast — new offices, new brand standards, minimal red tape.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <a href="https://www.enfusion.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Enfusion</span></a>
+                <a href="https://www.enova.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Enova</span></a>
+                <a href="https://www.g2.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">G2</span></a>
+                <a href="https://www.paylocity.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Paylocity</span></a>
+                <a href="https://www.project44.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Project44</span></a>
+                <a href="https://www.spothero.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">SpotHero</span></a>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#06b6d4;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Office culture = brand statement. Quick approvals.</div>
+            </div>
+
+            <!-- Hospitality & Experience -->
+            <div style="background:rgba(236,72,153,.03);border:1px solid rgba(236,72,153,.12);border-top:2px solid #ec4899;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#ec4899;margin-bottom:.4rem;">Hospitality &amp; Experience</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born brands with multi-location footprints — every location is a brand environment opportunity.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <a href="https://www.loumalnatis.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Lou Malnati&apos;s</span></a>
+                <a href="https://www.portillos.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Portillo&apos;s</span></a>
+                <a href="https://www.theproteinbar.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Protein Bar</span></a>
+                <a href="https://www.steppenwolf.org" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Steppenwolf</span></a>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#ec4899;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Expansion-mode brands. Each new location = full interior package.</div>
+            </div>
+
+            <!-- Real Estate & Developers -->
+            <div style="background:rgba(34,197,94,.03);border:1px solid rgba(34,197,94,.12);border-top:2px solid #22c55e;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#22c55e;margin-bottom:.4rem;">Real Estate &amp; Developers</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Fulton Market and River North developers building tenant-ready environments — wayfinding, lobby branding, EGD at scale.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <a href="https://www.bradfordallen.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Bradford Allen</span></a>
+                <a href="https://www.fultonmarketdistrict.org" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Fulton Market Dev</span></a>
+                <a href="https://www.pangeare.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Pangea Properties</span></a>
+                <a href="https://www.r2companies.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">R2 Companies</span></a>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#22c55e;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Recurring project pipeline. Every buildout is a Foxmark opportunity.</div>
+            </div>
+
+            <!-- Professional Services -->
+            <div style="background:rgba(168,85,247,.03);border:1px solid rgba(168,85,247,.12);border-top:2px solid #a855f7;padding:.85rem;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#a855f7;margin-bottom:.4rem;">Professional Services</div>
+              <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Law firms, PR agencies, and logistics companies with Loop presence — brand-conscious, facilities-driven decisions.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
+                <a href="https://www.edelman.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Edelman</span></a>
+                <a href="https://www.hubgroup.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Hub Group</span></a>
+                <a href="https://www.kirkland.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Kirkland &amp; Ellis</span></a>
+                <a href="https://www.loadsmart.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Loadsmart</span></a>
+                <a href="https://www.relativity.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Relativity</span></a>
+              </div>
+              <div style="margin-top:.5rem;font-size:.65rem;color:#a855f7;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Prestige-driven. Interior brand = client confidence signal.</div>
+            </div>
+
           </div>
         </div>
 
