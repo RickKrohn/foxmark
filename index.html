@@ -56,11 +56,50 @@ function mktTab(key) {
   var mktCtx = document.getElementById('market-context-wrap');
   if (mktCtx) mktCtx.style.display = key === 'f500' ? 'block' : 'none';
   // Highlight active tab
+  var sectorKeys = ['svc','fin','hlth','ind','rtl','tch'];
+  var sectorBg = {
+    svc:  'linear-gradient(160deg,#0d2248 0%,#102a58 100%)',
+    fin:  'linear-gradient(160deg,#1e1038 0%,#28144a 100%)',
+    hlth: 'linear-gradient(160deg,#0a2428 0%,#0e2e30 100%)',
+    ind:  'linear-gradient(160deg,#281804 0%,#341e08 100%)',
+    rtl:  'linear-gradient(160deg,#0a2210 0%,#0e2c14 100%)',
+    tch:  'linear-gradient(160deg,#082028 0%,#0c2830 100%)'
+  };
+  var sectorBgOff = {
+    svc:  'linear-gradient(160deg,#081630 0%,#0c1e40 100%)',
+    fin:  'linear-gradient(160deg,#110820 0%,#180b2c 100%)',
+    hlth: 'linear-gradient(160deg,#061616 0%,#091e1e 100%)',
+    ind:  'linear-gradient(160deg,#180e04 0%,#221408 100%)',
+    rtl:  'linear-gradient(160deg,#061408 0%,#091c0c 100%)',
+    tch:  'linear-gradient(160deg,#051418 0%,#081c20 100%)'
+  };
   ALL_TABS.forEach(function(k) {
     var btn = document.getElementById('mtab-' + k);
     if (!btn) return;
-    btn.style.background = k === key ? '#C8102E' : 'rgba(255,255,255,.07)';
-    btn.style.color      = k === key ? '#fff' : '#8A8A8A';
+    if (k === 'f500') {
+      btn.style.background = key === 'f500'
+        ? 'linear-gradient(105deg,#120810 0%,#180c18 50%,#120810 100%)'
+        : 'linear-gradient(105deg,#08060a 0%,#0e0a10 50%,#08060a 100%)';
+      btn.style.borderColor = key === 'f500' ? 'rgba(200,16,46,.75)' : 'rgba(200,16,46,.5)';
+    } else if (sectorKeys.indexOf(k) !== -1) {
+      btn.style.background = k === key ? (sectorBg[k]||sectorBgOff[k]) : sectorBgOff[k];
+      btn.style.boxShadow = k === key ? '0 4px 16px rgba(0,0,0,.4)' : 'none';
+      btn.style.transform = k === key ? 'translateY(-2px)' : 'none';
+    } else if (k === 'mid') {
+      btn.style.background = k === key
+        ? 'linear-gradient(105deg,#102240 0%,#183060 50%,#102240 100%)'
+        : 'linear-gradient(105deg,#071428 0%,#0d2040 50%,#071428 100%)';
+      btn.style.borderLeftColor = k === key ? '#4a9eff' : 'rgba(74,158,255,.35)';
+      btn.style.borderColor = k === key ? 'rgba(74,158,255,.6)' : 'rgba(90,171,255,.35)';
+      btn.style.borderLeftColor = k === key ? '#4a9eff' : '#4a9eff';
+    } else {
+      // Strategy & Intelligence tiles
+      btn.style.background = k === key
+        ? 'linear-gradient(160deg,#101828 0%,#162030 100%)'
+        : 'linear-gradient(160deg,#080e1c 0%,#0c1428 100%)';
+      btn.style.borderColor = k === key ? 'rgba(255,255,255,.14)' : 'rgba(255,255,255,.07)';
+      btn.style.boxShadow = k === key ? '0 4px 16px rgba(0,0,0,.4)' : 'none';
+    }
   });
   if (key === 'f500') {
     if (f500Wrap) { f500Wrap.style.display = 'block'; if (!f500Wrap.innerHTML.trim()) renderF500Dashboard(); }
@@ -894,15 +933,10 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <h1>Chicago.<br><em>The Case</em><br>Is Here.</h1>
     <p class="hero-sub">A $900M&#8211;$1.1B branded interiors market. Fortune 500 headquarters. No dominant full-stack competitor. And nearly 30 years of existing enterprise relationships inside Foxmark&#39;s exact target accounts.</p>
     <p class="hero-mission">This is the market case for a Foxmark Chicago Studio Laboratory &#8212; the opportunity, the numbers, and the path to get there.</p>
-    <div class="hero-actions">
-      <button class="btn btn-outline" onclick="document.getElementById('resources-section').scrollIntoView({behavior:'smooth'})">See the Intelligence</button>
-      <button class="btn btn-outline" onclick="openModal('modal-rick')" style="border-color:rgba(200,16,46,.5);color:#e8f0ff;">Territory Owner &#8594;</button>
 
-    </div>
 
   </div>
   <div class="hero-right">
-    <div class="hero-tag">Now Serving Chicagoland</div>
     <div class="big-bg">CHI</div>
     <div class="hero-right-content" style="display:flex;flex-direction:column;gap:.85rem;">
 
@@ -911,7 +945,6 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(90,171,255,.5);">F500 Anchor Targets · Chicago</div>
           <div style="display:flex;align-items:center;gap:.75rem;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:#C8102E;color:#fff;padding:.2rem .6rem;">Now Serving Chicagoland</div>
             <button onclick="openModal('modal-market')" data-tip="Open Market Intelligence Dashboard" style="font-family:'Barlow Condensed',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:none;border:none;color:#C8102E;cursor:pointer;padding:0;">Full Intel →</button>
           </div>
         </div>
@@ -1000,7 +1033,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     (function() {
       // Count from MKT_TABLES — svc(7) + fin(7) + hlth(7) + ind(7) + ret(9) + tech(13) = 50 enterprise
       // mid: 138 mid-market
-      var enterprise = 52, midMkt = 150, total = enterprise + midMkt;
+      var enterprise = 53, midMkt = 150, total = enterprise + midMkt;
       function animCount(id, target, duration, color) {
         var el = document.getElementById(id);
         if (!el) return;
@@ -1149,12 +1182,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
 <!-- WHY NOW -->
 <section class="section section-alt" style="background:#060c16;padding:3rem 5rem;">
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);margin-bottom:3rem;">
-    <div onclick="openModal('modal-market');setTimeout(function(){mktTab('f500')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(200,16,46,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#C8102E;line-height:1;">202</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Named Targets ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">F500 + mid-market HQs across Chicago metro — every account mapped &amp; qualified</div></div>
-    <div onclick="openModal('modal-market');setTimeout(function(){mktTab('f500')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(34,197,94,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#22c55e;line-height:1;">+4.8%</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Market Growth ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">Wide-format growing while broader print declines — tailwind, not headwind</div></div>
-    <div onclick="openModal('modal-market');setTimeout(function(){mktTab('competitive')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(90,171,255,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#5aabff;line-height:1;">0</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Full-Stack Rivals ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">No Chicago competitor offers same-day proofing + HQ scale + eco capability</div></div>
-    <div onclick="document.getElementById('resources-section').scrollIntoView({behavior:'smooth'})" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(245,158,11,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#f59e0b;line-height:1;">Now</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Window Is Open ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">Relationships in place · Territory warm · No dominant incumbent yet</div></div>
-  </div>
+
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
     <div>
       <div class="section-label">Four Products · Premium Margins</div>
@@ -1170,7 +1198,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:2rem;">
       <div class="section-label" style="margin-bottom:1rem;">The Person Running This</div>
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#e8f0ff;margin-bottom:.75rem;line-height:1.1;">Nearly 30 years of enterprise sales<br>inside this exact market.</div>
-      <p style="font-size:.85rem;color:#5a7090;line-height:1.7;margin-bottom:1.25rem;">United Airlines. JLL. Advocate Health. Relationships developed over decades &#8212; inside the same Fortune 500 companies Foxmark is targeting. Chicago isn&#39;t a cold start. There&#39;s existing context to build from.</p>
+      <p style="font-size:.85rem;color:#5a7090;line-height:1.7;margin-bottom:1.25rem;">Crate &amp; Barrel. Kirkland &amp; Ellis. Portillo&#39;s. Relationships developed over decades &#8212; inside the same Chicago enterprises Foxmark is targeting. Chicago isn&#39;t a cold start. There&#39;s existing context to build from.</p>
       <button onclick="openModal('modal-rick')" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid rgba(200,16,46,.4);color:#C8102E;padding:.5rem 1.2rem;cursor:pointer;">Rick Krohn → Full Background</button>
     </div>
   </div>
@@ -1414,20 +1442,20 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#22c55e;margin-bottom:.5rem;">Phase 1 Capital Envelope</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:.3rem;">
             <div style="text-align:center;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#5a7090;">$375K</div>
-              <div style="font-size:.7rem;color:#3a5070;text-transform:uppercase;letter-spacing:.08em;">Low</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#8a9ab0;">$375K</div>
+              <div style="font-size:.7rem;color:#6a8aa8;text-transform:uppercase;letter-spacing:.08em;">Low</div>
             </div>
             <div style="text-align:center;border-left:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);">
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#22c55e;">$452K</div>
               <div style="font-size:.7rem;color:#22c55e;text-transform:uppercase;letter-spacing:.08em;">Midpoint — Working Baseline</div>
             </div>
             <div style="text-align:center;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#5a7090;">$529K</div>
-              <div style="font-size:.7rem;color:#3a5070;text-transform:uppercase;letter-spacing:.08em;">High</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#8a9ab0;">$529K</div>
+              <div style="font-size:.7rem;color:#6a8aa8;text-transform:uppercase;letter-spacing:.08em;">High</div>
             </div>
           </div>
-          <div style="margin-top:.6rem;font-size:.75rem;color:#3a5070;">Includes: build-out, safety, equipment, IT/RIP, initial media/inks, compliance/legal, ~3-month working capital buffer. To be refined with vendor quotes.</div>
-          <div style="margin-top:.6rem;padding:.5rem .75rem;background:rgba(255,255,255,.02);border-left:2px solid rgba(255,255,255,.08);font-size:.75rem;color:#3a5070;line-height:1.6;"><strong style="color:#5a7090;">Phase 1 scope boundary —</strong> Deliberately deferred to Phase 2: full showroom build-out, dedicated install vehicle, expanded MIS/CRM, and additional automation. These are &ldquo;Should Have&rdquo; items unlocked by revenue milestones, not upfront capital.</div>
+          <div style="margin-top:.6rem;font-size:.75rem;color:#8a9ab8;line-height:1.6;">Includes: build-out, safety, equipment, IT/RIP, initial media/inks, compliance/legal, ~3-month working capital buffer. To be refined with vendor quotes.</div>
+          <div style="margin-top:.6rem;padding:.5rem .75rem;background:rgba(255,255,255,.02);border-left:2px solid rgba(255,255,255,.12);font-size:.75rem;color:#8a9ab8;line-height:1.6;"><strong style="color:#b8c8d8;">Phase 1 scope boundary —</strong> Deliberately deferred to Phase 2: full showroom build-out, dedicated install vehicle, expanded MIS/CRM, and additional automation. These are &ldquo;Should Have&rdquo; items unlocked by revenue milestones, not upfront capital.</div>
         </div>
 
       </div>
@@ -1517,6 +1545,33 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <div style="font-size:2rem;">💹</div>
         <div style="flex:1;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;">Financial Model + Playbook Tables</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.1rem;">Excel Spreadsheet (.xlsx) · Full P&amp;L and KPI model</div></div>
         <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#22c55e;white-space:nowrap;">&#11015; Download</div>
+      </div>
+    </div>
+
+    <!-- CASE STUDIES LINK -->
+    <div style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;margin-bottom:.85rem;">Proof of Concept · Comparable F500 Work</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">
+        <div onclick="closeModal();setTimeout(function(){openCaseStudy('kh')},100)" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #f59e0b;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">Kraft Heinz</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#f59e0b;">CORP HQ</span></div>
+          <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">Multi-floor branded environments. Interior culture graphics, $280K scope.</div>
+          <div style="font-size:.62rem;color:#f59e0b;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Open full case study</div>
+        </div>
+        <div onclick="closeModal();setTimeout(function(){openCaseStudy('mc')},100)" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #C8102E;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">McDonald's HQ</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#C8102E;">CORP HQ</span></div>
+          <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">Fulton Market relocation — full environmental identity package.</div>
+          <div style="font-size:.62rem;color:#C8102E;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Open full case study</div>
+        </div>
+        <div onclick="closeModal();setTimeout(function(){openCaseStudy('ua')},100)" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #4a9eff;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">United Airlines</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#4a9eff;">SERVICES</span></div>
+          <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">Willis Tower HQ rebrand — wayfinding, branded zones, eco materials.</div>
+          <div style="font-size:.62rem;color:#4a9eff;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Open full case study</div>
+        </div>
+        <div onclick="closeModal();setTimeout(function(){openCaseStudy('al')},100)" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #a855f7;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">Allstate</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#a855f7;">FINANCIAL</span></div>
+          <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">2022–23 rebrand, full interior refresh across Northbrook campus.</div>
+          <div style="font-size:.62rem;color:#a855f7;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Open full case study</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1714,110 +1769,222 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <!-- MARKET MODAL -->
   <div id="modal-market" class="modal-content" style="display:none;padding:2rem 3rem;">
     <!-- Compact header strip — F500 tab only -->
-    <div id="market-header-strip" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:#4a9eff;margin-bottom:.3rem;">Market Intelligence · Chicago</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;line-height:1.1;">$900M–$1.1B Market · <em style="color:#C8102E;">Underserved.</em> 15 Competitors · <em style="color:#22c55e;">None Full-Stack.</em></div>
-      </div>
-      <div style="display:flex;gap:.75rem;flex-shrink:0;">
-        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#4a9eff;">4.8%</div>
-          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Regional Growth</div>
-        </div>
-        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#22c55e;">202</div>
-          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Targets Mapped</div>
-        </div>
-        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#f59e0b;">50</div>
-          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">F500 Anchors</div>
-        </div>
-        <div style="text-align:center;background:rgba(200,16,46,.06);border:1px solid rgba(200,16,46,.2);padding:.6rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#C8102E;">+15%</div>
-          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Eco Premium</div>
-        </div>
-      </div>
+    <div id="market-header-strip" style="margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.07);">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:#4a9eff;">Market Intelligence · Chicago</div>
     </div>
-<div id="market-context-wrap">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);margin-bottom:2rem;">
-
-      <!-- Row 1 -->
-      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #4a9eff;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;min-width:80px;">$9.82B</div>
-        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Global Wide-Format Market</strong><br>+2.6–5.0% CAGR vs US printing's −2.8%</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #C8102E;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:60px;">40%</div>
-        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Corporate / Office HQs</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">McDonald's, United, Allstate, Chase — anchor targets</div></div>
-      </div>
-
-      <!-- Row 2 -->
-      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid #4a9eff;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;min-width:80px;">4.8%</div>
-        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Chicago Regional Growth</strong><br>Branded interior graphics fastest-growing segment</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">30%</div>
-        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Retail &amp; Hospitality</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">Store environments, POP, window graphics</div></div>
-      </div>
-
-      <!-- Row 3 -->
-      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid #C8102E;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#C8102E;min-width:80px;">$8.2B</div>
-        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Facilities &amp; Marketing Spend</strong><br>Chicago metro annual budget across target sectors</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;background:#0d1624;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">20%</div>
-        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Events &amp; Non-Profits</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">McCormick Place — one of the nation's busiest venues</div></div>
-      </div>
-
-      <!-- Row 4 -->
-      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid #f59e0b;">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#f59e0b;min-width:80px;">+15%</div>
-        <div style="font-size:.88rem;color:#8A8A8A;line-height:1.5;"><strong style="color:#fff;">Sustainability Premium</strong><br>40–50% enterprise clients require eco-materials</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:1rem;background:#0b1420;padding:1.1rem 1.25rem;border-left:3px solid rgba(255,255,255,.2);">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;min-width:60px;">10%</div>
-        <div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;text-transform:uppercase;color:#fff;">Healthcare &amp; Education</div><div style="font-size:.82rem;color:#8A8A8A;margin-top:.2rem;">Wayfinding, compliance signage — recession-resistant</div></div>
-      </div>
-
-    </div>
-</div>
+<div id="market-context-wrap"></div>
 <!-- TOP: Sector account table with tabs -->
-      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;margin-bottom:1.5rem;">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;">Top Accounts by Sector &amp; Decision-Maker</div>
-          <div style="font-size:.72rem;color:#4a6080;font-family:'Barlow Condensed',sans-serif;">202 targets · select a sector to drill in →</div>
-        </div>
+      <div style="margin-bottom:1.5rem;">
+
         <style>
-          .mkt-tab { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; background:rgba(255,255,255,.06); color:#c0cfe8; border:1px solid rgba(255,255,255,.12); border-left:2px solid rgba(90,171,255,.4); padding:.25rem .65rem; cursor:pointer; transition:all .15s; display:flex; flex-direction:column; align-items:flex-start; gap:.04rem; }
-          .mkt-tab:hover { color:#fff; background:rgba(90,171,255,.12); border-color:rgba(90,171,255,.4); border-left-color:#5aabff; }
-          .mkt-tab-label { display:block; line-height:1; }
-          .mkt-tab-roles { display:block; font-size:.52rem; font-weight:600; letter-spacing:.05em; color:rgba(90,171,255,.7); text-transform:uppercase; line-height:1; margin-top:.1rem; white-space:nowrap; }
-          .mkt-tab:hover .mkt-tab-roles { color:rgba(90,171,255,1); }
-          #mtab-f500 .mkt-tab-roles { color:rgba(255,255,255,.6); }
-          #mtab-f500:hover .mkt-tab-roles { color:rgba(255,255,255,.9); }
+          .mkt-tab { all:unset; box-sizing:border-box; }
+
+          /* ── SECTOR TILES ─────────────────────────────────────────── */
+          .sec-tile {
+            font-family:'Barlow Condensed',sans-serif; cursor:pointer;
+            transition: transform .2s cubic-bezier(.22,1,.36,1),
+                        box-shadow .2s ease,
+                        border-color .2s ease,
+                        background .2s ease;
+            display:flex; flex-direction:column;
+            position:relative; overflow:hidden;
+          }
+          /* Shimmer sweep on hover */
+          .sec-tile::after {
+            content:'';
+            position:absolute; inset:0;
+            background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.06) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform .45s ease;
+            pointer-events:none;
+          }
+          .sec-tile:hover::after { transform: translateX(100%); }
+          .sec-tile:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.5);
+          }
+
+          /* Per-color glow on hover via data-color */
+          #mtab-svc:hover  { box-shadow:0 6px 22px rgba(74,158,255,.35);  border-color:rgba(74,158,255,.7)  !important; }
+          #mtab-fin:hover  { box-shadow:0 6px 22px rgba(168,85,247,.35);  border-color:rgba(168,85,247,.7)  !important; }
+          #mtab-hlth:hover { box-shadow:0 6px 22px rgba(20,184,166,.35);  border-color:rgba(20,184,166,.7)  !important; }
+          #mtab-ind:hover  { box-shadow:0 6px 22px rgba(245,158,11,.35);  border-color:rgba(245,158,11,.7)  !important; }
+          #mtab-rtl:hover  { box-shadow:0 6px 22px rgba(34,197,94,.35);   border-color:rgba(34,197,94,.7)   !important; }
+          #mtab-tch:hover  { box-shadow:0 6px 22px rgba(6,182,212,.35);   border-color:rgba(6,182,212,.7)   !important; }
+
+          /* Bright icon + label on hover */
+          .sec-tile:hover .tile-icon  { opacity:1 !important; transform:scale(1.15); }
+          .sec-tile:hover .tile-label { letter-spacing:.16em !important; }
+          .sec-tile:hover .tile-sub   { opacity:.85 !important; }
+          .tile-icon  { transition: opacity .2s, transform .2s cubic-bezier(.22,1,.36,1); }
+          .tile-label { transition: letter-spacing .2s ease; }
+          .tile-sub   { transition: opacity .2s ease; }
+
+          /* ── STRATEGY INTEL TILES ─────────────────────────────────── */
+          #mtab-crm:hover        { box-shadow:0 6px 24px rgba(74,158,255,.4);   border-color:rgba(74,158,255,.7)  !important; background:linear-gradient(145deg,#0e2a54 0%,#0c2040 100%) !important; }
+          #mtab-sales_analysis:hover { box-shadow:0 6px 24px rgba(34,197,94,.4);  border-color:rgba(34,197,94,.7)   !important; background:linear-gradient(145deg,#0e3a1c 0%,#0a2812 100%) !important; }
+          #mtab-partners:hover   { box-shadow:0 6px 24px rgba(20,184,166,.4);   border-color:rgba(20,184,166,.7)  !important; background:linear-gradient(145deg,#0b2c2e 0%,#08201e 100%) !important; }
+          #mtab-competitive:hover{ box-shadow:0 6px 24px rgba(200,16,46,.4);    border-color:rgba(200,16,46,.7)   !important; background:linear-gradient(145deg,#2e0c10 0%,#200810 100%) !important; }
+
+          /* ── F500 HERO BAR ────────────────────────────────────────── */
+          #mtab-f500 {
+            transition: background .2s ease, box-shadow .25s ease, border-color .2s ease;
+          }
+          #mtab-f500:hover {
+            box-shadow: 0 0 0 1px rgba(200,16,46,.6), 0 8px 32px rgba(200,16,46,.3) !important;
+          }
+
+          /* ── MID-MARKET BAR ───────────────────────────────────────── */
+          #mtab-mid {
+            transition: background .2s ease, box-shadow .25s ease, border-color .2s ease;
+          }
+          #mtab-mid:hover {
+            box-shadow: 0 0 0 1px rgba(74,158,255,.5), 0 8px 32px rgba(74,158,255,.25) !important;
+          }
+
+          /* ── PULSE ANIMATION for active catalyst badges ───────────── */
+          @keyframes pulse-badge {
+            0%,100% { opacity:1; }
+            50%      { opacity:.55; }
+          }
+          .catalyst-pulse { animation: pulse-badge 2.2s ease-in-out infinite; }
         </style>
-        <div style="margin-bottom:.2rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Sector Targets</div>
-          <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
-            <button onclick="mktTab('f500')" id="mtab-f500" data-tip="F500 Chicago Targets · Overview" class="mkt-tab" style="background:#C8102E;color:#fff;border-color:#C8102E;border-left-color:#C8102E;"><span class="mkt-tab-label">F500 Overview</span><span class="mkt-tab-roles">52 targets · all sectors</span></button>
-            <button onclick="mktTab('svc')" id="mtab-svc" data-tip="Professional Services · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Services</span><span class="mkt-tab-roles">CMO · COO · VP Workplace</span></button>
-            <button onclick="mktTab('fin')" id="mtab-fin" data-tip="Financial · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Financial</span><span class="mkt-tab-roles">CMO · VP Real Estate · VP Facilities</span></button>
-            <button onclick="mktTab('hlth')" id="mtab-hlth" data-tip="Healthcare · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Healthcare</span><span class="mkt-tab-roles">VP Facilities · CHRO</span></button>
-            <button onclick="mktTab('ind')" id="mtab-ind" data-tip="Industrials · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Industrials</span><span class="mkt-tab-roles">COO · VP Operations · VP Facilities</span></button>
-            <button onclick="mktTab('rtl')" id="mtab-rtl" data-tip="Retail · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Retail</span><span class="mkt-tab-roles">CMO · VP Real Estate · VP Retail Design</span></button>
-            <button onclick="mktTab('mid')" id="mtab-mid" data-tip="Mid-Market · 138 targets" class="mkt-tab"><span class="mkt-tab-label">Mid-Market</span><span class="mkt-tab-roles">CMO · COO · CEO/Owner</span></button>
-          </div>
+
+        <!-- Header -->
+        <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:#e8f0ff;">Target Accounts</div>
+          <div style="font-size:.62rem;color:#3a5268;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;">203 targets · select a sector →</div>
         </div>
-        <div style="border-top:1px solid rgba(255,255,255,.08);margin:.55rem 0 .35rem;"></div>
-        <div style="margin-bottom:.9rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Strategy &amp; Intelligence</div>
-          <div style="display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;">
-            <button onclick="mktTab('crm')" id="mtab-crm" data-tip="Pipeline · 202 accounts" class="mkt-tab">Pipeline</button>
-            <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" data-tip="Sales Analysis · Catalyst & Sector Breakdown" class="mkt-tab">Sales Analysis</button>
-            <button onclick="mktTab('partners')" id="mtab-partners" data-tip="Channel Partners · Co-sell Network" class="mkt-tab">Channel Partners</button>
-            <button onclick="mktTab('competitive')" id="mtab-competitive" data-tip="Competitive Intelligence · 15 Competitors" class="mkt-tab">Competitive Intel</button>
+
+        <!-- F500 OVERVIEW — hero card -->
+        <button onclick="mktTab('f500')" id="mtab-f500" data-tip="F500 Chicago Targets · All Sectors Overview"
+          style="all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+            background:linear-gradient(105deg,#08060a 0%,#0e0a10 50%,#08060a 100%);
+            border:1px solid rgba(200,16,46,.5); border-left:5px solid #C8102E;
+            padding:.85rem 1.1rem; margin-bottom:.35rem; transition:all .2s;"
+          onmouseover="this.style.background='linear-gradient(105deg,#120810 0%,#180c18 50%,#120810 100%)'"
+          onmouseout="this.style.background='linear-gradient(105deg,#08060a 0%,#0e0a10 50%,#08060a 100%)'">
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.55rem;font-weight:900;letter-spacing:.2em;color:#ff3355;background:rgba(200,16,46,.2);border:1px solid rgba(200,16,46,.6);padding:.18rem .55rem;white-space:nowrap;">F500</div>
+            <div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:#ffffff;line-height:1;">Overview · All Sectors</div>
+              <div style="font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,16,46,.7);margin-top:.2rem;">Fortune 500 Illinois Headquarters</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1.5rem;">
+            <div style="text-align:right;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#ff2244;line-height:1;">53</div>
+              <div style="font-size:.45rem;letter-spacing:.12em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:.1rem;">Targets</div>
+            </div>
+            <div style="width:1px;height:2rem;background:rgba(200,16,46,.4);"></div>
+            <div style="font-size:1.2rem;color:#C8102E;">→</div>
+          </div>
+        </button>
+
+        <!-- 6 SECTOR TILES — vivid colour-coded cards -->
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:.3rem;margin-bottom:.35rem;">
+
+          <button onclick="mktTab('svc')" id="mtab-svc" data-tip="Professional Services · 7 targets · $3.6B TAM" class="sec-tile"
+            style="background:linear-gradient(160deg,#0c2248 0%,#102e5c 100%);border:1px solid rgba(74,158,255,.4);border-top:3px solid #4a9eff;padding:.7rem .65rem .6rem;">
+            <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.1em;color:#deeeff;text-transform:uppercase;line-height:1;">Services</div>
+            <div class="tile-sub" style="font-size:.5rem;letter-spacing:.06em;color:rgba(74,158,255,.85);margin-top:.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">7 · $3.6B</div>
+          </button>
+
+          <button onclick="mktTab('fin')" id="mtab-fin" data-tip="Financial · 7 targets · $7.1B TAM" class="sec-tile"
+            style="background:linear-gradient(160deg,#1a0c30 0%,#220e40 100%);border:1px solid rgba(168,85,247,.4);border-top:3px solid #a855f7;padding:.7rem .65rem .6rem;">
+            <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.1em;color:#f0dcff;text-transform:uppercase;line-height:1;">Financial</div>
+            <div class="tile-sub catalyst-pulse" style="font-size:.5rem;letter-spacing:.06em;color:rgba(220,80,80,.95);margin-top:.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">7 · ACQ ⚑</div>
+          </button>
+
+          <button onclick="mktTab('hlth')" id="mtab-hlth" data-tip="Healthcare · 7 targets · $6.7B TAM" class="sec-tile"
+            style="background:linear-gradient(160deg,#092222 0%,#0d2c2c 100%);border:1px solid rgba(20,184,166,.4);border-top:3px solid #14b8a6;padding:.7rem .65rem .6rem;">
+            <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.1em;color:#c8f4ee;text-transform:uppercase;line-height:1;">Healthcare</div>
+            <div class="tile-sub catalyst-pulse" style="font-size:.5rem;letter-spacing:.06em;color:rgba(250,170,20,.95);margin-top:.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">7 · MERGER ⚑</div>
+          </button>
+
+          <button onclick="mktTab('ind')" id="mtab-ind" data-tip="Industrials · 7 targets · $8.7B TAM" class="sec-tile"
+            style="background:linear-gradient(160deg,#241406 0%,#301c08 100%);border:1px solid rgba(245,158,11,.4);border-top:3px solid #f59e0b;padding:.7rem .65rem .6rem;">
+            <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.1em;color:#ffe8a0;text-transform:uppercase;line-height:1;">Industrials</div>
+            <div class="tile-sub" style="font-size:.5rem;letter-spacing:.06em;color:rgba(245,158,11,.9);margin-top:.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">7 · $8.7B</div>
+          </button>
+
+          <button onclick="mktTab('rtl')" id="mtab-rtl" data-tip="Retail · 12 targets · $4.3B TAM" class="sec-tile"
+            style="background:linear-gradient(160deg,#0a2010 0%,#0d2814 100%);border:1px solid rgba(34,197,94,.4);border-top:3px solid #22c55e;padding:.7rem .65rem .6rem;">
+            <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.1em;color:#ccfcd8;text-transform:uppercase;line-height:1;">Retail</div>
+            <div class="tile-sub" style="font-size:.5rem;letter-spacing:.06em;color:rgba(34,197,94,.95);margin-top:.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">12 · LARGEST ★</div>
+          </button>
+
+          <button onclick="mktTab('tch')" id="mtab-tch" data-tip="Technology · 13 targets · $1.9B TAM" class="sec-tile"
+            style="background:linear-gradient(160deg,#081e24 0%,#0b2830 100%);border:1px solid rgba(6,182,212,.4);border-top:3px solid #06b6d4;padding:.7rem .65rem .6rem;">
+            <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.1em;color:#c0f0fc;text-transform:uppercase;line-height:1;">Technology</div>
+            <div class="tile-sub" style="font-size:.5rem;letter-spacing:.06em;color:rgba(6,182,212,.9);margin-top:.25rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">13 · FASTEST CLOSE</div>
+          </button>
+        </div>
+
+        <!-- MID-MARKET -->
+        <button onclick="mktTab('mid')" id="mtab-mid" data-tip="Mid-Market · 150 targets · 12 sectors"
+          style="all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+            background:linear-gradient(105deg,#071428 0%,#0d2040 50%,#071428 100%);
+            border:1px solid rgba(90,171,255,.35); border-left:5px solid #4a9eff;
+            padding:.85rem 1.1rem; transition:all .2s;"
+          onmouseover="this.style.background='linear-gradient(105deg,#0c1e3c 0%,#122a52 50%,#0c1e3c 100%)'"
+          onmouseout="this.style.background='linear-gradient(105deg,#071428 0%,#0d2040 50%,#071428 100%)'">
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.55rem;font-weight:900;letter-spacing:.2em;color:#4a9eff;background:rgba(74,158,255,.18);border:1px solid rgba(74,158,255,.4);padding:.18rem .55rem;white-space:nowrap;">MID</div>
+            <div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;letter-spacing:.16em;text-transform:uppercase;color:#b8d8f8;line-height:1;">Mid-Market</div>
+              <div style="font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(74,158,255,.6);margin-top:.2rem;">Growth Accounts · 12 Sectors</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:1.5rem;">
+            <div style="text-align:right;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;line-height:1;">150</div>
+              <div style="font-size:.45rem;letter-spacing:.12em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-top:.1rem;">Targets</div>
+            </div>
+            <div style="width:1px;height:2rem;background:rgba(74,158,255,.3);"></div>
+            <div style="font-size:1.2rem;color:rgba(74,158,255,.6);">→</div>
+          </div>
+        </button>
+        <!-- STRATEGY & INTELLIGENCE -->
+        <div style="margin-top:.5rem;margin-bottom:.9rem;">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.45rem;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);">Strategy &amp; Intelligence</div>
+            <div style="flex:1;height:1px;background:rgba(255,255,255,.08);"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem;">
+
+            <!-- Pipeline — vivid blue -->
+            <button onclick="mktTab('crm')" id="mtab-crm" data-tip="Pipeline · 203 accounts" class="sec-tile"
+              style="background:linear-gradient(145deg,#0c2244 0%,#0a1a36 100%);border:1px solid rgba(74,158,255,.3);border-top:3px solid #4a9eff;padding:.75rem .75rem .65rem;text-align:left;">
+              <div class="tile-icon" style="font-size:1.3rem;line-height:1;margin-bottom:.35rem;color:#4a9eff;">◈</div>
+              <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:#c8e4ff;text-transform:uppercase;line-height:1;">Pipeline</div>
+              <div class="tile-sub" style="font-size:.5rem;letter-spacing:.08em;color:rgba(74,158,255,.7);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">203 Accounts</div>
+            </button>
+
+            <!-- Sales Analysis — vivid green -->
+            <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" data-tip="Sales Analysis · Catalyst & Sector Breakdown" class="sec-tile"
+              style="background:linear-gradient(145deg,#0a2814 0%,#081e10 100%);border:1px solid rgba(34,197,94,.3);border-top:3px solid #22c55e;padding:.75rem .75rem .65rem;text-align:left;">
+              <div class="tile-icon" style="font-size:1.3rem;line-height:1;margin-bottom:.35rem;color:#22c55e;">▲</div>
+              <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:#b8f0cc;text-transform:uppercase;line-height:1;">Sales Analysis</div>
+              <div class="tile-sub" style="font-size:.5rem;letter-spacing:.08em;color:rgba(34,197,94,.7);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">Catalyst &amp; Sector</div>
+            </button>
+
+            <!-- Channel Partners — vivid teal -->
+            <button onclick="mktTab('partners')" id="mtab-partners" data-tip="Channel Partners · Co-sell Network" class="sec-tile"
+              style="background:linear-gradient(145deg,#072022 0%,#05181a 100%);border:1px solid rgba(20,184,166,.3);border-top:3px solid #14b8a6;padding:.75rem .75rem .65rem;text-align:left;">
+              <div class="tile-icon" style="font-size:1.3rem;line-height:1;margin-bottom:.35rem;color:#14b8a6;">⬡</div>
+              <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:#a0ece4;text-transform:uppercase;line-height:1;">Channel Partners</div>
+              <div class="tile-sub" style="font-size:.5rem;letter-spacing:.08em;color:rgba(20,184,166,.7);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">Co-Sell Network</div>
+            </button>
+
+            <!-- Competitive Intel — vivid red -->
+            <button onclick="mktTab('competitive')" id="mtab-competitive" data-tip="Competitive Intelligence · 15 Competitors" class="sec-tile"
+              style="background:linear-gradient(145deg,#220608 0%,#180408 100%);border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:.75rem .75rem .65rem;text-align:left;">
+              <div class="tile-icon" style="font-size:1.3rem;line-height:1;margin-bottom:.35rem;color:#C8102E;">◎</div>
+              <div class="tile-label" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:#ffc8d0;text-transform:uppercase;line-height:1;">Competitive Intel</div>
+              <div class="tile-sub" style="font-size:.5rem;letter-spacing:.08em;color:rgba(200,16,46,.75);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">15 Competitors</div>
+            </button>
+
           </div>
         </div>
         <div id="crm-pipeline-wrap" style="display:none;"></div>
@@ -1860,6 +2027,29 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08);">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:#f59e0b;">Proof of Concept · Case Study</div>
       <button onclick="closeModal()" style="background:none;border:none;color:#4a6080;font-size:1.2rem;cursor:pointer;">✕</button>
+    </div>
+    <!-- Proof strip -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.5rem;">
+      <div onclick="csTab('kh')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #f59e0b;padding:.75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">Kraft Heinz</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#f59e0b;">CORP HQ</span></div>
+        <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">Multi-floor branded environments. Interior culture graphics, $280K scope.</div>
+        <div style="font-size:.62rem;color:#f59e0b;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Same HQ footprint model</div>
+      </div>
+      <div onclick="csTab('mc')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #C8102E;padding:.75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">McDonald's HQ</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#C8102E;">CORP HQ</span></div>
+        <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">Fulton Market relocation — full environmental identity package.</div>
+        <div style="font-size:.62rem;color:#C8102E;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Active remodel cycle still in play</div>
+      </div>
+      <div onclick="csTab('ua')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #4a9eff;padding:.75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">United Airlines</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#4a9eff;">SERVICES</span></div>
+        <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">Willis Tower HQ rebrand — wayfinding, branded zones, eco materials.</div>
+        <div style="font-size:.62rem;color:#4a9eff;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Local studio = same-day turnaround</div>
+      </div>
+      <div onclick="csTab('al')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #a855f7;padding:.75rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">Allstate</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.52rem;letter-spacing:.1em;color:#a855f7;">FINANCIAL</span></div>
+        <div style="font-size:.68rem;color:#5a7090;line-height:1.4;margin-bottom:.4rem;">2022–23 rebrand drove full interior refresh, Northbrook campus.</div>
+        <div style="font-size:.62rem;color:#a855f7;opacity:.8;border-top:1px solid rgba(255,255,255,.05);padding-top:.3rem;">→ Brand standards still rolling out</div>
+      </div>
     </div>
     <!-- Tab buttons -->
     <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.5rem;">
@@ -1976,7 +2166,31 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
   <div id="modal-casestudy" class="modal-content" style="display:none;padding:3rem;">
     <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#f59e0b;margin-bottom:.5rem;">Target Account Case Studies</div>
     <h2 style="font-size:2.2rem;margin-bottom:.4rem;">Four Sectors.<br><em style="color:#f59e0b;">Four Foxmark Entry Points.</em></h2>
-    <div style="font-size:.9rem;color:#9096a8;line-height:1.6;margin-bottom:2rem;">Each represents a sector archetype — not a pitch, a pattern. The same playbook wins across all four.</div>
+    <div style="font-size:.9rem;color:#9096a8;line-height:1.6;margin-bottom:1.5rem;">Each represents a sector archetype — not a pitch, a pattern. The same playbook wins across all four.</div>
+
+    <!-- PROOF STRIP: Comparable F500 Work -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.75rem;">
+      <div onclick="csTab('kh')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #f59e0b;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">Kraft Heinz</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#f59e0b;">CORP HQ</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Multi-floor branded environments across Chicago HQ. Interior culture graphics program, $280K scope.</div>
+        <div style="font-size:.68rem;color:#f59e0b;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Replicable at McDonald's, United, Allstate — same HQ footprint model.</div>
+      </div>
+      <div onclick="csTab('mc')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #C8102E;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">McDonald's HQ</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#C8102E;">CORP HQ</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Fulton Market relocation — full environmental identity package for new global headquarters.</div>
+        <div style="font-size:.68rem;color:#C8102E;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Active remodel cycle + Oak Brook campus still in play.</div>
+      </div>
+      <div onclick="csTab('ua')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #4a9eff;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">United Airlines</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#4a9eff;">SERVICES</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Willis Tower HQ rebrand — interior wayfinding, branded zones, sustainability materials required.</div>
+        <div style="font-size:.68rem;color:#4a9eff;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Procurement prefers local certified studio. Chicago HQ = same-day proof turnaround.</div>
+      </div>
+      <div onclick="csTab('al')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #a855f7;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">Allstate</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#a855f7;">FINANCIAL</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">2022–23 rebrand drove full interior refresh across Northbrook campus. Eco-cert required by facilities.</div>
+        <div style="font-size:.68rem;color:#a855f7;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ New brand standards still rolling out to regional offices.</div>
+      </div>
+    </div>
 
     <!-- CASE STUDY TABS -->
     <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="cs-tabs">
@@ -3322,9 +3536,31 @@ function fcCopy(name, title, email, phone) {
 
 <div id="tpl-casestudies" style="display:none;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.3em;text-transform:uppercase;color:#f59e0b;margin-bottom:.5rem;">Target Account Case Studies</div>
     <h2 style="font-size:2.2rem;margin-bottom:.4rem;">Four Sectors.<br><em style="color:#f59e0b;">Four Foxmark Entry Points.</em></h2>
-    <div style="font-size:.9rem;color:#9096a8;line-height:1.6;margin-bottom:2rem;">Each represents a sector archetype — not a pitch, a pattern. The same playbook wins across all four.</div>
+    <div style="font-size:.9rem;color:#9096a8;line-height:1.6;margin-bottom:1.5rem;">Each represents a sector archetype — not a pitch, a pattern. The same playbook wins across all four.</div>
 
-    <!-- CASE STUDY TABS -->
+    <!-- PROOF STRIP: Comparable F500 Work -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.75rem;">
+      <div onclick="csTab('kh')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #f59e0b;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">Kraft Heinz</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#f59e0b;">CORP HQ</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Multi-floor branded environments across Chicago HQ. Interior culture graphics program, $280K scope.</div>
+        <div style="font-size:.68rem;color:#f59e0b;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Replicable at McDonald's, United, Allstate — same HQ footprint model.</div>
+      </div>
+      <div onclick="csTab('mc')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #C8102E;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">McDonald's HQ</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#C8102E;">CORP HQ</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Fulton Market relocation — full environmental identity package for new global headquarters.</div>
+        <div style="font-size:.68rem;color:#C8102E;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Active remodel cycle + Oak Brook campus still in play.</div>
+      </div>
+      <div onclick="csTab('ua')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #4a9eff;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">United Airlines</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#4a9eff;">SERVICES</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Willis Tower HQ rebrand — interior wayfinding, branded zones, sustainability materials required.</div>
+        <div style="font-size:.68rem;color:#4a9eff;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Procurement prefers local certified studio. Chicago HQ = same-day proof turnaround.</div>
+      </div>
+      <div onclick="csTab('al')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid #a855f7;padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='rgba(255,255,255,.02)'">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">Allstate</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:#a855f7;">FINANCIAL</div></div>
+        <div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">2022–23 rebrand drove full interior refresh across Northbrook campus. Eco-cert required by facilities.</div>
+        <div style="font-size:.68rem;color:#a855f7;opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ New brand standards still rolling out to regional offices.</div>
+      </div>
+    </div>
     <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="cs-tabs">
       <button onclick="csTab('kh')" id="cstab-kh" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:#f59e0b;color:#000;border:none;padding:.3rem .85rem;cursor:pointer;">Kraft Heinz</button>
       <button onclick="csTab('mc')" id="cstab-mc" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.07);color:#8A8A8A;border:none;padding:.3rem .85rem;cursor:pointer;">McDonald's HQ</button>
@@ -4128,104 +4364,78 @@ function fcCopy(name, title, email, phone) {
   <h2 style="font-size:1.4rem;line-height:1.1;margin-bottom:.6rem;">Studio Lab vs.<br><em style="color:#C8102E;">The Franchise Ceiling.</em></h2>
 
   <!-- Framing statement -->
-  <div style="background:rgba(255,255,255,.02);border-left:3px solid #C8102E;padding:.7rem 1rem;margin-bottom:1rem;">
-    <div style="font-size:.78rem;color:#c0cfe8;line-height:1.6;">Foxmark's three franchise competitors — SpeedPro, FASTSIGNS, and AlphaGraphics — are capable local operators. <strong style="color:#fff;">But their business model has a structural ceiling built in.</strong> Every enterprise account that requires custom pricing, multi-site rollout, or innovation is an account they are legally and structurally prevented from winning. Foxmark has none of those constraints. That's not a competitive advantage — it's a different category.</div>
+  <div style="background:rgba(255,255,255,.02);border-left:3px solid #C8102E;padding:.7rem 1rem;margin-bottom:1.25rem;">
+    <div style="font-size:.78rem;color:#c0cfe8;line-height:1.6;">Foxmark's three franchise competitors — SpeedPro, FASTSIGNS, and AlphaGraphics — are capable local operators. <strong style="color:#fff;">But their business model has a structural ceiling built in.</strong> Every enterprise account that requires custom pricing, multi-site rollout, or innovation is an account they are legally and structurally prevented from winning. Foxmark has none of those constraints.</div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1rem;">
-
-    <!-- C1: Royalty Drag -->
-    <div style="border:1px solid rgba(255,255,255,.06);overflow:hidden;">
-      <div style="background:rgba(200,16,46,.12);padding:.4rem .75rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(200,16,46,.2);">
-        <span style="color:#C8102E;font-size:.8rem;">⚠</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#ff8080;">Constraint 1 — Royalty Drag</span>
+  <!-- Comparison table -->
+  <div style="border:1px solid rgba(255,255,255,.07);overflow:hidden;margin-bottom:1rem;">
+    <!-- Header row -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);">
+      <div style="padding:.5rem .85rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#5a7090;">Constraint</div>
+      <div style="padding:.5rem .85rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#C8102E;border-left:1px solid rgba(255,255,255,.06);">⚠ Franchise Reality</div>
+      <div style="padding:.5rem .85rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#4a9eff;border-left:1px solid rgba(255,255,255,.06);">✓ Foxmark Advantage</div>
+    </div>
+    <!-- Row 1: Royalty Drag -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,.05);">
+      <div style="padding:.75rem .85rem;border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.8rem;color:#e8f0ff;letter-spacing:.06em;text-transform:uppercase;">Royalty Drag</div>
+        <div style="font-size:.68rem;color:#6a8aa8;margin-top:.2rem;line-height:1.4;">Revenue tax before operations begin</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-        <div style="background:rgba(200,16,46,.04);padding:.65rem .75rem;border-right:1px solid rgba(255,255,255,.05);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;margin-bottom:.2rem;">Franchise Reality</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#ff6b6b;line-height:1;margin-bottom:.12rem;">6–8%</div>
-          <div style="font-size:.63rem;color:#c07070;margin-bottom:.3rem;">of gross revenue off the top, before ops</div>
-          <div style="font-size:.67rem;color:#906060;line-height:1.45;">On $1.5M Year 1 revenue, that's ~$120K gone before a single dollar hits the P&amp;L — roughly 3 salaries, or the difference between breakeven and profit.</div>
-        </div>
-        <div style="background:rgba(74,158,255,.05);padding:.65rem .75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4a9eff;margin-bottom:.2rem;">Foxmark Advantage</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#7dc4ff;line-height:1;margin-bottom:.12rem;">0%</div>
-          <div style="font-size:.63rem;color:#6090b0;margin-bottom:.3rem;">no royalties · full margin retained</div>
-          <div style="font-size:.67rem;color:#5a80a0;line-height:1.45;margin-bottom:.4rem;">Every dollar of revenue stays in the P&amp;L. Margins fund reinvestment and talent, not a franchisor's national ad budget.</div>
-          <div style="background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.25);padding:.3rem .5rem;font-size:.63rem;color:#93c5fd;line-height:1.4;"><strong style="color:#7dc4ff;">Impact:</strong> Foxmark's 33% EBITDA target is structurally unachievable for any franchise operator in this market.</div>
-        </div>
+      <div style="padding:.75rem .85rem;background:rgba(200,16,46,.03);border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#ff6b6b;line-height:1;margin-bottom:.25rem;">6–8% off the top</div>
+        <div style="font-size:.67rem;color:#9a7070;line-height:1.45;">On $1.5M revenue = ~$120K gone before a single dollar hits P&amp;L. Roughly 3 salaries, or the margin between breakeven and profit.</div>
+      </div>
+      <div style="padding:.75rem .85rem;background:rgba(74,158,255,.03);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#7dc4ff;line-height:1;margin-bottom:.25rem;">0% · Full margin retained</div>
+        <div style="font-size:.67rem;color:#7a9ab8;line-height:1.45;">Every dollar stays in the P&amp;L. Foxmark's 33% EBITDA target is <em>structurally unachievable</em> for any Chicago franchise operator.</div>
       </div>
     </div>
-
-    <!-- C2: Pricing Lock -->
-    <div style="border:1px solid rgba(255,255,255,.06);overflow:hidden;">
-      <div style="background:rgba(200,16,46,.12);padding:.4rem .75rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(200,16,46,.2);">
-        <span style="color:#C8102E;font-size:.8rem;">⚠</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#ff8080;">Constraint 2 — Pricing Lock</span>
+    <!-- Row 2: Pricing Lock -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,.05);">
+      <div style="padding:.75rem .85rem;border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.8rem;color:#e8f0ff;letter-spacing:.06em;text-transform:uppercase;">Pricing Lock</div>
+        <div style="font-size:.68rem;color:#6a8aa8;margin-top:.2rem;line-height:1.4;">Corporate-approved tiers only</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-        <div style="background:rgba(200,16,46,.04);padding:.65rem .75rem;border-right:1px solid rgba(255,255,255,.05);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;margin-bottom:.2rem;">Franchise Reality</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#ff6b6b;line-height:1;margin-bottom:.12rem;">Locked</div>
-          <div style="font-size:.63rem;color:#c07070;margin-bottom:.3rem;">corporate-approved tiers only</div>
-          <div style="font-size:.67rem;color:#906060;line-height:1.45;">Custom enterprise programs require franchisor sign-off. Quoting outside approved tiers risks the franchise agreement. Margin compression is structural.</div>
-        </div>
-        <div style="background:rgba(74,158,255,.05);padding:.65rem .75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4a9eff;margin-bottom:.2rem;">Foxmark Advantage</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#7dc4ff;line-height:1;margin-bottom:.12rem;">Open</div>
-          <div style="font-size:.63rem;color:#6090b0;margin-bottom:.3rem;">full custom pricing autonomy</div>
-          <div style="font-size:.67rem;color:#5a80a0;line-height:1.45;margin-bottom:.4rem;">Bundled design + print + install + eco at negotiated enterprise rates. No menu. No ceiling.</div>
-          <div style="background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.25);padding:.3rem .5rem;font-size:.63rem;color:#93c5fd;line-height:1.4;"><strong style="color:#7dc4ff;">Impact:</strong> JLL and Cushman expect custom program pricing. A franchise operator literally cannot quote this — Foxmark can.</div>
-        </div>
+      <div style="padding:.75rem .85rem;background:rgba(200,16,46,.03);border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#ff6b6b;line-height:1;margin-bottom:.25rem;">Locked to approved tiers</div>
+        <div style="font-size:.67rem;color:#9a7070;line-height:1.45;">Quoting outside approved tiers risks the franchise agreement. Custom enterprise programs require franchisor sign-off. Margin compression is structural.</div>
+      </div>
+      <div style="padding:.75rem .85rem;background:rgba(74,158,255,.03);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#7dc4ff;line-height:1;margin-bottom:.25rem;">Open · Full pricing autonomy</div>
+        <div style="font-size:.67rem;color:#7a9ab8;line-height:1.45;">Bundled design + print + install + eco at negotiated enterprise rates. JLL and Cushman expect this. A franchise literally cannot quote it.</div>
       </div>
     </div>
-
-    <!-- C3: Territory Walls -->
-    <div style="border:1px solid rgba(255,255,255,.06);overflow:hidden;">
-      <div style="background:rgba(200,16,46,.12);padding:.4rem .75rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(200,16,46,.2);">
-        <span style="color:#C8102E;font-size:.8rem;">⚠</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#ff8080;">Constraint 3 — Territory Walls</span>
+    <!-- Row 3: Territory Walls -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,.05);">
+      <div style="padding:.75rem .85rem;border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.8rem;color:#e8f0ff;letter-spacing:.06em;text-transform:uppercase;">Territory Walls</div>
+        <div style="font-size:.68rem;color:#6a8aa8;margin-top:.2rem;line-height:1.4;">Work stops at the boundary</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-        <div style="background:rgba(200,16,46,.04);padding:.65rem .75rem;border-right:1px solid rgba(255,255,255,.05);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;margin-bottom:.2rem;">Franchise Reality</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#ff6b6b;line-height:1;margin-bottom:.12rem;">Stopped</div>
-          <div style="font-size:.63rem;color:#c07070;margin-bottom:.3rem;">at the territory boundary</div>
-          <div style="font-size:.67rem;color:#906060;line-height:1.45;">SpeedPro Chicago Loop cannot execute work in another franchisee's territory. A United Airlines 40-location rollout is structurally impossible from a single franchise.</div>
-        </div>
-        <div style="background:rgba(74,158,255,.05);padding:.65rem .75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4a9eff;margin-bottom:.2rem;">Foxmark Advantage</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#7dc4ff;line-height:1;margin-bottom:.12rem;">National</div>
-          <div style="font-size:.63rem;color:#6090b0;margin-bottom:.3rem;">no territory walls · one relationship</div>
-          <div style="font-size:.67rem;color:#5a80a0;line-height:1.45;margin-bottom:.4rem;">Chicago originates the program. HQ executes multi-site production and kitting. Rick owns the account end-to-end — no handoffs.</div>
-          <div style="background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.25);padding:.3rem .5rem;font-size:.63rem;color:#93c5fd;line-height:1.4;"><strong style="color:#7dc4ff;">Impact:</strong> This is why Foxmark can pitch United Airlines at 40 locations. SpeedPro Chicago Loop cannot bid on that contract.</div>
-        </div>
+      <div style="padding:.75rem .85rem;background:rgba(200,16,46,.03);border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#ff6b6b;line-height:1;margin-bottom:.25rem;">Stopped at the line</div>
+        <div style="font-size:.67rem;color:#9a7070;line-height:1.45;">SpeedPro Chicago Loop cannot execute in another franchisee's territory. A 40-location United Airlines rollout is structurally impossible from one franchise.</div>
+      </div>
+      <div style="padding:.75rem .85rem;background:rgba(74,158,255,.03);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#7dc4ff;line-height:1;margin-bottom:.25rem;">National · No walls</div>
+        <div style="font-size:.67rem;color:#7a9ab8;line-height:1.45;">Chicago originates, HQ executes multi-site kitting. One relationship, end-to-end. This is why Foxmark can bid United at 40 locations — SpeedPro cannot.</div>
       </div>
     </div>
-
-    <!-- C4: No Innovation -->
-    <div style="border:1px solid rgba(255,255,255,.06);overflow:hidden;">
-      <div style="background:rgba(200,16,46,.12);padding:.4rem .75rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(200,16,46,.2);">
-        <span style="color:#C8102E;font-size:.8rem;">⚠</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#ff8080;">Constraint 4 — No Innovation Mandate</span>
+    <!-- Row 4: Innovation -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;">
+      <div style="padding:.75rem .85rem;border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.8rem;color:#e8f0ff;letter-spacing:.06em;text-transform:uppercase;">Innovation Mandate</div>
+        <div style="font-size:.68rem;color:#6a8aa8;margin-top:.2rem;line-height:1.4;">Franchisor controls all SKUs</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-        <div style="background:rgba(200,16,46,.04);padding:.65rem .75rem;border-right:1px solid rgba(255,255,255,.05);">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#C8102E;margin-bottom:.2rem;">Franchise Reality</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#ff6b6b;line-height:1;margin-bottom:.12rem;">Fixed</div>
-          <div style="font-size:.63rem;color:#c07070;margin-bottom:.3rem;">franchisor controls all SKUs &amp; workflows</div>
-          <div style="font-size:.67rem;color:#906060;line-height:1.45;">Operators cannot test new materials, workflows, or offer types without corporate approval. Innovation requires a committee, not a studio.</div>
-        </div>
-        <div style="background:rgba(74,158,255,.05);padding:.65rem .75rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#4a9eff;margin-bottom:.2rem;">Foxmark Advantage</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#7dc4ff;line-height:1;margin-bottom:.12rem;">Testbed</div>
-          <div style="font-size:.63rem;color:#6090b0;margin-bottom:.3rem;">innovation is the mandate</div>
-          <div style="font-size:.67rem;color:#5a80a0;line-height:1.45;margin-bottom:.4rem;">New materials and workflows proven in Chicago get scaled through HQ. The Studio Laboratory concept — Chicago as design front-end — is inimitable.</div>
-          <div style="background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.25);padding:.3rem .5rem;font-size:.63rem;color:#93c5fd;line-height:1.4;"><strong style="color:#7dc4ff;">Impact:</strong> F500 ESG mandates pay a 15% eco premium. Foxmark captures it by default. No franchise operator can match this without corporate approval.</div>
-        </div>
+      <div style="padding:.75rem .85rem;background:rgba(200,16,46,.03);border-right:1px solid rgba(255,255,255,.05);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#ff6b6b;line-height:1;margin-bottom:.25rem;">Fixed · Committee required</div>
+        <div style="font-size:.67rem;color:#9a7070;line-height:1.45;">No new materials, workflows, or offer types without corporate approval. Innovation requires a committee, not a studio.</div>
+      </div>
+      <div style="padding:.75rem .85rem;background:rgba(74,158,255,.03);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:#7dc4ff;line-height:1;margin-bottom:.25rem;">Testbed · Innovation is the job</div>
+        <div style="font-size:.67rem;color:#7a9ab8;line-height:1.45;">Chicago proves new materials, HQ scales them. F500 ESG mandates pay a 15% eco premium — Foxmark captures it by default. No franchise can match this.</div>
       </div>
     </div>
-
   </div>
 
   <div style="background:rgba(74,158,255,.05);border:1px solid rgba(74,158,255,.2);border-left:3px solid #4a9eff;padding:.75rem 1rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
@@ -4461,6 +4671,7 @@ var MKT_TABLES = {
   rtl: [
     ['Ace Hardware','$9.4B','—','5,700+','CMO, VP Real Estate — Oak Brook IL HQ; co-op model, each dealer controls interior brand decisions'],
     ['ALDI US','$29B','—','2,400+','CMO, VP Real Estate — Batavia IL HQ; fastest-growing US grocer; 225 new stores opened 2025; targeting 3,000 by 2028'],
+    ['Crate & Barrel (Euromarket)','$1.8B est.','—','100+ stores','CMO, VP Real Estate — Northbrook IL HQ; premium home furnishings; privately held; 100+ stores US + Canada; existing Foxmark client relationship; flagship store environments = high-design interior graphics programs'],
     ["Jewel-Osco (Albertsons IL)",'$8B+ est.','—','185 stores','VP Real Estate, VP Marketing — Itasca IL; dominant IL grocery; ongoing store remodel cycle + seasonal environmental graphics; 185 locations = major rollout program'],
     ["McDonald's Corp",'$25.9B','—','13,500 US','CMO, VP Real Estate — Oak Brook IL HQ; massive interior programs per remodel cycle; Reyes is their #1 distributor'],
     ['Potbelly Corporation','$500M','$20M','475+ locations','CMO, VP Facilities — Chicago HQ; sandwich chain; NYSE: PBPB; ongoing remodel program; interior environmental graphics = core to brand refresh'],
@@ -5038,6 +5249,15 @@ var MKT_ORGS = {
       {title:'SVP Real Estate & Construction', name:'(Verify on LinkedIn)', owns:'Restaurant remodel pipeline', target:true, note:'Active US remodel program — every remodel touches interior graphics'},
       {title:'VP Retail Design / Concept Development', name:'(Verify on LinkedIn)', owns:'Store interior standards, CosMc\'s concept', target:true, note:'New format development (CosMc\'s) = new retail interior design program; VP Retail Design owns all interior environment decisions'},
       {title:'EVP & COO', name:'(Verify on LinkedIn)', owns:'Global operations, franchise standards', target:false}
+    ]
+  },
+  'Crate & Barrel (Euromarket)': {
+    emailTpl: 'cs_kraftheinz',
+    ceo: {name:'Janet Hayes', title:'CEO, Crate & Barrel'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, store environments, campaigns', target:true, note:'Northbrook IL HQ; premium home brand — flagship store environments are core brand expression; existing Foxmark relationship = warm entry'},
+      {title:'VP Real Estate & Store Development', name:'(Verify on LinkedIn)', owns:'100+ store locations, build-outs', target:true, note:'Each new store and remodel = full interior environmental graphics package; flagship stores at high-profile locations nationwide'},
+      {title:'VP Facilities / Operations', name:'(Verify on LinkedIn)', owns:'Facilities, store ops standards', target:true, note:'Standards rollout across 100+ stores; Foxmark Chicago proximity = same-day proof turnaround for Northbrook HQ team'}
     ]
   },
   'Ace Hardware': {
@@ -6694,13 +6914,13 @@ function renderF500Dashboard() {
     { key:'fin',  label:'Financial',   color:'#a855f7', targets:7,  tam:'$7.1B',  locs:'300+',  badge:'2 ACQUISITIONS ACTIVE' },
     { key:'hlth', label:'Healthcare',  color:'#14b8a6', targets:7,  tam:'$6.7B',  locs:'100+',  badge:'POST-MERGER REBRANDS' },
     { key:'ind',  label:'Industrials', color:'#f59e0b', targets:7,  tam:'$8.7B',  locs:'500+',  badge:'LARGEST TAM SECTOR' },
-    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:11, tam:'$4.3B',  locs:'1,800+',badge:'MOST TARGETS' },
+    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:12, tam:'$4.3B',  locs:'1,800+',badge:'MOST TARGETS' },
     { key:'tch',  label:'Technology',  color:'#06b6d4', targets:13, tam:'$1.9B',  locs:'HQ',    badge:'FASTEST DECISIONS' }
   ];
 
   // Hot targets: name, sector color, urgency label, why now
   var hotTargets = [
-    { name:'Walgreens (Sycamore)', color:'#22c55e', urgency:'GONE PRIVATE AUG 2025', why:'8,000 stores. New PE owner = active rebrand mandate. Deerfield IL HQ is 20 min from studio.', sector:'Retail' },
+    { name:'Walgreens (Sycamore)', color:'#22c55e', urgency:'GONE PRIVATE AUG 2025', why:'8,000 stores. New PE owner = active rebrand mandate. Deerfield IL HQ — procurement already resetting vendor relationships.', sector:'Retail' },
     { name:'Discover → Capital One', color:'#a855f7', urgency:'ACQUISITION CLOSING', why:'Riverwoods IL HQ rebrand from Discover to Capital One brand across 53 locations. Signage is the visible signal of transition.', sector:'Financial' },
     { name:'International Motors', color:'#f59e0b', urgency:'REBRAND OCT 2024', why:'Rebranded from Navistar to International Motors Oct 2024. 1,000+ dealer locations need new environmental identity.', sector:'Industrials' },
     { name:'Baxter International', color:'#14b8a6', urgency:'POST-SPIN REBRAND', why:'Spun off Vantive (kidney care) 2024. Two companies, two new identities. Deerfield IL HQ.', sector:'Healthcare' },
@@ -6725,197 +6945,10 @@ function renderF500Dashboard() {
   h += '<div style="width:3px;height:1.4rem;background:#C8102E;flex-shrink:0;"></div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#e8f0ff;">F500 Target Overview · Illinois</div>';
   h += '<div style="flex:1;height:1px;background:rgba(255,255,255,.06);"></div>';
-  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">52 Targets · 6 Sectors</div>';
+  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">53 Targets · 6 Sectors</div>';
   h += '</div>';
 
-  // ── KPI STRIP ─────────────────────────────────────────────────────────────
-  h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.25rem;">';
-  var kpis = [
-    { v:'52',    label:'F500 Targets',        sub:'Named IL accounts',            color:'#C8102E' },
-    { v:'$50–125M', label:'Chicago Addressable', sub:'Foxmark-relevant signage spend', color:'#C8102E' },
-    { v:'22',    label:'Active Catalysts',    sub:'Rebrands · PE · Acquisitions', color:'#f59e0b' },
-    { v:'3,500+',label:'Total Locations',     sub:'Multi-site rollout TAM',       color:'#a855f7' }
-  ];
-  kpis.forEach(function(k) {
-    h += '<div style="background:#0d1e2e;border:1px solid rgba(255,255,255,.07);border-top:3px solid ' + k.color + ';padding:.9rem;text-align:center;">';
-    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.8rem;color:' + k.color + ';line-height:1;">' + k.v + '</div>';
-    h += '<div style="font-size:.7rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem;">' + k.label + '</div>';
-    h += '<div style="font-size:.65rem;color:#3a4860;margin-top:.15rem;">' + k.sub + '</div>';
-    h += '</div>';
-  });
-  h += '</div>';
-
-  // ── 2-COL: TAM bars + Hot targets ─────────────────────────────────────────
-  // ── MARKET SIZING: THREE-TIER FUNNEL ─────────────────────────────────────
-  h += '<div style="margin-bottom:1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#5a6880;margin-bottom:.6rem;">Market Sizing · How Big Is The Opportunity?</div>';
-  h += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;">';
-
-  // Tier 1
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(74,158,255,.08) 0%,rgba(74,158,255,.02) 100%);border:1px solid rgba(74,158,255,.25);overflow:hidden;">';
-  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#4a9eff;"></div>';
-  h += '<div style="padding:1rem 1rem .5rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.5rem;opacity:.9;">Tier 1 · US Wide-Format Market</div>';
-  h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#4a9eff;line-height:1;">$11.4B</div>';
-  h += '</div>';
-  h += '<div style="font-size:.7rem;color:#c8d8e8;margin-bottom:.5rem;line-height:1.5;">Total US commercial signage, wide-format print &amp; environmental graphics industry (IBISWorld 2024). Growing at +4.8% CAGR while broader print declines.</div>';
-  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.25);color:#4a9eff;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology">▼</button>';
-  h += '<div style="display:none;border-top:1px solid rgba(74,158,255,.15);padding-top:.6rem;padding-bottom:.75rem;">';
-  h += '<div style="font-size:.63rem;color:#8ab0d0;line-height:1.7;">';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#4a9eff;">Source:</strong> IBISWorld Commercial Signage Manufacturing report (2024): $11.4B US industry revenue</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#4a9eff;">Growth driver:</strong> Wide-format segment growing +4.8% annually — driven by environmental branding, ESG refreshes, and corporate identity investment</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#4a9eff;">Tailwind:</strong> Digital signage shifts budget toward large-format environmental graphics, not away from it</div>';
-  h += '<div><strong style="color:#4a9eff;">Why it matters:</strong> The total pool Foxmark participates in nationally — before filtering to IL F500 accounts.</div>';
-  h += '</div>';
-  h += '</div>';
-  h += '</div></div>';
-
-  // Tier 2
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(245,158,11,.08) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.25);overflow:hidden;">';
-  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#f59e0b;"></div>';
-  h += '<div style="padding:1rem 1rem .5rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;margin-bottom:.5rem;opacity:.9;">Tier 2 · National Signage Spend</div>';
-  h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#f59e0b;line-height:1;">$500M</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:1rem;color:#f59e0b;opacity:.6;">–$800M</div>';
-  h += '</div>';
-  h += '<div style="font-size:.7rem;color:#e8d8b8;margin-bottom:.5rem;line-height:1.5;">Est. total annual signage &amp; environmental graphics spend by IL F500 targets, across all their national locations.</div>';
-  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#f59e0b;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology" >▼</button>';
-  h += '<div style="display:none;border-top:1px solid rgba(245,158,11,.15);padding-top:.6rem;padding-bottom:.75rem;">';
-  h += '<div style="font-size:.63rem;color:#c8a870;line-height:1.7;">';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Benchmark:</strong> SEGD (Society for Experiential Graphic Design) industry research: corporations allocate 0.10–0.25% of revenue to signage, wayfinding, and environmental graphics annually</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Calculation:</strong> $414B universe × 0.12–0.20% = $496M–$828M. Midpoint: ~$650M national spend</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Validation:</strong> IBISWorld Commercial Signage Manufacturing (2024): $11.4B US industry. F500 segment estimated at 4–7% of total = $456M–$798M</div>';
-  h += '<div><strong style="color:#f59e0b;">Why it matters:</strong> This is the spend pool Foxmark competes for nationally — before filtering to the IL-addressable share in Tier 3.</div>';
-  h += '</div>';
-  h += '</div>';
-  h += '</div></div>';
-
-  // Tier 3
-  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(200,16,46,.1) 0%,rgba(200,16,46,.03) 100%);border:1px solid rgba(200,16,46,.35);overflow:hidden;">';
-  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#C8102E;"></div>';
-  h += '<div style="padding:1rem 1rem .5rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;margin-bottom:.5rem;opacity:.9;">Tier 3 · Foxmark Chicago-Addressable</div>';
-  h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#C8102E;line-height:1;">$50M</div>';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:1rem;color:#C8102E;opacity:.6;">–$125M</div>';
-  h += '</div>';
-  h += '<div style="font-size:.7rem;color:#e8c8c8;margin-bottom:.5rem;line-height:1.5;">IL-footprint share of national spend. Catalyst events (rebrands, PE acquisitions, new builds) expand scope and compress timelines.</div>';
-  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(200,16,46,.1);border:1px solid rgba(200,16,46,.25);color:#C8102E;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology" >▼</button>';
-  h += '<div style="display:none;border-top:1px solid rgba(200,16,46,.2);padding-top:.6rem;padding-bottom:.75rem;">';
-  h += '<div style="font-size:.63rem;color:#c88080;line-height:1.7;">';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">IL location share:</strong> 52 F500 targets average 480+ total locations nationwide. IL footprint estimated at 5–15% of total locations per company (HQ + regional ops)</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Calculation:</strong> $500M–$800M national × 10–15% IL share = $50M–$120M base. Catalyst premium adds 10–20% scope expansion</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Catalyst events active:</strong> 22 identified triggers in current pipeline — PE acquisitions, rebrands, new HQ builds, ESG-driven refreshes. Each compresses a 12-month budget cycle to 90 days</div>';
-  h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Cross-check:</strong> Foxmark Year 2 target of $3.23M = 2.6–6.5% of low-end TAM. Highly conservative relative to market size</div>';
-  h += '<div><strong style="color:#C8102E;">Why it matters:</strong> This is the number Foxmark actually hunts. $50M–$125M in reachable annual spend, with Rick\'s existing relationships already inside a significant share of these accounts.</div>';
-  h += '</div>';
-  h += '</div>';
-  h += '</div></div>';
-
-  h += '</div>'; // grid
-  h += '</div>'; // wrapper
-
-  h += '<div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1rem;">';
-
-  // TOP: TAM by sector bars - full width
-  h += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.85rem;">National Signage Spend by Sector · $500M–$800M Est.</div>';
-  h += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem 1.5rem;">';
-  var maxTam = 8.7;
-  sectors.forEach(function(s) {
-    var tamVal = parseFloat(s.tam.replace(/[$B]/g,''));
-    var pct = Math.round(tamVal / maxTam * 100);
-    h += '<div style="margin-bottom:.3rem;">';
-    h += '<div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;margin-bottom:.2rem;">';
-    h += '<span style="color:#5a6880;min-width:72px;white-space:nowrap;">' + s.label + '</span>';
-    h += '<div style="flex:1;background:rgba(255,255,255,.05);height:9px;position:relative;">';
-    h += '<div style="height:100%;width:' + pct + '%;background:' + s.color + ';opacity:.8;"></div>';
-    h += '</div>';
-    h += '<span style="color:' + s.color + ';font-family:Barlow Condensed,sans-serif;font-weight:700;min-width:36px;text-align:right;">' + s.tam + '</span>';
-    h += '</div>';
-    if (s.badge) {
-      h += '<div style="margin-left:76px;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;color:' + s.color + ';opacity:.7;">↑ ' + s.badge + '</span></div>';
-    }
-    h += '</div>';
-  });
-  h += '</div>'; // end 3-col grid
-  h += '<div style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;gap:1rem;">';
-  h += '<div style="font-size:.65rem;color:#2a4050;">Click any sector tab above to drill into targets &amp; org charts</div>';
-  h += '<button onclick="var d=document.getElementById(\'tam-method\');d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.style.opacity=d.style.display===\'none\'?\'1\':\'.5\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid rgba(255,255,255,.08);color:#3a5070;padding:.15rem .4rem;cursor:pointer;flex-shrink:0;">methodology ↓</button>';
-  h += '</div>';
-  h += '<div id="tam-method" style="display:none;margin-top:.5rem;padding:.6rem .75rem;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-left:2px solid rgba(74,158,255,.2);">';
-  h += '<div style="font-size:.62rem;color:#3a5068;line-height:1.7;">';
-  h += '<strong style="color:#4a6080;">Method:</strong> SEGD industry benchmark of 0.12–0.20% of annual revenue applied to each sector\'s combined F500 IL-target revenue pool. ';
-  h += '<strong style="color:#4a6080;">Cross-check:</strong> IBISWorld Commercial Signage (2024) pegs the US market at $11.4B — F500 segment at ~4–7% = $456M–$798M nationally, consistent with these estimates. ';
-  h += '<strong style="color:#4a6080;">Note:</strong> Figures reflect national signage spend by these companies across all locations, not IL-only spend. IL-addressable share (Tier 3) = 10–15% of these totals.';
-  h += '</div>';
-  h += '</div>';
-
-  // BOTTOM: Call This Week — full width, 2-col catalyst grid
-  h += '<div style="background:rgba(200,16,46,.03);border:1px solid rgba(200,16,46,.18);padding:1.1rem;">';
-  h += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;">&#9888; Call This Week · Active Catalysts</div>';
-  h += '</div>';
-  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">';
-  hotTargets.forEach(function(t) {
-    var tabKey = t.sector === 'Retail' ? 'rtl' : t.sector === 'Financial' ? 'fin' : t.sector === 'Industrials' ? 'ind' : t.sector === 'Healthcare' ? 'hlth' : t.sector === 'Technology' ? 'tch' : 'svc';
-    h += '<div onclick="openModal(\'modal-market\');setTimeout(function(){mktTab(\'' + tabKey + '\')},60)" style="padding:.6rem;background:rgba(255,255,255,.02);border-left:3px solid ' + t.color + ';border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .15s;" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'rgba(255,255,255,.02)\'">';
-    h += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.2rem;">';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">' + t.name + '</span>';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#5a6880;padding:.1rem .4rem;white-space:nowrap;flex-shrink:0;">' + t.sector + ' ↗</span>';
-    h += '</div>';
-    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.12em;color:' + t.color + ';margin-bottom:.2rem;">&#9654; ' + t.urgency + '</div>';
-    h += '<div style="font-size:.73rem;color:#5a7090;line-height:1.45;">' + t.why + '</div>';
-    h += '</div>';
-  });
-  h += '</div>'; // end 2-col catalyst grid
-  h += '</div>'; // end catalyst panel
-
-  h += '</div>'; // end 2-col
-
-  // ── BOTTOM: Decision cycle + sector nav shortcuts ─────────────────────────
-  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">';
-
-  // LEFT: Decision cycle reality
-  h += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#8A8A8A;margin-bottom:.8rem;">Decision Cycle Reality · Weeks to Close</div>';
-  cycleData.forEach(function(d) {
-    var pct = Math.round(d.weeks / d.max * 100);
-    h += '<div style="display:flex;align-items:center;gap:.5rem;font-size:.74rem;margin-bottom:.4rem;">';
-    h += '<span style="color:#5a6880;min-width:88px;white-space:nowrap;">' + d.label + '</span>';
-    h += '<div style="flex:1;background:rgba(255,255,255,.05);height:7px;">';
-    h += '<div style="height:100%;width:' + pct + '%;background:' + d.color + ';opacity:.7;"></div>';
-    h += '</div>';
-    h += '<span style="color:' + d.color + ';font-family:Barlow Condensed,sans-serif;font-weight:700;min-width:28px;text-align:right;font-size:.72rem;">' + d.weeks + 'wk</span>';
-    h += '<span style="color:#3a5060;font-size:.65rem;min-width:120px;">' + d.note + '</span>';
-    h += '</div>';
-  });
-  h += '<div style="margin-top:.8rem;padding:.5rem;background:rgba(245,158,11,.05);border-left:2px solid #f59e0b;">';
-  h += '<div style="font-size:.72rem;color:#8A8A8A;line-height:1.5;"><span style="color:#f59e0b;font-weight:600;">Strategy:</span> Use F500 as anchor revenue — they pay the rent. Use mid-market to build velocity and case studies that unlock the next F500 conversation.</div>';
-  h += '</div>';
-  h += '</div>';
-
-  // RIGHT: Sector quick-nav
-  h += '<div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#8A8A8A;margin-bottom:.8rem;">Jump to Sector · Targets &amp; Org Charts</div>';
-  h += '<div style="display:flex;flex-direction:column;gap:.4rem;">';
-  sectors.forEach(function(s) {
-    h += '<div onclick="mktTab(\'' + s.key + '\')" style="display:flex;align-items:center;gap:.75rem;padding:.55rem .75rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-left:3px solid ' + s.color + ';cursor:pointer;transition:background .15s;" onmouseover="this.style.background=\'rgba(255,255,255,.06)\'" onmouseout="this.style.background=\'rgba(255,255,255,.03)\'">';
-    h += '<div style="flex:1;">';
-    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">' + s.label + '</span>';
-    h += '<span style="font-size:.7rem;color:#3a5060;margin-left:.5rem;">' + s.targets + ' targets · ' + s.tam + ' TAM</span>';
-    h += '</div>';
-    if (s.badge) h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;color:' + s.color + ';opacity:.8;">' + s.badge + '</span>';
-    h += '<span style="color:#3a5060;font-size:.9rem;">&#9654;</span>';
-    h += '</div>';
-  });
-  h += '</div>';
-  h += '<div style="margin-top:.75rem;font-size:.68rem;color:#2a4050;text-align:center;">Each sector opens its table with urgency badges + Foxmark Angle tags</div>';
-  h += '</div>';
-
-  h += '</div>'; // end bottom 2-col
+  // (funnel + matrix moved to bottom)
 
   // ── ALL 52 TARGETS TABLE ──────────────────────────────────────────────────
   // angle: [label, color]  urg: [label, color, bgColor]
@@ -6954,6 +6987,7 @@ function renderF500Dashboard() {
     { name:'ALDI US',                         sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['225 NEW STORES','#22c55e'],        urg:['225 NEW STORES','#22c55e','rgba(34,197,94,.12)'] },
     { name:"McDonald's Corp",                 sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REMODEL CYCLE','#22c55e'],         urg:null },
     { name:'Ace Hardware',                    sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['DEALER NETWORK','#f59e0b'],        urg:null },
+    { name:'Crate & Barrel (Euromarket)',     sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['FLAGSHIP ENVIRONMENTS','#22c55e'], urg:['EXISTING CLIENT REL.','#22c55e','rgba(34,197,94,.15)'] },
     { name:'Univar Solutions (Apollo)',       sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['PE REBRAND','#a855f7'],            urg:['GONE PRIVATE 2023','#f59e0b','rgba(245,158,11,.12)'] },
     { name:'True Value Company',              sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['SOLD TO DO IT BEST','#C8102E','rgba(200,16,46,.15)'] },
     { name:'Potbelly Corporation',            sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REMODEL PROGRAM','#22c55e'],       urg:['REMODEL PROGRAM','#22c55e','rgba(34,197,94,.12)'] },
@@ -6975,7 +7009,7 @@ function renderF500Dashboard() {
   ];
 
   h += '<div style="margin-top:1.25rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">All 52 F500 Targets · Master List</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">All 53 F500 Targets · Master List</div>';
   h += '<table style="width:100%;border-collapse:collapse;font-size:.74rem;">';
   h += '<thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);">';
   h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">#</th>';
@@ -7004,30 +7038,141 @@ function renderF500Dashboard() {
   h += '<div style="margin-top:.6rem;font-size:.67rem;color:#2a4050;">Click any row to open that sector\'s full org chart + contact tree</div>';
   h += '</div>';
 
-  // ── PROOF STRIP: Case Studies ─────────────────────────────────────────────
-  h += '<div style="margin-top:1.5rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.25rem;">';
-  h += '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#f59e0b;">Proof of Concept · Comparable F500 Work</div>';
-  h += '<div style="font-size:.68rem;color:#2a4050;">Same sector archetypes · Same decision-maker profiles</div>';
+  // ── F500 ACTIVE CATALYSTS — bottom anchor ─────────────────────────────────
+  h += '<div style="background:rgba(200,16,46,.03);border:1px solid rgba(200,16,46,.18);padding:1.1rem;margin-top:1.25rem;" id="f500-catalyst-anchor">';
+  h += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;">&#9888; Call This Week · Active Catalysts</div>';
+  h += '<div style="flex:1;height:1px;background:rgba(200,16,46,.18);"></div>';
+  h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">F500 · 6 Hot Targets</span>';
   h += '</div>';
-  h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">';
-  var proofCases = [
-    { co:"Kraft Heinz", sector:"CORP HQ", color:"#f59e0b", csKey:"kh", insight:"Multi-floor branded environments across Chicago HQ. Interior culture graphics program, $280K scope.", why:"Replicable at McDonald's, United, Allstate — same HQ footprint model." },
-    { co:"McDonald's HQ", sector:"CORP HQ", color:"#C8102E", csKey:"mc", insight:"Fulton Market relocation — full environmental identity package for new global headquarters.", why:"Active remodel cycle + Oak Brook campus still in play." },
-    { co:"United Airlines", sector:"SERVICES", color:"#4a9eff", csKey:"ua", insight:"Willis Tower HQ rebrand — interior wayfinding, branded zones, sustainability materials required.", why:"Procurement prefers local certified studio. 20 min from Elmhurst." },
-    { co:"Allstate", sector:"FINANCIAL", color:"#a855f7", csKey:"al", insight:"2022–23 rebrand drove full interior refresh across Northbrook campus. Eco-cert required by facilities.", why:"New brand standards still rolling out to regional offices." }
-  ];
-  proofCases.forEach(function(c) {
-    h += '<div onclick="openCaseStudy(\''+c.csKey+'\')" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-top:2px solid ' + c.color + ';padding:.85rem;cursor:pointer;transition:background .15s;" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'rgba(255,255,255,.02)\'">';
-    h += '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;">';
-    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.85rem;color:#e8f0ff;">' + c.co + '</div>';
-    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.55rem;letter-spacing:.1em;color:' + c.color + ';">' + c.sector + '</div>';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">';
+  hotTargets.forEach(function(t) {
+    var tabKey = t.sector === 'Retail' ? 'rtl' : t.sector === 'Financial' ? 'fin' : t.sector === 'Industrials' ? 'ind' : t.sector === 'Healthcare' ? 'hlth' : t.sector === 'Technology' ? 'tch' : 'svc';
+    h += '<div onclick="mktTab(\'' + tabKey + '\')" style="padding:.6rem;background:rgba(255,255,255,.02);border-left:3px solid ' + t.color + ';border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:background .15s;" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'rgba(255,255,255,.02)\'">';
+    h += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.2rem;">';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;">' + t.name + '</span>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#5a6880;padding:.1rem .4rem;white-space:nowrap;flex-shrink:0;">' + t.sector + ' ↗</span>';
     h += '</div>';
-    h += '<div style="font-size:.72rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">' + c.insight + '</div>';
-    h += '<div style="font-size:.68rem;color:' + c.color + ';opacity:.8;line-height:1.4;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ ' + c.why + '</div>';
+    h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.12em;color:' + t.color + ';margin-bottom:.2rem;">&#9654; ' + t.urgency + '</div>';
+    h += '<div style="font-size:.73rem;color:#5a7090;line-height:1.45;">' + t.why + '</div>';
     h += '</div>';
   });
-  h += '</div></div>';
+  h += '</div>';
+  h += '</div>';
+
+  // ── MARKET OPPORTUNITY FUNNEL — moved to bottom ──────────────────────────
+  h += '<div style="margin-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);padding-top:1.25rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.65rem;">Market Opportunity · Funnel</div>';
+  h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:1.25rem;">';
+
+  h += '<div style="background:linear-gradient(160deg,#0c1e38 0%,#0e2244 100%);border:1px solid rgba(74,158,255,.2);border-top:3px solid #4a9eff;padding:1rem 1rem .9rem;position:relative;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(74,158,255,.5);margin-bottom:.45rem;">US Industry TAM</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:.95;margin-bottom:.35rem;">$11.4B</div>';
+  h += '<div style="font-size:.65rem;color:rgba(74,158,255,.4);line-height:1.5;">Wide-format signage · +4.8% CAGR</div>';
+  h += '<div style="position:absolute;top:50%;right:-.5rem;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:7px solid rgba(74,158,255,.3);z-index:2;"></div>';
+  h += '</div>';
+
+  h += '<div style="background:linear-gradient(160deg,#0e2040 0%,#122850 100%);border:1px solid rgba(74,158,255,.3);border-top:3px solid #5aabff;padding:1rem 1rem .9rem;position:relative;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(90,171,255,.55);margin-bottom:.45rem;">IL F500 · National Spend</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.2rem;color:#5aabff;line-height:.95;margin-bottom:.35rem;">$500–800M</div>';
+  h += '<div style="font-size:.65rem;color:rgba(90,171,255,.35);line-height:1.5;">53 targets · all locations</div>';
+  h += '<div style="position:absolute;top:50%;right:-.5rem;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:7px solid rgba(200,16,46,.3);z-index:2;"></div>';
+  h += '</div>';
+
+  h += '<div style="background:linear-gradient(160deg,#1c0810 0%,#240c16 100%);border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:1rem 1rem .9rem;position:relative;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,16,46,.6);margin-bottom:.45rem;">Chicago-Addressable</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:.95;margin-bottom:.35rem;">$50–125M</div>';
+  h += '<div style="font-size:.65rem;color:rgba(200,16,46,.4);line-height:1.5;">IL footprint share</div>';
+  h += '<div style="position:absolute;top:50%;right:-.5rem;transform:translateY(-50%);width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:7px solid rgba(200,16,46,.5);z-index:2;"></div>';
+  h += '</div>';
+
+  h += '<div style="background:linear-gradient(160deg,#2a0810 0%,#380c18 100%);border:1px solid rgba(200,16,46,.5);border-top:3px solid #ff1a3a;border-left:3px solid #C8102E;padding:1rem 1rem .9rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,60,80,.55);margin-bottom:.45rem;">Metro Chicago Spend Pool</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.6rem;color:#ff2244;line-height:.9;margin-bottom:.35rem;text-shadow:0 0 24px rgba(200,16,46,.35);">$8.2B</div>';
+  h += '<div style="font-size:.65rem;color:rgba(200,16,46,.45);line-height:1.5;">Facilities &amp; marketing Foxmark competes for</div>';
+  h += '</div>';
+
+  h += '</div>'; // 4-panel grid
+
+  // ── SECTOR INTELLIGENCE MATRIX ────────────────────────────────────────────
+  var sectorMatrix = [
+    { key:'ind',  label:'Industrials', color:'#f59e0b', targets:7,  tam:8.7, weeks:12, catalysts:['HQ RELOCATION','DEALER ROLLOUT'], badge:'LARGEST TAM' },
+    { key:'fin',  label:'Financial',   color:'#a855f7', targets:7,  tam:7.1, weeks:12, catalysts:['2 ACQUISITIONS','REBRAND CYCLE'],  badge:'HOT M&A' },
+    { key:'hlth', label:'Healthcare',  color:'#14b8a6', targets:7,  tam:6.7, weeks:12, catalysts:['POST-MERGER','SPIN-OFF REBRAND'],  badge:'REBRANDS NOW' },
+    { key:'svc',  label:'Services',    color:'#4a9eff', targets:7,  tam:3.6, weeks:12, catalysts:['REBRAND IN PROG','MULTI-CAMPUS'],   badge:null },
+    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:12, tam:4.3, weeks:8,  catalysts:['225 NEW STORES','PE BUYOUT'],       badge:'MOST TARGETS' },
+    { key:'tch',  label:'Technology',  color:'#06b6d4', targets:13, tam:1.9, weeks:6,  catalysts:['FAST PE CYCLE','ACQUISITIONS'],     badge:'FASTEST CLOSE' }
+  ];
+  var maxTam = 8.7;
+
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.6rem;">Sector Intelligence Matrix</div>';
+  h += '<div style="border:1px solid rgba(255,255,255,.08);overflow:hidden;margin-bottom:1rem;">';
+
+  h += '<div style="display:grid;grid-template-columns:130px 1fr 70px 90px 1fr 130px;gap:0;border-bottom:2px solid rgba(255,255,255,.08);padding:.5rem 1rem;background:rgba(255,255,255,.03);">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);">Sector</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);">Signage TAM</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:center;">Targets</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:center;">Close</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);">Catalysts</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);text-align:right;">Signal</div>';
+  h += '</div>';
+
+  sectorMatrix.forEach(function(s, i) {
+    var pct = Math.round(s.tam / maxTam * 100);
+    var isLast = i === sectorMatrix.length - 1;
+    var border = isLast ? '' : 'border-bottom:1px solid rgba(255,255,255,.05);';
+    var speedColor = s.weeks <= 6 ? '#22c55e' : s.weeks <= 8 ? '#f59e0b' : '#ef4444';
+    var speedLabel = s.weeks <= 6 ? 'FAST' : s.weeks <= 8 ? 'MED' : 'SLOW';
+    var rowBg = i % 2 === 0 ? 'rgba(255,255,255,.01)' : 'transparent';
+
+    h += '<div onclick="mktTab(\'' + s.key + '\')" style="display:grid;grid-template-columns:130px 1fr 70px 90px 1fr 130px;gap:0;align-items:center;padding:.7rem 1rem;cursor:pointer;background:' + rowBg + ';transition:background .12s;' + border + '" onmouseover="this.style.background=\'rgba(255,255,255,.05)\'" onmouseout="this.style.background=\'' + rowBg + '\'">';
+
+    h += '<div style="display:flex;align-items:center;gap:.55rem;">';
+    h += '<div style="width:4px;height:1.8rem;background:' + s.color + ';flex-shrink:0;"></div>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.9rem;letter-spacing:.05em;color:' + s.color + ';text-transform:uppercase;">' + s.label + '</span>';
+    h += '</div>';
+
+    h += '<div style="display:flex;align-items:center;gap:.6rem;padding-right:.75rem;">';
+    h += '<div style="flex:1;background:rgba(255,255,255,.06);height:8px;border-radius:1px;">';
+    h += '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,' + s.color + 'bb,' + s.color + ');border-radius:1px;"></div>';
+    h += '</div>';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.92rem;color:' + s.color + ';white-space:nowrap;min-width:40px;">$' + s.tam + 'B</span>';
+    h += '</div>';
+
+    h += '<div style="text-align:center;"><span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.4rem;color:#e8f0ff;line-height:1;">' + s.targets + '</span></div>';
+
+    h += '<div style="text-align:center;">';
+    h += '<div style="display:inline-block;background:rgba(0,0,0,.3);border:1px solid ' + speedColor + '44;border-radius:2px;padding:.18rem .45rem;">';
+    h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.85rem;color:' + speedColor + ';">' + s.weeks + 'wk</span>';
+    h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.45rem;letter-spacing:.12em;color:' + speedColor + ';opacity:.65;">' + speedLabel + '</div>';
+    h += '</div></div>';
+
+    h += '<div style="display:flex;flex-direction:column;gap:.28rem;padding-left:.2rem;">';
+    s.catalysts.forEach(function(cat) {
+      h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.4);text-transform:uppercase;">' + cat + '</span>';
+    });
+    h += '</div>';
+
+    h += '<div style="text-align:right;">';
+    if (s.badge) {
+      h += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:' + s.color + ';background:rgba(0,0,0,.4);border:1px solid ' + s.color + ';padding:.18rem .5rem;white-space:nowrap;">' + s.badge + '</span>';
+    }
+    h += '</div>';
+
+    h += '</div>';
+  });
+
+  h += '<div style="border-top:1px solid rgba(255,255,255,.06);padding:.5rem 1rem;display:flex;justify-content:space-between;background:rgba(255,255,255,.02);">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;letter-spacing:.1em;color:rgba(255,255,255,.2);text-transform:uppercase;">Click any row → sector targets · TAM = est. annual signage spend</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.52rem;letter-spacing:.1em;color:rgba(255,255,255,.16);text-transform:uppercase;">Close = weeks to decision</div>';
+  h += '</div>';
+  h += '</div>'; // matrix
+
+  h += '<div style="padding:.75rem 1rem;background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.18);border-left:4px solid #f59e0b;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.6;"><span style="color:#f59e0b;font-weight:900;letter-spacing:.04em;">STRATEGY · </span>Anchor on Industrials &amp; Financial TAM — highest spend, active catalysts. Retail &amp; Tech close fastest — use for early wins and case studies that unlock F500 conversations.</div>';
+  h += '</div>';
+
+  h += '</div>'; // bottom section wrapper
 
   wrap.innerHTML = h;
 }
@@ -7114,7 +7259,7 @@ var MKT_DASHBOARD_HTML = `
 
           <!-- LEFT: Mid-market sector bars -->
           <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;margin-bottom:.85rem;">Mid-Market · 143 Targets by Sector</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;margin-bottom:.85rem;">Mid-Market · 150 Targets by Sector</div>
             <div style="display:flex;flex-direction:column;gap:.45rem;">
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Real Estate</span>
@@ -7148,8 +7293,8 @@ var MKT_DASHBOARD_HTML = `
               </div>
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Healthcare</span>
-                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:56%;background:#14b8a6;opacity:.75;"></div></div>
-                <span style="color:#14b8a6;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">10</span>
+                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:61%;background:#14b8a6;opacity:.75;"></div></div>
+                <span style="color:#14b8a6;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">11</span>
               </div>
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Manufacturing</span>
@@ -7158,8 +7303,8 @@ var MKT_DASHBOARD_HTML = `
               </div>
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Logistics</span>
-                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:44%;background:#f97316;opacity:.75;"></div></div>
-                <span style="color:#f97316;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">8</span>
+                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:61%;background:#f97316;opacity:.75;"></div></div>
+                <span style="color:#f97316;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">11</span>
               </div>
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Sports &amp; Ent.</span>
@@ -7168,39 +7313,19 @@ var MKT_DASHBOARD_HTML = `
               </div>
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Education</span>
-                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:39%;background:#64748b;opacity:.75;"></div></div>
-                <span style="color:#64748b;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">7</span>
+                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:50%;background:#64748b;opacity:.75;"></div></div>
+                <span style="color:#64748b;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">9</span>
               </div>
               <div style="display:flex;align-items:center;gap:.5rem;font-size:.75rem;">
                 <span style="color:#5a6880;min-width:96px;white-space:nowrap;">Media &amp; Advert.</span>
-                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:33%;background:#8b5cf6;opacity:.75;"></div></div>
-                <span style="color:#8b5cf6;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">6</span>
+                <div style="flex:1;background:rgba(255,255,255,.05);height:8px;"><div style="height:100%;width:50%;background:#8b5cf6;opacity:.75;"></div></div>
+                <span style="color:#8b5cf6;font-family:'Barlow Condensed',sans-serif;font-weight:700;min-width:22px;text-align:right;">9</span>
               </div>
             </div>
           </div>
 
           <!-- RIGHT: Coverage progress + why mid-market -->
           <div style="display:flex;flex-direction:column;gap:.85rem;">
-
-            <!-- Decision-maker coverage -->
-            <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);padding:1.1rem;">
-              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Decision-Maker Coverage · Mid-Market</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.75rem;">
-                <div style="background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.2);padding:.75rem;text-align:center;">
-                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#22c55e;line-height:1;">111</div>
-                  <div style="font-size:.62rem;color:#2a6040;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Org Trees Mapped</div>
-                </div>
-                <div style="background:rgba(74,158,255,.04);border:1px solid rgba(74,158,255,.2);padding:.75rem;text-align:center;">
-                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#4a9eff;line-height:1;">143</div>
-                  <div style="font-size:.62rem;color:#2a4060;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Total Targets</div>
-                </div>
-                <div style="background:rgba(245,158,11,.04);border:1px solid rgba(245,158,11,.2);padding:.75rem;text-align:center;">
-                  <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#f59e0b;line-height:1;">77%</div>
-                  <div style="font-size:.62rem;color:#4a3010;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Coverage</div>
-                </div>
-              </div>
-              <div style="font-size:.72rem;color:#5a7090;line-height:1.5;">CMO, VP Facilities, and VP Real Estate contacts identified across all 202 named targets — enough to start outreach today without a single cold call.</div>
-            </div>
 
             <!-- Why mid-market -->
             <div style="background:rgba(245,158,11,.03);border:1px solid rgba(245,158,11,.15);padding:1.1rem;flex:1;">
@@ -7237,26 +7362,22 @@ var MKT_DASHBOARD_HTML = `
         </div>
 
         <!-- BOTTOM KPI ROW -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1rem;">
-          <div style="background:#0d1e2e;border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;">202</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Total Named Targets</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F500 + Mid-Market</div>
-          </div>
-          <div style="background:#0d1e2e;border:1px solid rgba(34,197,94,.25);border-top:3px solid #22c55e;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#22c55e;line-height:1;">202</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Org Charts Built</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Every account mapped</div>
-          </div>
-          <div style="background:#0d1e2e;border:1px solid rgba(74,158,255,.25);border-top:3px solid #4a9eff;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:1;">12</div>
-            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Mid-Market Sectors</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F&amp;B · Hospitality · Tech · RE…</div>
-          </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1rem;">
           <div style="background:#0d1e2e;border:1px solid rgba(245,158,11,.25);border-top:3px solid #f59e0b;padding:1rem;text-align:center;">
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#f59e0b;line-height:1;">400+</div>
             <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Named Decision-Makers</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">CMO · COO · VP Facilities</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">CMO · VP Facilities · VP Real Estate</div>
+          </div>
+          <div onclick="openModal('modal-market');setTimeout(function(){mktTab('mid');setTimeout(function(){var el=document.getElementById('mid-catalyst-anchor');if(el)el.scrollIntoView({behavior:'smooth'});},150);},60)" style="background:#0d1e2e;border:1px solid rgba(200,16,46,.25);border-top:3px solid #C8102E;padding:1rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(200,16,46,.07)'" onmouseout="this.style.background='#0d1e2e'">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;">22</div>
+            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Active Catalysts</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Rebrands · PE acquisitions · New builds</div>
+            <div style="font-size:.62rem;color:#C8102E;margin-top:.4rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;">View Breakdown →</div>
+          </div>
+          <div style="background:#0d1e2e;border:1px solid rgba(74,158,255,.25);border-top:3px solid #4a9eff;padding:1rem;text-align:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:1;">3,500+</div>
+            <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Total Locations</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Multi-site rollout TAM</div>
           </div>
         </div>
 
@@ -7324,8 +7445,8 @@ function renderMktTable(key) {
       t += '<table style="width:100%;border-collapse:collapse;font-size:.82rem;">';
       t += '<tr style="border-bottom:1px solid rgba(255,255,255,.06);">';
       t += '<th style="text-align:left;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Company</th>';
-      t += '<th style="text-align:right;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Revenue</th>';
-      t += '<th style="text-align:right;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Locations</th>';
+      t += '<th style="text-align:right;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Revenue / Scale</th>';
+      t += '<th style="text-align:right;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;display:none;">Locations</th>';
       t += '<th style="text-align:left;padding:.25rem .4rem;color:#3a5070;font-weight:600;font-size:.75rem;">Contacts / Notes</th>';
       t += '</tr>';
       secRows.forEach(function(r, i) {
@@ -7343,8 +7464,9 @@ function renderMktTable(key) {
           t += '</span>' + coName + '</span>';
         } else { t += coName; }
         t += '</td>';
-        t += '<td style="padding:.28rem .4rem;text-align:right;color:#22c55e;width:10%;">' + r[1] + '</td>';
-        t += '<td style="padding:.28rem .4rem;text-align:right;color:#9096a8;width:9%;">' + r[3] + '</td>';
+        var midRev = (r[1] && r[1] !== '—' && r[1] !== '-') ? '<span style="color:#22c55e;">' + r[1] + '</span>' : '<span style="color:#4a9eff;font-size:.72rem;" title="Private — revenue not disclosed">' + r[3] + '</span>';
+        t += '<td style="padding:.28rem .4rem;text-align:right;width:10%;">' + midRev + '</td>';
+        t += '<td style="padding:.28rem .4rem;text-align:right;color:#9096a8;width:9%;display:none;">' + r[3] + '</td>';
         t += '<td style="padding:.28rem .4rem;color:#5a7090;font-size:.77rem;">' + r[4] + '</td>';
         t += '</tr>';
         if (hasOrg) {
@@ -7358,6 +7480,34 @@ function renderMktTable(key) {
       });
       t += '</table></div>';
     });
+
+    // ── MID-MARKET ACTIVE CATALYSTS ────────────────────────────────────────
+    var midCats = [
+      { name:'US Cellular (T-Mobile)',     urgency:'T-MOBILE REBRAND',    color:'#C8102E', why:'500+ retail locations converting from US Cellular to T-Mobile brand. Full interior signage rebrand. Chicago HQ.' },
+      { name:'Foxtrot Market',             urgency:'REOPENING 2025',       color:'#C8102E', why:'Relaunching after 2024 closure with new PE backing. 35+ Chicago-area locations = brand environment refresh from scratch.' },
+      { name:'Life Fitness (KPS Capital)', urgency:'PE REBRAND',           color:'#a855f7', why:'Post-acquisition rebrand in progress. Rosemont IL HQ + 10 global showrooms. New PE owner = active signage mandate.' },
+      { name:'TreeHouse Foods',            urgency:'PORTFOLIO RESTRUCTURE', color:'#f59e0b', why:'Major portfolio restructuring 2024. Oak Brook IL HQ. 30+ plants need updated brand identity after divestitures.' },
+      { name:'SMS Assist / Lessen',        urgency:'PE-BACKED REBRAND',    color:'#a855f7', why:'Chicago HQ. PE-backed FM tech. Rapid growth + rebranding from SMS Assist to Lessen = full rebrand cycle.' },
+      { name:'Newly Weds Foods',           urgency:'HQ BUILDOUT 2023',     color:'#22c55e', why:'New HQ at 8550 W Bryn Mawr built 2023. Redwood Holdings acquisition. 29 US plants + Chicago office all need ID.' },
+      { name:'Arrive Logistics',           urgency:'HIGH GROWTH',          color:'#22c55e', why:'Chicago logistics tech. Fastest-growing freight broker. New office expansion = branded workspace environments.' },
+      { name:"IHOP / Applebee's (IL)",     urgency:'REMODEL CYCLE',        color:'#f59e0b', why:'200+ IL franchise locations in active remodel cycle. Interior signage per remodel = recurring program opportunity.' }
+    ];
+    t += '<div style="background:rgba(200,16,46,.03);border:1px solid rgba(200,16,46,.18);padding:1.1rem;margin-top:1.25rem;" id="mid-catalyst-anchor">';
+    t += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;">';
+    t += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#C8102E;">&#9888; Active Catalysts · Call This Week</div>';
+    t += '<div style="flex:1;height:1px;background:rgba(200,16,46,.18);"></div>';
+    t += '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Mid-Market · 8 Hot Targets</span>';
+    t += '</div>';
+    t += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">';
+    midCats.forEach(function(c) {
+      t += '<div style="padding:.6rem;background:rgba(255,255,255,.02);border-left:3px solid ' + c.color + ';border-bottom:1px solid rgba(255,255,255,.04);">';
+      t += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.82rem;color:#e8f0ff;margin-bottom:.2rem;">' + c.name + '</div>';
+      t += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:.6rem;letter-spacing:.12em;color:' + c.color + ';margin-bottom:.2rem;">&#9654; ' + c.urgency + '</div>';
+      t += '<div style="font-size:.73rem;color:#5a7090;line-height:1.45;">' + c.why + '</div>';
+      t += '</div>';
+    });
+    t += '</div></div>';
+
     wrap.innerHTML = MKT_DASHBOARD_HTML + t;
 
   // Wire email buttons directly — bypasses all delegation/bubbling issues
@@ -7395,7 +7545,7 @@ function renderMktTable(key) {
     fin: { label:'Financial Services', color:'#a855f7', icon:'$', blurb:'Insurers and banks with branch networks, claims offices, and premium HQ environments. Rebrands and acquisitions are driving active spend now.', kpi1:'7 targets', kpi2:'$7.1B combined signage TAM', kpi3:'Avg. 300+ locations each' },
     hlth: { label:'Healthcare', color:'#14b8a6', icon:'+', blurb:'Health systems and pharma with ongoing facility expansions, post-merger rebrands, and regulated wayfinding programs. Long cycle but very sticky.', kpi1:'7 targets', kpi2:'$6.7B combined signage TAM', kpi3:'100+ facilities each' },
     ind: { label:'Industrials & Manufacturing', color:'#f59e0b', icon:'⬡', blurb:'Midwest manufacturers with HQ campuses, dealer networks, and multi-plant rollout programs. Volume pricing is the entry wedge.', kpi1:'7 targets', kpi2:'$8.7B combined signage TAM', kpi3:'Avg. 500+ locations each' },
-    rtl: { label:'Retail & Food Service', color:'#22c55e', icon:'◈', blurb:'Store chains and food distributors with ongoing remodel cycles and rebrand programs. Pilot one store, roll to the network.', kpi1:'11 targets', kpi2:'$4.3B combined signage TAM', kpi3:'Avg. 1,800+ locations each' },
+    rtl: { label:'Retail & Food Service', color:'#22c55e', icon:'◈', blurb:'Store chains and food distributors with ongoing remodel cycles and rebrand programs. Pilot one store, roll to the network.', kpi1:'12 targets', kpi2:'$4.3B combined signage TAM', kpi3:'Avg. 1,800+ locations each' },
     tch: { label:'Technology', color:'#06b6d4', icon:'◆', blurb:'Chicago tech HQs investing in premium office environments as talent magnets. PE-backed and fast-growing — fast decisions, full-room builds.', kpi1:'13 targets', kpi2:'$1.9B combined signage TAM', kpi3:'River North · Fulton Market · Loop' }
   };
 
@@ -7423,6 +7573,7 @@ function renderMktTable(key) {
     // RTL
     'Walgreens (Sycamore Partners)': ['GONE PRIVATE 2025','#C8102E','rgba(200,16,46,.15)'],
     'ALDI US':                      ['225 NEW STORES','#22c55e','rgba(34,197,94,.12)'],
+    'Crate & Barrel (Euromarket)':  ['EXISTING CLIENT REL.','#22c55e','rgba(34,197,94,.15)'],
     'True Value Company':           ['SOLD TO DO IT BEST','#C8102E','rgba(200,16,46,.15)'],
     'Univar Solutions (Apollo)':    ['GONE PRIVATE 2023','#f59e0b','rgba(245,158,11,.12)'],
     "Jewel-Osco (Albertsons IL)":   ['185-STORE ROLLOUT','#4a9eff','rgba(74,158,255,.12)'],
@@ -7478,6 +7629,7 @@ function renderMktTable(key) {
     'ALDI US':                      ['225 NEW STORES','#22c55e'],
     "McDonald's Corp":              ['REMODEL CYCLE','#22c55e'],
     'Ace Hardware':                 ['DEALER NETWORK','#f59e0b'],
+    'Crate & Barrel (Euromarket)':  ['FLAGSHIP ENVIRONMENTS','#22c55e'],
     'Univar Solutions (Apollo)':    ['PE REBRAND','#a855f7'],
     'True Value Company':           ['REBRAND IN PROGRESS','#C8102E'],
     'Potbelly Corporation':         ['REMODEL PROGRAM','#22c55e'],
@@ -7523,7 +7675,7 @@ function renderMktTable(key) {
   t += '<tr style="border-bottom:1px solid rgba(255,255,255,.1);">';
   t += '<th style="text-align:left;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Company</th>';
   t += '<th style="text-align:right;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Revenue</th>';
-  t += '<th style="text-align:right;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Foxmark TAM</th>';
+  t += '<th title="Foxmark\'s estimated addressable signage &amp; environmental graphics spend at this account" style="text-align:right;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:help;">Est. Spend ⓘ</th>';
   t += '<th style="text-align:right;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Locations</th>';
   t += '<th style="text-align:left;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Foxmark Angle</th>';
   t += '<th style="text-align:left;padding:.35rem .5rem;color:#4a6070;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;">Contacts</th>';
@@ -9208,4 +9360,12 @@ window.emailComposerSend = function() {
     if (el) tip.style.display = 'none';
   });
   document.addEventListener('mousemove', function(e) {
-    if (tip.style.display ==
+    if (tip.style.display === 'block') {
+      tip.style.left = (e.clientX + 14) + 'px';
+      tip.style.top  = (e.clientY - 28) + 'px';
+    }
+  });
+})();
+</script>
+</body>
+</html>
