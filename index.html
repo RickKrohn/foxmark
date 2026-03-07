@@ -1033,7 +1033,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
     (function() {
       // Count from MKT_TABLES — svc(7) + fin(7) + hlth(7) + ind(7) + ret(9) + tech(13) = 50 enterprise
       // mid: 138 mid-market
-      var enterprise = 53, midMkt = 150, total = enterprise + midMkt;
+      var enterprise = 62, midMkt = 150, total = enterprise + midMkt;
       function animCount(id, target, duration, color) {
         var el = document.getElementById(id);
         if (!el) return;
@@ -6910,11 +6910,11 @@ function renderF500Dashboard() {
 
   // ── DATA ─────────────────────────────────────────────────────────────────
   var sectors = [
-    { key:'svc',  label:'Services',    color:'#4a9eff', targets:7,  tam:'$3.6B',  locs:'150+',  badge:null },
-    { key:'fin',  label:'Financial',   color:'#a855f7', targets:7,  tam:'$7.1B',  locs:'300+',  badge:'2 ACQUISITIONS ACTIVE' },
-    { key:'hlth', label:'Healthcare',  color:'#14b8a6', targets:7,  tam:'$6.7B',  locs:'100+',  badge:'POST-MERGER REBRANDS' },
+    { key:'svc',  label:'Services',    color:'#4a9eff', targets:8,  tam:'$3.6B',  locs:'150+',  badge:null },
+    { key:'fin',  label:'Financial',   color:'#a855f7', targets:10, tam:'$7.1B',  locs:'300+',  badge:'2 ACQUISITIONS ACTIVE' },
+    { key:'hlth', label:'Healthcare',  color:'#14b8a6', targets:8,  tam:'$6.7B',  locs:'100+',  badge:'POST-MERGER REBRANDS' },
     { key:'ind',  label:'Industrials', color:'#f59e0b', targets:7,  tam:'$8.7B',  locs:'500+',  badge:'LARGEST TAM SECTOR' },
-    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:12, tam:'$4.3B',  locs:'1,800+',badge:'MOST TARGETS' },
+    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:16, tam:'$4.3B',  locs:'1,800+',badge:'MOST TARGETS' },
     { key:'tch',  label:'Technology',  color:'#06b6d4', targets:13, tam:'$1.9B',  locs:'HQ',    badge:'FASTEST DECISIONS' }
   ];
 
@@ -6945,7 +6945,7 @@ function renderF500Dashboard() {
   h += '<div style="width:3px;height:1.4rem;background:#C8102E;flex-shrink:0;"></div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#e8f0ff;">F500 Target Overview · Illinois</div>';
   h += '<div style="flex:1;height:1px;background:rgba(255,255,255,.06);"></div>';
-  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">53 Targets · 6 Sectors</div>';
+  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">62 Targets · 6 Sectors</div>';
   h += '</div>';
 
   // ── MARKET SIZING: HORIZONTAL FUNNEL ────────────────────────────────────────
@@ -6973,7 +6973,7 @@ function renderF500Dashboard() {
   h += '<div style="' + panelBase + 'border-right:1px solid rgba(255,255,255,.05);background:rgba(74,158,255,.03);">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(74,158,255,.5);margin-bottom:.25rem;">IL F500 · National Spend</div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1.6rem;color:#4a9eff;line-height:1;">$500M<span style="font-size:.9rem;opacity:.55;">–$800M</span></div>';
-  h += '<div style="font-size:.58rem;color:#3a5070;margin-top:.2rem;line-height:1.4;">53 targets · all locations</div>';
+  h += '<div style="font-size:.58rem;color:#3a5070;margin-top:.2rem;line-height:1.4;">62 targets · all locations</div>';
   h += '</div>';
 
   // Arrow 2
@@ -7009,6 +7009,7 @@ function renderF500Dashboard() {
     { name:'Coyote Logistics (UPS)',          sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
     { name:'MAT Holdings',                    sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['MULTI-PLANT','#f59e0b'],           urg:null },
     { name:'National Express / NXPT',         sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['REBRAND 2024','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Hyatt Hotels Corporation',        sector:'Services',    sc:'#4a9eff', skey:'svc',  angle:['BRAND STANDARDS','#4a9eff'],       urg:['1,000+ PROPERTIES','#4a9eff','rgba(74,158,255,.12)'] },
     { name:'State Farm',                      sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['MULTI-SITE ROLLOUT','#4a9eff'],    urg:null },
     { name:'Allstate',                        sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['REBRAND CYCLE','#f59e0b','rgba(245,158,11,.12)'] },
     { name:'Zurich North America',            sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
@@ -7016,6 +7017,9 @@ function renderF500Dashboard() {
     { name:'CNA Financial',                   sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['HQ + BRANCHES','#4a9eff'],         urg:null },
     { name:'Northern Trust',                  sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['PREMIUM HQ','#a855f7'],            urg:null },
     { name:'Arthur J. Gallagher',             sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['80+ ACQUISITIONS','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'CME Group',                       sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['PREMIUM HQ','#a855f7'],            urg:null },
+    { name:'TransUnion',                      sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['HQ REBRAND','#C8102E'],            urg:['REBRAND 2023','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Kemper Corporation',              sector:'Financial',   sc:'#a855f7', skey:'fin',  angle:['HQ + NETWORK','#4a9eff'],          urg:null },
     { name:'Health Care Service Corp (HCSC)', sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['CAMPUS FOOTPRINT','#4a9eff'],      urg:null },
     { name:'AbbVie',                          sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['CAMPUS PROGRAM','#4a9eff'],        urg:null },
     { name:'Abbott Laboratories',             sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['CAMPUS REMODEL','#22c55e'],        urg:null },
@@ -7023,6 +7027,7 @@ function renderF500Dashboard() {
     { name:'Medline Industries',              sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['PE CAPEX CYCLE','#a855f7'],        urg:['PE-BACKED','#a855f7','rgba(168,85,247,.12)'] },
     { name:'Northwestern Medicine',           sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['FACILITY EXPANSION','#22c55e'],    urg:['EXPANSION','#22c55e','rgba(34,197,94,.12)'] },
     { name:'Advocate Health (merged)',        sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['POST-MERGER','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'GE HealthCare Technologies',      sector:'Healthcare',  sc:'#14b8a6', skey:'hlth', angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['GE SPINOFF 2023','#C8102E','rgba(200,16,46,.15)'] },
     { name:'Boeing Company',                  sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['MANUFACTURING CAMPUSES','#f59e0b'], urg:['HQ RELOCATION','#f59e0b','rgba(245,158,11,.12)'] },
     { name:'Caterpillar Inc.',                sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['DEALER NETWORK','#f59e0b'],        urg:null },
     { name:'John Deere (Deere & Co.)',        sector:'Industrials', sc:'#f59e0b', skey:'ind',  angle:['DEALER NETWORK','#f59e0b'],        urg:null },
@@ -7042,6 +7047,10 @@ function renderF500Dashboard() {
     { name:'Potbelly Corporation',            sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REMODEL PROGRAM','#22c55e'],       urg:['REMODEL PROGRAM','#22c55e','rgba(34,197,94,.12)'] },
     { name:'Wintrust Arena / GB Properties', sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['VENUE ENVIRONMENTS','#4a9eff'],    urg:null },
     { name:"Jewel-Osco (Albertsons IL)",      sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['185-STORE ROLLOUT','#22c55e'],     urg:['185-STORE ROLLOUT','#4a9eff','rgba(74,158,255,.12)'] },
+    { name:'Conagra Brands',                  sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['CAMPUS + PORTFOLIO','#22c55e'],    urg:['PORTFOLIO RESTRUCTURE','#f59e0b','rgba(245,158,11,.12)'] },
+    { name:'Kellanova (Mars acquisition)',    sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['REBRAND IN PROGRESS','#C8102E'],   urg:['MARS ACQUISITION','#C8102E','rgba(200,16,46,.15)'] },
+    { name:'Mondelez International',          sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['GLOBAL HQ CAMPUS','#4a9eff'],      urg:null },
+    { name:'Molson Coors Beverage',           sector:'Retail',      sc:'#22c55e', skey:'rtl',  angle:['PREMIUM HQ ENVIRONMENT','#a855f7'],urg:null },
     { name:'Motorola Solutions',              sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['GLOBAL CAMPUS','#4a9eff'],         urg:null },
     { name:'CDW Corporation',                 sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['PREMIUM HQ','#a855f7'],            urg:null },
     { name:'Zebra Technologies',              sector:'Technology',  sc:'#06b6d4', skey:'tch',  angle:['POST-ACQUISITION','#C8102E'],      urg:['ACQUISITION 2025','#f59e0b','rgba(245,158,11,.12)'] },
@@ -7058,7 +7067,7 @@ function renderF500Dashboard() {
   ];
 
   h += '<div style="margin-top:1.25rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.1rem;">';
-  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">All 53 F500 Targets · Master List</div>';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">All 62 F500 Targets · Master List</div>';
   h += '<table style="width:100%;border-collapse:collapse;font-size:.74rem;">';
   h += '<thead><tr style="border-bottom:1px solid rgba(255,255,255,.1);">';
   h += '<th style="text-align:left;padding:.3rem .5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#3a5060;">#</th>';
@@ -7112,10 +7121,10 @@ function renderF500Dashboard() {
   // ── SECTOR INTELLIGENCE MATRIX (unified TAM + cycle + catalyst) ──────────
   var sectorMatrix = [
     { key:'ind',  label:'Industrials', color:'#f59e0b', targets:7,  tam:8.7, weeks:12, catalysts:['HQ RELOCATION','DEALER ROLLOUT'], badge:'LARGEST TAM' },
-    { key:'fin',  label:'Financial',   color:'#a855f7', targets:7,  tam:7.1, weeks:12, catalysts:['2 ACQUISITIONS','REBRAND CYCLE'],  badge:'HOT M&A' },
-    { key:'hlth', label:'Healthcare',  color:'#14b8a6', targets:7,  tam:6.7, weeks:12, catalysts:['POST-MERGER','SPIN-OFF REBRAND'],  badge:'REBRANDS NOW' },
-    { key:'svc',  label:'Services',    color:'#4a9eff', targets:7,  tam:3.6, weeks:12, catalysts:['REBRAND IN PROG','MULTI-CAMPUS'],   badge:null },
-    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:12, tam:4.3, weeks:8,  catalysts:['225 NEW STORES','PE BUYOUT'],       badge:'MOST TARGETS' },
+    { key:'fin',  label:'Financial',   color:'#a855f7', targets:10, tam:7.1, weeks:12, catalysts:['2 ACQUISITIONS','REBRAND CYCLE'],  badge:'HOT M&A' },
+    { key:'hlth', label:'Healthcare',  color:'#14b8a6', targets:8,  tam:6.7, weeks:12, catalysts:['POST-MERGER','SPIN-OFF REBRAND'],  badge:'REBRANDS NOW' },
+    { key:'svc',  label:'Services',    color:'#4a9eff', targets:8,  tam:3.6, weeks:12, catalysts:['REBRAND IN PROG','MULTI-CAMPUS'],   badge:null },
+    { key:'rtl',  label:'Retail',      color:'#22c55e', targets:16, tam:4.3, weeks:8,  catalysts:['225 NEW STORES','PE BUYOUT'],       badge:'MOST TARGETS' },
     { key:'tch',  label:'Technology',  color:'#06b6d4', targets:13, tam:1.9, weeks:6,  catalysts:['FAST PE CYCLE','ACQUISITIONS'],     badge:'FASTEST CLOSE' }
   ];
   var maxTam = 8.7;
