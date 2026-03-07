@@ -38,35 +38,23 @@ function closeModal() {
 }
 
 function mktTab(key) {
+  var f500Wrap      = document.getElementById('f500-overview-wrap');
+  var pipelineWrap  = document.getElementById('crm-pipeline-wrap');
+  var tableWrap     = document.getElementById('mkt-table-wrap');
+  var csWrap        = document.getElementById('casestudies-wrap');
+  var partnersWrap  = document.getElementById('partners-wrap');
+  var compWrap      = document.getElementById('competitive-wrap');
+  var salesWrap     = document.getElementById('sales-analysis-wrap');
+  // Hide all wraps first
+  [f500Wrap, pipelineWrap, tableWrap, csWrap, partnersWrap, compWrap, salesWrap].forEach(function(w) {
+    if (w) w.style.display = 'none';
+  });
   var ALL_TABS = ['f500','svc','fin','hlth','ind','rtl','tch','crm','mid','sales_analysis','casestudies','partners','competitive'];
   // Show header strip and market context only on F500 tab
   var headerStrip = document.getElementById('market-header-strip');
   if (headerStrip) headerStrip.style.display = key === 'f500' ? 'flex' : 'none';
   var mktCtx = document.getElementById('market-context-wrap');
   if (mktCtx) mktCtx.style.display = key === 'f500' ? 'block' : 'none';
-  var talWrap = document.getElementById('market-tal-wrap');
-  if (talWrap) talWrap.style.display = 'block';
-  // Scroll modal to top
-  var overlay = document.getElementById('modal-overlay');
-  if (overlay) overlay.scrollTop = 0;
-  // Hide all panels first
-  var tableWrap    = document.getElementById('mkt-table-wrap');
-  var pipelineWrap = document.getElementById('crm-pipeline-wrap');
-  var f500Wrap     = document.getElementById('f500-overview-wrap');
-  var salesWrap    = document.getElementById('sales-analysis-wrap');
-  var csWrap       = document.getElementById('casestudies-wrap');
-  var partnersWrap = document.getElementById('partners-wrap');
-  var compWrap     = document.getElementById('competitive-wrap');
-  if (tableWrap)    tableWrap.style.display    = 'none';
-  if (pipelineWrap) pipelineWrap.style.display = 'none';
-  if (f500Wrap)     f500Wrap.style.display     = 'none';
-  if (salesWrap)    salesWrap.style.display    = 'none';
-  if (csWrap)       csWrap.style.display       = 'none';
-  if (partnersWrap) partnersWrap.style.display = 'none';
-  if (compWrap)     compWrap.style.display     = 'none';
-  // Also hide TAL inner on non-F500 tabs
-  var talInner = document.getElementById('market-tal-inner');
-  if (talInner) talInner.style.display = 'none';
   // Highlight active tab
   ALL_TABS.forEach(function(k) {
     var btn = document.getElementById('mtab-' + k);
@@ -76,7 +64,6 @@ function mktTab(key) {
   });
   if (key === 'f500') {
     if (f500Wrap) { f500Wrap.style.display = 'block'; if (!f500Wrap.innerHTML.trim()) renderF500Dashboard(); }
-    if (talInner) talInner.style.display = 'block';
     return;
   }
   if (key === 'crm') {
@@ -912,12 +899,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <button class="btn btn-outline" onclick="openModal('modal-rick')" style="border-color:rgba(200,16,46,.5);color:#e8f0ff;">Territory Owner &#8594;</button>
 
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="num">$900M–$1.1B</div><div class="lbl">Chicago TAM</div></div>
-      <div class="hero-stat"><div class="num">63%</div><div class="lbl">Gross Margin Target</div></div>
-      <div class="hero-stat"><div class="num">14mo</div><div class="lbl">Capital Payback</div></div>
-      <div class="hero-stat"><div class="num">30+</div><div class="lbl">Years in the Room</div></div>
-    </div>
+
   </div>
   <div class="hero-right">
     <div class="hero-tag">Now Serving Chicagoland</div>
@@ -985,7 +967,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <div onclick="openModal('modal-market');setTimeout(function(){mktTab('mid')},60)" style="background:rgba(255,255,255,.04);border:1px solid rgba(90,171,255,.18);border-left:3px solid #5aabff;padding:1rem 1.2rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(90,171,255,.07)'" onmouseout="this.style.background='rgba(255,255,255,.04)'">
           <div>
             <div style="font-family:'Barlow Condensed',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(90,171,255,.7);margin-bottom:.15rem;">Mid-Market</div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;color:#b0bcd4;line-height:1.3;">Regional brands · Growth cos<br><span style="font-size:.75rem;color:#5a6880;">Avg. contract $40K–$120K</span></div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:.88rem;font-weight:700;color:#b0bcd4;line-height:1.3;">Regional brands · Growth companies<br><span style="font-size:.75rem;color:#5a6880;">Avg. contract $40K–$120K</span></div>
           </div>
           <div style="text-align:right;">
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#5aabff;line-height:1;" id="pipe-mid">0</div>
@@ -1011,24 +993,14 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 
       </div>
 
-      <!-- Bottom stat pair -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.1rem;">
-        <div onclick="openModal('modal-rick')" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.75rem 1rem;text-align:center;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.06)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#22c55e;line-height:1;">30yr</div>
-          <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.2rem;">Existing Relationships ↗</div>
-        </div>
-        <div onclick="openModal('modal-market');setTimeout(function(){mktTab('competitive')},60)" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.75rem 1rem;text-align:center;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(200,16,46,.06)'" onmouseout="this.style.background='rgba(255,255,255,.03)'">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#C8102E;line-height:1;">0</div>
-          <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;margin-top:.2rem;">Full-Stack Rivals ↗</div>
-        </div>
-      </div>
+
     </div>
 
     <script>
     (function() {
       // Count from MKT_TABLES — svc(7) + fin(7) + hlth(7) + ind(7) + ret(9) + tech(13) = 50 enterprise
       // mid: 138 mid-market
-      var enterprise = 50, midMkt = 138, total = enterprise + midMkt;
+      var enterprise = 52, midMkt = 150, total = enterprise + midMkt;
       function animCount(id, target, duration, color) {
         var el = document.getElementById(id);
         if (!el) return;
@@ -1178,7 +1150,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
 <!-- WHY NOW -->
 <section class="section section-alt" style="background:#060c16;padding:3rem 5rem;">
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);margin-bottom:3rem;">
-    <div onclick="openModal('modal-market');setTimeout(function(){mktTab('f500')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(200,16,46,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#C8102E;line-height:1;">188</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">F500 Targets ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">Fortune 500 &amp; major HQs in the Chicago metro — mapped &amp; qualified</div></div>
+    <div onclick="openModal('modal-market');setTimeout(function(){mktTab('f500')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(200,16,46,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#C8102E;line-height:1;">202</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Named Targets ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">F500 + mid-market HQs across Chicago metro — every account mapped &amp; qualified</div></div>
     <div onclick="openModal('modal-market');setTimeout(function(){mktTab('f500')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(34,197,94,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#22c55e;line-height:1;">+4.8%</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Market Growth ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">Wide-format growing while broader print declines — tailwind, not headwind</div></div>
     <div onclick="openModal('modal-market');setTimeout(function(){mktTab('competitive')},60)" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(90,171,255,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#5aabff;line-height:1;">0</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Full-Stack Rivals ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">No Chicago competitor offers same-day proofing + HQ scale + eco capability</div></div>
     <div onclick="document.getElementById('resources-section').scrollIntoView({behavior:'smooth'})" style="background:#060c16;padding:2rem 1.5rem;text-align:center;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(245,158,11,.07)'" onmouseout="this.style.background='#060c16'"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.8rem;color:#f59e0b;line-height:1;">Now</div><div style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#4a6080;margin-top:.4rem;">Window Is Open ↗</div><div style="font-size:.8rem;color:#5a7090;margin-top:.5rem;line-height:1.5;">Relationships in place · Territory warm · No dominant incumbent yet</div></div>
@@ -1753,7 +1725,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Regional Growth</div>
         </div>
         <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#22c55e;">188</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#22c55e;">202</div>
           <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#4a6080;">Targets Mapped</div>
         </div>
         <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.6rem 1rem;">
@@ -1815,7 +1787,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;margin-bottom:1.5rem;">
         <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.75rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;">Top Accounts by Sector &amp; Decision-Maker</div>
-          <div style="font-size:.72rem;color:#4a6080;font-family:'Barlow Condensed',sans-serif;">188 targets · select a sector to drill in →</div>
+          <div style="font-size:.72rem;color:#4a6080;font-family:'Barlow Condensed',sans-serif;">202 targets · select a sector to drill in →</div>
         </div>
         <style>
           .mkt-tab { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; background:rgba(255,255,255,.06); color:#c0cfe8; border:1px solid rgba(255,255,255,.12); border-left:2px solid rgba(90,171,255,.4); padding:.25rem .65rem; cursor:pointer; transition:all .15s; display:flex; flex-direction:column; align-items:flex-start; gap:.04rem; }
@@ -1829,7 +1801,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <div style="margin-bottom:.2rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Sector Targets</div>
           <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
-            <button onclick="mktTab('f500')" id="mtab-f500" data-tip="F500 Chicago Targets · Overview" class="mkt-tab" style="background:#C8102E;color:#fff;border-color:#C8102E;border-left-color:#C8102E;"><span class="mkt-tab-label">F500 Overview</span><span class="mkt-tab-roles">188 targets · all sectors</span></button>
+            <button onclick="mktTab('f500')" id="mtab-f500" data-tip="F500 Chicago Targets · Overview" class="mkt-tab" style="background:#C8102E;color:#fff;border-color:#C8102E;border-left-color:#C8102E;"><span class="mkt-tab-label">F500 Overview</span><span class="mkt-tab-roles">52 targets · all sectors</span></button>
             <button onclick="mktTab('svc')" id="mtab-svc" data-tip="Professional Services · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Services</span><span class="mkt-tab-roles">CMO · COO · VP Workplace</span></button>
             <button onclick="mktTab('fin')" id="mtab-fin" data-tip="Financial · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Financial</span><span class="mkt-tab-roles">CMO · VP Real Estate · VP Facilities</span></button>
             <button onclick="mktTab('hlth')" id="mtab-hlth" data-tip="Healthcare · 7 targets" class="mkt-tab"><span class="mkt-tab-label">Healthcare</span><span class="mkt-tab-roles">VP Facilities · CHRO</span></button>
@@ -1842,7 +1814,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
         <div style="margin-bottom:.9rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.3rem;">Strategy &amp; Intelligence</div>
           <div style="display:flex;gap:.4rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;">
-            <button onclick="mktTab('crm')" id="mtab-crm" data-tip="Pipeline · 188 accounts" class="mkt-tab">Pipeline</button>
+            <button onclick="mktTab('crm')" id="mtab-crm" data-tip="Pipeline · 202 accounts" class="mkt-tab">Pipeline</button>
             <button onclick="mktTab('sales_analysis')" id="mtab-sales_analysis" data-tip="Sales Analysis · Catalyst & Sector Breakdown" class="mkt-tab">Sales Analysis</button>
             <button onclick="mktTab('partners')" id="mtab-partners" data-tip="Channel Partners · Co-sell Network" class="mkt-tab">Channel Partners</button>
             <button onclick="mktTab('competitive')" id="mtab-competitive" data-tip="Competitive Intelligence · 15 Competitors" class="mkt-tab">Competitive Intel</button>
@@ -1881,134 +1853,6 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       </div>
 
 
-  <div id="market-tal-wrap">
-  <!-- TAL DATA VISUALIZATIONS — F500 tab only -->
-    <div id="market-tal-inner" style="margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.25em;text-transform:uppercase;color:#4a9eff;margin-bottom:1.25rem;">Illinois TAL · 1,262 Accounts · Visualized</div>
-
-      <!-- KPI STRIP -->
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-bottom:1.5rem;">
-        <div style="background:rgba(74,158,255,.08);border:1px solid rgba(74,158,255,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#4a9eff;line-height:1;">1,262</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Target Accounts</div></div>
-        <div style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#22c55e;line-height:1;">$1.2T</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Combined Revenue</div></div>
-        <div style="background:rgba(200,16,46,.08);border:1px solid rgba(200,16,46,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#C8102E;line-height:1;">$8.2B</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Facilities &amp; Mktg Spend</div></div>
-        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#f59e0b;line-height:1;">25K</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Total Locations</div></div>
-        <div style="background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.2);padding:.8rem;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.7rem;color:#a855f7;line-height:1;">2.5M</div><div style="font-size:.82rem;color:#8A8A8A;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;">Employees</div></div>
-      </div>
-
-      <!-- ROW 1: Sector donut + Territory SVG map -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;align-items:stretch;">
-
-        <!-- SECTOR BAR CHART -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;display:flex;flex-direction:column;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:1rem;">Sector Distribution</div>
-          <div style="display:flex;flex-direction:column;gap:.55rem;">
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Services</span><strong style="color:#fff;">282</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:100%;background:#C8102E;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Industrials</span><strong style="color:#fff;">187</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:66%;background:#4a9eff;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Healthcare</span><strong style="color:#fff;">179</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:63%;background:#22c55e;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Financial</span><strong style="color:#fff;">162</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:57%;background:#f59e0b;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Tech</span><strong style="color:#fff;">114</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:40%;background:#a855f7;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Consumer Goods</span><strong style="color:#fff;">107</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:38%;background:#ec4899;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Higher Ed/Gov</span><strong style="color:#fff;">88</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:31%;background:#06b6d4;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Retail</span><strong style="color:#fff;">84</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:30%;background:#84cc16;border-radius:2px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:.2rem;"><span style="color:#c0cfe8;">Energy/Misc</span><strong style="color:#fff;">59</strong></div><div style="height:6px;background:rgba(255,255,255,.06);border-radius:2px;"><div style="height:100%;width:21%;background:#64748b;border-radius:2px;"></div></div></div>
-          </div>
-        </div>
-
-        <!-- TERRITORY SVG MAP -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;display:flex;flex-direction:column;flex:1;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#4a9eff;margin-bottom:.75rem;">Hub-and-Spoke Territory</div>
-          <svg viewBox="0 0 500 420" style="width:100%;flex:1;display:block;min-height:0;" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-            <rect width="500" height="420" fill="#0d1520" rx="4"/>
-            <!-- Lake Michigan shading -->
-            <path d="M420,0 Q450,60 445,140 Q440,220 435,300 Q430,370 425,420 L500,420 L500,0 Z" fill="rgba(74,158,255,.08)"/>
-            <text x="440" y="100" fill="rgba(74,158,255,.18)" font-size="10" font-family="'Barlow Condensed',sans-serif" font-weight="700" letter-spacing="2">LAKE</text>
-            <text x="433" y="116" fill="rgba(74,158,255,.18)" font-size="10" font-family="'Barlow Condensed',sans-serif" font-weight="700" letter-spacing="2">MICHIGAN</text>
-
-            <!-- Spoke lines from Chicago hub -->
-            <line x1="255" y1="200" x2="130" y2="75"  stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
-            <line x1="255" y1="200" x2="65"  y2="210" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
-            <line x1="255" y1="200" x2="105" y2="335" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
-            <line x1="255" y1="200" x2="255" y2="365" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
-            <line x1="255" y1="200" x2="380" y2="340" stroke="rgba(200,16,46,.35)" stroke-width="1.5" stroke-dasharray="7,5"/>
-
-            <!-- CHICAGO HUB - center -->
-            <circle cx="255" cy="200" r="44" fill="rgba(200,16,46,.07)" stroke="#C8102E" stroke-width="2"/>
-            <circle cx="255" cy="200" r="16" fill="#C8102E"/>
-            <text x="255" y="163" text-anchor="middle" fill="#fff" font-size="15" font-weight="700" font-family="'Barlow Condensed',sans-serif" letter-spacing="1">CHICAGO</text>
-            <text x="255" y="179" text-anchor="middle" fill="rgba(200,16,46,.85)" font-size="10" font-family="'Barlow Condensed',sans-serif">HUB · ~500 accounts</text>
-
-            <!-- ELMHURST star -->
-            <polygon points="215,208 218,219 230,219 221,227 224,238 215,231 206,238 209,227 200,219 212,219" fill="#f59e0b"/>
-            <text x="215" y="254" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="700" font-family="'Barlow Condensed',sans-serif">ELMHURST</text>
-            <text x="215" y="267" text-anchor="middle" fill="rgba(245,158,11,.55)" font-size="9" font-family="'Barlow Condensed',sans-serif">Rick's base</text>
-
-            <!-- NORTH - top center -->
-            <circle cx="130" cy="75" r="52" fill="rgba(34,197,94,.07)" stroke="#22c55e" stroke-width="1.5"/>
-            <text x="130" y="68" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">NORTH</text>
-            <text x="130" y="83" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Lake Forest</text>
-            <text x="130" y="98" text-anchor="middle" fill="rgba(34,197,94,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~300 accts</text>
-
-            <!-- N.WEST - left middle -->
-            <circle cx="65" cy="210" r="48" fill="rgba(245,158,11,.07)" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="65" y="203" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">N.WEST</text>
-            <text x="65" y="218" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Schaumburg</text>
-            <text x="65" y="233" text-anchor="middle" fill="rgba(245,158,11,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~150 accts</text>
-
-            <!-- WEST - lower left -->
-            <circle cx="105" cy="335" r="48" fill="rgba(168,85,247,.07)" stroke="#a855f7" stroke-width="1.5"/>
-            <text x="105" y="328" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">WEST</text>
-            <text x="105" y="343" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Downers Grove</text>
-            <text x="105" y="358" text-anchor="middle" fill="rgba(168,85,247,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~200 accts</text>
-
-            <!-- SOUTH - bottom center -->
-            <circle cx="255" cy="370" r="44" fill="rgba(74,158,255,.07)" stroke="#4a9eff" stroke-width="1.5"/>
-            <text x="255" y="363" text-anchor="middle" fill="#4a9eff" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">SOUTH</text>
-            <text x="255" y="378" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Oak Brook</text>
-            <text x="255" y="393" text-anchor="middle" fill="rgba(74,158,255,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~100 accts</text>
-
-            <!-- STATE - lower right -->
-            <circle cx="380" cy="340" r="48" fill="rgba(100,116,139,.07)" stroke="#64748b" stroke-width="1.5"/>
-            <text x="380" y="333" text-anchor="middle" fill="#64748b" font-size="13" font-weight="700" font-family="'Barlow Condensed',sans-serif">STATE</text>
-            <text x="380" y="348" text-anchor="middle" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Peoria / Bloom.</text>
-            <text x="380" y="363" text-anchor="middle" fill="rgba(100,116,139,.65)" font-size="9" font-family="'Barlow Condensed',sans-serif">~100 accts</text>
-
-            <!-- Legend top-right -->
-            <polygon points="352,18 355,27 365,27 357,33 360,42 352,36 344,42 347,33 339,27 349,27" fill="#f59e0b"/>
-            <text x="370" y="30" fill="#f59e0b" font-size="10" font-family="'Barlow Condensed',sans-serif">Rick (Elmhurst)</text>
-            <circle cx="353" cy="52" r="7" fill="#C8102E"/>
-            <text x="366" y="56" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Hub</text>
-            <circle cx="353" cy="72" r="7" fill="none" stroke="#22c55e" stroke-width="1.5"/>
-            <text x="366" y="76" fill="#8A8A8A" font-size="10" font-family="'Barlow Condensed',sans-serif">Spoke</text>
-          </svg>
-        </div>
-      </div>
-
-      <!-- ROW 2: Location bar chart + Facilities & Mktg spend bars -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
-
-        <!-- TIER A: TOP ROLLOUT TARGETS -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#C8102E;margin-bottom:.9rem;">Tier A · Top Rollout Targets by Locations</div>
-          <div style="display:flex;flex-direction:column;gap:.55rem;" id="mkt-loc-bars">
-            <!-- rendered by JS -->
-          </div>
-        </div>
-
-        <!-- TIER B: FACILITIES & MARKETING SPEND LEADERS -->
-        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:1.25rem;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.2em;text-transform:uppercase;color:#22c55e;margin-bottom:.9rem;">Tier B · Facilities &amp; Marketing Spend ($M)</div>
-          <div style="display:flex;flex-direction:column;gap:.55rem;" id="mkt-it-bars">
-            <!-- rendered by JS -->
-          </div>
-        </div>
-      </div>
-
-            <!-- Hidden tier card anchors for JS rendering -->
-      <div style="display:none;"><div id="tier1-cards"></div><div id="tier2-cards"></div><div id="tier3-cards"></div></div>
-
-
-    </div>
-  </div> <!-- end market-tal-wrap -->
   </div>
 
   <!-- PRODUCTS MODAL -->
@@ -4579,226 +4423,238 @@ var MKT_IT_DATA = [
 ];
 var MKT_TABLES = {
   svc: [
-    ['United Airlines (UAL)','$57.1B','$1,800M','366 airports','CMO, COO, EVP Facilities — Chicago O\'Hare hub; 107K employees; record 2024 profits'],
-    ['RR Donnelley (RRD)','$5.0B','$185M','100+ facilities','CMO, CIO, COO — Chicago HQ; went private 2022 (Chatham); 40K employees; acquired Williams Lea 2024'],
-    ['JLL','$23.4B','$860M','300+ offices','CMO, VP Workplace — Chicago HQ; world\'s 2nd largest CRE firm; 106K employees; massive workplace interior programs'],
-    ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO, VP Ops — Chicago HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees'],
     ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
+    ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO, VP Ops — Chicago HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees'],
+    ['JLL','$23.4B','$860M','300+ offices','CMO, VP Workplace — Chicago HQ; world\'s 2nd largest CRE firm; 106K employees; massive workplace interior programs'],
     ['MAT Holdings','$1.6B','$70M','41','COO, VP Facilities — Long Grove IL; private; global hardware & tools manufacturer; 5K employees'],
-    ['National Express / NXPT','$1.0B','$38M','185 depots','COO, VP Operations — Lisle IL HQ; rebranded 2024; school bus + transit; 23K US employees']
+    ['National Express / NXPT','$1.0B','$38M','185 depots','COO, VP Operations — Lisle IL HQ; rebranded 2024; school bus + transit; 23K US employees'],
+    ['RR Donnelley (RRD)','$5.0B','$185M','100+ facilities','CMO, CIO, COO — Chicago HQ; went private 2022 (Chatham); 40K employees; acquired Williams Lea 2024'],
+    ['United Airlines (UAL)','$57.1B','$1,800M','366 airports','CMO, COO, EVP Facilities — Chicago O\'Hare hub; 107K employees; record 2024 profits']
   ],
   fin: [
-    ['State Farm','$123.0B','$2,570M','1,142','CMO, VP Real Estate — Bloomington IL HQ; largest US auto+home insurer; 57K employees; $145B net worth'],
     ['Allstate','$64.1B','$1,800M','363','CMO, VP Real Estate — Northbrook IL HQ; 2024 rev up 12%; 54K employees; large branded office/claims center network'],
-    ['Zurich North America','$22B est.','$900M','80+','CMO, VP Facilities — Schaumburg IL HQ; Zurich Group NA arm; 9K IL employees; major office campus'],
-    ['Discover Financial (Capital One)','$16.9B','$650M','53','CMO, VP Workplace — Riverwoods IL HQ; Capital One acquisition pending; major interior signage rebrand opportunity'],
+    ['Arthur J. Gallagher','$11.5B','$440M','150+','CMO, VP Facilities — Rolling Meadows IL HQ; 55K employees; grew via 80+ acquisitions; major rebranding buyer'],
     ['CNA Financial','$11.0B','$420M','42','CMO, VP Facilities — Chicago Loop HQ; 6K employees; commercial P&C insurer; branch office interiors'],
+    ['Discover Financial (Capital One)','$16.9B','$650M','53','CMO, VP Workplace — Riverwoods IL HQ; Capital One acquisition pending; major interior signage rebrand opportunity'],
     ['Northern Trust','$8.0B','$310M','70','CMO, VP Real Estate — Chicago HQ; $1.5T AUM; 22K employees; premium wealth mgmt office environments'],
-    ['Arthur J. Gallagher','$11.5B','$440M','150+','CMO, VP Facilities — Rolling Meadows IL HQ; 55K employees; grew via 80+ acquisitions; major rebranding buyer']
+    ['State Farm','$123.0B','$2,570M','1,142','CMO, VP Real Estate — Bloomington IL HQ; largest US auto+home insurer; 57K employees; $145B net worth'],
+    ['Zurich North America','$22B est.','$900M','80+','CMO, VP Facilities — Schaumburg IL HQ; Zurich Group NA arm; 9K IL employees; major office campus']
   ],
   hlth: [
-    ['Health Care Service Corp (HCSC)','$50B est.','$2,000M','—','VP Facilities, CHRO — Chicago HQ; 4th largest US health insurer; private; 24K employees; massive campus footprint'],
-    ['AbbVie','$56.3B','$2,100M','193','VP Facilities, CHRO — North Chicago HQ; Humira successor Skyrizi/Rinvoq driving growth; 50K employees'],
     ['Abbott Laboratories','$22.0B','$850M','833','VP Facilities, CHRO — Abbott Park IL HQ; medical devices #1 segment; 114K employees globally; major campus remodel cycle'],
+    ['AbbVie','$56.3B','$2,100M','193','VP Facilities, CHRO — North Chicago HQ; Humira successor Skyrizi/Rinvoq driving growth; 50K employees'],
+    ['Advocate Health (merged)','$22B','$830M','65+ hospitals','VP Facilities, CHRO — Charlotte/IL; merged w/ Atrium 2022; 150K employees; one of largest US health systems'],
     ['Baxter International','$11.4B','$430M','100+','VP Facilities, CHRO — Deerfield IL HQ; spun off Vantive (kidney care) 2024; 17K employees; post-spin rebrand need'],
+    ['Health Care Service Corp (HCSC)','$50B est.','$2,000M','—','VP Facilities, CHRO — Chicago HQ; 4th largest US health insurer; private; 24K employees; massive campus footprint'],
     ['Medline Industries','$22B est.','$250M','100+','VP Facilities, CHRO — Northfield IL HQ; PE-owned (Blackstone/Carlyle); 35K employees; fastest-growing private med supply co'],
-    ['Northwestern Medicine','$7.7B','$280M','20+ hospitals','VP Facilities, CHRO — Chicago; 11 hospitals, 30K employees; premium healthcare brand; major facility expansion'],
-    ['Advocate Health (merged)','$22B','$830M','65+ hospitals','VP Facilities, CHRO — Charlotte/IL; merged w/ Atrium 2022; 150K employees; one of largest US health systems']
+    ['Northwestern Medicine','$7.7B','$280M','20+ hospitals','VP Facilities, CHRO — Chicago; 11 hospitals, 30K employees; premium healthcare brand; major facility expansion']
   ],
   ind: [
     ['Boeing Company','$66.5B','$2,400M','95','COO, VP Operations — moving HQ to Arlington VA; 2024 strike hurt output; 170K employees; massive IL manufacturing footprint'],
     ['Caterpillar Inc.','$64.8B','$2,400M','853','COO, VP Operations — Irving TX HQ (moved 2022); Deerfield IL still major exec hub; 109K employees; $10.8B net income 2024'],
-    ['John Deere (Deere & Co.)','$51.7B','$1,900M','616','COO, VP Operations — Moline IL HQ; farm equipment + construction; 82K employees; major Midwest manufacturing campus'],
+    ['Dover Corporation','$7.7B','$290M','30+','COO, VP Facilities — Downers Grove IL HQ; 25K employees; diversified industrial; 6 segments incl. HVAC and fluid handling'],
     ['Illinois Tool Works (ITW)','$15.9B','$600M','600','COO, VP Operations — Glenview IL HQ; 7 segments, 84 divisions; 44K employees; record $4.3B operating income 2024'],
-    ['W.W. Grainger','$17.2B','$640M','982','VP Facilities, CMO — Lake Forest IL HQ; MRO distribution leader; 26K employees; 982 branches = major signage rollout target'],
     ['International Motors (Traton/VW)','$12B est.','$450M','1,000+ dealers','COO, VP Operations — Lisle IL HQ; rebranded from Navistar Oct 2024; Traton/VW-owned; 14.5K employees'],
-    ['Dover Corporation','$7.7B','$290M','30+','COO, VP Facilities — Downers Grove IL HQ; 25K employees; diversified industrial; 6 segments incl. HVAC and fluid handling']
+    ['John Deere (Deere & Co.)','$51.7B','$1,900M','616','COO, VP Operations — Moline IL HQ; farm equipment + construction; 82K employees; major Midwest manufacturing campus'],
+    ['W.W. Grainger','$17.2B','$640M','982','VP Facilities, CMO — Lake Forest IL HQ; MRO distribution leader; 26K employees; 982 branches = major signage rollout target']
   ],
   rtl: [
-    ['Walgreens (Sycamore Partners)','$147B','$3,200M','~8,000','CMO, VP Real Estate — Deerfield IL HQ; taken private Aug 2025; closing stores, heavy rebrand need'],
-    ['Reyes Holdings','$40B','—','200+ facilities','CMO, VP Real Estate — Rosemont IL HQ; #6 US private co; McDonald\'s & Coca-Cola distributor; 36K employees'],
-    ['US Foods','$39.4B','$1,100M','250K clients','CMO, VP Real Estate — Rosemont IL HQ; 2nd largest US foodservice distributor; 30K employees, 70+ DCs'],
-    ['ALDI US','$29B','—','2,400+','CMO, VP Real Estate — Batavia IL HQ; fastest-growing US grocer; 225 new stores opened 2025; targeting 3,000 by 2028'],
-    ["McDonald's Corp",'$25.9B','—','13,500 US','CMO, VP Real Estate — Oak Brook IL HQ; massive interior programs per remodel cycle; Reyes is their #1 distributor'],
     ['Ace Hardware','$9.4B','—','5,700+','CMO, VP Real Estate — Oak Brook IL HQ; co-op model, each dealer controls interior brand decisions'],
-    ['Univar Solutions (Apollo)','$9.3B','$325M','200+','CMO, VP Facilities — Downers Grove IL HQ; taken private 2023 by Apollo; chemical distributor'],
-    ['True Value Company','$2.1B','—','4,500+ dealers','CMO, VP Dealer Dev — Chicago HQ (Fulton Market); recently sold to Do it Best 2024; dealer-owned co-op; every dealer store = interior brand refresh opportunity'],
+    ['ALDI US','$29B','—','2,400+','CMO, VP Real Estate — Batavia IL HQ; fastest-growing US grocer; 225 new stores opened 2025; targeting 3,000 by 2028'],
+    ["Jewel-Osco (Albertsons IL)",'$8B+ est.','—','185 stores','VP Real Estate, VP Marketing — Itasca IL; dominant IL grocery; ongoing store remodel cycle + seasonal environmental graphics; 185 locations = major rollout program'],
+    ["McDonald's Corp",'$25.9B','—','13,500 US','CMO, VP Real Estate — Oak Brook IL HQ; massive interior programs per remodel cycle; Reyes is their #1 distributor'],
     ['Potbelly Corporation','$500M','$20M','475+ locations','CMO, VP Facilities — Chicago HQ; sandwich chain; NYSE: PBPB; ongoing remodel program; interior environmental graphics = core to brand refresh'],
-    ['Wintrust Arena / GB Properties','—','—','Chicago venues','VP Real Estate — Chicago; Marriott Marquis + Wintrust Arena campus; large venue environmental + wayfinding programs'],
-    ["Jewel-Osco (Albertsons IL)",'$8B+ est.','—','185 stores','VP Real Estate, VP Marketing — Itasca IL; dominant IL grocery; ongoing store remodel cycle + seasonal environmental graphics; 185 locations = major rollout program']
+    ['Reyes Holdings','$40B','—','200+ facilities','CMO, VP Real Estate — Rosemont IL HQ; #6 US private co; McDonald\'s & Coca-Cola distributor; 36K employees'],
+    ['True Value Company','$2.1B','—','4,500+ dealers','CMO, VP Dealer Dev — Chicago HQ (Fulton Market); recently sold to Do it Best 2024; dealer-owned co-op; every dealer store = interior brand refresh opportunity'],
+    ['Univar Solutions (Apollo)','$9.3B','$325M','200+','CMO, VP Facilities — Downers Grove IL HQ; taken private 2023 by Apollo; chemical distributor'],
+    ['US Foods','$39.4B','$1,100M','250K clients','CMO, VP Real Estate — Rosemont IL HQ; 2nd largest US foodservice distributor; 30K employees, 70+ DCs'],
+    ['Walgreens (Sycamore Partners)','$147B','$3,200M','~8,000','CMO, VP Real Estate — Deerfield IL HQ; taken private Aug 2025; closing stores, heavy rebrand need'],
+    ['Wintrust Arena / GB Properties','—','—','Chicago venues','VP Real Estate — Chicago; Marriott Marquis + Wintrust Arena campus; large venue environmental + wayfinding programs']
   ],
   tch: [
-    ['Motorola Solutions','$10.8B','$400M','500+','CMO, VP Facilities — Chicago HQ; record 2024 revenue; public safety + video security; 21K employees; global campus'],
     ['CDW Corporation','$21.4B','$800M','250+','CMO, VP Facilities — Lincolnshire IL HQ; IT solutions for enterprise/govt/edu; 15K employees; major office interior buyer'],
-    ['Zebra Technologies','$4.5B','$170M','128 offices','CMO, VP Facilities — Lincolnshire IL HQ; acquired Elo Touch 2025 for $1.3B; warehouse/retail automation; 10K employees'],
-    ['U.S. Cellular (T-Mobile)','$3.8B','$145M','500+ stores','CMO, VP Facilities — Chicago HQ; wireless ops being acquired by T-Mobile (mid-2025); major rebrand/signage opportunity'],
-    ['Molex (Koch Industries)','$3.8B','$145M','40+ sites','CMO, VP Facilities — Lisle IL HQ; electronic connectors; Koch subsidiary; 40K employees; global manufacturing'],
-    ['Tempus AI','$0.6B','$25M','1 HQ','CMO, VP Facilities — Chicago HQ; AI-driven genomic data; high-growth; 1,000+ employees; premium office environment'],
-    ['OMRON (NA HQ)','$7.2B','$270M','23','CMO, VP Facilities — Hoffman Estates IL; automation + robotics; NA headquarters for Japanese parent; 28K employees'],
-    ['Enova International','$2.3B','$75M','Chicago HQ','CMO, VP Facilities — Chicago; online lending fintech; 2,000 employees; premium office environment; Crain\'s fastest growing 2024'],
-    ['Relativity (software)','$800M est.','$30M','Chicago HQ','CMO, VP Facilities — Chicago; legal tech + e-discovery; Silver Lake-backed; 1,200 employees; premium Fulton Market office environment'],
-    ['Paylocity','$870M','$35M','Schaumburg HQ','CMO, VP Facilities — Schaumburg IL HQ; cloud HR + payroll; NASDAQ: PCTY; 5,000 employees; premium suburban campus environment'],
     ['Enfusion','$180M','$8M','Chicago HQ','CMO, VP Facilities — Chicago; cloud investment management; NYSE: ENFN; 700 employees; premium River North office; fast-growing'],
+    ['Enova International','$2.3B','$75M','Chicago HQ','CMO, VP Facilities — Chicago; online lending fintech; 2,000 employees; premium office environment; Crain\'s fastest growing 2024'],
+    ['Molex (Koch Industries)','$3.8B','$145M','40+ sites','CMO, VP Facilities — Lisle IL HQ; electronic connectors; Koch subsidiary; 40K employees; global manufacturing'],
+    ['Motorola Solutions','$10.8B','$400M','500+','CMO, VP Facilities — Chicago HQ; record 2024 revenue; public safety + video security; 21K employees; global campus'],
+    ['OMRON (NA HQ)','$7.2B','$270M','23','CMO, VP Facilities — Hoffman Estates IL; automation + robotics; NA headquarters for Japanese parent; 28K employees'],
+    ['Outcome Health','$250M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; healthcare point-of-care media; premium office + showroom environment; client-facing spaces'],
+    ['Paylocity','$870M','$35M','Schaumburg HQ','CMO, VP Facilities — Schaumburg IL HQ; cloud HR + payroll; NASDAQ: PCTY; 5,000 employees; premium suburban campus environment'],
+    ['Relativity (software)','$800M est.','$30M','Chicago HQ','CMO, VP Facilities — Chicago; legal tech + e-discovery; Silver Lake-backed; 1,200 employees; premium Fulton Market office environment'],
     ['SMS Assist / Lessen','$400M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; facilities management SaaS; PE-backed; River North HQ; 500+ employees; modern premium office'],
-    ['Outcome Health','$250M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; healthcare point-of-care media; premium office + showroom environment; client-facing spaces']
+    ['Tempus AI','$0.6B','$25M','1 HQ','CMO, VP Facilities — Chicago HQ; AI-driven genomic data; high-growth; 1,000+ employees; premium office environment'],
+    ['U.S. Cellular (T-Mobile)','$3.8B','$145M','500+ stores','CMO, VP Facilities — Chicago HQ; wireless ops being acquired by T-Mobile (mid-2025); major rebrand/signage opportunity'],
+    ['Zebra Technologies','$4.5B','$170M','128 offices','CMO, VP Facilities — Lincolnshire IL HQ; acquired Elo Touch 2025 for $1.3B; warehouse/retail automation; 10K employees']
   ],
   mid: [
     // ── FOOD & BEVERAGE / DISTRIBUTION ──
+    ['Jewel-Osco (Albertsons IL)','—','—','185 stores','VP Real Estate, VP Marketing — Itasca IL; dominant IL grocery; store remodel cycle + seasonal environmental graphics; 185 locations = program volume'],
+    ['Mariano\'s / Roundy\'s (Kroger IL)','—','—','40+ stores','VP Real Estate — IL division; Kroger-owned banner; ongoing store remodel program = interior signage packages per location'],
+    ['Mondelez Chicago Brands (US ops)','—','—','Chicago offices','VP Brand, VP Facilities — Chicago Loop presence; Oreo, Ritz, Chips Ahoy US brand teams; office environment refresh; Foxmark entry through facilities manager'],
+    ['Network Distribution','$25B','—','1,100+ DCs','CMO, VP Real Estate — Itasca IL HQ; Crain\'s largest private list 2025; B2B distributor, janitorial + foodservice + industrial packaging; 52 countries'],
     ['Newly Weds Foods','$800M est.','—','30+ plants','VP Facilities, CMO — Chicago HQ (8550 W Bryn Mawr); privately held since 1932; recently acquired by Redwood Holdings; 29 US plants + global; HQ buildout 2023; food coating + ingredient mfg'],
     ['OSI Group','$7.0B est.','—','75 facilities','COO, VP Facilities — Aurora IL HQ; privately held; McDonald\'s primary beef supplier; 75 global plants; major facility branding at each site'],
+    ['Performance Food Group (Chicago ops)','$60B','$800M','150+ DCs','COO, VP Operations — Chicago area distribution; publicly traded but major local DC footprint; foodservice distribution; 150+ DCs = signage rollout target'],
     ['Reyes Beverage Group','$10B+ est.','—','60+ facilities','CMO, VP Real Estate — Rosemont IL HQ; private; Miller/Coors + Heineken distributor for 11+ states; warehouse + distribution center graphics program'],
     ['Topco Associates','$15B+ est.','—','HQ + member cos','CMO, VP Facilities — Elk Grove Village IL; cooperative buying org for 50+ grocery chains; HQ + member company signage'],
-    ['Network Distribution','$25B','—','1,100+ DCs','CMO, VP Real Estate — Itasca IL HQ; Crain\'s largest private list 2025; B2B distributor, janitorial + foodservice + industrial packaging; 52 countries'],
-    ['Performance Food Group (Chicago ops)','$60B','$800M','150+ DCs','COO, VP Operations — Chicago area distribution; publicly traded but major local DC footprint; foodservice distribution; 150+ DCs = signage rollout target'],
-    ['US Cellular (rebrand)','$3.8B','$145M','500+ retail','CMO, VP Retail — Chicago HQ; T-Mobile acquisition completed 2025; full retail store rebrand across 500+ locations = massive signage opportunity'],
     ['TreeHouse Foods','$4.6B','$90M','30+ plants','CMO, VP Facilities — Oak Brook IL HQ; private-label food manufacturer; NYSE: THS; 8K employees; plant + HQ rebrand buyer after major portfolio restructuring 2024'],
-    ['Mondelez Chicago Brands (US ops)','—','—','Chicago offices','VP Brand, VP Facilities — Chicago Loop presence; Oreo, Ritz, Chips Ahoy US brand teams; office environment refresh; Foxmark entry through facilities manager'],
-    ['Mariano\'s / Roundy\'s (Kroger IL)','—','—','40+ stores','VP Real Estate — IL division; Kroger-owned banner; ongoing store remodel program = interior signage packages per location'],
-    ['Jewel-Osco (Albertsons IL)','—','—','185 stores','VP Real Estate, VP Marketing — Itasca IL; dominant IL grocery; store remodel cycle + seasonal environmental graphics; 185 locations = program volume'],
+    ['US Cellular (rebrand)','$3.8B','$145M','500+ retail','CMO, VP Retail — Chicago HQ; T-Mobile acquisition completed 2025; full retail store rebrand across 500+ locations = massive signage opportunity'],
     ['US Foods Chicago Division','$37B total','—','Chicago div.','VP Operations, Regional VP — Rosemont IL; publicly traded distributor; large local DCs + fleet; facility + fleet graphics program'],
     // ── HOSPITALITY & RESTAURANTS ──
-    ['Lettuce Entertain You (LEYE)','$1.0B est.','—','110+ restaurants','CMO, VP Design — Chicago HQ; est. 1971; RPM, Beatrix, Summer House, Big Bowl; every new opening = full environmental package'],
-    ['DineAmic Hospitality','$150M est.','—','15+ venues','CEO/Owner — Chicago HQ; Prime & Provisions, Ballyhoo, Booth One, London House Hotel; brand-forward design at every venue'],
     ['Ballyhoo Hospitality','$75M est.','—','10+ locations','CEO/Owner — Chicago HQ; Ryan O\'Donnell; DeNucci\'s, Sophia Steak, Gemini; multiple suburban + city openings 2025–26'],
-    ['One Off Hospitality','$50M est.','—','8 restaurants','CEO/Owner — Chicago HQ; Paul Kahan group; Avec, Big Star, Publican; design-forward operator; each concept = unique environmental build'],
-    ['Gibsons Restaurant Group','$120M est.','—','12 locations','CEO/Owner — Chicago HQ; Gibsons, Hugo\'s Frog Bar, Luxbar, Quartino; multi-location Chicago institution; consistent brand environment needs'],
     ['Cornerstone Restaurant Group','$80M est.','—','15+ locations','COO, VP Operations — Chicago; Rosebud family; Italian restaurant group; steady location expansion'],
-    ['Foxtrot Market','$150M est.','—','35+ locations','CMO, VP Retail Design — Chicago HQ; upscale grab-and-go + cafe; retail environment is core to brand; reopening after 2024 closure with new backing'],
-    ['Land & Sea Dept.','$40M est.','—','6 venues','Owner/CMO — Chicago; Longman & Eagle, Parson\'s Chicken, Lost Lake; indie hospitality group; each venue = bespoke branded environment'],
-    ['Portillo\'s Hot Dogs','$700M','—','80+ locations','VP Facilities, CMO — Oak Brook IL; growth into FL + TX = new location signage program; heritage brand with strong environmental identity'],
+    ['DineAmic Hospitality','$150M est.','—','15+ venues','CEO/Owner — Chicago HQ; Prime & Provisions, Ballyhoo, Booth One, London House Hotel; brand-forward design at every venue'],
     ['Eataly Chicago','$100M est.','—','1 flagship','VP Marketing — River North; Italian food hall; ongoing environmental refresh + seasonal campaign graphics'],
-    ['Life Fitness (KPS Capital)','$850M est.','—','10 sites','CMO, VP Facilities — Rosemont IL HQ; fitness equipment manufacturer; showroom + HQ brand environment; post-PE acquisition rebrand in progress'],
+    ['Foxtrot Market','$150M est.','—','35+ locations','CMO, VP Retail Design — Chicago HQ; upscale grab-and-go + cafe; retail environment is core to brand; reopening after 2024 closure with new backing'],
+    ['Gibsons Restaurant Group','$120M est.','—','12 locations','CEO/Owner — Chicago HQ; Gibsons, Hugo\'s Frog Bar, Luxbar, Quartino; multi-location Chicago institution; consistent brand environment needs'],
     ['IHOP / Applebee\'s (DineEquity – IL franchise)','—','—','200+ IL locations','VP Franchise Ops — Chicago area; franchise remodel program cycle; interior signage per remodel = recurring program revenue'],
+    ['Land & Sea Dept.','$40M est.','—','6 venues','Owner/CMO — Chicago; Longman & Eagle, Parson\'s Chicken, Lost Lake; indie hospitality group; each venue = bespoke branded environment'],
+    ['Lettuce Entertain You (LEYE)','$1.0B est.','—','110+ restaurants','CMO, VP Design — Chicago HQ; est. 1971; RPM, Beatrix, Summer House, Big Bowl; every new opening = full environmental package'],
+    ['Life Fitness (KPS Capital)','$850M est.','—','10 sites','CMO, VP Facilities — Rosemont IL HQ; fitness equipment manufacturer; showroom + HQ brand environment; post-PE acquisition rebrand in progress'],
+    ['One Off Hospitality','$50M est.','—','8 restaurants','CEO/Owner — Chicago HQ; Paul Kahan group; Avec, Big Star, Publican; design-forward operator; each concept = unique environmental build'],
+    ['Portillo\'s Hot Dogs','$700M','—','80+ locations','VP Facilities, CMO — Oak Brook IL; growth into FL + TX = new location signage program; heritage brand with strong environmental identity'],
     // ── BANKING & FINANCIAL SERVICES ──
-    ['Wintrust Financial','$2.2B revenue','$85M','190+ branches','CMO, VP Marketing — Rosemont IL HQ; 15+ community bank brands; $65B assets; every branch acquisition = rebrand kit + environmental refresh'],
-    ['Inland Western / InvenTrust','$450M','$18M','60+ properties','VP Real Estate, CMO — Oak Brook IL; retail REIT; owns open-air shopping centers; tenant signage + property identity programs'],
-    ['Byline Bank','$175M','$7M','35 branches','CMO, VP Facilities — Chicago HQ; community bank; steady branch footprint; consistent interior brand environment'],
-    ['Inland Bank and Trust','$120M','$5M','20 branches','CMO, VP Facilities — Oak Brook IL; community bank; branch signage + interior program'],
-    ['Heartland Bank (IL)','$90M','$3M','15 branches','CMO — Normal IL with Chicago presence; regional community bank; branch branding refresh cycle'],
-    ['William Blair & Company','$1.2B','$45M','10 offices','CMO, VP Facilities — Chicago Loop HQ; investment bank; +40% revenue 2024; premium office environment; Crain\'s top private list 2025'],
-    ['Duff & Phelps (Kroll)','$800M','$30M','5 offices','CMO, VP Facilities — Chicago HQ; valuation + advisory; premium downtown office environment buyer'],
-    ['Enova International','$2.3B','$75M','Chicago HQ','CMO, VP Facilities — Chicago; online lending; 2,000 employees; premium office environment; Crain\'s fastest growing 2024'],
-    ['Belvedere Trading','$500M est.','—','Chicago HQ','COO — Chicago Loop; proprietary trading firm; 400+ employees; premium office environment; discreet buyer'],
-    ['DRW Holdings','$1.5B est.','—','Chicago HQ','COO — Chicago; proprietary trading; 1,300 employees; high-end workspace; Fulton Market office expansion 2024'],
     ['Aon Center tenants (managed)','—','—','83 floors','VP Building Ops — Chicago; Piedmont Office Realty manages; tenant suite signage + lobby identity programs across Class A tower'],
     ['BancTec / PNC IL Division','—','—','80+ IL branches','VP Retail — Chicago region; PNC acquired BBCN/Midwest banks; ongoing branch refresh; interior brand environment program'],
+    ['Belvedere Trading','$500M est.','—','Chicago HQ','COO — Chicago Loop; proprietary trading firm; 400+ employees; premium office environment; discreet buyer'],
+    ['Byline Bank','$175M','$7M','35 branches','CMO, VP Facilities — Chicago HQ; community bank; steady branch footprint; consistent interior brand environment'],
+    ['DRW Holdings','$1.5B est.','—','Chicago HQ','COO — Chicago; proprietary trading; 1,300 employees; high-end workspace; Fulton Market office expansion 2024'],
+    ['Duff & Phelps (Kroll)','$800M','$30M','5 offices','CMO, VP Facilities — Chicago HQ; valuation + advisory; premium downtown office environment buyer'],
+    ['Enova International','$2.3B','$75M','Chicago HQ','CMO, VP Facilities — Chicago; online lending; 2,000 employees; premium office environment; Crain\'s fastest growing 2024'],
+    ['Heartland Bank (IL)','$90M','$3M','15 branches','CMO — Normal IL with Chicago presence; regional community bank; branch branding refresh cycle'],
+    ['Inland Bank and Trust','$120M','$5M','20 branches','CMO, VP Facilities — Oak Brook IL; community bank; branch signage + interior program'],
+    ['Inland Western / InvenTrust','$450M','$18M','60+ properties','VP Real Estate, CMO — Oak Brook IL; retail REIT; owns open-air shopping centers; tenant signage + property identity programs'],
+    ['William Blair & Company','$1.2B','$45M','10 offices','CMO, VP Facilities — Chicago Loop HQ; investment bank; +40% revenue 2024; premium office environment; Crain\'s top private list 2025'],
+    ['Wintrust Financial','$2.2B revenue','$85M','190+ branches','CMO, VP Marketing — Rosemont IL HQ; 15+ community bank brands; $65B assets; every branch acquisition = rebrand kit + environmental refresh'],
     // ── REAL ESTATE & CONSTRUCTION ──
     ['Clayco Inc.','$5.0B est.','—','7 offices','CMO, VP Marketing — Chicago HQ; private design-build; corporate campuses, data centers, mixed-use; buys environmental graphics for client projects'],
-    ['Walsh Group','$5.5B est.','—','20+ offices','COO, VP Marketing — Chicago HQ; largest private construction firm in Chicago area; builds major public + private projects; environmental graphics in finished spaces'],
-    ['Pepper Construction','$2.0B est.','—','8 offices','CMO, VP Marketing — Chicago HQ; private general contractor; corporate + institutional + healthcare; installs Foxmark products in finished builds'],
-    ['Summit Design + Build','$123M','—','1 HQ','CEO, VP Marketing — Chicago HQ; Crain\'s fastest-growing 2024 (+111%); commercial interiors + ground-up; direct buyer of branded environment packages'],
-    ['Golub & Company','$500M est.','—','Chicago focus','VP Real Estate — Chicago HQ; privately held real estate developer; owns Class A office buildings including Old Post Office; tenant suite signage'],
-    ['Sterling Bay','$2.0B est.','—','Chicago focus','VP Real Estate — Chicago HQ; Lincoln Yards developer; Google\'s Chicago HQ landlord; branded environments in all managed properties'],
     ['Equity Lifestyle Properties','$1.4B','$50M','450+ communities','VP Marketing — Chicago HQ; manufactured homes + RV communities; community entrance + amenity signage programs'],
-    ['InSite Real Estate','$300M est.','—','60+ properties','VP Real Estate — Oak Brook IL; retail + mixed-use developer; tenant ID + property signage for each development'],
-    ['Murphy Development','$300M est.','—','Chicago focus','VP Development — Chicago; mixed-use developer; North Side projects; each new building = branded lobby + tenant way-finding package'],
     ['Fifield Companies','$400M est.','—','Chicago focus','VP Development — Chicago; luxury multifamily developer; River North, Gold Coast; building identity + amenity space branding'],
-    ['Related Midwest','$600M est.','—','Chicago projects','VP Development — Chicago; NYC-based Related local arm; major mixed-use; The 78 megadevelopment; building identity + retail podium signage'],
-    ['Leopardo Companies','$1.2B est.','—','10+ offices','CMO, VP Marketing — Hoffman Estates IL; commercial GC; corporate interiors + healthcare + education; buys Foxmark-type products in finished builds'],
-    ['Skender Construction','$750M est.','—','Chicago HQ','CMO, VP Marketing — Chicago; top-25 US interior contractor; Crain\'s list 2024; heavy corporate interiors + branded environments'],
+    ['Golub & Company','$500M est.','—','Chicago focus','VP Real Estate — Chicago HQ; privately held real estate developer; owns Class A office buildings including Old Post Office; tenant suite signage'],
     ['Inland Real Estate Income Trust','$200M est.','—','Chicago area','VP Real Estate — Oak Brook IL; non-traded REIT; retail centers; tenant signage + property identity programs across portfolio'],
+    ['InSite Real Estate','$300M est.','—','60+ properties','VP Real Estate — Oak Brook IL; retail + mixed-use developer; tenant ID + property signage for each development'],
+    ['Leopardo Companies','$1.2B est.','—','10+ offices','CMO, VP Marketing — Hoffman Estates IL; commercial GC; corporate interiors + healthcare + education; buys Foxmark-type products in finished builds'],
+    ['Murphy Development','$300M est.','—','Chicago focus','VP Development — Chicago; mixed-use developer; North Side projects; each new building = branded lobby + tenant way-finding package'],
+    ['Pepper Construction','$2.0B est.','—','8 offices','CMO, VP Marketing — Chicago HQ; private general contractor; corporate + institutional + healthcare; installs Foxmark products in finished builds'],
+    ['Related Midwest','$600M est.','—','Chicago projects','VP Development — Chicago; NYC-based Related local arm; major mixed-use; The 78 megadevelopment; building identity + retail podium signage'],
+    ['Skender Construction','$750M est.','—','Chicago HQ','CMO, VP Marketing — Chicago; top-25 US interior contractor; Crain\'s list 2024; heavy corporate interiors + branded environments'],
+    ['Sterling Bay','$2.0B est.','—','Chicago focus','VP Real Estate — Chicago HQ; Lincoln Yards developer; Google\'s Chicago HQ landlord; branded environments in all managed properties'],
+    ['Summit Design + Build','$123M','—','1 HQ','CEO, VP Marketing — Chicago HQ; Crain\'s fastest-growing 2024 (+111%); commercial interiors + ground-up; direct buyer of branded environment packages'],
+    ['Walsh Group','$5.5B est.','—','20+ offices','COO, VP Marketing — Chicago HQ; largest private construction firm in Chicago area; builds major public + private projects; environmental graphics in finished spaces'],
     // ── HEALTHCARE (MID-MARKET) ──
     ['Advocate Physician Partners','$1.0B est.','—','400+ clinics','VP Facilities — Downers Grove IL; physician management org; clinic + office environment branding across network'],
+    ['DuPage Medical Group (Duly Health)','$800M est.','—','130+ locations','VP Facilities, CMO — Downers Grove IL; rebranded to Duly Health 2022; 130+ IL clinics = large-scale interior rebrand program in progress'],
+    ['Elmhurst Memorial (Edward-Elmhurst)','$1.5B est.','—','3 hospitals + clinics','VP Facilities — Elmhurst IL; community hospital system; facility expansion + rebrand programs'],
+    ['Endeavor Health (formerly NorthShore)','$5.0B','$175M','Chicago North','VP Facilities — Evanston IL; merged NorthShore + Swedish Covenant + Northwest Community; campus rebrand program across merged network'],
+    ['Heartland Health Centers','$80M est.','—','10+ clinics','CEO, VP Facilities — Chicago; FQHC network; clinic buildouts; environmental branding for community health settings'],
+    ['Kovler Diabetes Center (U of C)','—','—','Chicago','VP Facilities — Chicago; specialty center; interior patient environment program'],
+    ['National Kidney Foundation (Midwest)','—','—','Chicago offices','VP Ops — Chicago; nonprofit; office + event environment; smaller program opportunity'],
     ['Presence Health (Ascension IL)','$2.5B est.','—','25+ facilities','VP Facilities — Chicago; Catholic health system absorbed by Ascension; ongoing facility rebranding + wayfinding'],
     ['Rush System for Health','$2.4B','$85M','4 hospitals + clinics','VP Facilities — Chicago Medical District; academic medical center; ongoing campus expansion + interior environment programs'],
-    ['Heartland Health Centers','$80M est.','—','10+ clinics','CEO, VP Facilities — Chicago; FQHC network; clinic buildouts; environmental branding for community health settings'],
-    ['Elmhurst Memorial (Edward-Elmhurst)','$1.5B est.','—','3 hospitals + clinics','VP Facilities — Elmhurst IL; community hospital system; facility expansion + rebrand programs'],
-    ['DuPage Medical Group (Duly Health)','$800M est.','—','130+ locations','VP Facilities, CMO — Downers Grove IL; rebranded to Duly Health 2022; 130+ IL clinics = large-scale interior rebrand program in progress'],
-    ['Endeavor Health (formerly NorthShore)','$5.0B','$175M','Chicago North','VP Facilities — Evanston IL; merged NorthShore + Swedish Covenant + Northwest Community; campus rebrand program across merged network'],
-    ['Kovler Diabetes Center (U of C)','—','—','Chicago','VP Facilities — Chicago; specialty center; interior patient environment program'],
     ['Sinai Chicago','$500M est.','—','5 hospitals','VP Facilities — Chicago; safety-net hospital system; West Side campus; ongoing facility graphics + wayfinding'],
-    ['National Kidney Foundation (Midwest)','—','—','Chicago offices','VP Ops — Chicago; nonprofit; office + event environment; smaller program opportunity'],
     // ── PROFESSIONAL SERVICES ──
-    ['Morningstar Inc.','$2.3B','$90M','30+ offices','CMO, VP Workplace — Chicago Loop HQ (Merchandise Mart); investment research; 12K employees; premium corporate HQ environment'],
-    ['GATX Corporation','$1.6B','$55M','30+ offices','CMO, VP Facilities — Chicago Loop HQ; rail car leasing; 2,000 employees; premium office + global maintenance facility signage'],
-    ['Grant Thornton LLP','$2.0B','$75M','57 offices','CMO, VP Facilities — Chicago HQ (founded 1924); accounting + advisory; office interior refresh buyer; 6,000 employees'],
     ['A.T. Kearney (Kearney)','$1.5B est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago Loop HQ; global management consulting; premium office environment; Chicago flagship'],
-    ['Hyatt Hotels Corporation','$6.6B','$180M','1,300+ hotels','CMO, VP Design — Chicago HQ (Fulton Market); lifestyle brands Andaz, Alila, Thompson; every hotel opening = full environmental brand program'],
-    ['Heico Companies','$1.8B est.','—','Multi-division','COO, VP Facilities — Chicago HQ; family-owned holding co; construction + industrial divisions; environmental for owned buildings + client sites'],
-    ['Wirtz Corporation','$3.5B est.','—','Multi-sector','CMO, VP Real Estate — Chicago HQ; family-owned; Blackhawks, United Center stake, Wirtz Beverage (9 states); arena + corporate environments'],
     ['CC Industries / Crown Family','$2.0B est.','—','Multi-division','CMO, President — 222 N LaSalle Chicago; Crown family holding co; diversified mfg + real estate; premium office + facility environments'],
-    ['Navigant Consulting (Guidehouse)','$1.5B est.','—','15 offices','CMO, VP Facilities — Chicago HQ; management consulting; premium office interiors; post-merger rebrand to Guidehouse 2020; ongoing office refresh cycle'],
+    ['Cushman & Wakefield','$9.4B','$150M','Chicago HQ','VP Facilities, CMO — Chicago HQ; commercial RE; manages/leases 4.4B SF globally; embed as preferred environmental graphics sub in C&W-managed projects'],
     ['Edelman','$1.0B est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago HQ; world\'s largest PR firm; privately held by Dan Edelman family; Loop HQ premium environment; global offices follow Chicago brand standards'],
     ['Foley & Lardner LLP','$900M','$35M','20 offices','CMO, VP Facilities — Milwaukee/Chicago; Am Law 100; Chicago office (321 N Clark); law firm office refresh buyer; branded environment in reception + hallways'],
-    ['Kirkland & Ellis LLP','$7.0B','$250M','Chicago HQ','CMO, Dir. Facilities — Chicago Loop HQ; #1 Am Law firm by revenue; 300 S Wacker; premium trophy office; significant branded environment buyer'],
+    ['GATX Corporation','$1.6B','$55M','30+ offices','CMO, VP Facilities — Chicago Loop HQ; rail car leasing; 2,000 employees; premium office + global maintenance facility signage'],
+    ['Grant Thornton LLP','$2.0B','$75M','57 offices','CMO, VP Facilities — Chicago HQ (founded 1924); accounting + advisory; office interior refresh buyer; 6,000 employees'],
+    ['Heico Companies','$1.8B est.','—','Multi-division','COO, VP Facilities — Chicago HQ; family-owned holding co; construction + industrial divisions; environmental for owned buildings + client sites'],
+    ['Hyatt Hotels Corporation','$6.6B','$180M','1,300+ hotels','CMO, VP Design — Chicago HQ (Fulton Market); lifestyle brands Andaz, Alila, Thompson; every hotel opening = full environmental brand program'],
     ['Jones Lang LaSalle (JLL)','$20.8B','$350M','Chicago HQ','VP Workplace — Chicago HQ; commercial RE services; manages client environments globally; Foxmark entry as preferred vendor in JLL-managed facilities'],
-    ['Cushman & Wakefield','$9.4B','$150M','Chicago HQ','VP Facilities, CMO — Chicago HQ; commercial RE; manages/leases 4.4B SF globally; embed as preferred environmental graphics sub in C&W-managed projects'],
+    ['Kirkland & Ellis LLP','$7.0B','$250M','Chicago HQ','CMO, Dir. Facilities — Chicago Loop HQ; #1 Am Law firm by revenue; 300 S Wacker; premium trophy office; significant branded environment buyer'],
+    ['Morningstar Inc.','$2.3B','$90M','30+ offices','CMO, VP Workplace — Chicago Loop HQ (Merchandise Mart); investment research; 12K employees; premium corporate HQ environment'],
+    ['Navigant Consulting (Guidehouse)','$1.5B est.','—','15 offices','CMO, VP Facilities — Chicago HQ; management consulting; premium office interiors; post-merger rebrand to Guidehouse 2020; ongoing office refresh cycle'],
     ['USG Corporation (Knauf)','$3.5B','$130M','Chicago HQ','CMO, VP Facilities — Chicago HQ; building products manufacturer; acquired by Knauf 2019; ongoing integration rebrand across North American facilities'],
+    ['Wirtz Corporation','$3.5B est.','—','Multi-sector','CMO, VP Real Estate — Chicago HQ; family-owned; Blackhawks, United Center stake, Wirtz Beverage (9 states); arena + corporate environments'],
     // ── MANUFACTURING & INDUSTRIAL (MID-MARKET) ──
+    ['Atkore International','$2.8B','$100M','50+ plants','CMO, VP Facilities — Harvey IL HQ; electrical raceway + mechanical products; NYSE: ATKR; plant + HQ facility branding program'],
+    ['Chamberlain Group','$1.5B est.','—','Oak Brook HQ','CMO, VP Facilities — Oak Brook IL; garage door openers + smart access; 5,500 employees; Blackstone-backed; premium campus after PE acquisition'],
+    ['CIRCOR International (Chicago ops)','$1.0B est.','—','Chicago area','VP Facilities — IL operations; flow control systems; industrial facility branding'],
     ['Elkay Manufacturing','$1.0B est.','—','10+ facilities','CMO, VP Facilities — Downers Grove IL; private; water delivery products (sinks, fountains); plants + HQ need facility branding'],
+    ['Golin (IPG)','$800M est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago HQ; global PR agency (IPG subsidiary); premium office environment; Loop HQ refresh cycle'],
     ['Hollister Incorporated','$2.0B est.','—','Libertyville HQ','VP Facilities, CMO — Libertyville IL; employee-owned; ostomy + wound care products; premium campus environment; Crain\'s most innovative 2024'],
     ['MAT Holdings','$1.6B','$70M','41 sites','COO, VP Facilities — Long Grove IL; private; hardware + tools manufacturer; 5K employees; multi-site program buyer'],
-    ['R.R. Donnelley (Chatham Asset)','$5.0B','$185M','100+ facilities','CMO, CIO — Chicago HQ; went private 2022; print + marketing services; 40K employees; major multi-site rebrand buyer'],
     ['Medela AG (US HQ)','$500M est.','—','McHenry HQ','VP Facilities — McHenry IL; breastfeeding + medical device; US headquarters; premium branded environment'],
-    ['Golin (IPG)','$800M est.','—','Chicago HQ + global','CMO, VP Facilities — Chicago HQ; global PR agency (IPG subsidiary); premium office environment; Loop HQ refresh cycle'],
-    ['Chamberlain Group','$1.5B est.','—','Oak Brook HQ','CMO, VP Facilities — Oak Brook IL; garage door openers + smart access; 5,500 employees; Blackstone-backed; premium campus after PE acquisition'],
-    ['Atkore International','$2.8B','$100M','50+ plants','CMO, VP Facilities — Harvey IL HQ; electrical raceway + mechanical products; NYSE: ATKR; plant + HQ facility branding program'],
-    ['CIRCOR International (Chicago ops)','$1.0B est.','—','Chicago area','VP Facilities — IL operations; flow control systems; industrial facility branding'],
-    ['Packaging Corporation of America (IL div)','$8.0B','—','Chicago area','VP Operations — Lake Forest IL HQ; corrugated packaging; publicly traded; IL plant + HQ signage program'],
-    ['UFP Technologies','$400M est.','—','Illinois sites','VP Facilities — IL operations; specialty packaging + protective materials; plant environment graphics'],
     ['Meridian Industries','$1.0B est.','—','10 facilities','COO, VP Facilities — Evanston IL; private; aluminum die casting; auto + industrial; multi-plant facility branding'],
+    ['Packaging Corporation of America (IL div)','$8.0B','—','Chicago area','VP Operations — Lake Forest IL HQ; corrugated packaging; publicly traded; IL plant + HQ signage program'],
+    ['R.R. Donnelley (Chatham Asset)','$5.0B','$185M','100+ facilities','CMO, CIO — Chicago HQ; went private 2022; print + marketing services; 40K employees; major multi-site rebrand buyer'],
+    ['UFP Technologies','$400M est.','—','Illinois sites','VP Facilities — IL operations; specialty packaging + protective materials; plant environment graphics'],
     // ── LOGISTICS & SUPPLY CHAIN ──
-    ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO — Chicago River North HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees; large modern office campus'],
-    ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
     ['AIT Worldwide Logistics','$2.6B','—','50+ offices','COO, VP Facilities — Itasca IL; Crain\'s fastest-growing 2025 (+42%); freight forwarding + logistics; acquired European cos; multi-site rebranding'],
-    ['RIM Logistics','$236M','—','Chicago area','COO, VP Facilities — Roselle IL; Crain\'s private list; logistics; warehouse + office signage'],
-    ['Loadsmart','$152M','$8M','Chicago HQ','CMO — Chicago; freight tech platform; PE-backed; modern office environment'],
-    ['XPO (Chicago operations)','—','—','IL facilities','VP Operations — Chicago area; less-than-truckload; multiple IL terminals = facility signage + safety graphics'],
+    ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
+    ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO — Chicago River North HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees; large modern office campus'],
     ['GlobalTranz (Chicago office)','$1.8B est.','—','Chicago area','VP Operations — Chicago; freight brokerage; PE-backed; modern office environment; post-acquisition rebrand'],    ['Hub Group','$4.5B','$150M','Chicago HQ','CMO, VP Facilities — Downers Grove IL; publicly traded intermodal; 5,000 employees; premium HQ + terminal facility branding'],
+    ['Loadsmart','$152M','$8M','Chicago HQ','CMO — Chicago; freight tech platform; PE-backed; modern office environment'],
+    ['RIM Logistics','$236M','—','Chicago area','COO, VP Facilities — Roselle IL; Crain\'s private list; logistics; warehouse + office signage'],
+    ['XPO (Chicago operations)','—','—','IL facilities','VP Operations — Chicago area; less-than-truckload; multiple IL terminals = facility signage + safety graphics'],
     // ── TECHNOLOGY (MID-MARKET) ──
-    ['Avant (fintech)','$250M est.','$18M','1 HQ','CMO, VP Brand — Chicago Merchandise Mart HQ; consumer lending; raised $800M+; remodels HQ office for brand presence'],
-    ['Tempus AI','$600M','$25M','Chicago HQ','CMO, VP Facilities — Chicago; AI-driven genomics; 1,000+ employees; premium office environment; rapidly expanding'],
-    ['Instawork','$200M est.','$10M','Chicago HQ','CMO — Chicago HQ; labor marketplace; Series D funded; growing HQ space'],
-    ['Basis Technologies','$200M est.','$8M','Chicago HQ','CMO — Chicago; programmatic media buying; 700+ clients; premium River North office'],
-    ['Provi','$100M est.','$5M','Chicago HQ','CMO — Chicago; beverage alcohol B2B marketplace; fast-growing; modern office environment'],
-    ['Paylocity','$870M','$35M','Schaumburg HQ','CMO, VP Facilities — Schaumburg IL HQ; cloud HR + payroll; NASDAQ: PCTY; 5,000 employees; premium suburban campus environment'],
-    ['Relativity (software)','$800M est.','$30M','Chicago HQ','CMO, VP Facilities — Chicago; legal tech + e-discovery; Silver Lake-backed; 1,200 employees; premium Fulton Market office environment'],
-    ['Braintree (PayPal Chicago)','—','—','Chicago office','VP Facilities — Chicago; PayPal subsidiary; premium Fulton Market office; ongoing environment refresh cycle'],
-    ['Textura (Oracle Chicago)','—','—','Chicago office','VP Facilities — Chicago; Oracle construction management platform; office environment program'],
-    ['Outcome Health','$250M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; healthcare point-of-care media; premium office + showroom environment'],
-    ['Project44','$450M est.','$18M','Chicago HQ','CMO — Chicago; supply chain visibility platform; Series E-funded; Fulton Market HQ; fast-growing + premium environment'],
     ['ActiveCampaign','$250M est.','$10M','Chicago HQ','CMO — Chicago; marketing automation; $3B valuation; 900+ employees; premium modern office environment'],
+    ['Avant (fintech)','$250M est.','$18M','1 HQ','CMO, VP Brand — Chicago Merchandise Mart HQ; consumer lending; raised $800M+; remodels HQ office for brand presence'],
+    ['Basis Technologies','$200M est.','$8M','Chicago HQ','CMO — Chicago; programmatic media buying; 700+ clients; premium River North office'],
+    ['Braintree (PayPal Chicago)','—','—','Chicago office','VP Facilities — Chicago; PayPal subsidiary; premium Fulton Market office; ongoing environment refresh cycle'],
+    ['Instawork','$200M est.','$10M','Chicago HQ','CMO — Chicago HQ; labor marketplace; Series D funded; growing HQ space'],
+    ['Outcome Health','$250M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; healthcare point-of-care media; premium office + showroom environment'],
+    ['Paylocity','$870M','$35M','Schaumburg HQ','CMO, VP Facilities — Schaumburg IL HQ; cloud HR + payroll; NASDAQ: PCTY; 5,000 employees; premium suburban campus environment'],
+    ['Project44','$450M est.','$18M','Chicago HQ','CMO — Chicago; supply chain visibility platform; Series E-funded; Fulton Market HQ; fast-growing + premium environment'],
+    ['Provi','$100M est.','$5M','Chicago HQ','CMO — Chicago; beverage alcohol B2B marketplace; fast-growing; modern office environment'],
+    ['Relativity (software)','$800M est.','$30M','Chicago HQ','CMO, VP Facilities — Chicago; legal tech + e-discovery; Silver Lake-backed; 1,200 employees; premium Fulton Market office environment'],
+    ['Tempus AI','$600M','$25M','Chicago HQ','CMO, VP Facilities — Chicago; AI-driven genomics; 1,000+ employees; premium office environment; rapidly expanding'],
+    ['Textura (Oracle Chicago)','—','—','Chicago office','VP Facilities — Chicago; Oracle construction management platform; office environment program'],
     // ── SPORTS & ENTERTAINMENT ──
+    ['Chicago Architecture Center','$10M est.','—','Chicago River','VP Marketing — Chicago; architecture tourism + education; premium location on the river; rotating exhibit + wayfinding graphics'],
     ['Chicago Fire FC','$100M est.','—','Soldier Field','VP Brand — Chicago; MLS; stadium graphics, training facility, community center signage; new Soldier Field naming rights deal = large signage refresh'],
     ['Chicago Red Stars (NWSL)','$30M est.','—','SeatGeek Stadium','CMO — Bridgeview IL; professional women\'s soccer; venue + brand environment'],
-    ['Second City Entertainment','$50M est.','—','Chicago HQ + venues','VP Brand — Chicago; comedy + improv institution; venue rebrand + touring productions need graphics'],
     ['Chicago Shakespeare Theater','$30M est.','—','Navy Pier','VP Marketing — Chicago; world-class theater; Navy Pier venue; seasonal campaign + lobby environmental graphics'],
-    ['Steppenwolf Theatre','$25M est.','—','Lincoln Park','VP Marketing — Chicago; Tony Award-winning theater; expanded campus 2024; lobby + building identity environment'],
-    ['Chicago Architecture Center','$10M est.','—','Chicago River','VP Marketing — Chicago; architecture tourism + education; premium location on the river; rotating exhibit + wayfinding graphics'],
     ['Levy Restaurants (Compass)','$2.0B est.','—','30+ venues','VP Brand — Chicago HQ; premium sports + entertainment food service; United Center, Wrigley, Chase; branded venue environments inside client facilities'],
     ['Oak View Group (Chicago venues)','—','—','Chicago area','VP Design — Chicago; venue development + management; emerging venues + arena upgrades = full environmental brand packages'],
+    ['Second City Entertainment','$50M est.','—','Chicago HQ + venues','VP Brand — Chicago; comedy + improv institution; venue rebrand + touring productions need graphics'],
+    ['Steppenwolf Theatre','$25M est.','—','Lincoln Park','VP Marketing — Chicago; Tony Award-winning theater; expanded campus 2024; lobby + building identity environment'],
     // ── EDUCATION & INSTITUTIONS ──
-    ['DePaul University','$600M','$22M','2 campuses','VP Facilities — Chicago; largest private university in IL; ongoing campus identity + wayfinding programs; Loop + Lincoln Park'],
-    ['Loyola University Chicago','$700M','$26M','4 campuses','VP Facilities — Chicago; Jesuit university; Rogers Park + Water Tower campuses; ongoing environmental identity programs'],
-    ['Columbia College Chicago','$175M','$7M','1 campus','VP Facilities — South Loop; design-focused school; highly brand-conscious; campus environment programs'],
-    ['Illinois Institute of Technology','$250M','$9M','Bronzeville campus','VP Facilities — Chicago; Mies van der Rohe campus; premium architectural environment; ongoing signage + wayfinding'],
-    ['School of the Art Institute (SAIC)','$150M est.','$5M','Loop campus','VP Facilities — Chicago Loop; art + design school; brand-conscious environment; rotating gallery + campus identity graphics'],
-    ['Roosevelt University','$120M','$5M','Chicago HQ','VP Facilities — Auditorium Building + Wabash campus; ongoing campus identity + wayfinding programs'],
     ['Chicago Public Schools (CPS) Facilities','$7.0B','—','630+ schools','VP Capital Programs — Chicago; bond-funded school renovation program; school interior wayfinding + identity graphics at scale'],    // ── MEDIA & ADVERTISING ──
-    ['Leo Burnett (Publicis)','$1.5B est.','—','Chicago HQ','CMO, VP Facilities — Chicago HQ; Publicis subsidiary; Merchandise Mart office; premium creative agency environment; rotating campaign + client-facing spaces'],
-    ['DDB Chicago (Omnicom)','$800M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; Wrigleyville office; creative agency; client-facing environments need premium large-format display'],
-    ['FCB Chicago (IPG)','$600M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; IPG agency; premium office environment in River North; client presentation spaces = high-value Foxmark targets'],
     ['Chicago Tribune Media (Tribune Publishing)','$600M est.','—','Chicago HQ','VP Facilities — Chicago Freedom Center; large-format print heritage; office + newsroom environment refresh'],
-    ['Sun-Times Media Network','$100M est.','—','Chicago HQ','VP Facilities — Chicago; local news; office environment; smaller opportunity'],
+    ['Columbia College Chicago','$175M','$7M','1 campus','VP Facilities — South Loop; design-focused school; highly brand-conscious; campus environment programs'],
+    ['DDB Chicago (Omnicom)','$800M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; Wrigleyville office; creative agency; client-facing environments need premium large-format display'],
+    ['DePaul University','$600M','$22M','2 campuses','VP Facilities — Chicago; largest private university in IL; ongoing campus identity + wayfinding programs; Loop + Lincoln Park'],
     ['Envestnet','$1.5B','$55M','Chicago HQ','CMO, VP Facilities — Chicago; wealth management platform; 4,000 employees; premium Magnificent Mile office environment'],
+    ['FCB Chicago (IPG)','$600M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; IPG agency; premium office environment in River North; client presentation spaces = high-value Foxmark targets'],
+    ['Illinois Institute of Technology','$250M','$9M','Bronzeville campus','VP Facilities — Chicago; Mies van der Rohe campus; premium architectural environment; ongoing signage + wayfinding'],
+    ['Leo Burnett (Publicis)','$1.5B est.','—','Chicago HQ','CMO, VP Facilities — Chicago HQ; Publicis subsidiary; Merchandise Mart office; premium creative agency environment; rotating campaign + client-facing spaces'],
+    ['Loyola University Chicago','$700M','$26M','4 campuses','VP Facilities — Chicago; Jesuit university; Rogers Park + Water Tower campuses; ongoing environmental identity programs'],
+    ['Roosevelt University','$120M','$5M','Chicago HQ','VP Facilities — Auditorium Building + Wabash campus; ongoing campus identity + wayfinding programs'],
+    ['School of the Art Institute (SAIC)','$150M est.','$5M','Loop campus','VP Facilities — Chicago Loop; art + design school; brand-conscious environment; rotating gallery + campus identity graphics'],
+    ['Sun-Times Media Network','$100M est.','—','Chicago HQ','VP Facilities — Chicago; local news; office environment; smaller opportunity'],
     // ── RETAIL CHAINS (MULTI-LOCATION ROLLOUT) ──
-    ['True Value Company','$2.1B','—','4,500+ dealers','CMO, VP Dealer Dev — Chicago Fulton Market HQ; sold to Do it Best 2024; every dealer transition = interior brand refresh; 4,500+ locations'],
-    ['Potbelly Corporation','$500M','$20M','475+ locations','CMO, VP Real Estate — Chicago HQ; sandwich chain; ongoing remodel + redesign program; interior environmental graphics core to concept refresh; NYSE: PBPB'],
-    ['Portillo\'s Hot Dogs','$700M','—','80+ locations','VP Facilities, CMO — Oak Brook IL; growth into FL + TX = new location signage program; heritage brand with strong environmental identity'],
-    ['Protein Bar & Kitchen','$50M est.','—','20+ locations','Owner/CMO — Chicago HQ; fast casual; downtown-heavy; brand-forward interior environments; expansion-mode buyer'],
     ['Lou Malnati\'s Pizzerias','$150M est.','—','65+ locations','VP Operations — Chicago area; Midwest institution; steady location growth; interior brand environment per new opening'],
+    ['Potbelly Corporation','$500M','$20M','475+ locations','CMO, VP Real Estate — Chicago HQ; sandwich chain; ongoing remodel + redesign program; interior environmental graphics core to concept refresh; NYSE: PBPB'],
+    ['Protein Bar & Kitchen','$50M est.','—','20+ locations','Owner/CMO — Chicago HQ; fast casual; downtown-heavy; brand-forward interior environments; expansion-mode buyer'],
+    ['True Value Company','$2.1B','—','4,500+ dealers','CMO, VP Dealer Dev — Chicago Fulton Market HQ; sold to Do it Best 2024; every dealer transition = interior brand refresh; 4,500+ locations'],
     // ── ADDITIONAL REAL ESTATE ──
     ['Bradford Allen Realty','$300M est.','—','Chicago focus','Managing Partners — Chicago Loop; boutique CRE firm; tenant advisory + leasing; Foxmark entry as preferred interior graphics vendor for tenant build-outs'],
+    ['Fulton Market Innovation District','—','—','Chicago sub-market','VP Leasing — Chicago; Fulton Market District landlords (Shapack, Trammell Crow, etc.); fastest-growing office sub-market; premium environments expected in every build'],
     ['Pangea Properties','$400M est.','—','Chicago + Indianapolis','VP Real Estate — Chicago; multifamily property manager; 15,000+ units; common area + signage programs across large portfolio'],
     ['R2 Companies','$500M est.','—','Chicago focus','VP Development — Chicago; adaptive reuse + mixed-use; converts industrial to creative office; every conversion = full branded environment package'],
-    ['Fulton Market Innovation District','—','—','Chicago sub-market','VP Leasing — Chicago; Fulton Market District landlords (Shapack, Trammell Crow, etc.); fastest-growing office sub-market; premium environments expected in every build'],
     // ── ADDITIONAL TECH / INNOVATION ──
-    ['Enfusion','$180M','$8M','Chicago HQ','CMO, VP Facilities — Chicago; cloud investment management platform; NYSE: ENFN; 700 employees; premium River North office; fast-growing'],
-    ['SMS Assist / Lessen','$400M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; facilities management SaaS; PE-backed; premium River North HQ; 500+ employees'],
-    ['G2 (software reviews)','$200M est.','—','Chicago HQ','CMO — Chicago; B2B software marketplace; 600+ employees; premium River North office; client-facing environment for enterprise sales'],
     ['Cameo','$100M est.','—','Chicago HQ','CMO — Chicago; celebrity shoutout platform; startup culture; modern branded office environment'],
+    ['Enfusion','$180M','$8M','Chicago HQ','CMO, VP Facilities — Chicago; cloud investment management platform; NYSE: ENFN; 700 employees; premium River North office; fast-growing'],
     ['Fooda','$100M est.','—','Chicago HQ','CMO, VP Operations — Chicago; corporate food program; premium office + operations environment'],
-    ['SpotHero','$100M est.','—','Chicago HQ','CMO — Chicago; parking marketplace; modern office environment; River North HQ; brand-forward culture']
+    ['G2 (software reviews)','$200M est.','—','Chicago HQ','CMO — Chicago; B2B software marketplace; 600+ employees; premium River North office; client-facing environment for enterprise sales'],
+    ['SMS Assist / Lessen','$400M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; facilities management SaaS; PE-backed; premium River North HQ; 500+ employees'],
+    ['SpotHero','$100M est.','—','Chicago HQ','CMO — Chicago; parking marketplace; modern office environment; River North HQ; brand-forward culture'],
+    // ── LOGISTICS & SUPPLY CHAIN (additions) ──
+    ['RXO (Chicago logistics)','$3.8B','—','Chicago HQ','CMO, VP Operations — Chicago HQ; spun off from XPO 2022; tech-enabled freight brokerage; NASDAQ: RXO; premium new HQ environment post-spinoff'],
+    ['Transplace (Uber Freight)','$1.5B est.','—','Chicago ops','CMO, VP Operations — Chicago; freight tech + brokerage; acquired by Uber Freight 2021; enterprise logistics rebrand in progress'],
+    ['Arrive Logistics','$1.2B est.','—','Chicago HQ','CMO, VP Operations — Chicago; tech-enabled freight brokerage; fast-growing; premium West Loop HQ; brand-forward culture + client-facing environment'],
+    // ── MEDIA & ADVERTISING (additions) ──
+    ['Chicago Sun-Times (new ownership)','$150M est.','—','Chicago HQ','CMO, VP Facilities — Chicago Loop; nonprofit ownership transition 2024; new brand identity rollout across newsroom + offices'],
+    ['Publicis Groupe Chicago','$500M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; Publicis network hub; Leo Burnett parent; River North campus; large-format interior brand environment'],
+    ['Havas Chicago','$200M est.','—','Chicago HQ','CMO, VP Facilities — Chicago; global agency network hub; client-facing creative environment; branded interiors for agency business development'],
+    // ── EDUCATION & INSTITUTIONS (additions) ──
+    ['Northwestern University (Chicago campus)','—','—','Chicago + Evanston','VP Facilities — Evanston + Chicago Streeterville; $13.7B endowment; Feinberg School of Medicine campus; wayfinding + environmental graphics at scale'],
+    ['University of Chicago (Booth + ops)','—','—','Hyde Park HQ','VP Facilities — Hyde Park; $11.6B endowment; Booth School + hospital complex; ongoing capital projects; Foxmark entry through facilities'],
+    // ── HEALTHCARE (addition) ──
+    ['Lurie Children\'s Hospital','$1.2B','—','Chicago Streeterville','VP Facilities, VP Marketing — Chicago; top 10 US pediatric hospital; ongoing capital expansion; brand refresh across facilities']
   ]
 };
 var mktCurrentTab = 'f500';
@@ -4820,7 +4676,6 @@ function drawMktDonut() {
   ctx.fillStyle='#1A1A1A'; ctx.fill();
   ctx.fillStyle='#fff';
   ctx.font='bold 14px Barlow Condensed, sans-serif';
-  ctx.textAlign='center'; ctx.fillText('1,262',cx,cy+2);
   ctx.font='9px sans-serif'; ctx.fillStyle='#8A8A8A';
   ctx.fillText('accounts',cx,cy+13);
 }
@@ -5528,6 +5383,7 @@ var MKT_ORGS = {
     ]
   },
   'Echo Global Logistics': {
+    emailTpl: 'cs_mcdonalds',
     ceo: {name:'Doug Waggoner', title:'CEO'},
     nodes:[
       {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, digital', target:true, note:'Chicago River North HQ; TPG-backed; modern tech-forward office; 2,200 employees'},
@@ -5543,6 +5399,7 @@ var MKT_ORGS = {
     ]
   },
   'Tempus AI': {
+    emailTpl: 'cs_tch',
     ceo: {name:'Eric Lefkofsky', title:'Founder & CEO'},
     nodes:[
       {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, communications', target:true, note:'Chicago HQ; AI-driven genomics; 1,000+ employees; premium River North office; high-growth = expansion cycle'},
@@ -6228,6 +6085,412 @@ var MKT_ORGS = {
       {title:'VP Leasing (Trammell Crow Chicago)', name:'(Verify on LinkedIn)', owns:'Fulton Market development projects', target:true, note:'Major Fulton Market developer; premium environments expected in every new build; Foxmark as preferred vendor = significant revenue'},
       {title:'VP Real Estate (Google Chicago landlord)', name:'(Verify on LinkedIn)', owns:'Google campus building, Fulton Market', target:true, note:'Sterling Bay is Google\'s Chicago landlord; Fulton Market presence gives Foxmark adjacency to tech tenant ecosystem'}
     ]
+  },
+
+  // ── ADDED: PREVIOUSLY MISSING ORG CHARTS ──────────────────────────────────
+
+  'Jewel-Osco (Albertsons IL)': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'(IL Division President)', title:'Regional President — Albertsons Midwest'},
+    nodes:[
+      {title:'VP Real Estate', name:'(Verify on LinkedIn)', owns:'Store site selection, remodels, IL portfolio', target:true, note:'185 IL locations on ongoing remodel cycle; each remodel = interior environmental graphics package'},
+      {title:'VP Marketing / CMO (IL banner)', name:'(Verify on LinkedIn)', owns:'Brand, local marketing, seasonal campaigns', target:true, note:'Jewel-Osco is Albertsons\' dominant IL banner; seasonal aisle + lobby graphics at scale'},
+      {title:'VP Store Operations', name:'(Verify on LinkedIn)', owns:'Store standards, facilities, compliance', target:true, note:'Controls in-store execution standards; wayfinding + interior signage rollout buyer'}
+    ]
+  },
+
+  'Mariano\'s / Roundy\'s (Kroger IL)': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'(IL Division Lead)', title:'Regional VP — Kroger Midwest Division'},
+    nodes:[
+      {title:'VP Real Estate (Midwest)', name:'(Verify on LinkedIn)', owns:'IL store portfolio, remodel approvals', target:true, note:'40+ Mariano\'s locations on Kroger remodel program cycle; interior signage per remodel = volume opportunity'},
+      {title:'VP Marketing / Brand (IL)', name:'(Verify on LinkedIn)', owns:'Mariano\'s local brand, promotional environment', target:true, note:'Mariano\'s known for premium store environment; seasonal and campaign graphics are consistent need'},
+      {title:'Director, Store Design & Visual Merchandising', name:'(Verify on LinkedIn)', owns:'Store layout, environmental standards', target:true, note:'Translates Kroger brand standards into IL store interiors; direct buyer for environmental graphics programs'}
+    ]
+  },
+
+  'US Cellular (rebrand)': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'(Acquired by T-Mobile 2025)', title:'Former CEO — Laurent C. Therivel'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand transition, T-Mobile rebrand execution', target:true, note:'500+ retail store rebrand underway post-T-Mobile acquisition; full interior environmental graphics = massive single-contract opportunity'},
+      {title:'VP Retail Operations', name:'(Verify on LinkedIn)', owns:'Store network, remodel program', target:true, note:'Controls physical rebrand timeline; each store = new signage, wayfinding, brand graphics'},
+      {title:'VP Real Estate', name:'(Verify on LinkedIn)', owns:'Store footprint decisions during transition', target:true, note:'Post-acquisition lease decisions determine which locations get full rebrand vs. closure; early contact is critical'}
+    ]
+  },
+
+  'US Foods Chicago Division': {
+    emailTpl: 'cs_industrial',
+    ceo: {name:'Dave Flitman', title:'President & CEO (Corporate)'},
+    nodes:[
+      {title:'VP Operations — Chicago Division', name:'(Verify on LinkedIn)', owns:'Rosemont DC, fleet, local facilities', target:true, note:'Large Rosemont IL distribution campus + fleet; facility + fleet graphics program; local division buyer'},
+      {title:'Regional VP / General Manager (IL)', name:'(Verify on LinkedIn)', owns:'P&L, team, local DC footprint', target:true, note:'Local GM controls capex and vendor relationships for the IL division; preferred vendor intro at this level'},
+      {title:'VP Facilities / Real Estate (Corp)', name:'(Verify on LinkedIn)', owns:'National DC portfolio', target:false, note:'Corporate-level for multi-site program — follow up after establishing local relationship'}
+    ]
+  },
+
+  'IHOP / Applebee\'s (DineEquity – IL franchise)': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'(Franchise Operator — IL)', title:'Area Developer / Regional Franchisee'},
+    nodes:[
+      {title:'VP Franchise Operations (IL Region)', name:'(Verify on LinkedIn)', owns:'Remodel cycles, interior standards compliance', target:true, note:'200+ IL locations on DineEquity remodel program; interior signage per remodel = recurring revenue'},
+      {title:'Director, Design & Construction', name:'(Verify on LinkedIn)', owns:'Remodel specs, approved vendor lists', target:true, note:'Controls approved environmental graphics vendors for IL franchise group remodels; get on the approved list'},
+      {title:'CMO / Brand (Franchise Level)', name:'(Verify on LinkedIn)', owns:'Local brand compliance, promotional signage', target:true, note:'Seasonal + promotional interior graphics across 200+ locations = high-volume program'}
+    ]
+  },
+
+  'Portillo\'s Hot Dogs': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'Michael Osanloo', title:'President & CEO'},
+    nodes:[
+      {title:'VP Facilities', name:'(Verify on LinkedIn)', owns:'Restaurant buildouts, interior standards', target:true, note:'FL + TX expansion = new location signage program; each new Portillo\'s = full environmental graphics package'},
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, heritage environment, seasonal campaigns', target:true, note:'Portillo\'s brand environment is iconic; CMO drives interior standards; strong buyer for branded graphics'},
+      {title:'VP Real Estate & Development', name:'(Verify on LinkedIn)', owns:'New location selection, construction', target:true, note:'80+ locations + active expansion; growth pipeline = recurring Foxmark opportunity per opening'}
+    ]
+  },
+
+  'Aon Center tenants (managed)': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'(Piedmont Office Realty — Building Manager)', title:'Regional VP — Piedmont Office Realty'},
+    nodes:[
+      {title:'VP Building Operations', name:'(Verify on LinkedIn)', owns:'Tenant suite signage, lobby programs, Class A standards', target:true, note:'83-floor Class A tower; Foxmark entry as preferred interior graphics vendor for tenant build-outs managed by Piedmont'},
+      {title:'Director, Leasing & Tenant Relations', name:'(Verify on LinkedIn)', owns:'Tenant mix, suite turnover, buildout coordination', target:true, note:'Each new tenant move-in or suite refresh = branded environment package; consistent referral source if relationship established'},
+      {title:'Chief Engineer / Facilities Director', name:'(Verify on LinkedIn)', owns:'Physical plant, common areas, lobby maintenance', target:true, note:'Lobby + common area brand environment; Piedmont invests in building identity to attract tenants'}
+    ]
+  },
+
+  'BancTec / PNC IL Division': {
+    emailTpl: 'cs_fin',
+    ceo: {name:'(PNC Regional President — IL)', title:'Regional President — PNC Bank Illinois'},
+    nodes:[
+      {title:'VP Retail Banking / Branch Network', name:'(Verify on LinkedIn)', owns:'80+ IL branch footprint, remodel program', target:true, note:'PNC acquired Midwest banks; ongoing branch refresh cycle; interior brand environment per location'},
+      {title:'VP Facilities & Real Estate (IL)', name:'(Verify on LinkedIn)', owns:'Branch build-outs, signage standards', target:true, note:'Controls interior signage budget for IL branch portfolio; consistent recurring buyer'},
+      {title:'CMO / VP Marketing (IL Region)', name:'(Verify on LinkedIn)', owns:'Brand compliance, local marketing', target:true, note:'PNC brand standards drive interior environment; CMO approves regional brand applications'}
+    ]
+  },
+
+  'Inland Real Estate Income Trust': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'(Inland Group Leadership)', title:'President — Inland Real Estate Income Trust'},
+    nodes:[
+      {title:'VP Real Estate / Asset Management', name:'(Verify on LinkedIn)', owns:'Chicago-area retail center portfolio', target:true, note:'Non-traded REIT; retail centers across Chicago area; tenant signage + property identity programs across portfolio'},
+      {title:'VP Property Management', name:'(Verify on LinkedIn)', owns:'Day-to-day operations, tenant relations, capex', target:true, note:'Controls common area signage + wayfinding budgets; direct buyer for property identity programs'},
+      {title:'Director, Leasing', name:'(Verify on LinkedIn)', owns:'Tenant recruitment, build-out coordination', target:true, note:'Each new tenant = signage opportunity; leasing director refers to Foxmark for interior build-out packages'}
+    ]
+  },
+
+  'Kovler Diabetes Center (U of C)': {
+    emailTpl: 'cs_hlth',
+    ceo: {name:'(University of Chicago Medicine)', title:'Director — Kovler Diabetes Center'},
+    nodes:[
+      {title:'VP Facilities (UChicago Medicine)', name:'(Verify on LinkedIn)', owns:'Clinical + research space, patient environments', target:true, note:'Specialty center; patient-facing interior environment program; UChicago Medicine facilities team approves vendors'},
+      {title:'Director of Operations', name:'(Verify on LinkedIn)', owns:'Center operations, patient experience', target:true, note:'Interior patient environment = brand + care signal; wayfinding + identity graphics at clinic scale'},
+      {title:'Chief of Clinical Operations', name:'(Verify on LinkedIn)', owns:'Patient flow, clinical environment standards', target:false, note:'Influences interior environment decisions at clinical level'}
+    ]
+  },
+
+  'National Kidney Foundation (Midwest)': {
+    emailTpl: 'cs_hlth',
+    ceo: {name:'(Regional Executive Director)', title:'Executive Director — NKF Midwest Chapter'},
+    nodes:[
+      {title:'VP Operations / COO', name:'(Verify on LinkedIn)', owns:'Office environment, event production, budget', target:true, note:'Nonprofit; smaller program opportunity; office + event environment; budget-conscious buyer'},
+      {title:'Director of Marketing & Communications', name:'(Verify on LinkedIn)', owns:'Brand, event graphics, awareness campaigns', target:true, note:'Event + campaign environmental graphics; seasonal awareness programs at office + community sites'},
+      {title:'Executive Director', name:'(Verify on LinkedIn)', owns:'Overall strategy, donor relations', target:false, note:'Final approver for significant spend; build relationship through operations team first'}
+    ]
+  },
+
+  'Cushman & Wakefield': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'Michelle MacKay', title:'CEO'},
+    nodes:[
+      {title:'CMO / Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'Brand, Chicago HQ environment, global standards', target:true, note:'Chicago HQ; C&W brand environment must match premium client expectations; CMO drives interior standards'},
+      {title:'VP Facilities — Chicago HQ', name:'(Verify on LinkedIn)', owns:'Chicago HQ build-out, interior program', target:true, note:'4.4B SF managed globally; own HQ must be a showpiece; interior graphics buyer for Chicago flagship office'},
+      {title:'Chief Global Client Officer', name:'(Verify on LinkedIn)', owns:'Client environments, preferred vendor programs', target:true, note:'Embed Foxmark as preferred environmental graphics sub across C&W-managed client projects = massive multiplier opportunity'}
+    ]
+  },
+
+  'Jones Lang LaSalle (JLL)': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'Christian Ulbrich', title:'President & CEO'},
+    nodes:[
+      {title:'VP Workplace Experience (Americas)', name:'(Verify on LinkedIn)', owns:'JLL-managed client environments, workplace strategy', target:true, note:'JLL sells workplace experience consulting; their own offices must be showpieces; entry point to JLL preferred vendor list'},
+      {title:'CMO, Americas', name:'Jill Kouri', owns:'Brand, marketing, thought leadership (Chicago HQ)', target:true, note:'Chicago-based; CMO for Americas; direct target for Foxmark studio intro at Merchandise Mart HQ'},
+      {title:'Chief Global Business Services Officer', name:'AJ Wijesinghe', owns:'JLL\'s own 300+ offices, FM, workplace services', target:true, note:'Controls JLL\'s own office interior environments globally; Chicago HQ = showpiece opportunity + preferred vendor path'}
+    ]
+  },
+
+  'CIRCOR International (Chicago ops)': {
+    emailTpl: 'cs_industrial',
+    ceo: {name:'(Verify — KKR acquired 2023)', title:'President & CEO'},
+    nodes:[
+      {title:'VP Facilities / Plant Manager (IL)', name:'(Verify on LinkedIn)', owns:'IL manufacturing operations, plant environment', target:true, note:'Flow control systems manufacturer; IL plant + facility branding; KKR acquisition = potential rebrand program'},
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'Production, safety, facility standards', target:true, note:'Industrial facility branding; safety + directional graphics at plant level'},
+      {title:'COO', name:'(Verify on LinkedIn)', owns:'Global manufacturing, corporate standards', target:false, note:'Corporate-level for multi-site program; approach local plant first'}
+    ]
+  },
+
+  'Packaging Corporation of America (IL div)': {
+    emailTpl: 'cs_industrial',
+    ceo: {name:'Mark Kowlzan', title:'Chairman & CEO (Corporate)'},
+    nodes:[
+      {title:'VP Operations — IL Division', name:'(Verify on LinkedIn)', owns:'Lake Forest HQ, IL plant operations', target:true, note:'NYSE: PKG; Lake Forest IL HQ; IL plant signage + HQ environment program; local ops buyer'},
+      {title:'VP Facilities / Real Estate', name:'(Verify on LinkedIn)', owns:'Corporate HQ + plant physical environments', target:true, note:'Corrugated packaging manufacturer; HQ environment + plant facility graphics program'},
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Corporate brand, trade marketing', target:true, note:'Corporate brand environment at Lake Forest HQ; premium office signage buyer'}
+    ]
+  },
+
+  'R.R. Donnelley (Chatham Asset)': {
+    emailTpl: 'cs_industrial',
+    ceo: {name:'Dan Knotts', title:'President & CEO'},
+    nodes:[
+      {title:'CMO / Chief Commercial Officer', name:'John Pecaric', owns:'Sales, marketing, brand — Chicago HQ', target:true, note:'Went private 2022 under Chatham; print + marketing services; 40K employees; HQ + facility rebrand program across 100+ sites'},
+      {title:'SVP Operations', name:'(Verify on LinkedIn)', owns:'Production facilities, supply chain, plant interiors', target:true, note:'100+ facilities globally; signage rollout at scale; COO-level approval for multi-site programs'},
+      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn)', owns:'Chicago HQ + plant portfolio', target:true, note:'Chicago HQ rebrand post-privatization; multi-site facility environmental graphics program buyer'}
+    ]
+  },
+
+  'UFP Technologies': {
+    emailTpl: 'cs_industrial',
+    ceo: {name:'(Verify — UFP Technologies)', title:'President & CEO'},
+    nodes:[
+      {title:'VP Facilities / Plant Manager (IL)', name:'(Verify on LinkedIn)', owns:'IL manufacturing sites, plant environment', target:true, note:'Specialty packaging + protective materials; IL plant environmental graphics; safety + identity signage'},
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'Production, safety, facility standards', target:true, note:'Controls facility signage budgets for IL sites; recurring need for safety + directional graphics'},
+      {title:'COO', name:'(Verify on LinkedIn)', owns:'Multi-site manufacturing operations', target:false, note:'Corporate-level; approach local plant manager first for faster vendor onboarding'}
+    ]
+  },
+
+  'GlobalTranz (Chicago office)': {
+    emailTpl: 'cs_united',
+    ceo: {name:'(Verify — PE-backed)', title:'CEO — GlobalTranz'},
+    nodes:[
+      {title:'VP Operations — Chicago', name:'(Verify on LinkedIn)', owns:'Chicago office, freight brokerage ops', target:true, note:'PE-backed; post-acquisition rebrand in progress; modern Chicago office environment = active buyer'},
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, rebrand program, digital marketing', target:true, note:'Freight brokerage; post-acquisition rebrand creates immediate environmental graphics need'},
+      {title:'VP Facilities', name:'(Verify on LinkedIn)', owns:'Chicago HQ build-out, office environment', target:true, note:'Chicago HQ office interior; modern freight tech culture = premium branded environment expectation'}
+    ]
+  },
+
+  'XPO (Chicago operations)': {
+    emailTpl: 'cs_united',
+    ceo: {name:'Mario Harik', title:'CEO (Corporate)'},
+    nodes:[
+      {title:'VP Operations — IL Region', name:'(Verify on LinkedIn)', owns:'Chicago area LTL terminals, facility standards', target:true, note:'Multiple IL terminals; facility signage + safety graphics at each terminal = recurring volume program'},
+      {title:'Regional General Manager (IL)', name:'(Verify on LinkedIn)', owns:'P&L, terminal network, local vendor relationships', target:true, note:'Local GM controls facility capex; preferred vendor relationship starts here'},
+      {title:'VP Facilities / Real Estate (Corp)', name:'(Verify on LinkedIn)', owns:'Terminal portfolio standards', target:false, note:'Corporate-level for approved vendor list; follow up after establishing local terminal relationships'}
+    ]
+  },
+
+  'Braintree (PayPal Chicago)': {
+    emailTpl: 'cs_tch',
+    ceo: {name:'(PayPal subsidiary)', title:'GM — Braintree (PayPal Chicago)'},
+    nodes:[
+      {title:'VP Facilities — Chicago', name:'(Verify on LinkedIn)', owns:'Fulton Market office environment, ongoing refresh', target:true, note:'PayPal subsidiary; premium Fulton Market office; ongoing environment refresh cycle; tech brand culture = quality interior expected'},
+      {title:'VP Workplace Experience', name:'(Verify on LinkedIn)', owns:'Employee environment, Chicago office culture', target:true, note:'Fulton Market HQ; workplace experience is talent magnet; interior graphics = brand + recruitment signal'},
+      {title:'CMO / Head of Marketing', name:'(Verify on LinkedIn)', owns:'Brand, product marketing, office brand standards', target:true, note:'PayPal/Braintree premium brand environment; CMO influences interior standards at Chicago HQ'}
+    ]
+  },
+
+  'Outcome Health': {
+    emailTpl: 'cs_tch',
+    ceo: {name:'(Verify — post-restructuring)', title:'CEO — Outcome Health'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, showroom, client-facing environment', target:true, note:'Healthcare point-of-care media; Chicago HQ + showroom environment; premium office = client confidence signal'},
+      {title:'VP Facilities', name:'(Verify on LinkedIn)', owns:'Chicago HQ, office + showroom build-out', target:true, note:'Post-restructuring rebuilding HQ environment; interior graphics + showroom displays = active buyer'},
+      {title:'VP Sales / Business Development', name:'(Verify on LinkedIn)', owns:'Client-facing spaces, demo environment', target:true, note:'Showroom and demo spaces are primary revenue environment; interior brand quality is directly tied to enterprise sales'}
+    ]
+  },
+
+  'Textura (Oracle Chicago)': {
+    emailTpl: 'cs_tch',
+    ceo: {name:'(Oracle subsidiary)', title:'VP & GM — Oracle Construction & Engineering (Chicago)'},
+    nodes:[
+      {title:'VP Facilities — Chicago', name:'(Verify on LinkedIn)', owns:'Chicago office environment, Oracle brand standards', target:true, note:'Oracle construction management platform; Chicago office operates under Oracle brand standards; ongoing environment program'},
+      {title:'Director, Workplace Services', name:'(Verify on LinkedIn)', owns:'Chicago office interior, employee environment', target:true, note:'Oracle\'s Chicago presence; modern tech office environment; interior brand refresh cycle'},
+      {title:'Regional Sales Director', name:'(Verify on LinkedIn)', owns:'Client-facing Chicago office spaces', target:false, note:'Client-facing conference + presentation spaces reflect Oracle brand standards; influence on interior environment decisions'}
+    ]
+  },
+
+  'Chicago Architecture Center': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'Jennifer Masengarb', title:'Executive Director'},
+    nodes:[
+      {title:'VP Marketing & Communications', name:'(Verify on LinkedIn)', owns:'Brand, visitor experience, exhibit graphics', target:true, note:'Premium riverfront location; rotating exhibit + wayfinding graphics are core product; design-savvy buyer who appreciates craft'},
+      {title:'Director of Facilities', name:'(Verify on LinkedIn)', owns:'Physical space, exhibit installation, signage', target:true, note:'Frequently updating environmental graphics for exhibits; Chicago architecture community = ideal Foxmark showcase client'},
+      {title:'Director of Programs & Education', name:'(Verify on LinkedIn)', owns:'Programming spaces, classroom environment', target:false, note:'Program rooms and classroom environments also benefit from branded graphics; secondary contact'}
+    ]
+  },
+
+  'Chicago Shakespeare Theater': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'Barbara Gaines', title:'Artistic Director & Founder'},
+    nodes:[
+      {title:'VP Marketing & Communications', name:'(Verify on LinkedIn)', owns:'Seasonal campaign graphics, lobby environment, Navy Pier presence', target:true, note:'Navy Pier venue; seasonal show campaigns = large-format lobby + exterior graphics per production; consistent annual buy'},
+      {title:'Managing Director', name:'(Verify on LinkedIn)', owns:'Operations, facilities, budget, vendor relationships', target:true, note:'Manages venue environment and vendor relationships; lobby + building identity graphics; world-class theater = premium standard'},
+      {title:'Director of Production / Technical Director', name:'(Verify on LinkedIn)', owns:'Stage + venue environment, signage installation', target:false, note:'Production team handles physical installation; technical contact for dimensional graphics + wayfinding'}
+    ]
+  },
+
+  'Oak View Group (Chicago venues)': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'Tim Leiweke', title:'CEO & Co-Founder'},
+    nodes:[
+      {title:'VP Design & Construction (Chicago)', name:'(Verify on LinkedIn)', owns:'Venue development, environmental brand packages', target:true, note:'Venue development + management company; emerging Chicago venues + arena upgrades = full environmental brand packages per project'},
+      {title:'EVP, Venue Development', name:'(Verify on LinkedIn)', owns:'New venue build-outs, brand environment standards', target:true, note:'Each new or upgraded arena = comprehensive interior environmental graphics program; multi-year revenue opportunity'},
+      {title:'VP Marketing (Chicago/Midwest)', name:'(Verify on LinkedIn)', owns:'Venue brand, fan experience environment', target:true, note:'Fan experience is the product; environmental graphics drive dwell time + revenue; premium buyer for lobby + concourse branding'}
+    ]
+  },
+
+  'Chicago Public Schools (CPS) Facilities': {
+    emailTpl: 'cs_hlth',
+    ceo: {name:'Pedro Martinez', title:'CEO — Chicago Public Schools'},
+    nodes:[
+      {title:'VP Capital Programs / Chief Facilities Officer', name:'(Verify on LinkedIn)', owns:'$7B bond-funded school renovation program', target:true, note:'Bond-funded school renovation = school interior wayfinding + identity graphics at scale; 630+ schools = massive volume program'},
+      {title:'Director, Design & Construction', name:'(Verify on LinkedIn)', owns:'Renovation specs, approved vendor lists', target:true, note:'Controls approved vendor lists for interior graphics in school renovations; get on the CPS approved vendor list'},
+      {title:'Director, Facilities Management', name:'(Verify on LinkedIn)', owns:'Day-to-day operations, maintenance, signage', target:true, note:'Ongoing maintenance + replacement of existing school signage across 630 buildings = recurring program revenue'}
+    ]
+  },
+
+  'Chicago Tribune Media (Tribune Publishing)': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'(Verify — Tribune Publishing)', title:'CEO — Tribune Publishing'},
+    nodes:[
+      {title:'VP Facilities — Chicago Freedom Center', name:'(Verify on LinkedIn)', owns:'Chicago HQ + newsroom environment', target:true, note:'Large-format print heritage; office + newsroom environment refresh; Freedom Center campus = significant interior graphics opportunity'},
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Tribune brand, office environment standards', target:true, note:'Media company HQ brand environment; CMO drives standards for editorial + business office spaces'},
+      {title:'Director, Real Estate & Operations', name:'(Verify on LinkedIn)', owns:'Chicago Freedom Center facility management', target:true, note:'Day-to-day facility management; ongoing signage refresh + wayfinding maintenance buyer'}
+    ]
+  },
+
+  'Roosevelt University': {
+    emailTpl: 'cs_hlth',
+    ceo: {name:'Ali Malekzadeh', title:'President'},
+    nodes:[
+      {title:'VP Facilities & Operations', name:'(Verify on LinkedIn)', owns:'Auditorium Building + Wabash campus, signage programs', target:true, note:'Ongoing campus identity + wayfinding programs; historic Auditorium Building + modern Wabash tower; premium architectural environment'},
+      {title:'VP Marketing & Communications', name:'(Verify on LinkedIn)', owns:'University brand, campus identity, recruitment environment', target:true, note:'Campus brand environment supports student recruitment; seasonal + wayfinding graphics across both campuses'},
+      {title:'Director, Campus Planning & Construction', name:'(Verify on LinkedIn)', owns:'Renovation projects, capital improvements', target:true, note:'Capital improvement projects = environmental graphics packages; consistent buyer for both campuses'}
+    ]
+  },
+
+  'School of the Art Institute (SAIC)': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'Elissa Tenny', title:'President'},
+    nodes:[
+      {title:'VP Facilities & Campus Services', name:'(Verify on LinkedIn)', owns:'Loop campus signage, gallery environments, wayfinding', target:true, note:'Chicago Loop; art + design school; highly brand-conscious; rotating gallery + campus identity graphics = consistent recurring buy'},
+      {title:'VP Marketing & Communications', name:'(Verify on LinkedIn)', owns:'SAIC brand, recruitment environment, gallery promotion', target:true, note:'Design school — they appreciate craft and execution quality; premium buyer who can become a showcase reference client'},
+      {title:'Dean of Graduate Studies', name:'(Verify on LinkedIn)', owns:'Graduate facility environments, studio spaces', target:false, note:'Graduate studio + exhibition spaces also need environmental graphics; secondary contact for studio-specific programs'}
+    ]
+  },
+
+  'Sun-Times Media Network': {
+    emailTpl: 'cs_allstate',
+    ceo: {name:'(Verify — Sun-Times leadership)', title:'CEO / Publisher — Chicago Sun-Times'},
+    nodes:[
+      {title:'VP Facilities / Director of Operations', name:'(Verify on LinkedIn)', owns:'Chicago HQ office environment', target:true, note:'Local news outlet; office environment; smaller program opportunity; budget-conscious buyer'},
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, office environment standards', target:true, note:'Media brand environment; CMO drives interior standards for editorial + commercial spaces; smaller but accessible buyer'},
+      {title:'Managing Editor / COO', name:'(Verify on LinkedIn)', owns:'Newsroom operations, office environment', target:false, note:'Newsroom environment + branded editorial spaces; lower priority but warm relationship opportunity through content partnership'}
+    ]
+  },
+
+  'Lou Malnati\'s Pizzerias': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'Marc Malnati', title:'CEO'},
+    nodes:[
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'65+ location standards, interior consistency', target:true, note:'Midwest institution; steady location growth; interior brand environment per new opening = consistent recurring program'},
+      {title:'CMO / Director of Marketing', name:'(Verify on LinkedIn)', owns:'Brand identity, seasonal promotions, interior brand standards', target:true, note:'Lou Malnati\'s has a strong brand environment; seasonal + campaign graphics at each location'},
+      {title:'VP Real Estate & Development', name:'(Verify on LinkedIn)', owns:'New location selection, buildout coordination', target:true, note:'65+ locations + ongoing growth; each new opening = full interior environmental graphics package'}
+    ]
+  },
+
+  'Protein Bar & Kitchen': {
+    emailTpl: 'cs_rtl',
+    ceo: {name:'(Owner/CMO)', title:'Founder & CEO — Protein Bar & Kitchen'},
+    nodes:[
+      {title:'Owner / CMO', name:'(Verify on LinkedIn)', owns:'Brand identity, interior environment standards, expansion decisions', target:true, note:'Fast casual; downtown-heavy; brand-forward interior environments are core to concept; expansion-mode = active buyer'},
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'20+ location standards, interior consistency', target:true, note:'Each new location = full environmental graphics package; consistent interior brand standard across downtown Chicago locations'},
+      {title:'Director of Marketing', name:'(Verify on LinkedIn)', owns:'Seasonal campaigns, promotional graphics, interior brand', target:true, note:'Promotional + seasonal interior graphics across 20+ locations; direct buyer for campaign environment updates'}
+    ]
+  },
+
+  'Arrive Logistics': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Matt Pyatt', title:'Co-Founder & CEO'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, culture, client-facing environment', target:true, note:'Fast-growing freight brokerage; premium West Loop HQ; brand-forward office culture; active hiring = expanding facilities'},
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'Chicago HQ ops', target:false}
+    ]
+  },
+
+  'Havas Chicago': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'(Chicago Market Lead)', title:'President — Havas Chicago'},
+    nodes:[
+      {title:'VP Facilities / Office Lead', name:'(Verify on LinkedIn)', owns:'Chicago agency environment', target:true, note:'Global Havas network; Chicago creative hub; client-facing agency interiors = premium environmental graphics buyer'},
+      {title:'Chief Creative Officer', name:'(Verify on LinkedIn)', owns:'Creative environment, agency brand experience', target:true, note:'Agency showroom environment for business development; large-format interior brand expression is core to agency identity'}
+    ]
+  },
+
+
+  'RXO (Chicago logistics)': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Drew Wilkerson', title:'CEO — RXO'},
+    nodes:[
+      {title:'CMO', name:'(Verify on LinkedIn)', owns:'Brand, marketing, new company identity', target:true, note:'Spun off from XPO 2022; new brand identity still being built out; premium Chicago HQ environment = active opportunity'},
+      {title:'VP Facilities / Real Estate', name:'(Verify on LinkedIn)', owns:'Chicago HQ + regional ops', target:true, note:'Post-spinoff HQ buildout; new signage, wayfinding, and environmental graphics needed across facilities'},
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'Freight brokerage operations', target:false}
+    ]
+  },
+
+  'Transplace (Uber Freight)': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'(Uber Freight leadership)', title:'GM — Uber Freight Chicago'},
+    nodes:[
+      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, Uber Freight rebrand integration', target:true, note:'Transplace acquired by Uber Freight 2021; rebrand in progress; Chicago ops hub; new interior identity needed'},
+      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'Chicago logistics hub', target:false}
+    ]
+  },
+
+  'Chicago Sun-Times (new ownership)': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'(Executive Director)', title:'Executive Director — Chicago Public Media'},
+    nodes:[
+      {title:'VP Facilities / Operations', name:'(Verify on LinkedIn)', owns:'Chicago Loop newsroom + offices', target:true, note:'Nonprofit ownership transition 2024; new identity rollout across newsroom + public-facing office environments'},
+      {title:'CMO / VP Brand', name:'(Verify on LinkedIn)', owns:'Brand identity, editorial environment', target:true, note:'New ownership = rebrand mandate; Chicago Loop presence; modern newsroom environmental graphics'}
+    ]
+  },
+
+  'Publicis Groupe Chicago': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'(Chicago Market Lead)', title:'SVP / Market Lead — Publicis Chicago'},
+    nodes:[
+      {title:'VP Facilities / Real Estate', name:'(Verify on LinkedIn)', owns:'River North campus, Chicago office environments', target:true, note:'Publicis network hub; Leo Burnett parent company; large River North campus; premium branded interior environments for client visits'},
+      {title:'CMO / Chief Creative Officer', name:'(Verify on LinkedIn)', owns:'Creative environment, brand experience', target:true, note:'Agency environment = showroom; client-facing spaces require premium environmental graphics and brand expression'}
+    ]
+  },
+
+  'Northwestern University (Chicago campus)': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'(VP Facilities)', title:'VP Facilities Management — Northwestern'},
+    nodes:[
+      {title:'VP Facilities Management', name:'(Verify on LinkedIn)', owns:'Evanston + Streeterville Chicago campuses', target:true, note:'$13.7B endowment; Feinberg School of Medicine on Chicago Streeterville campus; wayfinding + donor recognition + environmental graphics at scale'},
+      {title:'VP Marketing & Communications', name:'(Verify on LinkedIn)', owns:'Brand standards, campus visual identity', target:true, note:'Major capital projects ongoing; brand-consistent environmental graphics across both campuses'}
+    ]
+  },
+
+  'University of Chicago (Booth + ops)': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'(VP Facilities)', title:'VP Facilities Services — UChicago'},
+    nodes:[
+      {title:'VP Facilities Services', name:'(Verify on LinkedIn)', owns:'Hyde Park campus + Gleacher Center downtown', target:true, note:'$11.6B endowment; Booth School of Business + hospital complex; major capital programs; environmental graphics + donor recognition'},
+      {title:'VP Communications & Marketing', name:'(Verify on LinkedIn)', owns:'Brand standards, campus environment', target:true, note:'Gleacher Center (downtown Chicago) = premium executive education facility; branded interiors for world-class client experience'}
+    ]
+  },
+
+  'Lurie Children\'s Hospital': {
+    emailTpl: 'cs_hlth',
+    ceo: {name:'Tom Shanley', title:'President & CEO'},
+    nodes:[
+      {title:'VP Facilities & Real Estate', name:'(Verify on LinkedIn)', owns:'Streeterville campus, capital expansion', target:true, note:'Top 10 US pediatric hospital; ongoing capital expansion; wayfinding + healing environment graphics at major scale'},
+      {title:'VP Marketing & Communications', name:'(Verify on LinkedIn)', owns:'Brand identity, donor recognition, campus signage', target:true, note:'Donor recognition walls, wayfinding, branded environments across patient-facing spaces; premium healthcare interior graphics buyer'},
+      {title:'Chief Experience Officer', name:'(Verify on LinkedIn)', owns:'Patient experience, environmental design', target:false}
+    ]
   }
 
 };
@@ -6462,7 +6725,7 @@ function renderF500Dashboard() {
   h += '<div style="width:3px;height:1.4rem;background:#C8102E;flex-shrink:0;"></div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#e8f0ff;">F500 Target Overview · Illinois</div>';
   h += '<div style="flex:1;height:1px;background:rgba(255,255,255,.06);"></div>';
-  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">52 Named Targets · 6 Sectors</div>';
+  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">52 Targets · 6 Sectors</div>';
   h += '</div>';
 
   // ── KPI STRIP ─────────────────────────────────────────────────────────────
@@ -6486,7 +6749,27 @@ function renderF500Dashboard() {
   // ── MARKET SIZING: THREE-TIER FUNNEL ─────────────────────────────────────
   h += '<div style="margin-bottom:1rem;">';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#5a6880;margin-bottom:.6rem;">Market Sizing · How Big Is The Opportunity?</div>';
-  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;">';
+
+  // Tier 1
+  h += '<div style="position:relative;background:linear-gradient(160deg,rgba(74,158,255,.08) 0%,rgba(74,158,255,.02) 100%);border:1px solid rgba(74,158,255,.25);overflow:hidden;">';
+  h += '<div style="position:absolute;top:0;left:0;right:0;height:3px;background:#4a9eff;"></div>';
+  h += '<div style="padding:1rem 1rem .5rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#4a9eff;margin-bottom:.5rem;opacity:.9;">Tier 1 · US Wide-Format Market</div>';
+  h += '<div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.35rem;">';
+  h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:2.4rem;color:#4a9eff;line-height:1;">$11.4B</div>';
+  h += '</div>';
+  h += '<div style="font-size:.7rem;color:#c8d8e8;margin-bottom:.5rem;line-height:1.5;">Total US commercial signage, wide-format print &amp; environmental graphics industry (IBISWorld 2024). Growing at +4.8% CAGR while broader print declines.</div>';
+  h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(74,158,255,.1);border:1px solid rgba(74,158,255,.25);color:#4a9eff;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology">▼</button>';
+  h += '<div style="display:none;border-top:1px solid rgba(74,158,255,.15);padding-top:.6rem;padding-bottom:.75rem;">';
+  h += '<div style="font-size:.63rem;color:#8ab0d0;line-height:1.7;">';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#4a9eff;">Source:</strong> IBISWorld Commercial Signage Manufacturing report (2024): $11.4B US industry revenue</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#4a9eff;">Growth driver:</strong> Wide-format segment growing +4.8% annually — driven by environmental branding, ESG refreshes, and corporate identity investment</div>';
+  h += '<div style="margin-bottom:.3rem;"><strong style="color:#4a9eff;">Tailwind:</strong> Digital signage shifts budget toward large-format environmental graphics, not away from it</div>';
+  h += '<div><strong style="color:#4a9eff;">Why it matters:</strong> The total pool Foxmark participates in nationally — before filtering to IL F500 accounts.</div>';
+  h += '</div>';
+  h += '</div>';
+  h += '</div></div>';
 
   // Tier 2
   h += '<div style="position:relative;background:linear-gradient(160deg,rgba(245,158,11,.08) 0%,rgba(245,158,11,.02) 100%);border:1px solid rgba(245,158,11,.25);overflow:hidden;">';
@@ -6500,7 +6783,7 @@ function renderF500Dashboard() {
   h += '<div style="font-size:.7rem;color:#e8d8b8;margin-bottom:.5rem;line-height:1.5;">Est. total annual signage &amp; environmental graphics spend by IL F500 targets, across all their national locations.</div>';
   h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#f59e0b;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology" >▼</button>';
   h += '<div style="display:none;border-top:1px solid rgba(245,158,11,.15);padding-top:.6rem;padding-bottom:.75rem;">';
-  h += '<div style="font-size:.63rem;color:#6a4820;line-height:1.7;">';
+  h += '<div style="font-size:.63rem;color:#c8a870;line-height:1.7;">';
   h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Benchmark:</strong> SEGD (Society for Experiential Graphic Design) industry research: corporations allocate 0.10–0.25% of revenue to signage, wayfinding, and environmental graphics annually</div>';
   h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Calculation:</strong> $414B universe × 0.12–0.20% = $496M–$828M. Midpoint: ~$650M national spend</div>';
   h += '<div style="margin-bottom:.3rem;"><strong style="color:#f59e0b;">Validation:</strong> IBISWorld Commercial Signage Manufacturing (2024): $11.4B US industry. F500 segment estimated at 4–7% of total = $456M–$798M</div>';
@@ -6521,7 +6804,7 @@ function renderF500Dashboard() {
   h += '<div style="font-size:.7rem;color:#e8c8c8;margin-bottom:.5rem;line-height:1.5;">IL-footprint share of national spend. Catalyst events (rebrands, PE acquisitions, new builds) expand scope and compress timelines.</div>';
   h += '<button onclick="var d=this.nextElementSibling;d.style.display=d.style.display===\'none\'?\'block\':\'none\';this.textContent=d.style.display===\'none\'?\'▼ How we got here\':\'▲ Close\';" style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(200,16,46,.1);border:1px solid rgba(200,16,46,.25);color:#C8102E;padding:.2rem .5rem;cursor:pointer;margin-bottom:.5rem;" title="Click to expand methodology" >▼</button>';
   h += '<div style="display:none;border-top:1px solid rgba(200,16,46,.2);padding-top:.6rem;padding-bottom:.75rem;">';
-  h += '<div style="font-size:.63rem;color:#702020;line-height:1.7;">';
+  h += '<div style="font-size:.63rem;color:#c88080;line-height:1.7;">';
   h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">IL location share:</strong> 52 F500 targets average 480+ total locations nationwide. IL footprint estimated at 5–15% of total locations per company (HQ + regional ops)</div>';
   h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Calculation:</strong> $500M–$800M national × 10–15% IL share = $50M–$120M base. Catalyst premium adds 10–20% scope expansion</div>';
   h += '<div style="margin-bottom:.3rem;"><strong style="color:#C8102E;">Catalyst events active:</strong> 22 identified triggers in current pipeline — PE acquisitions, rebrands, new HQ builds, ESG-driven refreshes. Each compresses a 12-month budget cycle to 90 days</div>';
@@ -6764,7 +7047,7 @@ var MKT_DASHBOARD_HTML = `
         <div style="margin-bottom:1.25rem;">
           <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.85rem;">
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#5aabff;">Midwest Growth Companies · Beyond the F500</div>
-            <div style="font-size:.68rem;color:#2a4050;">138 mid-market targets · faster decisions · no 18-month procurement cycles</div>
+            <div style="font-size:.68rem;color:#2a4050;">150 mid-market targets · faster decisions · no 18-month procurement cycles</div>
           </div>
           <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;">
 
@@ -6773,12 +7056,12 @@ var MKT_DASHBOARD_HTML = `
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#06b6d4;margin-bottom:.4rem;">Growth Tech</div>
               <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born SaaS and fintech scaling fast — new offices, new brand standards, minimal red tape.</div>
               <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Enfusion</span>
-                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Enova</span>
-                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">G2</span>
-                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">SpotHero</span>
-                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Paylocity</span>
-                <span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Project44</span>
+                <a href="https://www.enfusion.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Enfusion</span></a>
+                <a href="https://www.enova.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Enova</span></a>
+                <a href="https://www.g2.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">G2</span></a>
+                <a href="https://www.paylocity.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Paylocity</span></a>
+                <a href="https://www.project44.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">Project44</span></a>
+                <a href="https://www.spothero.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.18);padding:.1rem .4rem;color:#06b6d4;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(6,182,212,.2)'" onmouseout="this.style.background='rgba(6,182,212,.08)'">SpotHero</span></a>
               </div>
               <div style="margin-top:.5rem;font-size:.65rem;color:#06b6d4;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Office culture = brand statement. Quick approvals.</div>
             </div>
@@ -6788,10 +7071,10 @@ var MKT_DASHBOARD_HTML = `
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#ec4899;margin-bottom:.4rem;">Hospitality &amp; Experience</div>
               <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Chicago-born brands with multi-location footprints — every location is a brand environment opportunity.</div>
               <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Lou Malnati&apos;s</span>
-                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Portillo&apos;s</span>
-                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Protein Bar</span>
-                <span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Steppenwolf</span>
+                <a href="https://www.loumalnatis.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Lou Malnati&apos;s</span></a>
+                <a href="https://www.portillos.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Portillo&apos;s</span></a>
+                <a href="https://www.theproteinbar.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Protein Bar</span></a>
+                <a href="https://www.steppenwolf.org" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.18);padding:.1rem .4rem;color:#ec4899;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(236,72,153,.2)'" onmouseout="this.style.background='rgba(236,72,153,.08)'">Steppenwolf</span></a>
               </div>
               <div style="margin-top:.5rem;font-size:.65rem;color:#ec4899;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Expansion-mode brands. Each new location = full interior package.</div>
             </div>
@@ -6801,10 +7084,10 @@ var MKT_DASHBOARD_HTML = `
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#22c55e;margin-bottom:.4rem;">Real Estate &amp; Developers</div>
               <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Fulton Market and River North developers building tenant-ready environments — wayfinding, lobby branding, EGD at scale.</div>
               <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Bradford Allen</span>
-                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Pangea Properties</span>
-                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">R2 Companies</span>
-                <span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Fulton Market Dev</span>
+                <a href="https://www.bradfordallen.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Bradford Allen</span></a>
+                <a href="https://www.fultonmarketdistrict.org" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Fulton Market Dev</span></a>
+                <a href="https://www.pangeare.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">Pangea Properties</span></a>
+                <a href="https://www.r2companies.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);padding:.1rem .4rem;color:#22c55e;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(34,197,94,.2)'" onmouseout="this.style.background='rgba(34,197,94,.08)'">R2 Companies</span></a>
               </div>
               <div style="margin-top:.5rem;font-size:.65rem;color:#22c55e;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Recurring project pipeline. Every buildout is a Foxmark opportunity.</div>
             </div>
@@ -6814,11 +7097,11 @@ var MKT_DASHBOARD_HTML = `
               <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#a855f7;margin-bottom:.4rem;">Professional Services</div>
               <div style="font-size:.7rem;color:#5a7090;line-height:1.5;margin-bottom:.5rem;">Law firms, PR agencies, and logistics companies with Loop presence — brand-conscious, facilities-driven decisions.</div>
               <div style="display:flex;flex-wrap:wrap;gap:.25rem;">
-                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Kirkland &amp; Ellis</span>
-                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Edelman</span>
-                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Relativity</span>
-                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Hub Group</span>
-                <span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;">Loadsmart</span>
+                <a href="https://www.edelman.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Edelman</span></a>
+                <a href="https://www.hubgroup.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Hub Group</span></a>
+                <a href="https://www.kirkland.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Kirkland &amp; Ellis</span></a>
+                <a href="https://www.loadsmart.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Loadsmart</span></a>
+                <a href="https://www.relativity.com" target="_blank" style="text-decoration:none;"><span style="font-size:.62rem;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.18);padding:.1rem .4rem;color:#a855f7;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">Relativity</span></a>
               </div>
               <div style="margin-top:.5rem;font-size:.65rem;color:#a855f7;opacity:.7;border-top:1px solid rgba(255,255,255,.05);padding-top:.4rem;">→ Prestige-driven. Interior brand = client confidence signal.</div>
             </div>
@@ -6916,7 +7199,7 @@ var MKT_DASHBOARD_HTML = `
                   <div style="font-size:.62rem;color:#4a3010;text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;">Coverage</div>
                 </div>
               </div>
-              <div style="font-size:.72rem;color:#5a7090;line-height:1.5;">CMO, VP Facilities, and VP Real Estate contacts identified for 111 of 143 mid-market targets — enough to start outreach today without a single cold call.</div>
+              <div style="font-size:.72rem;color:#5a7090;line-height:1.5;">CMO, VP Facilities, and VP Real Estate contacts identified across all 202 named targets — enough to start outreach today without a single cold call.</div>
             </div>
 
             <!-- Why mid-market -->
@@ -6956,14 +7239,14 @@ var MKT_DASHBOARD_HTML = `
         <!-- BOTTOM KPI ROW -->
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1rem;">
           <div style="background:#0d1e2e;border:1px solid rgba(200,16,46,.3);border-top:3px solid #C8102E;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;">159</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#C8102E;line-height:1;">202</div>
             <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Total Named Targets</div>
             <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">F500 + Mid-Market</div>
           </div>
           <div style="background:#0d1e2e;border:1px solid rgba(34,197,94,.25);border-top:3px solid #22c55e;padding:1rem;text-align:center;">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#22c55e;line-height:1;">111</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#22c55e;line-height:1;">202</div>
             <div style="font-size:.72rem;color:#5a6880;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;">Org Charts Built</div>
-            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Contact trees + CRM panels</div>
+            <div style="font-size:.7rem;color:#3a5060;margin-top:.2rem;">Every account mapped</div>
           </div>
           <div style="background:#0d1e2e;border:1px solid rgba(74,158,255,.25);border-top:3px solid #4a9eff;padding:1rem;text-align:center;">
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:#4a9eff;line-height:1;">12</div>
@@ -7021,7 +7304,11 @@ function renderMktTable(key) {
       'Leo Burnett':11,'DDB Chicago':11,'FCB Chicago':11,'Chicago Tribune':11,'Sun-Times':11,'Envestnet':11,
       'True Value':1,'Potbelly':1,'Protein Bar':1,'Lou Malnati':1,
       'Bradford Allen':3,'Pangea':3,'R2 Companies':3,'Fulton Market Innovation':3,
-      'Enfusion':8,'SMS Assist':8,'G2 ':8,'Cameo':8,'Fooda':8,'SpotHero':8
+      'Enfusion':8,'SMS Assist':8,'G2 ':8,'Cameo':8,'Fooda':8,'SpotHero':8,
+      'RXO':7,'Transplace':7,'Arrive Logistics':7,
+      'Chicago Sun-Times':11,'Publicis Groupe':11,'Havas Chicago':11,
+      'Northwestern University':10,'University of Chicago':10,
+      'Lurie':4
     };
     rows.forEach(function(r) {
       var sidx = 5;
