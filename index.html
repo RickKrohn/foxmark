@@ -1058,6 +1058,7 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() { setTimeout(initPipeline, 200); });
+document.addEventListener('DOMContentLoaded', function(){ setTimeout(refreshDashboardTiles, 200); });
       } else {
         setTimeout(initPipeline, 300);
       }
@@ -1990,24 +1991,30 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
           <!-- FUTURE METRICS ROW -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-top:.3rem;">
 
-            <!-- Coverage Score — amber/gold -->
-            <div data-tip="Coverage Score · Coming soon — tracks named contacts per account" style="background:linear-gradient(145deg,#1e1600 0%,#160f00 100%);border:1px solid rgba(245,158,11,.2);border-top:2px solid rgba(245,158,11,.4);padding:.75rem .75rem .65rem;display:flex;align-items:center;gap:.85rem;opacity:.72;cursor:default;">
-              <div style="font-size:1.3rem;line-height:1;color:rgba(245,158,11,.5);">◐</div>
-              <div>
-                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:rgba(255,232,160,.6);text-transform:uppercase;line-height:1;">Coverage Score</div>
-                <div style="font-size:.5rem;letter-spacing:.08em;color:rgba(245,158,11,.4);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">Named contacts per account · Activates with outreach</div>
+            <!-- Coverage Score — amber/gold — LIVE -->
+            <div id="tile-coverage" data-tip="Coverage Score · Accounts touched (any status beyond Prospect)" style="background:linear-gradient(145deg,#1e1600 0%,#160f00 100%);border:1px solid rgba(245,158,11,.2);border-top:2px solid rgba(245,158,11,.4);padding:.75rem .75rem .65rem;display:flex;align-items:center;gap:.85rem;cursor:default;">
+              <div style="font-size:1.3rem;line-height:1;color:rgba(245,158,11,.8);">◐</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:rgba(255,232,160,.9);text-transform:uppercase;line-height:1;">Coverage Score</div>
+                <div style="font-size:.5rem;letter-spacing:.08em;color:rgba(245,158,11,.55);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">Accounts touched · <span id="coverage-detail">loading…</span></div>
               </div>
-              <div style="margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.1em;color:rgba(245,158,11,.35);text-transform:uppercase;white-space:nowrap;">FUTURE ›</div>
+              <div style="text-align:right;white-space:nowrap;">
+                <div id="coverage-pct" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:#f5a623;line-height:1;">—</div>
+                <div id="coverage-sub" style="font-family:'Barlow Condensed',sans-serif;font-size:.48rem;font-weight:700;letter-spacing:.08em;color:rgba(245,158,11,.5);text-transform:uppercase;">of 230</div>
+              </div>
             </div>
 
-            <!-- Pipeline Value Total — green -->
-            <div data-tip="Pipeline Value · Coming soon — aggregates $ entered in CRM panels" style="background:linear-gradient(145deg,#001a08 0%,#001205 100%);border:1px solid rgba(34,197,94,.2);border-top:2px solid rgba(34,197,94,.35);padding:.75rem .75rem .65rem;display:flex;align-items:center;gap:.85rem;opacity:.72;cursor:default;">
-              <div style="font-size:1.3rem;line-height:1;color:rgba(34,197,94,.45);">$</div>
-              <div>
-                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:rgba(180,255,200,.6);text-transform:uppercase;line-height:1;">Pipeline Value Total</div>
-                <div style="font-size:.5rem;letter-spacing:.08em;color:rgba(34,197,94,.4);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;">Live $ forecast across all accounts · Activates with outreach</div>
+            <!-- Pipeline Value Total — green — LIVE -->
+            <div id="tile-pipeline" data-tip="Pipeline Value · Sum of all $ entered in CRM panels" style="background:linear-gradient(145deg,#001a08 0%,#001205 100%);border:1px solid rgba(34,197,94,.2);border-top:2px solid rgba(34,197,94,.35);padding:.75rem .75rem .65rem;display:flex;align-items:center;gap:.85rem;cursor:default;">
+              <div style="font-size:1.3rem;line-height:1;color:rgba(34,197,94,.8);">$</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:.78rem;letter-spacing:.12em;color:rgba(180,255,200,.9);text-transform:uppercase;line-height:1;">Pipeline Value</div>
+                <div style="font-size:.5rem;letter-spacing:.08em;color:rgba(34,197,94,.55);margin-top:.2rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;"><span id="pipeline-count">0</span> accounts with $ entered</div>
               </div>
-              <div style="margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:.5rem;font-weight:700;letter-spacing:.1em;color:rgba(34,197,94,.3);text-transform:uppercase;white-space:nowrap;">FUTURE ›</div>
+              <div style="text-align:right;white-space:nowrap;">
+                <div id="pipeline-total" style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:#22c55e;line-height:1;">$0</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:.48rem;font-weight:700;letter-spacing:.08em;color:rgba(34,197,94,.5);text-transform:uppercase;">total pipeline</div>
+              </div>
             </div>
 
           </div>
@@ -7356,6 +7363,46 @@ function crmUpdate(coKey, field, value) {
     var badge = document.getElementById('crm-badge-' + crmKey(coKey));
     if (badge) { badge.style.background = CRM_STATUS_COLORS[value] || '#8A8A8A'; badge.textContent = value; }
   }
+  refreshDashboardTiles();
+}
+
+function refreshDashboardTiles() {
+  // Scan all localStorage keys for CRM entries
+  var total = Object.keys(MKT_ORGS).length;
+  var touched = 0, pipelineTotal = 0, pipelineCount = 0;
+  for (var i = 0; i < localStorage.length; i++) {
+    var k = localStorage.key(i);
+    if (!k || k.indexOf('crm_') !== 0) continue;
+    try {
+      var d = JSON.parse(localStorage.getItem(k));
+      if (!d) continue;
+      if (d.status && d.status !== 'Prospect') touched++;
+      if (d.pipelineValue) {
+        var num = parseFloat(String(d.pipelineValue).replace(/[^0-9.KkMm]/g, ''));
+        if (!isNaN(num)) {
+          var mult = /[Kk]/.test(d.pipelineValue) ? 1000 : /[Mm]/.test(d.pipelineValue) ? 1000000 : 1;
+          pipelineTotal += num * mult;
+          pipelineCount++;
+        }
+      }
+    } catch(e) {}
+  }
+  // Coverage Score
+  var pctEl = document.getElementById('coverage-pct');
+  var subEl = document.getElementById('coverage-sub');
+  var detEl = document.getElementById('coverage-detail');
+  if (pctEl) pctEl.textContent = touched;
+  if (subEl) subEl.textContent = 'of ' + total + ' accounts';
+  if (detEl) detEl.textContent = touched === 0 ? 'none yet' : Math.round(touched/total*100) + '% penetration';
+  // Pipeline Value
+  var ptEl = document.getElementById('pipeline-total');
+  var pcEl = document.getElementById('pipeline-count');
+  if (ptEl) {
+    if (pipelineTotal >= 1000000) ptEl.textContent = '$' + (pipelineTotal/1000000).toFixed(1) + 'M';
+    else if (pipelineTotal >= 1000) ptEl.textContent = '$' + Math.round(pipelineTotal/1000) + 'K';
+    else ptEl.textContent = pipelineTotal > 0 ? '$' + pipelineTotal : '$0';
+  }
+  if (pcEl) pcEl.textContent = pipelineCount;
 }
 
 function buildCrmPanel(coKey) {
