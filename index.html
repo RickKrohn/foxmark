@@ -1058,7 +1058,6 @@ footer { background: #080808; padding: 2.5rem 5rem; display: flex; justify-conte
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() { setTimeout(initPipeline, 200); });
-document.addEventListener('DOMContentLoaded', function(){ setTimeout(refreshDashboardTiles, 200); });
       } else {
         setTimeout(initPipeline, 300);
       }
@@ -1854,7 +1853,7 @@ document.addEventListener('DOMContentLoaded', function(){ setTimeout(refreshDash
         <!-- Header -->
         <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:#e8f0ff;">Target Accounts</div>
-          <div style="font-size:.62rem;color:#3a5268;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;">203 targets · select a sector →</div>
+          <div id="dashboard-total-label" style="font-size:.62rem;color:#3a5268;font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;">203 targets · select a sector →</div>
         </div>
 
         <!-- F500 OVERVIEW — hero card -->
@@ -5047,7 +5046,7 @@ var MKT_ORGS = {
       {title:'SVP & Chief Risk Officer', name:'(Verify)', owns:'Risk, compliance', target:false},
       {title:'VP Corporate Real Estate', name:'Jon Klix, CLU CSM', owns:'~25M sq ft nationally, 1,142 agent office locations', target:true, note:'Primary buyer — leads national real estate specialist team; direct authority over interior/wayfinding programs across full location network'},
       {title:'AVP Corporate Finance, Procurement & Real Estate', name:'Michael Buelow, MBA CPCU', owns:'Corporate real estate budget, procurement, finance', target:true, note:'In budget + approval chain for corporate real estate programs; secondary contact alongside Jon Klix'},
-      {title:'VP / Director Strategic Sourcing & Procurement', name:'(Verify on LinkedIn)', owns:'Vendor selection, RFP process, indirect spend', target:true, note:'Controls supplier qualification and contract for facilities/signage category; note Michael Buelow (AVP) also holds partial procurement responsibility'}
+      {title:'VP / Director Strategic Sourcing & Procurement', name:'(Not publicly disclosed — LinkedIn verify)', owns:'Vendor selection, RFP process, indirect spend', target:true, note:'State Farm keeps this role private (mutual insurer structure); Michael Buelow (AVP Finance/Procurement/Real Estate) is the named contact in budget/approval chain — approach Buelow first, or search LinkedIn for Procurement titles at State Farm Bloomington IL'}
     ]
   },
   'Allstate': {
@@ -5055,11 +5054,11 @@ var MKT_ORGS = {
     ceo: {name:'Tom Wilson', title:'Chair, President & CEO (since 2007)'},
     nodes:[
       {title:'EVP, Chief Marketing, Customer & Comms Officer', name:'Elizabeth Brady', owns:'Brand, marketing, advertising', target:true, note:'Northbrook IL; primary brand environment contact'},
-      {title:'EVP & Chief Operating Officer (since Oct 2025)', name:'Mario Rizzo', owns:'Property-liability, protection services', target:false},
+      {title:'EVP & Chief Operating Officer (since Oct 2025)', name:'Mario Rizzo', owns:'Property-liability, protection services, Sourcing & Procurement, Real Estate, Individual Health', target:true, note:'COO org explicitly owns Real Estate AND Sourcing & Procurement per Allstate bio — both Foxmark entry points report up through Rizzo'},
       {title:'EVP & President, Property-Liability (since Oct 2025)', name:'Jess Merten', owns:'P&L, claims centers, agent offices', target:true, note:'Controls 363 office locations — wayfinding + interior programs; formerly CFO'},
       {title:'EVP & Chief Human Resources Officer (since May 2025)', name:'Andréa Carter', owns:'Workforce strategy, employee experience, workplace culture', target:true, note:'New CHRO driving talent retention — premium workplace environment is a key lever in competitive insurance market'},
-      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn)', owns:'Northbrook HQ campus, 363 regional offices', target:true, note:'Active rebrand rolling out to regional offices — VP Real Estate controls interior refresh timeline'},
-      {title:'VP / Director Strategic Sourcing & Procurement', name:'(Verify on LinkedIn)', owns:'Vendor selection, RFP process, indirect spend categories', target:true, note:'Procurement controls the RFP and vendor qualification process for facilities/signage — must be engaged alongside VP Real Estate'},
+      {title:'VP Administration & Real Estate', name:'Michael Thomas (verify currency — confirmed 2020)', owns:'Northbrook HQ campus, 363 regional offices', target:true, note:'Named VP Admin & Real Estate in 2020 CDP announcement; reports up through COO Rizzo org; confirm still in role on LinkedIn — active rebrand to regional offices = active refresh pipeline'},
+      {title:'SVP Sourcing & Procurement Solutions', name:'Cheryl Harris (verify currency — confirmed 2020)', owns:'Vendor selection, RFP process, indirect spend categories', target:true, note:'Named SVP Sourcing & Procurement in 2020 CDP announcement; joined Allstate 2011; reports up through COO Rizzo org; verify still in role on LinkedIn'},
       {title:'President, Investments & interim CFO', name:'John Dugenske', owns:'Finance, IT budget authority', target:false}
     ]
   },
@@ -5170,14 +5169,15 @@ var MKT_ORGS = {
   },
   'Medline Industries': {
     emailTpl: 'cs_healthcare',
-    ceo: {name:'Charlie Mills', title:'CEO'},
+    ceo: {name:'Jim Boyle', title:'CEO & Director (since Oct 1, 2023; Charlie Mills now Board Chairman; Medline went public Dec 2025, NYSE: MDL; 43,000 employees; 3 Lakes Dr, Northfield IL HQ)'},
     nodes:[
-      {title:'President', name:'Jim Abrams', owns:'Commercial operations, sales, distribution network', target:false, note:'Day-to-day commercial leadership — context only; facility and brand environment decisions run through COO and CMO orgs'},
-      {title:'EVP & Chief Operating Officer', name:'Andy Kerzner', owns:'100+ distribution centers, manufacturing, Northfield IL HQ operations, global supply chain', target:true, note:'Northfield IL HQ; Kerzner controls facility standards across 100+ DCs. Key escalation contact above VP Real Estate for major programs.'},
-      {title:'Chief Marketing Officer', name:'Brian Frank', owns:'Brand, marketing, product portfolio, Northfield IL HQ brand environment', target:true, note:'PE-backed and actively investing in brand elevation for IPO readiness. CMO owns how that investment expresses in facilities and commercial environments. Search: "CMO" + "Medline" + Northfield.'},
-      {title:'Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, 35K employees, workplace experience, talent strategy', target:true, note:'One of the fastest-growing private companies in the US — CHRO is actively building culture through workplace environment at scale across 100+ sites.'},
-      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO Kerzner org)', owns:'Northfield IL HQ, 100+ DC and manufacturing sites across North America', target:true, note:'PRIMARY. 100+ distribution centers = interior graphics program at scale: wayfinding, safety signage, dock area branding, HR culture graphics. Largest private DC network in Chicago metro.'},
-      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — reports into COO or CFO org)', owns:'Indirect spend categories including facilities, signage, packaging, vendor qualification and contract management', target:true, note:'Formal procurement function with category managers — facilities/signage is a managed spend category. Must be qualified here first. Search: "Procurement" + "Medline" + Northfield.'}
+      {title:'Chief Executive Officer', name:'Jim Boyle', owns:'Company strategy, financial health, commercial operations, Northfield IL HQ', target:true, note:'CEO since Oct 2023; formerly EVP overseeing all commercial functions and operations. Medline IPO (Dec 2025, NYSE: MDL) = new brand investment era. 43,000 employees across 100+ countries.'},
+      {title:'Chief Operating Officer', name:'Steve Miller', owns:'100+ distribution centers, manufacturing, Northfield IL HQ operations, global supply chain', target:true, note:'COO since Jan 1, 2025; joined Medline 2022 from Walmart SVP Fulfillment. Controls facility standards across all DCs and manufacturing. Key escalation contact above VP Real Estate for major programs.'},
+      {title:'Chief Marketing Officer', name:'Tim Abate', owns:'Brand, marketing, Northfield IL HQ brand environment, product portfolio marketing', target:true, note:'CMO confirmed (Becker\'s Hospital Review, Craft.co). Joined Medline 2012 from Kimberly-Clark (14 years). Post-IPO brand investment = premium facility environment across HQ and commercial spaces. Primary brand contact.'},
+      {title:'Chief Human Resources Officer', name:'Karen Ferraro', owns:'HR, 43K employees, workplace experience, talent strategy across 100+ sites', target:true, note:'CHRO confirmed (Becker\'s Hospital Review). Joined Medline 2012; previously Sr. Director of Talent at SC Johnson. Scale and IPO-era culture investment = active workplace environment programs across Northfield HQ and DC network.'},
+      {title:'EVP, Supply Chain Solutions', name:'Billy Abrams', owns:'Supply chain solutions, distribution network, formerly also VP Real Estate & Assets', target:true, note:'Abrams previously held the VP Real Estate & Assets title at Medline — he is the senior executive closest to the real estate and facilities function. Search: "Billy Abrams" + "Medline" for current real estate decision authority.'},
+      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO Miller or Abrams Supply Chain org)', owns:'Northfield IL HQ (3 Lakes Dr), 100+ DC and manufacturing sites across North America', target:true, note:'PRIMARY. 100+ distribution centers = interior graphics at scale: wayfinding, safety signage, dock area branding, culture graphics. Post-IPO = funded capital program. Largest private DC network opportunity in Chicago metro.'},
+      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — reports into COO or CFO Drazin org)', owns:'Indirect spend categories including facilities, signage, packaging, vendor qualification and contract management', target:true, note:'Formal procurement function with category managers — facilities/signage is a managed spend category. Post-IPO procurement is re-qualifying vendors across spend categories. Must be on approved list first. Search: "Procurement" + "Medline" + Northfield.'}
     ]
   },
   'Northwestern Medicine': {
@@ -5208,9 +5208,9 @@ var MKT_ORGS = {
     emailTpl: 'cs_industrial',
     ceo: {name:'Kelly Ortberg', title:'President & CEO (since Aug 2024)'},
     nodes:[
-      {title:'EVP & Chief Financial Officer', name:'Jay Malave', owns:'Finance, global real estate & facilities portfolio, capital allocation', target:true, note:'Boeing global real estate reports to the CFO — Malave owns the facilities budget directly. Unusual structure; CFO is the right C-suite escalation path for major facility programs.'},
-      {title:'EVP & Chief Operating Officer', name:'Stephanie Pope', owns:'Commercial airplanes, defense, manufacturing ops, 95 facilities globally including IL manufacturing sites', target:true, note:'Pope named COO early 2024; oversees full manufacturing and operational network. IL manufacturing facilities are part of his remit — key escalation above VP Real Estate.'},
-      {title:'EVP & Chief Human Resources Officer', name:'Jacqueline Sargent', owns:'HR, workforce experience, 170K employees, labor relations post-strike', target:true, note:'7-week machinist strike in 2024 was a watershed. Sargent now leads workforce re-engagement — workplace environment investment is central to that story.'},
+      {title:'EVP & Chief Financial Officer (since Aug 2025)', name:'Jay Malave', owns:'Finance, global real estate & facilities portfolio, capital allocation', target:true, note:'NEW CFO Aug 2025 — from Lockheed Martin CFO (prev: Brian West). Boeing real estate reports to the CFO org; Malave owns the facilities budget. Primary C-suite escalation path for major facility programs.'},
+      {title:'EVP & President, Boeing Commercial Airplanes', name:'Stephanie Pope', owns:'Commercial airplane manufacturing, production ramp-up, 737/777/787 programs, BCA facilities', target:true, note:'Pope moved from COO to BCA President mid-2024 — no standalone COO in current Boeing org. Pope owns BCA manufacturing and facility standards; IL manufacturing sites fall under BCA scope.'},
+      {title:'EVP & Chief Human Resources Officer (since Apr 2024)', name:'Uma Amuluru', owns:'HR, 170K employees, workforce re-engagement post-2024 machinist strike, culture, talent', target:true, note:'CORRECTED: Uma Amuluru (fmr VP/GC Boeing Defense; fmr Obama White House counsel). Post-strike workforce re-engagement mandate makes workplace environment investment central to her priorities.'},
       {title:'SVP Communications & Government Affairs', name:'Anne Toulouse', owns:'Corporate brand, communications, government relations, public affairs', target:true, note:'Toulouse owns brand expression at HQ (Arlington VA) and major offices. Interior environment at major facilities falls under communications brand standards. Search: "Communications" + "Boeing".'},
       {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into CFO Malave org)', owns:'95 global facilities including IL manufacturing sites, HQ Arlington VA, commercial and defense campuses', target:true, note:'PRIMARY. 95 facilities across commercial, defense, and services divisions. IL manufacturing footprint alone is a major program. Largest single industrial campus opportunity in the CRM.'},
       {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Boeing runs a large centralized procurement function)', owns:'Indirect spend categories including facilities, signage, environmental graphics, construction services vendor qualification', target:true, note:'Boeing procurement is one of the most structured in US industry. Facilities/signage is a managed indirect category. Vendor qualification is required. Search: "Procurement" + "Boeing".'}
@@ -5218,13 +5218,13 @@ var MKT_ORGS = {
   },
   'Caterpillar Inc.': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'Joseph E. Creed', title:'President & CEO (since May 2025); Jim Umpleby = Executive Chairman'},
+    ceo: {name:'Joseph E. Creed', title:'President & CEO (since May 1 2025; 28-yr veteran; prev COO; becoming Chairman Apr 1 2026 as Umpleby retires; Irving TX HQ)'},
     nodes:[
       {title:'Executive Chairman', name:'Jim Umpleby', owns:'Board, strategic direction, legacy relationships', target:false, note:'Context only — Umpleby moved to Executive Chairman May 2025 after 8 years as CEO. Not a direct outreach target; new CEO Creed sets the tone for investment priorities.'},
       {title:'EVP & Chief Financial Officer', name:'Andrew Bonfield', owns:'Finance, capital allocation, real estate budget authority', target:false, note:'Budget authority for real estate programs — context only; Bonfield has been CFO since 2018 and controls capex approval but facility decisions execute through the VP Real Estate org'},
-      {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn — COO role under Creed restructure)', owns:'Global manufacturing operations, 853 facilities, dealer network operations', target:true, note:'Irving TX HQ (moved 2022) with Deerfield IL remaining a major executive hub. Creed may restructure C-suite. COO is key escalation above VP Real Estate for major programs.'},
-      {title:'VP & Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'Global brand, marketing, Cat dealer network brand standards, Deerfield IL brand programs', target:true, note:'Cat yellow-and-black is one of the most recognized industrial brand identities on earth. CMO controls how those standards express across 853 locations. Search: "CMO" + "Caterpillar" + Deerfield.'},
-      {title:'Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, 109K employees, workplace experience across manufacturing + office campuses', target:true, note:'Deerfield exec hub is a talent showcase for senior engineering and leadership. CHRO co-sponsors premium workplace investment. Search: "CHRO" OR "HR" + "Caterpillar" + Deerfield.'},
+      {title:'EVP & Chief Operating Officer', name:'(COO role vacant post-Creed elevation — verify on LinkedIn for new appointment)', owns:'Global manufacturing operations, 853 facilities, dealer network operations', target:true, note:'Creed vacated COO role when becoming CEO May 2025. No public COO successor announced as of Mar 2026. Verify on LinkedIn or via IR page for new appointment. Irving TX HQ; Deerfield IL exec hub.'},
+      {title:'Chief Digital Officer & SVP, Cat Digital (owns Global Marketing & Brand)', name:'Ogi Redzic', owns:'Global marketing & brand, connectivity, analytics/AI, digital platforms, eCommerce — CMO equivalent', target:true, note:'CONFIRMED: No standalone CMO at Caterpillar. Redzic explicitly owns global marketing & brand alongside digital. Cat yellow-and-black brand identity standards across 853 locations sit here. Irving TX HQ; Deerfield IL exec hub.'},
+      {title:'Chief Human Resources Officer', name:'Christy Pambianchi', owns:'HR, 109K employees, workplace experience across manufacturing + technology campuses', target:true, note:'CONFIRMED — N2Growth 2025 Top CHRO. Deerfield exec hub is a talent showcase for senior engineering talent. CHRO co-sponsors premium workplace investment across Irving TX HQ and Deerfield IL.'},
       {title:'VP Global Facilities & Real Estate', name:'(Verify on LinkedIn — reports into CFO or COO org)', owns:'853 global locations including Deerfield IL exec hub, Irving TX HQ, manufacturing campuses, dealer support facilities', target:true, note:'PRIMARY. 853 locations is one of the largest corporate real estate portfolios among IL-headquartered companies. A preferred vendor relationship here is a multi-year, multi-location program.'},
       {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Caterpillar runs a highly structured global procurement function)', owns:'Indirect spend categories including facilities, signage, environmental graphics, dealer network brand compliance materials', target:true, note:'World-class procurement with formal category management for all indirect spend. Vendor qualification required before VP Facilities can act. Search: "Procurement" + "Caterpillar" + Deerfield.'}
     ]
@@ -5234,9 +5234,9 @@ var MKT_ORGS = {
     ceo: {name:'John May', title:'Chairman & CEO'},
     nodes:[
       {title:'EVP & Chief Financial Officer', name:'Josh Jepsen', owns:'Finance, IT, capital allocation, real estate budget authority', target:false, note:'Budget authority — context only; Jepsen has been CFO since 2019; real estate and facilities execute through the COO and VP Facilities orgs, not directly through CFO'},
-      {title:'EVP & Chief Operating Officer', name:'Jahmy Hindman', owns:'Global manufacturing operations, Moline IL HQ campus, John Deere Technology Innovation Center, 616 global facilities', target:true, note:'Moline IL is Deere 175-year home. Hindman oversees massive multi-building HQ campus plus global manufacturing. Key escalation above VP Real Estate for major programs.'},
-      {title:'SVP & Chief Marketing Officer', name:'Heidi Voss', owns:'Global brand, marketing, dealer network brand standards, John Deere identity across 616 locations and 5,000+ dealer facilities', target:true, note:'Deere green-and-yellow is one of the most protected brand identities in US industry. Voss owns standards in every Deere facility and dealer location. Search: "CMO" + "John Deere" + Moline.'},
-      {title:'SVP & Chief Human Resources Officer', name:'Marc Howze', owns:'HR, 82K employees, workplace experience, talent strategy across manufacturing + technology campuses', target:true, note:'Deere recruiting software engineers alongside traditional manufacturing workforce. Moline campus environment is a direct talent recruitment asset. Search: "CHRO" + "John Deere" + Moline.'},
+      {title:'SVP & Chief Technology Officer (NOT COO)', name:'Jahmy Hindman', owns:'Cat Digital equivalent — autonomous equipment, precision ag tech, connected machine platforms', target:false, note:'CORRECTED: Hindman is CTO since June 2023, not COO. Deere has no standalone COO — operates via Group Presidents per division. Not a facilities/brand contact; CTO context only.'},
+      {title:'VP / Group President (CMO function not public — verify)', name:'(No standalone CMO confirmed — verify on LinkedIn)', owns:'Global brand, marketing, dealer network brand standards, John Deere identity across 616 locations and 5,000+ dealer facilities', target:true, note:'CORRECTED: Heidi Voss unverified — no public CMO found at Deere corp level. Brand sits across Group Presidents and division marketing leads. Search: \"VP Marketing\" + \"John Deere\" + Moline OR Cory Reed (President Lifecycle Solutions owns some marketing functions).'},
+      {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn — Marc Howze unconfirmed)', owns:'HR, 82K employees, workplace experience, talent strategy across manufacturing + technology campuses', target:true, note:'Marc Howze not confirmed via official source. Verify current CHRO on John Deere leadership page at about.deere.com. Search: \"CHRO\" + \"John Deere\" + Moline.'},
       {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO Hindman org)', owns:'Moline IL HQ campus (One John Deere Place), John Deere Technology Innovation Center, 616 global facilities, manufacturing campuses', target:true, note:'PRIMARY. Moline HQ campus is one of the most architecturally significant corporate headquarters in the Midwest. Plus global manufacturing sites. Extremely high-value Foxmark target.'},
       {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Deere runs a centralized global procurement function)', owns:'Indirect spend categories including facilities, signage, environmental graphics, dealer network brand materials vendor qualification', target:true, note:'Formal global procurement with category management for all indirect spend including facilities and dealer signage. Vendor qualification is prerequisite. Search: "Procurement" + "John Deere" + Moline.'}
     ]
@@ -5246,8 +5246,8 @@ var MKT_ORGS = {
     ceo: {name:'Christopher O\'Herlihy', title:'President & CEO (since May 2024)'},
     nodes:[
       {title:'EVP & Chief Financial Officer', name:'Michael Larsen', owns:'Finance, capital allocation, 7-segment P&L oversight', target:false, note:'Budget authority — context only; Larsen has been CFO since 2017; ITW\'s 80/20 simplification strategy means capex is tightly controlled at the corporate level but executed at the division level'},
-      {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn — O\'Herlihy restructuring underway)', owns:'84 business divisions across 7 segments, Glenview IL HQ, global manufacturing ops', target:true, note:'Downers Grove IL HQ. COO is the right escalation above VP Facilities for a corporate-level preferred vendor relationship across 84 divisions. Search: "COO" + "Illinois Tool Works" + Glenview.'},
-      {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, 44K employees, workplace experience across 7 segments and 84 divisions', target:true, note:'Glenview IL HQ; one of few corporate-level owners of cross-divisional programs. CHRO co-sponsors Glenview HQ brand environment. Search: "CHRO" + "Illinois Tool Works" + Glenview.'},
+      {title:'EVP / VP Corporate Operations', name:'(No standalone COO — ITW 80/20 model is highly decentralized)', owns:'7 segments, 84 divisions, Glenview IL HQ global manufacturing', target:true, note:'ITW runs without a traditional COO — O\'Herlihy (CEO) and CFO Larsen are the C-suite escalation points. Approach VP Real Estate or VP Facilities directly; corporate sets preferred vendor guidelines that divisions follow.'},
+      {title:'SVP & Chief Human Resources Officer', name:'Mary K. (Katie) Lawler', owns:'HR, 44K employees, workplace experience across 7 segments and 84 divisions', target:true, note:'CONFIRMED on official ITW leadership page and Feb 2026 SEC filings. Since Oct 2014. Glenview HQ co-sponsor for cross-divisional brand environment programs.'},
       {title:'VP Corporate Communications & Marketing', name:'(Verify on LinkedIn)', owns:'Corporate brand, Glenview IL HQ environment, investor and public communications', target:true, note:'No traditional CMO — brand sits at VP level. Glenview HQ identity and brand standards at the corporate level. Search: "Communications" OR "Marketing" + "Illinois Tool Works" + Glenview.'},
       {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into CFO or COO org at Glenview HQ)', owns:'Glenview IL HQ campus, 600 corporate and divisional facilities across 7 segments and 52 countries', target:true, note:'PRIMARY. 600 facilities across 84 divisions. Corporate sets preferred vendor guidelines — one relationship unlocks divisional spend across IL, the Midwest, and nationally.'},
       {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — ITW procurement is largely decentralized to division level)', owns:'Corporate-level indirect spend policy, preferred vendor programs, divisional procurement guidance', target:true, note:'ITW 80/20 model pushes decisions to divisions but corporate sets preferred vendors. Getting on the corporate preferred list is the goal. Search: "Procurement" + "Illinois Tool Works" + Glenview.'}
@@ -5258,30 +5258,29 @@ var MKT_ORGS = {
     ceo: {name:'D.G. Macpherson', title:'Chairman & CEO (since 2017)'},
     nodes:[
       {title:'EVP & Chief Financial Officer', name:'Deidra Merriwether', owns:'Finance, capital allocation, real estate budget authority', target:false, note:'Budget authority — context only; Merriwether has been CFO since 2019; real estate and branch interior programs execute through COO and VP Facilities orgs'},
-      {title:'EVP & Chief Operating Officer', name:'Paige Robbins', owns:'Branch network operations, distribution centers, supply chain, Lake Forest IL HQ', target:true, note:'Lake Forest IL HQ; Robbins oversees 982-branch US network. As a distributor, Grainger understands vendor relationships better than most — approach with that credibility.'},
-      {title:'SVP & Chief Marketing Officer', name:'Eric Harrington', owns:'Brand, marketing, e-commerce, Lake Forest IL HQ brand environment, branch visual identity standards', target:true, note:'Brand built on reliability — Harrington owns how that expresses across 982 branches. Branch refreshes are recurring. Search: "CMO" OR "Marketing" + "Grainger" + Lake Forest.'},
-      {title:'SVP & Chief Human Resources Officer', name:'Joseph High', owns:'HR, 26K employees, workplace experience, branch and DC workforce programs', target:true, note:'Branch workforce is Grainger competitive differentiator. CHRO invests in workplace environment to attract and retain expert product staff. Search: "CHRO" + "Grainger" + Lake Forest.'},
-      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO Robbins org)', owns:'Lake Forest IL HQ campus, 982 US branches, distribution centers, MonotaRO Canadian locations', target:true, note:'PRIMARY. 982 branches = single-vendor interior graphics program of exceptional scale. Standardized brand refresh across a national network is the ultimate Foxmark win.'},
+      {title:'SVP & President, Grainger Business Unit (owns Sales + Marketing)', name:'Paige Robbins', owns:'Integrated commercial function: sales, marketing, customer strategy, merchandising, Lake Forest IL HQ — the COO equivalent', target:true, note:'CORRECTED: Robbins is SVP & President GBU (not COO). She explicitly owns marketing + brand within her commercial mandate. 982-branch US network. Most senior operating executive below CEO. Key escalation path for national branch graphics programs.'},
+      {title:'SVP & Chief Marketing Officer (unconfirmed — verify)', name:'(Eric Harrington unverified — marketing sits under Robbins)', owns:'Brand, marketing, e-commerce, Lake Forest IL HQ brand environment, branch visual identity standards', target:true, note:'CORRECTED: No standalone CMO confirmed at Grainger. Marketing function sits under Paige Robbins (SVP/President GBU). Verify if a separate CMO title exists below Robbins. Search: "Marketing" + "Grainger" + Lake Forest.'},
+      {title:'SVP & Chief Human Resources Officer (since 2025)', name:'Melanie Tinto', owns:'HR, 26K employees, workplace experience, branch and DC workforce programs', target:true, note:'CORRECTED: Melanie Tinto is CHRO since 2025 (from WEX; prev Medtronic/HP/Walmart). Replaced Joseph High. New CHRO = active agenda; branch workforce environment investment is a CHRO priority.'},
+      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into Robbins GBU org)', owns:'Lake Forest IL HQ campus, 982 US branches, distribution centers, MonotaRO Canadian locations', target:true, note:'PRIMARY. 982 branches = single-vendor interior graphics program of exceptional scale. Standardized brand refresh across a national network is the ultimate Foxmark win.'},
       {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Grainger runs a sophisticated procurement function given its MRO business model)', owns:'Indirect spend categories including facilities, signage, branch interior materials; vendor qualification and preferred vendor programs', target:true, note:'Grainger understands procurement better than almost any company on this list — approach with the story that works FOR their procurement model. Search: "Procurement" + "Grainger" + Lake Forest.'}
     ]
   },
   'International Motors (Traton/VW)': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'Mathieu Mouchot', title:'President & CEO (since 2023; previously led Navistar transition to International Motors brand)'},
+    ceo: {name:'Mathias Carlbaum', title:'President & CEO (TRATON SE Executive Board member; Scania veteran; Lisle IL HQ)'},
     nodes:[
-      {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn)', owns:'Manufacturing operations, Lisle IL HQ campus, production facilities, dealer network operations', target:true, note:'Lisle IL HQ. The Navistar to International Motors rebrand (Oct 2024) is the primary Foxmark entry point — COO oversees the full operational rebrand execution.'},
-      {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'International Motors brand transition, dealer network brand standards, commercial vehicle marketing, Lisle IL HQ brand environment', target:true, note:'CMO owns the International Motors brand standards replacing the Navistar identity across the Lisle campus and all commercial touchpoints. Most urgent contact at this org.'},
-      {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, 14,500 employees, workplace experience, Lisle IL campus culture', target:true, note:'Lisle workforce navigating major identity transition from Navistar to International Motors. CHRO co-sponsors workplace environment investment during the rebrand.'},
-      {title:'VP Dealer Operations & Network Development', name:'(Verify on LinkedIn)', owns:'1,000+ International Motors dealer facilities across North America, dealer brand compliance, service bay standards', target:true, note:'PRIMARY URGENT. 1,000+ dealer locations need Navistar-to-International Motors rebrand = largest near-term dealer signage program in Chicago industrial. Search: "Dealer" + "International Motors".'},
-      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO or CFO org)', owns:'Lisle IL HQ campus (2701 Navistar Dr), manufacturing facilities, corporate offices', target:true, note:'PRIMARY. Lisle HQ campus needs full rebrand from Navistar to International Motors identity. Controls interior refresh, wayfinding, and signage budget for HQ and owned facilities.'},
-      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Traton/VW parent may have centralized procurement oversight)', owns:'Indirect spend categories including facilities, dealer brand materials, signage, vendor qualification; Traton AG procurement alignment', target:true, note:'Operates within Traton/VW global procurement framework. Vendor qualification must happen at Americas level first. Search: "Procurement" + "International Motors" + Lisle.'}
+      {title:'EVP, Commercial Operations', name:'Dan Kayser', owns:'Sales, marketing, dealer network, International Motors brand standards, commercial vehicle go-to-market', target:true, note:'No standalone CMO — marketing and brand roll up to Kayser as EVP Commercial Operations. He owns how the International Motors identity expresses commercially and across the dealer network. Primary brand contact post-rebrand.'},
+      {title:'EVP & Chief Human Resources Officer (since Sept 1, 2025)', name:'Gabriel Duarte-Urrutia', owns:'HR, 14,500 employees, workplace experience, Lisle IL campus culture', target:true, note:'NEW CHRO Sept 2025 — from Mexico (Universidad del Valle); reports to CEO Carlbaum. Lisle workforce navigating Navistar-to-International Motors rebrand. NEW CHRO = active culture agenda; workplace environment investment is central to his mandate. Very hot outreach window.'},
+      {title:'VP Dealer Operations / Dealer Brand Compliance', name:'(Verify on LinkedIn — reports into Kayser Commercial org)', owns:'1,000+ International Motors dealer facilities across North America, dealer brand compliance, service bay standards', target:true, note:'PRIMARY URGENT. 1,000+ dealer locations need Navistar-to-International Motors rebrand = largest near-term dealer signage program in Chicago industrial. Search: "Dealer" OR "Dealer Network" + "International Motors".'},
+      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into CFO Strycker or ops org)', owns:'Lisle IL HQ campus (2701 Navistar Dr), manufacturing facilities, corporate offices', target:true, note:'PRIMARY. Lisle HQ campus needs full rebrand from Navistar to International Motors identity. Controls interior refresh, wayfinding, and signage budget for HQ and owned facilities.'},
+      {title:'VP & Chief Procurement Officer', name:'Peter Friberg', owns:'Global procurement, indirect spend categories including facilities, dealer brand materials, signage, vendor qualification; Traton AG procurement alignment', target:true, note:'Confirmed CPO on International Motors official leadership page. Operates within Traton/VW global procurement framework — vendor qualification at Americas level flows through Friberg. Key gatekeeper for approved vendor list.'}
     ]
   },
   'Dover Corporation': {
     emailTpl: 'cs_industrial',
     ceo: {name:'Richard Tobin', title:'President & CEO (since 2018)'},
     nodes:[
-      {title:'EVP & Chief Financial Officer', name:'Brad Cerepak', owns:'Finance, capital allocation, real estate budget authority, Downers Grove HQ', target:false, note:'Context only — real estate and facilities execute through VP Facilities, not CFO. Cerepak has been CFO since 2010; not a direct outreach target.'},
+      {title:'SVP & Chief Financial Officer (since Feb 1, 2025)', name:'Christopher Woenker', owns:'Finance, capital allocation, real estate budget authority, Downers Grove HQ', target:false, note:'Context only — Cerepak retired Jan 31, 2025; Woenker is new CFO (25yr Dover veteran; from segment CFO roles). Real estate and facilities execute through VP Facilities, not CFO directly.'},
       {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn — Dover may not maintain a traditional COO title)', owns:'Operations across 6 business segments: Engineered Products, Clean Energy & Fueling, Imaging & ID, Pumps & Process Solutions, Climate & Sustainability, Thermal Connectors', target:true, note:'Downers Grove IL HQ. Dover 6 segments operate with significant autonomy — COO is the right escalation above VP Facilities for a corporate-level preferred vendor relationship.'},
       {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, 25K employees across 6 segments, workplace experience, Downers Grove HQ campus', target:true, note:'Downers Grove IL HQ. Dover competes for industrial engineering talent. CHRO co-sponsors Downers Grove HQ campus environment investment. Search: "CHRO" + "Dover Corporation" + Downers Grove.'},
       {title:'VP Corporate Communications & Marketing', name:'(Verify on LinkedIn — Dover does not have a traditional CMO)', owns:'Corporate brand, investor communications, Downers Grove HQ brand environment, segment brand guidance', target:true, note:'Dover is a holding company — corporate marketing is primarily investor-facing. However, Downers Grove HQ brand environment standards sit here. Search: "Communications" + "Dover Corporation".'},
@@ -5293,14 +5292,14 @@ var MKT_ORGS = {
   // ── RETAIL ────────────────────────────────────────────────────────────────
   'Walgreens (Sycamore Partners)': {
     emailTpl: 'cs_kraftheinz',
-    ceo: {name:'Tim Wentworth', title:'CEO (since Oct 2023; company taken private by Sycamore Partners Aug 2025)'},
+    ceo: {name:'Mike Motz', title:'CEO (installed by Sycamore Partners, Aug 28 2025; fmr CEO Staples US Retail; HQ: Deerfield IL)'},
     nodes:[
-      {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn — C-suite restructuring underway post-privatization)', owns:'~7,500 remaining stores after closure program, store operations, interior standards, Deerfield IL HQ', target:true, note:'Deerfield IL HQ. Sycamore Partners took Walgreens private Aug 2025 — COO is executing the store closure and format redesign program. Key escalation above VP Real Estate.'},
-      {title:'SVP & Chief Marketing Officer / Chief Customer Officer', name:'(Verify on LinkedIn — role in flux post-privatization)', owns:'Brand, marketing, customer experience, store visual identity and interior environment standards', target:true, note:'Walgreens brand is undergoing fundamental repositioning under Sycamore. CMO owns the new brand standards that express in every remodeled store. Most strategic Walgreens contact.'},
-      {title:'SVP Real Estate & Store Development', name:'(Verify on LinkedIn — reports into COO or CFO org)', owns:'Store portfolio management, remodel pipeline, new format rollouts, closure program execution', target:true, note:'Active remodel and format redesign pipeline — each remodeled store needs a new interior graphics package. PE-backed urgency means the pipeline is moving fast.'},
-      {title:'VP Retail Design & Store Experience', name:'(Verify on LinkedIn)', owns:'Store format design, fixture standards, interior environment specifications, new concept development', target:true, note:'Designing the new Walgreens store format for ~7,500 locations. Every design decision here becomes a production run. Search: "Retail Design" + "Walgreens" + Deerfield.'},
-      {title:'VP Real Estate & Facilities (Corporate)', name:'(Verify on LinkedIn — separate from SVP Store Real Estate; covers Deerfield HQ and corporate facilities)', owns:'Deerfield IL HQ campus, corporate offices, non-store facilities', target:true, note:'PRIMARY #1. Deerfield HQ campus needs updated brand environment reflecting the new Walgreens identity under Sycamore. Corporate HQ is the showcase for the new brand direction.'},
-      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Walgreens runs a large centralized procurement function for both store and corporate spend)', owns:'Store interior materials, signage, environmental graphics vendor qualification, indirect spend categories, preferred vendor programs', target:true, note:'PRIMARY #2. Walgreens procurement is one of the most sophisticated in US retail. Store interior materials including graphics are a formally managed category. Vendor qualification is essential.'}
+      {title:'CEO', name:'Mike Motz', owns:'Full turnaround mandate — renewed focus on core pharmacy and retail platform, ~8,500 stores, Deerfield HQ', target:false, note:'Installed by Sycamore Aug 28 2025. Retail veteran (Staples US Retail, Shoppers Drug Mart). PE-backed turnaround CEO = fast decision cycle. Not cold outreach, but context for escalation. Search: "Mike Motz" + Walgreens.'},
+      {title:'Executive Chairman', name:'John Lederer', owns:'Board-level oversight, strategic direction, Sycamore interface', target:false, note:'Former Walgreens Boots Alliance director, Sycamore Senior Advisor. Not an operating buyer — board chair only. Note for senior relationship mapping.'},
+      {title:'SVP & Chief Marketing Officer', name:'(Role vacant or recently filled — verify on LinkedIn)', owns:'Brand repositioning under Sycamore, customer experience, store visual identity, all in-store brand standards', target:true, note:'PRIMARY #1. Linh Peters (prior CMO) was laid off Nov 2023. No confirmed public replacement found as of March 2026. Sycamore PE ownership = brand refresh mandate. New CMO (when filled) will own store environment standards across ~8,500 locations. Search: "CMO" OR "Chief Marketing Officer" + Walgreens + 2025 OR 2026.'},
+      {title:'SVP Retail Design & Store Development', name:'(Verify on LinkedIn)', owns:'New store format rollout, remodel pipeline, interior environment specs — every remodeled store needs new graphics package', target:true, note:'PRIMARY #2. PE ownership drives accelerated remodel pipeline. Store design lead owns the interior environment standard that becomes a production run across thousands of stores. Search: "Retail Design" OR "Store Development" + Walgreens + Deerfield.'},
+      {title:'SVP Real Estate & Facilities (Corporate)', name:'(Verify on LinkedIn)', owns:'Deerfield IL HQ campus + corporate facilities — showcase environment for new Walgreens identity under Sycamore', target:true, note:'Deerfield HQ environment refresh typically follows a CEO transition + PE acquisition. New CEO Motz from retail — will want HQ to reflect the renewed retail focus. Search: "Real Estate" OR "Facilities" + Walgreens + Deerfield.'},
+      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn)', owns:'Store interior materials, signage, environmental graphics vendor programs — one of the most sophisticated retail procurement orgs in the US', target:true, note:'Walgreens procurement is a formally managed category. Vendor qualification + preferred vendor status = access to the entire store remodel pipeline. Search: "Procurement" OR "Sourcing" + Walgreens + Deerfield.'}
     ]
   },
   'Reyes Holdings': {
@@ -5356,7 +5355,7 @@ var MKT_ORGS = {
     emailTpl: 'cs_kraftheinz',
     ceo: {name:'Janet Hayes', title:'CEO, Crate & Barrel (Euromarket Designs)'},
     nodes:[
-      {title:'Chief Marketing Officer', name:'(Verify on LinkedIn — Crate & Barrel has had CMO turnover; verify current name)', owns:'Brand, marketing, store visual environments, campaigns, digital + physical brand integration', target:true, note:'Northbrook IL HQ. Flagship stores are among the most design-forward retail environments in the US. CMO co-owns the standard for every store opening. Search: "CMO" + "Crate & Barrel" + Northbrook.'},
+      {title:'Chief Marketing Officer', name:'CMO VACANT — Jenny Olsen (former CMO) departed to MillerKnoll 2025', owns:'Brand, marketing, store visual environments, campaigns, digital + physical brand integration', target:true, note:'Northbrook IL HQ. CMO role in active transition — Jenny Olsen moved to MillerKnoll as their CMO in 2025. New CMO hire TBD. CEO Janet Hayes confirmed. Michael Rengel joined Feb 2026 as Chief Merchandising Officer — adjacent exec. EXISTING CLIENT RELATIONSHIP = warm approach regardless. Search: "Chief Marketing" + "Crate Barrel" + 2025.'},
       {title:'SVP & Chief Operating Officer / VP Retail Operations', name:'(Verify on LinkedIn)', owns:'100+ store locations, store interior standards, operations across Crate & Barrel, CB2, and Hudson Grace banners', target:true, note:'Three distinct retail banners (Crate & Barrel, CB2, Hudson Grace) each need distinct brand environment standards. COO coordinates execution across all three.'},
       {title:'VP Real Estate & Store Development', name:'(Verify on LinkedIn)', owns:'New store pipeline, remodel program, lease management, flagship locations in premium malls and street retail', target:true, note:'Each new store opening is a full interior environmental graphics program — large-format window graphics, wayfinding, campaign imagery. This is the new-store pipeline contact.'},
       {title:'VP Facilities', name:'(Verify on LinkedIn — may report into COO or CFO org)', owns:'Store facilities standards, maintenance, HQ campus (Northbrook), distribution center', target:true, note:'Northbrook HQ + DC; controls ongoing store environment maintenance and standards compliance for existing locations. Ongoing refresh program separate from new store openings.'},
@@ -5378,7 +5377,7 @@ var MKT_ORGS = {
   },
   'Univar Solutions (Apollo)': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'David Jukes', title:'President & CEO (Apollo Global Management-owned since Jun 2023)'},
+    ceo: {name:'James Holcomb', title:'President & CEO, Univar Solutions LLC (Apollo-owned since Aug 2023; David Jukes transitioned out post-privatization; Robert Craycraft named CEO Chemical Distribution & Services division Jul 2025)'},
     nodes:[
       {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn — Apollo acquisition may have triggered C-suite restructuring)', owns:'200+ chemical distribution centers across North America and Europe, Downers Grove IL HQ operations, warehouse and logistics standards', target:true, note:'Downers Grove IL HQ. Apollo took Univar private June 2023 — PE ownership means active brand investment and facility upgrade cycle. COO owns the operational standards across 200+ DCs.'},
       {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn — role may have changed post-Apollo)', owns:'Brand, marketing, customer experience, Downers Grove HQ brand environment', target:true, note:'Apollo PE ownership since 2023 = active brand elevation mode. CMO owns how that investment expresses in facilities and commercial environments. Search: "CMO" + "Univar" + Downers Grove.'},
@@ -5475,19 +5474,20 @@ var MKT_ORGS = {
   },
   'Molex (Koch Industries)': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'Fred Bell', title:'President & CEO (Koch Industries-owned since 2012)'},
+    ceo: {name:'Joe Nelligan', title:'President & CEO (since Jan 2018; Koch Industries-owned since 2013; 42K employees, 74 plants globally)'},
     nodes:[
-      {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn — Molex COO; verify current name)', owns:'Global manufacturing operations, Lisle IL HQ campus, 40+ manufacturing and engineering sites across US, Europe, and Asia', target:true, note:'Lisle IL HQ. Molex is a $5B+ electronic connectors manufacturer owned by Koch Industries. COO controls facility standards and capital programs across the Lisle campus.'},
-      {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'Global brand, product marketing, Lisle HQ customer experience environments, trade show and customer briefing programs', target:true, note:'Molex serves automotive, data center, medical, and industrial customers globally. CMO owns brand environment across a technically sophisticated customer base. Search: "CMO" + "Molex" + Lisle.'},
-      {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, global engineering and manufacturing workforce, Lisle IL campus workplace experience', target:true, note:'Competes for electrical engineers and hardware designers globally. Lisle IL HQ is the center of gravity. Premium campus environment is a direct HR investment. Search: "CHRO" + "Molex" + Lisle.'},
-      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO or CFO org at Lisle)', owns:'Lisle IL HQ campus (2222 Wellington Ct), US manufacturing facilities, global real estate portfolio', target:true, note:'PRIMARY #1. Lisle campus is a large multi-building engineering and corporate campus. Koch Industries invests in quality facilities across its portfolio. Search: "Facilities" + "Molex" + Lisle.'},
-      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — may be managed through Koch Industries centralized procurement in Wichita KS or locally at Molex Lisle)', owns:'Indirect spend including facilities materials, signage, environmental graphics; vendor qualification; Koch Industries preferred vendor programs', target:true, note:'PRIMARY #2. Koch Industries runs centralized procurement programs that subsidiaries including Molex participate in. Koch procurement approval may unlock multiple Koch-owned companies.'}
+      {title:'SVP & CFO (owns Finance, IT & Real Estate)', name:'Travis George', owns:'All financial functions, IT, AND corporate real estate', target:true, note:'CONFIRMED on official Molex leadership page. Real estate explicitly under CFO George — C-suite authority for all Lisle campus and facility programs. Primary Foxmark escalation path.'},
+      {title:'SVP & Chief Supply Chain Officer', name:'Don Hnatyshin', owns:'End-to-End Supply Chain, Procurement, Logistics, Network Optimization, Global Sales Ops Planning', target:true, note:'CONFIRMED. Procurement explicitly in Hnatyshin scope — all indirect spend including facilities/signage vendor qualification flows through his org. Second key Foxmark contact.'},
+      {title:'SVP, Sales & Marketing', name:'(Verify on LinkedIn — confirmed role exists per official page)', owns:'Global brand, product marketing, Lisle HQ customer experience, trade show and customer briefing environments', target:true, note:'Koch-quality brand environment across technically sophisticated global customer base. Verify current SVP name on LinkedIn. Search: "Sales Marketing" + "Molex" + Lisle.'},
+      {title:'VP CHRO / Chief People Officer', name:'(Verify on LinkedIn)', owns:'42,000-employee global workforce, Lisle campus workplace, talent strategy for engineering roles', target:true, note:'Koch Industries culture values quality facilities as employee investment. Lisle campus environment = direct talent recruitment asset. Search: "HR" OR "People" + "Molex" + Lisle.'},
+      {title:'VP Real Estate & Facilities', name:'(Reports to Travis George CFO — verify on LinkedIn)', owns:'Lisle IL HQ campus (2222 Wellington Ct), 74 global manufacturing plants, US facilities', target:true, note:'PRIMARY. Reports under CFO George who explicitly owns real estate. Lisle = large multi-building Koch-quality campus. Approach via Travis George.'}
     ]
   },
   'Tempus AI': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'Eric Lefkofsky', title:'Co-Founder & CEO; NASDAQ: TEM (IPO June 2024)'},
+    ceo: {name:'Eric Lefkofsky', title:'Founder & CEO, Tempus AI — NASDAQ: TEM; 2025 revenue $1.27B (+83% YoY); IPO June 2024; Chicago River North HQ (600 W Chicago Ave); 2,300+ employees; AI-driven precision medicine and genomics'},
     nodes:[
+      {title:'CMO (Chief Marketing Officer)', name:'Patty Spiller', owns:'Tempus brand, marketing, HQ environment, investor and partner-facing brand expression, AI/genomics positioning', target:true, note:'CONFIRMED: Patty Spiller is CMO — confirmed by CEO Eric Lefkofsky in his blog. Owns the HQ brand environment as a credentialing tool for clinical and biotech partners. LinkedIn: Patty Spiller + Tempus AI.'},
       {title:'President & Chief Operating Officer', name:'(Verify on LinkedIn — Tempus has scaled rapidly post-IPO; verify current COO)', owns:'Operations, Chicago HQ (600 W Chicago Ave, River North), clinical operations, data platform infrastructure', target:true, note:'Chicago River North HQ. Tempus went public June 2024 at $6B+ valuation — post-IPO companies formalize all spend categories. COO co-owns the HQ environment standard. Search: "COO" + "Tempus AI".'},
       {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'Brand, marketing, genomic data platform positioning, HQ brand environment, investor relations environment', target:true, note:'Tempus operates at the intersection of clinical genomics and AI — premium HQ environment signals scientific credibility to partners and recruits. CMO owns that standard. Search: "CMO" + "Tempus AI".'},
       {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, talent strategy, Chicago HQ workplace experience, engineering and clinical talent recruitment', target:true, note:'Competes for ML engineers, computational biologists, and clinical informaticists. River North HQ environment is a direct recruitment asset. Search: "CHRO" + "Tempus AI" + Chicago.'},
@@ -5507,9 +5507,9 @@ var MKT_ORGS = {
   },
   'Relativity (software)': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'Mike Gamson', title:'CEO (since 2020); Silver Lake-backed private company'},
+    ceo: {name:'Phil Saunders', title:'CEO, Relativity — effective Dec 12, 2022 (succeeded Mike Gamson); Silver Lake + Iconiq + founder Andrew Sieja equity partners; $3.6B valuation; CFO Kirk Larson (joined 2024, former Black Knight CFO); CHRO Beth Clutterbuck; HQ 231 S LaSalle / Fulton Market Chicago'},
     nodes:[
-      {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn — Relativity CMO; company has had brand evolution under Gamson)', owns:'Relativity brand, legal tech market positioning, Chicago Fulton Market HQ brand environment, customer briefing and event spaces', target:true, note:'Chicago Fulton Market HQ. $3.5B Silver Lake-backed legal tech — clients are law firms, so HQ credibility is everything. CMO owns the brand environment. Search: "CMO" + "Relativity" + Chicago.'},
+      {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn — confirm current Relativity CMO under Phil Saunders)', owns:'Relativity brand, legal tech market positioning, Chicago HQ brand environment, customer briefing and event spaces', target:true, note:'Chicago HQ. $3.6B Silver Lake-backed legal tech — law firms are clients so HQ credibility is paramount. CMO owns brand environment. UPDATED CEO: Phil Saunders since Dec 2022. Also: Beth Clutterbuck confirmed as CHRO. Search: "CMO" + "Relativity" + Chicago + 2024.'},
       {title:'SVP & Chief Human Resources Officer', name:'(Verify on LinkedIn)', owns:'HR, 1,400+ employees, Chicago HQ workplace experience, engineering and legal tech talent strategy', target:true, note:'Relativity competes for software engineers, product managers, and legal technology professionals. Fulton Market HQ is a direct recruitment asset. Search: "CHRO" + "Relativity" + Chicago.'},
       {title:'VP Engineering & Product (secondary context)', name:'(Verify)', owns:'Engineering teams, R&D spaces within Fulton Market HQ', target:false, note:'Context only — engineering environments within HQ may have specific branded workspace needs but decisions go through VP Facilities and CMO'},
       {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn — reports into COO or CFO org)', owns:'231 S LaSalle and/or expanded Fulton Market HQ, any remote office locations', target:true, note:'PRIMARY #1. Relativity has expanded its Chicago office footprint under current CEO. VP Facilities controls HQ environment program. Search: "Facilities" + "Relativity" + Chicago.'},
@@ -5518,7 +5518,7 @@ var MKT_ORGS = {
   },
   'Enova International': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'David Fisher', title:'President & CEO (since 2016); NYSE: ENVA'},
+    ceo: {name:'Steve Cunningham', title:'CEO, Enova International — NYSE: ENVA; effective Jan 1 2026 (succeeded David Fisher who became Executive Chairman; Fisher remains on board for strategy continuity); fintech lending platform; Chicago Loop HQ'},
     nodes:[
       {title:'EVP & Chief Marketing Officer', name:'(Verify on LinkedIn — Enova CMO; verify current name)', owns:'Brand, marketing, fintech consumer and small business lending brand environment, Chicago HQ', target:true, note:'Chicago Loop HQ (175 W Jackson). Enova is a $1.8B+ NYSE fintech with a multi-brand portfolio. CMO owns the brand environment at a Loop HQ visible to investors and talent. Search: "CMO" + "Enova".'},
       {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn)', owns:'Operations, Chicago HQ, technology infrastructure, customer operations teams', target:true, note:'Technology-heavy operations with multiple brand environments. COO is the executive sponsor for major facility programs at the Loop HQ. Search: "COO" + "Enova" + Chicago.'},
@@ -5570,16 +5570,16 @@ var MKT_ORGS = {
   // ── MID-MARKET ORGS ─────────────────────────────────────────────────────
   'Newly Weds Foods': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'Brian Johnson', title:'CEO (since 2022, prev CFO since 2006)'},
+    ceo: {name:'Brian Johnson', title:'CEO (since June 2022; prev CFO since 2006; Redwood Holdings-owned since Oct 2023; $2.7B revenue; 5,500 employees; 31 plants, 24 R&D labs)'},
     nodes:[
-      {title:'VP Operations', name:'(verify LinkedIn)', owns:'30+ US plants, supply chain, facilities', target:true, note:'Controls plant + facility branding across 30 US sites; recent HQ buildout 2023 = active buyer'},
+      {title:'COO / VP Operations', name:'(Verify on LinkedIn — COO confirmed exists)', owns:'31 plants, 24 R&D labs, supply chain, facilities', target:true, note:'COO role confirmed per LeadIQ data. Controls plant + facility branding across 31 global sites. Redwood Holdings ownership since Oct 2023 = brand investment mode. Active facility expansion (TN plant acquired May 2025).'},
       {title:'VP Marketing / Brand', name:'(verify LinkedIn)', owns:'Brand, trade marketing, innovation', target:true, note:'HQ at 8550 W Bryn Mawr Chicago; recently acquired by Redwood Holdings — rebrand cycle likely'},
       {title:'VP Human Resources', name:'(verify LinkedIn)', owns:'Employee experience, culture', target:false}
     ]
   },
   'OSI Group': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'David McDonald', title:'President & CEO'},
+    ceo: {name:'Sheldon Lavin', title:'Chairman & CEO (David McDonald = President; $7.9B revenue 2025; 10K+ employees; Aurora IL HQ; 75 global plants)'},
     nodes:[
       {title:'SVP Operations', name:'(verify LinkedIn)', owns:'75 global manufacturing facilities', target:true, note:'75 plants worldwide; Chicago-area HQ in Aurora; massive multi-site facility branding program'},
       {title:'VP Marketing', name:'(verify LinkedIn)', owns:'Brand, B2B marketing', target:true, note:'McDonald\'s primary beef supplier; premium facility environments at each site'},
@@ -5652,19 +5652,19 @@ var MKT_ORGS = {
     emailTpl: 'cs_financial',
     ceo: {name:'Timothy Crane', title:'President & CEO'},
     nodes:[
-      {title:'CMO / EVP Marketing', name:'(verify LinkedIn)', owns:'Brand, marketing across 15+ bank brands', target:true, note:'Every community bank acquisition triggers full branch rebrand + environmental signage refresh; 190+ branches'},
-      {title:'EVP Real Estate & Facilities', name:'(verify LinkedIn)', owns:'Branch network, corporate real estate', target:true, note:'Primary buyer; Rosemont IL HQ; steady acquisition pipeline = repeat Foxmark business'},
-      {title:'VP Workplace Experience', name:'(verify LinkedIn)', owns:'Employee environment, branch culture', target:true, note:'15+ community bank brands each need distinct branded environments post-acquisition; VP Workplace sets standards'},
-      {title:'CHRO', name:'(verify LinkedIn)', owns:'HR, 7,000+ employees, talent retention', target:true, note:'Community banking talent retention; interior environment is a CHRO priority for branch staff experience'},
-      {title:'EVP Human Resources', name:'(verify LinkedIn)', owns:'Culture, employee experience', target:false}
+      {title:'EVP, Brand, Engagement & Impact (NEW — March 2025)', name:'Amy Yuhn', owns:'Marketing, corporate communications, community impact', target:true, note:'NEW ROLE created March 2025 — first dedicated brand leader in Wintrust history; formerly CMO at CIBC U.S. (The PrivateBank); 190+ branches each have distinct community bank identity = ongoing branded environment program; this is the primary outreach target'},
+      {title:'Vice Chairman & COO', name:'David A. Dykstra', owns:'Operations, 200+ locations, acquisition integration', target:true, note:'Rosemont IL HQ; long-tenured COO; every community bank acquisition triggers branch rebrand + interior refresh; Macatawa Bank (Michigan) acquired 2024 = active integration workload'},
+      {title:'EVP & Chief HR Officer', name:'Norah Larke', owns:'HR, 7,000+ employees, talent retention, employee experience', target:true, note:'Long-tenured CHRO since approx. 2010; community banking talent retention = premium branch environment investment; co-sponsors workplace quality programs'},
+      {title:'EVP Real Estate & Facilities', name:'(Verify on LinkedIn)', owns:'Branch network, 190+ locations, corporate real estate', target:true, note:'PRIMARY BUYER — 190+ branches, steady acquisition pipeline = repeat Foxmark business; verify name and title on LinkedIn under Real Estate or Facilities at Wintrust Rosemont'},
+      {title:'VP Procurement / Strategic Sourcing', name:'(Verify on LinkedIn)', owns:'Vendor management, indirect spend, facilities category', target:true, note:'Verify on LinkedIn; approach via COO Dykstra or EVP Real Estate for warm intro to procurement team'}
     ]
   },
   'William Blair & Company': {
     emailTpl: 'cs_financial',
     ceo: {name:'Brent Gledhill', title:'CEO'},
     nodes:[
-      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, thought leadership', target:true, note:'$1.2B revenue, +40% in 2024; premium Loop HQ; investment bank brand environments require quality'},
-      {title:'Managing Director, Real Estate', name:'(verify LinkedIn)', owns:'Offices, facilities', target:true, note:'Crain\'s top private list 2025; growing headcount = office expansion / refresh cycle'}
+      {title:'Head of Marketing (VP-level — no public CMO)', name:'(Verify on LinkedIn)', owns:'Brand, marketing, thought leadership — 26-person team', target:true, note:'No C-suite CMO publicly disclosed; 26-person marketing team confirmed; $1.2B revenue, +40% in 2024; verify VP/Director Marketing title on LinkedIn at William Blair Chicago'},
+      {title:'Managing Director, Real Estate / COO', name:'(Verify on LinkedIn)', owns:'Chicago Loop HQ offices, facilities', target:true, note:'Premium Loop HQ; growing headcount = office expansion/refresh cycle; verify facilities or real estate contact on LinkedIn'}
     ]
   },
   'Clayco Inc.': {
@@ -5801,9 +5801,9 @@ var MKT_ORGS = {
   },
   'Tempus AI': {
     emailTpl: 'cs_tch',
-    ceo: {name:'Eric Lefkofsky', title:'Founder & CEO'},
+    ceo: {name:'Eric Lefkofsky', title:'Founder & CEO, Tempus AI — NASDAQ: TEM; $1.27B revenue 2025; IPO June 2024; Chicago River North HQ; 2,300+ employees'},
     nodes:[
-      {title:'CMO', name:'(verify LinkedIn)', owns:'Brand, marketing, communications', target:true, note:'Chicago HQ; AI-driven genomics; 1,000+ employees; premium River North office; high-growth = expansion cycle'},
+      {title:'CMO (Chief Marketing Officer)', name:'Patty Spiller', owns:'Brand, marketing, communications, HQ environment', target:true, note:'CONFIRMED: Patty Spiller is CMO — confirmed by CEO Eric Lefkofsky. Chicago River North HQ (600 W Chicago Ave); 2,300+ employees; 2025 revenue $1.27B (+83% YoY); NASDAQ: TEM IPO June 2024. High-growth = active expansion cycle. LinkedIn: Patty Spiller + Tempus AI.'},
       {title:'VP Real Estate', name:'(verify LinkedIn)', owns:'Chicago HQ, facilities', target:true, note:'Growing rapidly; multiple office expansions; design-conscious environment buyer'}
     ]
   },
@@ -5827,10 +5827,82 @@ var MKT_ORGS = {
   },
   'Chicago Fire FC': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'Joe Mansueto', title:'Owner'},
+    ceo: {name:'Joe Mansueto', title:'Owner & Chairman, Chicago Fire FC (Morningstar founder/billionaire); $650M+ privately-funded stadium at The 78 groundbreaking March 3, 2026; opens 2028; 22,000 seats; designed by Gensler; Endeavor Health Performance Center opened March 2025 ($100M training facility)'},
     nodes:[
       {title:'President', name:'(verify LinkedIn)', owns:'New stadium business operations, current Soldier Field operations', target:true, note:'Dave Baldwin confirmed. New stadium breaks ground 2026, opens 2028. Brand environment vendor decisions are being made NOW during design phase — most time-sensitive sports contact in CRM.'},
-      {title:'CMO / VP Marketing', name:'(verify LinkedIn)', owns:'Fire brand identity, new stadium design input, Soldier Field interim environments', target:true, note:'Direct input into new stadium design. Soldier Field environments need maintaining through 2028. Approach with both the interim work and the new stadium program. Search: "CMO" + "Chicago Fire".'}
+      {title:'Chief Marketing Officer', name:'Dan Moriarty', owns:'Chicago Fire brand identity, new stadium design input ($650M+, The 78), Soldier Field interim environments through 2028, MLS partnership marketing, Chicago Fire Foundation brand', target:true, note:'CONFIRMED: Dan Moriarty hired as CMO December 2023 (started Jan 2, 2024). Previously VP Marketing at Chicago Bulls. English-born; Northwestern Kellogg CMO program. Reports directly to President of Business Operations. STADIUM CATALYST: $650M+ privately-funded stadium at The 78 broke ground March 3, 2026; opens 2028 — CMO has direct input on all branded environments. LinkedIn: Dan Moriarty + Chicago Fire FC.'}
+    ]
+  },
+
+  'Chicago Bears': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Kevin Warren', title:'President & CEO (since Apr 2023); Chairman: George H. McCaskey'},
+    nodes:[
+      {title:'President & CEO', name:'Kevin Warren', owns:'All business + football operations, stadium development project', target:false, note:'Warren leads the $2B+ Arlington Heights stadium project (announced Sept 2025). Former Vikings COO who built US Bank Stadium — deep facility development experience. Entry point for senior relationship, not cold outreach.'},
+      {title:'EVP Revenue & Chief Business Officer', name:'Meka White Morris', owns:'Corporate partnerships, suites, ticketing, brand marketing, strategic planning', target:true, note:'PRIMARY. Morris owns brand marketing and corporate partnerships — the Foxmark entry point. New to role (2024), building her vendor network. Stadium project = massive brand environment opportunity. Search: "Meka White Morris" + Bears.'},
+      {title:'SVP Marketing & Communications', name:'Scott Hagel', owns:'Brand creative, content, events, game entertainment, fan environments, media', target:true, note:'Hagel has been with the Bears since 1995 — institutional knowledge of every Bears environment. Oversees brand creative and game-day environments at Soldier Field. 30-year tenure = warm approach preferred. Search: "Scott Hagel" + Bears.'},
+      {title:'Chief Administrative Officer', name:'Ted Crews', owns:'Strategic operations, stadium development coordination, business + football operations', target:true, note:'Crews is directly involved in stadium development planning. New stadium = ground-up brand environment program across 326-acre Arlington Heights site. Key contact for stadium project signage scope. Search: "Ted Crews" + Bears.'},
+      {title:'VP Facilities / Stadium Operations', name:'(Verify on LinkedIn)', owns:'Soldier Field operations, Halas Hall facilities, Arlington Heights site', target:true, note:'Controls day-to-day facility environments at Soldier Field and Halas Hall training facility. New stadium project adds massive scope. Search: "Facilities" OR "Stadium Operations" + "Chicago Bears".'}
+    ]
+  },
+
+  'Chicago Cubs': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Tom Ricketts', title:'Executive Chairman; President of Business Operations: Crane Kenney'},
+    nodes:[
+      {title:'Executive Chairman', name:'Tom Ricketts', owns:'Ownership, strategic direction, Marquee Development real estate arm', target:false, note:'Ricketts family owns the Cubs + Wrigley Field. Created Marquee Development for surrounding real estate. Not a cold outreach target — entry through Kenney or Hayward.'},
+      {title:'President, Business Operations', name:'Crane Kenney', owns:'All business operations, Wrigley Field, Gallagher Way, 2027 All-Star Game prep', target:true, note:'Kenney led the 2027 MLB All-Star Game bid (announced Aug 2025) — major facility and brand environment prep cycle underway. Entry point for senior relationship. Search: "Crane Kenney" + Cubs.'},
+      {title:'EVP & Chief Sales and Marketing Officer', name:'Wally Hayward', owns:'Corporate sales, marketing, partnerships, brand environment, sponsorship activations', target:true, note:'PRIMARY. Hayward owns brand marketing and corporate partnerships — the Foxmark entry point for Wrigley Field environments, Gallagher Way, and surrounding properties. Search: "Wally Hayward" + Cubs.'},
+      {title:'Managing Principal, Marquee Development', name:'Eric Nordness', owns:'Wrigleyville mixed-use development — Hotel Zachary, Gallagher Way, 1101 Waveland office tower, future phases', target:true, note:'Nordness runs the Ricketts real estate arm developing the entire Wrigleyville campus. Multiple buildings = ongoing interior environment + signage programs. Separate from the baseball org but same ownership. Search: "Eric Nordness" + Marquee Development.'},
+      {title:'VP Facilities / Stadium Operations', name:'(Verify on LinkedIn)', owns:'Wrigley Field day-to-day operations, facilities, gameday environments, spring training (Sloan Park, Mesa AZ)', target:true, note:'Controls Wrigley Field interior environments, suite signage, concourse graphics. 2027 All-Star prep = active refresh cycle. Search: "Facilities" OR "Stadium Operations" + "Chicago Cubs".'}
+    ]
+  },
+
+  'Chicago Blackhawks': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Danny Wirtz', title:'Chairman & CEO; President Business Operations: Jaime Faulkner'},
+    nodes:[
+      {title:'Chairman & CEO', name:'Danny Wirtz', owns:'Ownership, strategic direction, 1901 Project co-lead with Reinsdorf family', target:false, note:'Wirtz family has owned the Blackhawks since the 1950s. Danny is the active CEO. Co-leading the $7B 1901 Project with Bulls owner Michael Reinsdorf. Senior relationship entry only.'},
+      {title:'President, Business Operations', name:'Jaime Faulkner', owns:'Revenue, brand, corporate partnerships, fan experience, ticketing, marketing communications', target:true, note:'PRIMARY. Faulkner owns all brand and revenue operations. Named President Dec 2020, analytics-driven leader rebuilding the Blackhawks brand through a rebuild cycle. 1901 Project adds massive scope. Search: "Jaime Faulkner" + Blackhawks.'},
+      {title:'EVP, Brand & Marketing', name:'Jerry Ferguson', owns:'Brand strategy, marketing, content, creative, fan environments', target:true, note:'Ferguson leads brand strategy and all marketing for the Blackhawks — 29-person team. Direct contact for Wrigley-style interior environment + arena signage programs. Search: "Jerry Ferguson" + Blackhawks.'},
+      {title:'CEO, United Center', name:'Terry Savarise', owns:'United Center arena operations, 1901 Project development lead, venue environments', target:true, note:'Savarise runs the United Center building and is the primary spokesperson for the 1901 Project — $7B, 55-acre mixed-use district approved by City Council Feb 2025. Phase 1 construction underway (music hall, hotel, retail, parks — complete 2028). Massive multi-building brand environment scope. Search: "Terry Savarise" + United Center.'},
+      {title:'VP Facilities / Arena Operations', name:'(Verify on LinkedIn)', owns:'United Center interior environments, suite signage, concourse graphics, facility standards', target:true, note:'Controls day-to-day interior environments at United Center. 1901 Project Phase 1 adds music hall + boutique hotel — new venue environments from ground up. Search: "Facilities" OR "Arena Operations" + "United Center" OR "Blackhawks".'}
+    ]
+  },
+
+  'Chicago Bulls': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Michael Reinsdorf', title:'President & CEO'},
+    nodes:[
+      {title:'President & CEO', name:'Michael Reinsdorf', owns:'Overall business and basketball strategy; 1901 Project co-lead', target:false, note:'Michael Reinsdorf runs the Bulls day-to-day. Son of owner Jerry Reinsdorf. NBA Governor. Deeply civic — boards at Northwestern, Museum of Science & Industry, After-School All-Stars. Senior relationship only; entry point is Goodenow or Kobe.'},
+      {title:'EVP, Brand & Public Affairs', name:'Susan Goodenow', owns:'Brand strategy, content, creative services, communications, fan development, community engagement', target:true, note:'PRIMARY. Goodenow owns all brand output — creative services, digital content, BullsTV, communications, fan development and integrated marketing. The brand environment decision-maker. Search: "Susan Goodenow" + Bulls.'},
+      {title:'EVP, Revenue & Strategy', name:'Matt Kobe', owns:'Corporate partnerships, ticketing, premium seating, digital marketing, business strategy', target:true, note:'Kobe owns the revenue and partner ecosystem — corporate partnerships, premium seating, and all digital marketing product. 1901 Project Phase 1 opens new partner activation environments (music hall, hotel, retail). Search: "Matt Kobe" + Bulls.'},
+      {title:'VP, Content Marketing', name:'Luka Dukich', owns:'Content marketing strategy across all channels', target:true, note:'Dukich leads content marketing — works under Goodenow. Strong contact for content-led brand environment programs (digital canvas integration, experiential content). Search: "Luka Dukich" + Bulls.'},
+      {title:'SVP, United Center', name:'Joe Myhra', owns:'United Center venue operations, arena brand environments, 1901 Project facility scope', target:true, note:'Myhra is the senior operator of the United Center building itself — shared between Bulls and Blackhawks. Controls arena signage, concourse environments, partner brand integration. Also the 1901 Project operations lead for Phase 1 (6,000-seat music hall + hotel, opening 2028). Key contact for physical brand environments. Search: "Joe Myhra" + "United Center".'}
+    ]
+  },
+
+  'Chicago White Sox': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Jerry Reinsdorf', title:'Chairman; SVP Chief Revenue & Marketing Officer: Brooks Boyer'},
+    nodes:[
+      {title:'Chairman', name:'Jerry Reinsdorf', owns:'Ownership; also owns Chicago Bulls; succession plan to Justin Ishbia by ~2029', target:false, note:'Jerry Reinsdorf has owned the White Sox since 1981. Announced in June 2025 that minority owner Justin Ishbia will eventually take controlling interest (transfer window 2029-2033). Jerry retains control through at least 2029. Senior relationship only.'},
+      {title:'SVP, Chief Revenue & Marketing Officer', name:'Brooks Boyer', owns:'All revenue, brand, marketing, sponsorships, in-park experience, broadcasting, stadium naming rights', target:true, note:'PRIMARY. Boyer has run all revenue and marketing for the White Sox for 20+ years. Leads new ballpark site search — Rate Field lease expires 2029, team evaluating all options including The 78 South Loop site. Active brand rebuild cycle tied to new ballpark planning (whatever site). Key entry point for all partnership and environment programs. Search: "Brooks Boyer" + White Sox.'},
+      {title:'VP, Marketing & Advertising', name:'Gareth Breunlin', owns:'Marketing strategy, advertising campaigns, brand creative, in-park marketing', target:true, note:'Breunlin leads day-to-day marketing and advertising under Boyer. Direct contact for Rate Field interior brand environments and advertising programs. Search: "Gareth Breunlin" + White Sox.'},
+      {title:'SVP, Communications', name:'Scott Reifert', owns:'Strategic communications, PR, media, brand messaging, market research, whitesox.com', target:false, note:'Reifert has been with the White Sox since 1983. Owns brand reputation and communications — not a direct brand environment buyer, but deeply embedded in all brand decisions. Search: "Scott Reifert" + White Sox.'},
+      {title:'Senior Director, Park Operations', name:'Jonathan Vasquez', owns:'Rate Field physical operations, maintenance, interior environments, construction', target:true, note:'Vasquez controls Rate Field day-to-day physical environments — concourse, suites, signage, facility upgrades. With new ballpark planning underway, this role will eventually transition to a new stadium project. Search: "Jonathan Vasquez" + "White Sox" OR "Rate Field".'}
+    ]
+  },
+
+  'Chicago Sky': {
+    emailTpl: 'cs_mcdonalds',
+    ceo: {name:'Adam Fox', title:'President & CEO; Co-Owner & Operating Chairman: Nadia Rawlinson'},
+    nodes:[
+      {title:'Principal Owner', name:'Michael Alter', owns:'Team ownership; Chicago-native, President of Alter Group commercial real estate', target:false, note:'Alter has owned the Sky since founding in 2006. Brought in Nadia Rawlinson as Operating Chairman in 2023 to professionalize the business side. New investor group includes Laura Ricketts (Cubs co-owner), Mary Dillon (Foot Locker CEO), and Dwyane Wade. Senior relationship only.'},
+      {title:'Co-Owner & Operating Chairman', name:'Nadia Rawlinson', owns:'Business strategy, revenue growth, brand positioning, media rights, sponsorship scale-up', target:true, note:'PRIMARY strategic entry point. Rawlinson (fmr Chief People Officer, Slack; fmr CHRO, Live Nation; Google Ventures advisor) was hired in 2023 specifically to professionalize the business. Focused on revenue growth, sponsorship, and brand elevation as WNBA valuations surge. New practice facility (~$46M, Bedford Park, opening spring 2026) and select 2026 home games moving to United Center = active brand environment build cycle. Search: "Nadia Rawlinson" + Sky.'},
+      {title:'President & CEO', name:'Adam Fox', owns:'Day-to-day operations, facility development, basketball ops interface', target:true, note:'Fox has run the Sky for years as the operational CEO. Leading the new Bedford Park practice facility project — 40,000 sq ft, multiple courts, training room, commercial kitchen, opening spring 2026. Direct operational buyer for new facility brand environments. Search: "Adam Fox" + "Chicago Sky".'},
+      {title:'Chief Marketing Officer', name:'Tania Haladner', owns:'Brand marketing, fan development, in-arena experience, sponsorship activation, content', target:true, note:'PRIMARY marketing contact. Haladner owns all of Sky marketing — brand, fan experience at Wintrust Arena and United Center overflow games, and will drive brand environments in the new Bedford Park practice facility. Active partnership roster (COVERGIRL, bet365, Ordr, Red Lobster). Search: "Tania Haladner" + Sky.'},
+      {title:'VP, Corporate Partnerships', name:'Alex Teodosi', owns:'Corporate partnerships, sponsor activation, partnership marketing', target:true, note:'Teodosi manages the Sky sponsor portfolio and partner activation programs. Rapid WNBA growth = expanding sponsor base. Search: "Alex Teodosi" + Sky.'}
     ]
   },
 
@@ -6008,10 +6080,12 @@ var MKT_ORGS = {
   },
   'Envestnet': {
     emailTpl: 'cs_financial',
-    ceo: {name:'(Verify — post-acquisition)', title:'CEO'},
+    ceo: {name:'Chris Todd', title:'CEO (since Jan 21, 2025; from UKG/Kronos)'},
     nodes:[
-      {title:'CMO', name:'(Verify on LinkedIn)', owns:'Brand, marketing, wealth platform', target:true, note:'Chicago Magnificent Mile HQ; wealth management platform; 4,000 employees; premium office environment'},
-      {title:'VP Facilities / COO', name:'(Verify on LinkedIn)', owns:'Chicago HQ, office operations', target:true, note:'Premium Magnificent Mile office — interior environment reflects wealth management brand quality'}
+      {title:'CMO', name:'Sue Burton', owns:'Brand, marketing, wealth platform', target:true, note:'Berwyn PA HQ (not Chicago); Bain Capital-owned since Nov 2024; $4.5B take-private; new CEO Todd brings UKG/enterprise SaaS background — brand refresh likely under new PE ownership'},
+      {title:'COO', name:'Katie Evans', owns:'Operations, advisor platform delivery', target:true, note:'COO manages 3,000+ employees, 111K+ advisor relationships — workplace standards and office environment under ops mandate'},
+      {title:'CFO', name:'John Hofmann', owns:'Finance, M&A, transformation', target:false, note:'Appointed Sept 2025; former SaaS/fintech CFO background; controls capex — context only'},
+      {title:'VP Facilities / Office Operations', name:'(Verify on LinkedIn)', owns:'Berwyn PA HQ, satellite offices', target:true, note:'⚠️ NOTE: Envestnet HQ is Berwyn PA, not Chicago — verify if Chicago office exists under Evans COO org before outreach'}
     ]
   },
 
@@ -6226,12 +6300,13 @@ var MKT_ORGS = {
   // ── MANUFACTURING & INDUSTRIAL (MID-MARKET) ───────────────────────────────
   'Chamberlain Group': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'(Verify on LinkedIn)', title:'CEO'},
+    ceo: {name:'Jeff Meredith', title:'CEO (since Jan 2022; prev President & COO; Blackstone-owned Nov 2021; Oak Brook IL HQ; $1.4B revenue; 6,000 employees)'},
     nodes:[
-      {title:'Chief Marketing Officer / VP Marketing', name:'(Verify on LinkedIn)', owns:'LiftMaster, Chamberlain, and myQ brand standards; Oak Brook HQ brand environment; dealer and retail channel brand programs; trade show presence', target:true, note:'Oak Brook IL HQ. Blackstone-backed IoT company repositioning from garage door manufacturer. CMO owns the brand environment that signals innovation. Search: "CMO" + "Chamberlain" + Oak Brook.'},
-      {title:'Chief Human Resources Officer / VP People', name:'(Verify on LinkedIn)', owns:'5,500 employees, Oak Brook campus workplace, talent strategy for smart home technology roles', target:true, note:'Post-Blackstone acquisition repositioning as smart home tech company. CHRO co-sponsors Oak Brook campus environment to attract tech talent. Search: "CHRO" + "Chamberlain" + Oak Brook.'},
-      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn)', owns:'Oak Brook IL HQ campus (1240 Waukegan Rd, Elmhurst area), any satellite offices or R&D locations', target:true, note:'PRIMARY #1. Oak Brook HQ campus is a multi-building environment reflecting the smart home tech rebrand. Blackstone investment means capital available. Search: "Facilities" + "Chamberlain" + Oak Brook.'},
-      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn)', owns:'Indirect spend including facilities materials, branded environment signage, dealer channel display programs; vendor qualification for 5,500-employee organization', target:true, note:'PRIMARY #2. Blackstone-backed with PE-grade procurement processes. Vendor qualification required before VP Facilities can contract. Search: "Procurement" + "Chamberlain" + Oak Brook.'}
+      {title:'CMO (Chief Marketing Officer)', name:'Elina Vives', owns:'LiftMaster, Chamberlain, myQ brand standards; Oak Brook HQ brand environment; dealer and retail brand programs', target:true, note:'NEW July 2025 — joined from Signify/Philips Lighting (EVP & CCO NA). First standalone CMO hire in recent history = active brand investment era. Primary Foxmark brand environment contact.'},
+      {title:'CFO', name:'Brian Boosi', owns:'Finance, IT, capital allocation for Blackstone growth program', target:false, note:'NEW July 2025 — joined from prior Blackstone portfolio company role. Budget authority — context only.'},
+      {title:'VP / CHRO', name:'(Verify on LinkedIn)', owns:'6,000 employees, Oak Brook campus workplace, talent strategy for IoT/smart home tech roles', target:true, note:'Blackstone PE repositioning as smart home tech company. CHRO co-sponsors Oak Brook campus environment to attract software and IoT talent. Search: "CHRO" + "Chamberlain" + Oak Brook.'},
+      {title:'VP Real Estate & Facilities', name:'(Verify on LinkedIn)', owns:'Oak Brook IL HQ campus, any satellite offices or R&D locations', target:true, note:'PRIMARY. Oak Brook multi-building campus reflects smart home tech rebrand. Blackstone investment = capital for facility upgrades. Search: "Facilities" + "Chamberlain" + Oak Brook.'},
+      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn)', owns:'Indirect spend including facilities, branded environment signage, dealer channel displays; vendor qualification', target:true, note:'Blackstone-backed with PE-grade procurement. Vendor qualification required before VP Facilities can contract. Search: "Procurement" + "Chamberlain" + Oak Brook.'}
     ]
   },
   'Atkore International': {
@@ -6297,12 +6372,12 @@ var MKT_ORGS = {
   },
   'Loadsmart': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'Ricardo Salgado', title:'CEO'},
+    ceo: {name:'Felipe Capella', title:'Co-Founder & CEO (Ricardo Salgado, original CEO, transitioned to Executive Chairman; $541M raised; $1.3B valuation; 175 W. Jackson Blvd Chicago HQ)'},
     nodes:[
-      {title:'Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'Brand, marketing, freight technology platform positioning, Chicago HQ brand environment', target:true, note:'Chicago HQ; PE-backed freight tech company. CMO building credibility with enterprise shippers — premium HQ environment is part of that story. Search: "CMO" + "Loadsmart" + Chicago.'},
-      {title:'Chief Operating Officer', name:'(Verify on LinkedIn)', owns:'Operations, Chicago HQ facilities, freight operations platform', target:true, note:'COO controls day-to-day HQ operations including facility standards. Approach with the "your office should match your tech brand" story. Search: "COO" + "Loadsmart" + Chicago.'},
-      {title:'VP People / Chief People Officer', name:'(Verify on LinkedIn)', owns:'Talent strategy, Chicago HQ workplace experience, engineering and logistics technology hiring', target:true, note:'Loadsmart competes for software engineers and freight tech talent. Chicago HQ interior environment is a direct recruitment asset. Search: "People" OR "HR" + "Loadsmart" + Chicago.'},
-      {title:'VP Finance (Facilities Budget)', name:'(Verify on LinkedIn)', owns:'Finance, indirect spend, facilities budget, vendor qualification', target:true, note:'PRIMARY. At PE-backed growth stage, VP Finance controls budget approval for facilities spend. Combine with CMO or CPO intro. Search: "Finance" + "Loadsmart" + Chicago.'}
+      {title:'Co-Founder & Chief Executive Officer', name:'Felipe Capella', owns:'Company strategy, product platform, Chicago HQ, investor relationships', target:true, note:'Chicago HQ at 175 W. Jackson Blvd Suite 1400. Loadsmart achieved operating profitability Q3 2024 (~$750M revenue). CEO is primary senior contact for HQ environment decisions.'},
+      {title:'Chief Operating Officer', name:'Geoff Kelley', owns:'Brokerage and managed transportation operations, Chicago HQ facilities, field execution at scale', target:true, note:'Recently appointed COO; formerly at Coyote Logistics (UPS). Kelley controls day-to-day HQ operations and physical environment standards. Approach with the tech-brand story: premium HQ reflects Loadsmart\'s platform ambitions.'},
+      {title:'SVP Marketing', name:'Kathleen Kaag', owns:'Brand, demand gen, content, freight tech positioning, Chicago HQ brand environment', target:true, note:'No CMO title — marketing runs at SVP level under Kaag. She owns Loadsmart brand standards and how the HQ expresses the platform identity to enterprise shipper prospects. Primary brand contact.'},
+      {title:'VP Finance / CFO', name:'(Verify on LinkedIn)', owns:'Finance, indirect spend, facilities budget, vendor qualification', target:true, note:'PRIMARY. $541M raised, operating profitability achieved — finance team now owns capital allocation for HQ environment spend. Search: "CFO" OR "Finance" + "Loadsmart" + Chicago.'}
     ]
   },
   'Hub Group': {
@@ -6484,13 +6559,13 @@ var MKT_ORGS = {
   },
   'SMS Assist / Lessen': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'Tucker Serenbetz', title:'CEO, Lessen (SMS Assist rebranded to Lessen following merger with Lessen in 2022; Warburg Pincus-backed)'},
+    ceo: {name:'Jay McKee', title:'Founder & CEO, Lessen (acquired SMS Assist 2023 in $2B proptech deal; Chicago Loop HQ at 203 N. LaSalle St since Q1 2025)'},
     nodes:[
-      {title:'Chief Executive Officer', name:'Tucker Serenbetz', owns:'Lessen platform strategy, Chicago HQ, enterprise facilities management SaaS business, $500M+ in managed repair/maintenance spend', target:true, note:'Chicago River North HQ. Lessen (formerly SMS Assist) is a Warburg Pincus-backed facility maintenance and repair platform. CEO is the senior contact for corporate HQ environment programs.'},
-      {title:'SVP & Chief Marketing Officer', name:'(Verify on LinkedIn — Lessen rebranded from SMS Assist in 2022 following merger; verify current CMO)', owns:'Lessen brand, SMS Assist legacy brand transition, Chicago HQ brand environment, enterprise B2B marketing', target:true, note:'SMS Assist to Lessen rebrand (2022) is relatively recent — may still be resolving brand integration at the HQ level. CMO owns those standards. Search: "CMO" + "Lessen" + Chicago.'},
-      {title:'EVP & Chief Operating Officer', name:'(Verify on LinkedIn)', owns:'Platform operations, Chicago HQ, field operations network, customer success at scale', target:true, note:'Lessen manages facility maintenance for enterprise clients. COO runs a highly operational culture — functional wayfinding and safety environment are a business necessity. Search: "COO" + "Lessen".'},
-      {title:'VP Real Estate & Facilities (Corporate)', name:'(Verify on LinkedIn — reports into COO or CFO org)', owns:'625 N Michigan Ave Chicago HQ, any satellite offices post-merger', target:true, note:'PRIMARY #1. Approach with the irony angle: "you manage facilities for hundreds of enterprise clients — your own HQ should model what you sell." Search: "Facilities" + "Lessen" + Chicago.'},
-      {title:'VP Strategic Sourcing & Procurement', name:'(Verify on LinkedIn — Warburg Pincus-backed; formal procurement expected at this scale)', owns:'Indirect spend, vendor qualification, facilities materials and signage; potential: Lessen\'s own vendor network for interior graphics recommendations to clients', target:true, note:'PRIMARY #2. Warburg Pincus PE ownership = formal procurement. Also: getting on Lessen approved list could unlock their enterprise client base. Search: "Procurement" + "Lessen".'}
+      {title:'Founder & Chief Executive Officer', name:'Jay McKee', owns:'Lessen platform strategy, Chicago and Scottsdale HQs, enterprise facilities management SaaS, 1M+ properties under management', target:true, note:'Chicago Loop HQ at 203 N. LaSalle St (moved Q1 2025, 77K sq ft Class A — brand-new office buildout = active Foxmark opportunity). Lessen is venture-backed proptech managing 3.5M work orders/year. CEO is primary contact for HQ environment decisions.'},
+      {title:'Chief Revenue Officer', name:'Sean Miller', owns:'Marketing and sales organization, demand gen, enterprise account acquisition, Lessen brand commercial expression', target:true, note:'No standalone CMO — marketing and sales roll up to Miller as CRO (appointed Sept 2024). He owns Lessen brand standards and commercial marketing. Primary brand contact. Approach via new 203 N. LaSalle HQ buildout angle.'},
+      {title:'President, Commercial Division', name:'Maureen Ehrenberg', owns:'Commercial real estate clients, enterprise FM programs, Lessen commercial brand standards', target:true, note:'Named 2025 GlobeSt. Woman of Influence. Senior executive for commercial side of Lessen — potential warm intro path to VP Facilities clients. Search: "Maureen Ehrenberg" + "Lessen".'},
+      {title:'VP Real Estate & Facilities (Corporate)', name:'(Verify on LinkedIn — reports into COO or CFO org)', owns:'203 N. LaSalle Chicago HQ (77K sq ft, Q1 2025 move-in), Scottsdale AZ HQ, any satellite offices', target:true, note:'PRIMARY #1. Use the irony angle: Lessen manages facilities for enterprise clients at scale — their own brand-new Chicago HQ should be a showpiece. New office = active buildout window. Search: "Facilities" OR "Real Estate" + "Lessen" + Chicago.'},
+      {title:'VP Procurement / Strategic Sourcing', name:'(Verify on LinkedIn — formal procurement expected at $1B+ valuation)', owns:'Indirect spend, vendor qualification, facilities materials and signage; Lessen\'s own vendor network for interior graphics at client sites', target:true, note:'PRIMARY #2. Getting on Lessen\'s approved vendor list could also unlock access to their 30,000-vendor network and enterprise client base — dual value proposition. Search: "Procurement" OR "Sourcing" + "Lessen".'}
     ]
   },
   'Fooda': {
@@ -6554,14 +6629,13 @@ var MKT_ORGS = {
 
   'Jewel-Osco (Albertsons IL)': {
     emailTpl: 'cs_rtl',
-    ceo: {name:'(Verify — Albertsons Midwest Division President)', title:'Division President, Albertsons Midwest (Jewel-Osco banner); Albertsons national CEO: Vivek Sankaran'},
+    ceo: {name:'Thomas Lofland', title:'Division President, Jewel-Osco (as of Aug 2025); Albertsons national CEO: Susan Morris (as of May 2025)'},
     nodes:[
-      {title:'Division President, Albertsons Midwest', name:'(Verify on LinkedIn — Jewel-Osco division leadership reports into Albertsons corporate)', owns:'185 Jewel-Osco IL locations, Midwest division P&L, store operations, regional marketing', target:true, note:'Itasca IL (150 Pierce Rd). Jewel-Osco is the dominant Illinois grocery banner with 185 locations. Division President oversees the continuous store remodel cycle. Key escalation contact.'},
-      {title:'VP Real Estate & Store Development, Midwest Division', name:'(Verify on LinkedIn — reports into Division President org)', owns:'185-store IL portfolio, ongoing remodel cycle, new store development, lease management', target:true, note:'Jewel-Osco runs a continuous store remodel cycle across 185 Illinois locations. VP Real Estate owns the new store and remodel pipeline. Most active store graphics program in Illinois retail.'},
-      {title:'VP Marketing, Jewel-Osco Banner', name:'(Verify on LinkedIn — may be a Director-level role at the banner level)', owns:'Jewel-Osco brand, local marketing, seasonal campaign graphics, in-store promotional environments, weekly circular tie-ins', target:true, note:'Jewel-Osco runs extensive seasonal in-store campaigns (holiday, back-to-school, summer). CMO drives volume for recurring large-format in-store graphics. Search: "Marketing" + "Jewel-Osco".'},
-      {title:'VP Store Operations & Standards', name:'(Verify on LinkedIn)', owns:'In-store execution standards, wayfinding, interior signage compliance, vendor approvals', target:true, note:'VP Store Operations controls day-to-day interior standards and is the vendor approval path for ongoing refresh across all 185 locations. Search: "Operations" + "Jewel-Osco" + Itasca.'},
-      {title:'VP Real Estate & Facilities (Division Corporate)', name:'(Verify on LinkedIn — Itasca IL division office)', owns:'Itasca IL division office facilities, regional management offices', target:true, note:'PRIMARY #1. Itasca division office is the Foxmark entry point — separate from individual store programs. Controls division-level environment standards. Search: "Facilities" + "Jewel-Osco" + Itasca.'},
-      {title:'VP Procurement & Strategic Sourcing, Albertsons (National or Midwest)', name:'(Verify on LinkedIn — Albertsons runs centralized national procurement with some division-level flexibility)', owns:'Store interior materials, signage, environmental graphics vendor qualification; national preferred vendor programs; division-level indirect spend', target:true, note:'PRIMARY #2. Albertsons national procurement sets preferred vendor programs. Getting on the Albertsons approved list unlocks all Illinois Jewel-Osco programs. Search: "Procurement" + "Albertsons".'}
+      {title:'Division President, Jewel-Osco', name:'Thomas Lofland', owns:'189 Jewel-Osco locations across IL, IN, IA; division P&L, store operations, regional marketing', target:true, note:'Lofland named Jewel-Osco Division President Aug 2025, succeeding Mark Laryea. Itasca IL HQ (150 Pierce Rd). Key escalation contact for division-level programs.'},
+      {title:'VP Real Estate & Store Development', name:'(Verify on LinkedIn)', owns:'189-store IL/IN/IA portfolio, ongoing remodel cycle, new store development, lease management', target:true, note:'Jewel-Osco runs a continuous store remodel cycle — most active store graphics program in IL retail. VP Real Estate owns the remodel pipeline. Search: "Real Estate" + "Jewel-Osco".'},
+      {title:'VP Marketing & Merchandising, Jewel-Osco', name:'(Verify on LinkedIn)', owns:'Jewel-Osco brand, local marketing, seasonal campaign graphics, in-store promotional environments, weekly circular tie-ins', target:true, note:'Jewel-Osco runs extensive seasonal in-store campaigns (holiday, back-to-school, summer). Marketing VP drives recurring large-format in-store graphics volume. Search: "Marketing" + "Jewel-Osco".'},
+      {title:'VP Store Operations & Standards', name:'(Verify on LinkedIn)', owns:'In-store execution standards, wayfinding, interior signage compliance, vendor approvals', target:true, note:'Controls day-to-day interior standards and vendor approval path for ongoing refresh across 189 locations. Search: "Operations" + "Jewel-Osco" + Itasca.'},
+      {title:'VP Procurement & Strategic Sourcing, Albertsons', name:'(Verify on LinkedIn)', owns:'Store interior materials, signage, environmental graphics vendor qualification; national preferred vendor programs', target:true, note:'PRIMARY. Albertsons national procurement sets preferred vendor programs. Getting on the approved list unlocks all Jewel-Osco IL programs. Search: "Procurement" + "Albertsons".'}
     ]
   },
 
@@ -6878,10 +6952,13 @@ var MKT_ORGS = {
 
   'Arrive Logistics': {
     emailTpl: 'cs_mcdonalds',
-    ceo: {name:'Matt Pyatt', title:'Co-Founder & CEO'},
+    ceo: {name:'Matt Pyatt', title:'Co-Founder & CEO (Austin TX-based; co-founded 2014 with Eric Dunigan; $2.4B revenue 2022; projecting $2.5B in 2025; CME Center Chicago HQ expanding through Oct 2026)'},
     nodes:[
-      {title:'CMO / VP Marketing', name:'(Verify on LinkedIn)', owns:'Brand, culture, client-facing environment', target:true, note:'Fast-growing freight brokerage; premium West Loop HQ; brand-forward office culture; active hiring = expanding facilities'},
-      {title:'VP Operations', name:'(Verify on LinkedIn)', owns:'Chicago HQ ops', target:false}
+      {title:'Co-Founder & Chief Executive Officer', name:'Matt Pyatt', owns:'Company strategy, financial health, culture, Chicago and Austin operations', target:true, note:'Austin TX-based CEO. Chicago CME Center office is the primary Foxmark entry point — active buildout through October 2026 adding ~100 jobs. Strong people-first culture = HQ environment is a brand priority.'},
+      {title:'President', name:'Eric Dunigan', owns:'Revenue, growth, Strategic Partnerships team, Chicago office operations', target:true, note:'Co-founder and day-to-day revenue leader. Based in Chicago (CME Center). Controls Chicago office direction alongside CPO Schoonmaker — both are primary contacts for the buildout program.'},
+      {title:'Chief Administrative Officer', name:'Scott Sandager', owns:'Org design, operations, change management, Chicago HQ administrative environment', target:true, note:'CAO joined 2018; former AFN. Controls organizational and administrative infrastructure — relevant for vendor qualification and facilities category. Search: "Scott Sandager" + "Arrive Logistics".'},
+      {title:'Chief People Officer', name:'Jonathan Schoonmaker', owns:'Talent, workplace experience, Chicago HQ environment, 470+ Chicago employees', target:true, note:'PRIMARY CHICAGO CONTACT. Schoonmaker is the named decision-maker for the CME Center expansion (Crain\'s Chicago Business, Oct 2025). Building out new space through October 2026. Arrive is 5-days-in-office — workplace environment is a direct talent and culture investment. Best entry point.'},
+      {title:'VP / Director Marketing', name:'(Verify on LinkedIn — no CMO identified; marketing may report to President Dunigan or CAO)', owns:'Arrive brand, shipper and carrier marketing, Chicago HQ brand environment', target:true, note:'No public CMO identified. Marketing function likely sits below C-suite. Search: "Marketing" + "Arrive Logistics" + LinkedIn for current VP or Director of Marketing.'}
     ]
   },
 
@@ -7068,7 +7145,7 @@ var MKT_ORGS = {
     emailTpl: 'intro',
     ceo: {name:'Peter Arduini', title:'President & CEO, GE HealthCare Technologies — NASDAQ: GEHC; $19.7B revenue; 53,000 employees; spun off from GE Jan 2023; Chicago HQ (Wrigleyville / N Lakeview Ave); full standalone rebrand active'},
     nodes: [
-      {title:'EVP & Chief Marketing Officer', name:'(Verify on LinkedIn)', owns:'GE HealthCare brand identity post-spinoff, brand standards across 360+ global sites', target:true, note:'Owns the post-spinoff rebrand rolling out across 360+ sites — one of the most significant healthcare rebrands in recent history. Search: "CMO" OR "VP Marketing" + "GE HealthCare" + Chicago.'},
+      {title:'Chief Corporate Marketing & Communications Officer', name:'Rana Strellis', owns:'GE HealthCare brand identity post-spinoff, brand standards across 360+ global sites, corporate narrative and reputation', target:true, note:'CONFIRMED: Rana Strellis appointed Chief Corporate Marketing & Communications Officer April 2024 (replaced Danielle Halstrom). Chicago-based (Greater Chicago Area). Owns the post-spinoff rebrand rolling out across 360+ global sites — most significant healthcare rebrand in recent history. HQ: 500 W. Monroe St, Chicago. LinkedIn: Rana Strellis + GE HealthCare.'},
       {title:'SVP & Chief People Officer / CHRO', name:'(Verify on LinkedIn)', owns:'53,000 employees globally, Chicago HQ workplace experience, culture post-spinoff', target:true, note:'Fresh mandate to establish independent identity separate from GE legacy. CHRO co-sponsors HQ environment as the culture signal. Search: "CHRO" OR "Chief People Officer" + "GE HealthCare" + Chicago.'},
       {title:'VP Real Estate & Workplace / Global Facilities', name:'(Verify on LinkedIn)', owns:'Chicago HQ, 360+ global offices and manufacturing sites, post-spinoff facility brand decisions', target:true, note:'PRIMARY. 360+ sites need to rebrand from GE legacy to new GE HealthCare identity. Highest urgency in healthcare sector. Search: "Real Estate" + "GE HealthCare" + Chicago.'},
       {title:'VP Procurement / Strategic Sourcing', name:'(Verify on LinkedIn)', owns:'Independent procurement post-spinoff, facilities and signage across 360+ sites', target:true, note:'First-time independent procurement function — new vendor relationships being built now. Get in before the approved list is set. Search: "Procurement" OR "Sourcing" + "GE HealthCare" + Chicago.'}
@@ -7091,13 +7168,13 @@ var MKT_ORGS = {
   'Kellanova (Mars acquisition)': {
     _coKey: 'Kellanova (Mars acquisition)',
     _tabKey: 'rtl',
-    emailTpl: 'intro',
-    ceo: {name:'Steve Cahillane', title:'Former Chairman, President & CEO, Kellanova — Mars acquisition closed December 2025; Pringles, Cheez-It, Pop-Tarts, Eggo, Kellogg\'s International; Chicago Loop HQ; 24,000 employees; now a Mars division — rebrand integration underway'},
-    nodes: [
-      {title:'President, Kellanova North America (Post-Acquisition Leader)', name:'(Verify current Mars/Kellanova NA leader on LinkedIn)', owns:'Post-acquisition integration leadership, Chicago HQ brand decisions, Mars/Kellanova combined portfolio', target:true, note:'Mars closed $35.9B acquisition Dec 2025 — integration actively underway. One Prudential Plaza HQ must now express both Kellanova brands AND Mars standards. Window to establish as vendor is narrow.'},
-      {title:'VP Marketing or Chief Marketing Officer', name:'(Verify post-acquisition marketing leader on LinkedIn)', owns:'Brand standards post-acquisition, HQ environment expression, retail display programs', target:true, note:'Marketing being reshuffled as Mars integrates Kellanova brands. New brand standards will cascade to HQ environment. Search: "CMO" OR "VP Marketing" + "Kellanova" + Chicago.'},
-      {title:'VP Real Estate & Facilities (Mars/Kellanova)', name:'(Verify on LinkedIn — may now report to Mars corporate real estate)', owns:'One Prudential Plaza HQ, Mars/Kellanova facility integration decisions', target:true, note:'PRIMARY. One Prudential Loop HQ — Kellanova or Mars standards? Either way, work is required now. Search: "Real Estate" OR "Facilities" + "Kellanova" + Chicago.'},
-      {title:'VP Procurement / Strategic Sourcing (Post-Acquisition)', name:'(Verify on LinkedIn — integration may centralize into Mars global procurement)', owns:'Vendor continuity decisions during Mars procurement integration', target:true, note:'Get established as a Kellanova vendor NOW before full Mars global procurement centralizes. That window closes quickly. Search: "Procurement" + "Kellanova" OR "Mars" + Chicago.'}
+    emailTpl: 'cs_kraftheinz',
+    ceo: {name:'Anton Vincent', title:'President, Mars Snacking North America & Global Ice Cream — post-acquisition NA leader (confirmed Feb 2026)'},
+    nodes:[
+      {title:'President, Mars Snacking North America & Global Ice Cream', name:'Anton Vincent', owns:'Full North America Mars Snacking business post-Kellanova integration — Snickers, M&Ms, Skittles, Extra, Kind + now Pringles, Cheez-It, Pop-Tarts, RXBAR; US manufacturing investment lead ($2B program)', target:false, note:'NA president confirmed via Mars Feb 2026 Kettle Award press release. Nicolas Amaya (prior Kellanova NA President) departed to Kraft Heinz Feb 2026 — Vincent now leads the combined business. Senior rel. not cold outreach. Search: "Anton Vincent" + Mars.'},
+      {title:'VP Real Estate & Facilities — Mars Snacking Chicago', name:'(Verify on LinkedIn)', owns:'Fulton Market office buildout (400 N. Aberdeen, 100K+ sq ft lease, Dec 2025); Goose Island campus (~1,000 associates); Kellanova legacy office at 412 N. Wells — consolidation in progress', target:true, note:'PRIMARY. Mars signed 100,000+ sq ft lease at 400 N. Aberdeen St (Fulton Market) Dec 2025 to consolidate post-acquisition Chicago footprint. Active build-out = active branded environment program. Three Chicago locations converging into one. Search: "Real Estate" OR "Facilities" + "Mars" + Chicago OR "Mars Snacking".'},
+      {title:'CMO, Mars Wrigley North America', name:'Gabrielle Dallas Wesley', owns:'North America brand marketing for combined Mars Snacking portfolio — both legacy MW and Kellanova brands', target:true, note:'Confirmed CMO for Mars Wrigley North America. Post-acquisition, she owns brand environment standards for the unified snacking portfolio across the new Fulton Market HQ and Goose Island campus. Search: "Gabrielle Dallas Wesley" + Mars.'},
+      {title:'VP Procurement / Strategic Sourcing — Mars Snacking', name:'(Verify on LinkedIn — integration centralizing into Mars global procurement)', owns:'Vendor decisions for combined Mars Snacking NA; integration procurement window closing', target:true, note:'Get established as vendor NOW while integration procurement is still being structured. Mars global procurement will eventually centralize. Window is narrow. Search: "Procurement" OR "Sourcing" + "Mars Snacking" + Chicago.'}
     ]
   },
 
@@ -7199,14 +7276,13 @@ var MKT_ORGS = {
   },
 
   'Mars Wrigley (NA HQ)': {
-    _coKey: 'Mars Wrigley (NA HQ)',
-    _tabKey: 'rtl',
-    emailTpl: 'intro',
-    ceo: {name:'Andrew Clarke', title:'President, Mars Wrigley — division of Mars Inc. (private, $47B global revenue); NA operations anchored at Wrigley Building, 410 N Michigan Ave Chicago + Newark NJ; Snickers, M&Ms, Skittles, Starburst, Wrigley gum, Orbit, Altoids; Kellanova integration active since Dec 2025'},
-    nodes: [
-      {title:'VP Marketing / Brand Director, Mars Wrigley NA', name:'(Verify on LinkedIn — Storck connection is a warm CPG confections intro path)', owns:'Seasonal retail display programs, in-store environments, Kellanova integration brand standards', target:true, note:'Seasonal display (Halloween, Valentine, Easter) = largest CPG confections programs. Kellanova integration = active multi-brand work. Storck background is a warm intro.'},
-      {title:'VP Real Estate & Facilities, Mars Wrigley NA', name:'(Verify on LinkedIn)', owns:'Wrigley Building Chicago (410 N Michigan), Newark NA HQ, Chicago production facilities', target:true, note:'PRIMARY. Wrigley Building is a Chicago landmark Mars maintains as a premium workplace. Kellanova integration raises HQ brand expression question. Search: "Real Estate" + "Mars" + Chicago.'},
-      {title:'VP Procurement / Strategic Sourcing, Mars NA', name:'(Verify on LinkedIn)', owns:'NA indirect procurement, retail display and POS materials sourcing', target:true, note:'Private family company values long-term partnerships. Storck background establishes confections credibility before RFP required. Search: "Procurement" + "Mars" + Chicago.'}
+    emailTpl: 'cs_kraftheinz',
+    ceo: {name:'Andrew Clarke', title:'Global President, Mars Snacking (Chicago-based)'},
+    nodes:[
+      {title:'Global President, Mars Snacking', name:'Andrew Clarke', owns:'Entire Mars Snacking division globally — M&Ms, Snickers, Twix, Skittles, Wrigley gum + now Pringles, Cheez-It, Pop-Tarts (Kellanova brands, acquired Dec 2025)', target:false, note:'Clarke runs the full $30B+ Mars Snacking business from Chicago Goose Island HQ. Led the Kellanova integration. Senior relationship — not cold outreach, but highly relevant if there is a warm intro path through existing clients. Search: "Andrew Clarke" + Mars Snacking.'},
+      {title:'CMO, Mars Wrigley North America', name:'Gabrielle Dallas Wesley', owns:'North America brand marketing, advertising, in-market campaigns, consumer environments for MW brands', target:true, note:'PRIMARY. Confirmed CMO for Mars Wrigley North America — owns all brand expression and marketing for the North America business. Kellanova integration = active rebrand of combined snacking environment across Goose Island campus and retail-facing brand standards. Search: "Gabrielle Dallas Wesley" + Mars.'},
+      {title:'VP, Facilities / Campus Operations, Goose Island', name:'(Verify on LinkedIn)', owns:'Goose Island campus physical environments — global snacking HQ, $42M R&D hub (opened Jan 2024), ~1,000 associates on campus', target:true, note:'Goose Island is the global HQ for Mars Snacking — premium campus with ongoing facility investment. $42M R&D hub opened Jan 2024. Kellanova integration adds scope: consolidating two global snacking cultures into one campus identity = active branded environment program. Search: "Facilities" OR "Campus Operations" + Mars + "Goose Island".'},
+      {title:'Global VP, R&D', name:'Chris Rowe', owns:'Global Innovation Center, R&D hub, innovation campus environments', target:false, note:'Rowe led the Goose Island R&D hub buildout and groundbreaking. Context for the campus investment story — not a direct brand environment buyer but influences facility standards on the innovation side.'}
     ]
   },
 
@@ -7403,6 +7479,18 @@ function refreshDashboardTiles() {
     else ptEl.textContent = pipelineTotal > 0 ? '$' + pipelineTotal : '$0';
   }
   if (pcEl) pcEl.textContent = pipelineCount;
+  // Update top "N targets" label
+  var totalLabel = document.getElementById('dashboard-total-label');
+  if (totalLabel) {
+    var s = getStats();
+    totalLabel.textContent = s.totalMktCos + ' targets · select a sector →';
+  }
+}
+// Wire dashboard tile refresh after DOM ready (function defined here, so safe to register)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(refreshDashboardTiles, 250); });
+} else {
+  setTimeout(refreshDashboardTiles, 250);
 }
 
 function buildCrmPanel(coKey) {
@@ -7510,7 +7598,7 @@ function initDynamicCounts() {
 
   // Update F500 tab data-tips with live counts
   var f500Btn = document.getElementById('mtab-f500');
-  if (f500Btn) f500Btn.setAttribute('data-tip', 'F500 Chicago Targets · ' + s.f500Count + ' companies across 6 sectors');
+  if (f500Btn) f500Btn.setAttribute('data-tip', 'F500 Chicago Targets · ' + s.f500Count + ' companies across ' + Object.keys(getStats().sectorCounts).filter(function(k){return getStats().sectorCounts[k]>0;}).length + ' sectors');
 }
 
 function computeStats() {
@@ -7639,7 +7727,7 @@ function renderF500Dashboard() {
   h += '<div style="width:3px;height:1.4rem;background:#C8102E;flex-shrink:0;"></div>';
   h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:900;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#e8f0ff;">F500 Target Overview · Illinois</div>';
   h += '<div style="flex:1;height:1px;background:rgba(255,255,255,.06);"></div>';
-  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">' + getStats().f500Count + ' Targets · 6 Sectors</div>';
+  h += '<div style="font-size:.72rem;color:#3a5060;font-family:Barlow Condensed,sans-serif;letter-spacing:.1em;text-transform:uppercase;">' + getStats().f500Count + ' Targets · ' + Object.keys(getStats().sectorCounts).filter(function(k){return getStats().sectorCounts[k]>0;}).length + ' Sectors</div>';
   h += '</div>';
 
   // ── MARKET SIZING: HORIZONTAL FUNNEL ────────────────────────────────────────
