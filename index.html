@@ -173,46 +173,45 @@ async function callClaudeForContacts(coKey, roles) {
   var key = getApiKey();
   if (!key) throw new Error('No API key — click ⚙ API KEY in nav');
 
-  var allContacts = [];
-  var apiUrl = 'https://api.anthropic.com/v1/messages';
-  var headers = {
-    'Content-Type': 'application/json',
-    'x-api-key': key,
-    'anthropic-version': '2023-06-01',
-    'anthropic-dangerous-direct-browser-access': 'true'
-  };
+  var prompt = 'B2B sales researcher. Find real names of executives at: ' + coKey + ' (Chicago, IL).\n' +
+    'Roles:\n' + roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
+    '\nReturn ONLY JSON, no markdown:\n{"contacts":[{"role":"1","name":"Full Name or null","title":"actual title","confidence":"high|medium|low"}]}\n' +
+    'Only include names you are confident about. Set name to null if unknown.';
 
-  for (var i = 0; i < roles.length; i++) {
-    // Pause between calls to stay within token rate limits
-    if (i > 0) await new Promise(function(r){ setTimeout(r, 4000); });
+  var payload = { model: 'claude-haiku-4-5-20251001', max_tokens: 1024, messages: [{ role: 'user', content: prompt }] };
 
-    var prompt = 'Search LinkedIn and the web to find the real name of the person who holds this role at ' + coKey + ': ' + roles[i] + '. ' +
-      'Return ONLY JSON, no other text: {"contacts":[{"role":"' + (i+1) + '","name":"First Last or null","title":"actual title","confidence":"high|medium|low"}]}';
+  // Try the Cloudflare worker proxy first (works from any origin)
+  // Fall back to direct API call (works from localhost)
+  var proxyUrl = localStorage.getItem('foxmark_proxy_url') || window._FOXMARK_PROXY_URL || '';
+  var apiUrl = proxyUrl || 'https://api.anthropic.com/v1/messages';
 
-    try {
-      var resp = await fetch(apiUrl, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:300, tools:[{type:'web_search_20250305',name:'web_search'}], messages:[{role:'user',content:prompt}] })
-      });
-      var data = await resp.json();
-      if (data.error) {
-        // Rate limited — skip this role rather than failing entirely
-        if (data.error.type === 'rate_limit_error') { allContacts.push({role:String(i+1),name:null,title:roles[i],confidence:'low'}); continue; }
-        throw new Error(data.error.message);
-      }
-      var text = (data.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('');
-      var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
-      if (m) {
-        var parsed = JSON.parse(m[0]);
-        (parsed.contacts||[]).forEach(function(c){ allContacts.push(c); });
-      }
-    } catch(e) {
-      allContacts.push({role:String(i+1),name:null,title:roles[i],confidence:'low'});
-    }
+  var headers = { 'Content-Type': 'application/json', 'x-api-key': key };
+  if (!proxyUrl) {
+    headers['anthropic-version'] = '2023-06-01';
+    headers['anthropic-dangerous-direct-browser-access'] = 'true';
   }
 
-  return { contacts: allContacts };
+  var resp;
+  try {
+    resp = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(payload) });
+  } catch(fetchErr) {
+    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed') + '. Set up proxy — see ⚙ API KEY');
+  }
+
+  if (!resp.ok) {
+    var errJson; try { errJson = await resp.json(); } catch(e2) {}
+    var msg = errJson && errJson.error ? errJson.error.message : ('HTTP ' + resp.status);
+    throw new Error(msg);
+  }
+
+  var data = await resp.json();
+  // Log full response for debugging
+  var debugInfo = 'stop:' + (data.stop_reason||'?') + ' model:' + (data.model||'?') + ' blocks:' + (data.content||[]).length + ' err:' + (data.error ? data.error.message : 'none');
+  var text = (data.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('');
+  if (!text) throw new Error(debugInfo);
+  var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
+  if (!m) throw new Error('No JSON: ' + text.substring(0,80));
+  return JSON.parse(m[0]);
 }
 
 
@@ -260,7 +259,7 @@ function renderResearchResults(result, company, role) {
 
   var html = '';
 
-  if (!result.contacts || !result.contacts.length) {
+  if (!result.found || !result.contacts || !result.contacts.length) {
     html = `<div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);padding:.85rem 1rem;margin-bottom:.75rem;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#f59e0b;margin-bottom:.4rem;">No confirmed name found</div>
       <div style="font-size:.82rem;color:#8a9070;line-height:1.6;">${result.research_note || 'This person\'s name is not publicly available. Use the LinkedIn search button below.'}</div>
@@ -306,16 +305,14 @@ function renderResearchResults(result, company, role) {
 
 window.saveResearchContact = function(coKey, name, title, btn) {
   var slug = crmKey(coKey);
-  var storKey = 'org_custom_contacts_' + slug;
-  var contacts = [];
-  try { contacts = JSON.parse(localStorage.getItem(storKey) || '[]'); } catch(e) {}
+  var contacts = getOrgContacts(slug);
   // Avoid duplicates
   if (contacts.some(function(c){ return c.name === name; })) {
     if (btn) { btn.textContent = 'Already saved ✓'; btn.style.color = '#22c55e'; }
     return;
   }
-  contacts.push({ name: name, title: title, owns: '', note: 'Added via AI Contact Research.' });
-  try { localStorage.setItem(storKey, JSON.stringify(contacts)); } catch(e) {}
+  contacts.push({ name: name, title: title, roleKey: orgRoleKey(title || ''), source: 'ai', verified: false, note: 'Added via AI Contact Research. Verify on LinkedIn before outreach.' });
+  setOrgContacts(slug, contacts);
   if (btn) { btn.textContent = 'Saved ✓'; btn.style.background = 'rgba(34,197,94,.15)'; btn.style.color = '#22c55e'; btn.style.borderColor = 'rgba(34,197,94,.4)'; }
 };
 
@@ -359,27 +356,30 @@ window.inlineResearch = async function(coKey, btn) {
     var contacts = result.contacts || [];
 
     var slug = crmKey(coKey);
+    var saved = getOrgContacts(slug);
+
     var added = 0;
-
-    var escNodes = (orgData.nodes || []).map(function(n, i) {
-      return { node: n, index: i };
-    }).filter(function(x) {
-      return x.node.target && x.node.name && x.node.name.toLowerCase().indexOf('escalate') === 0;
-    });
-
     contacts.forEach(function(c) {
-      if (!c.name || c.name === 'null' || c.name === null) return;
+      if (!c.name || c.name === 'null' || c.confidence === 'low') return;
+      if (saved.some(function(s) { return s.name === c.name; })) return;
       var roleIndex = parseInt(c.role) - 1;
-      var escEntry = escNodes[roleIndex];
-      if (!escEntry) return;
-      var savedKey = 'org_name_' + slug + '_' + escEntry.index;
-      var existing = ''; try { existing = localStorage.getItem(savedKey) || ''; } catch(e) {}
-      if (existing) return;
-      try { localStorage.setItem(savedKey, c.name); } catch(e) {}
+      var roleTitle = missingRoles[roleIndex] || c.title || 'Executive';
+      var rk = orgRoleKey(roleTitle);
+      // Replace existing entry for this roleKey if present
+      saved = saved.filter(function(s){ return s.roleKey !== rk; });
+      saved.push({
+        name: c.name,
+        title: c.title || roleTitle,
+        roleKey: rk,
+        source: 'ai',
+        verified: false,
+        note: 'AI Research (' + (c.confidence || '?') + '). Verify on LinkedIn before outreach.'
+      });
       added++;
     });
 
     if (added > 0) {
+      setOrgContacts(slug, saved);
       btn.textContent = '✓ ' + added + ' name' + (added > 1 ? 's' : '') + ' found — reloading…';
       btn.style.background = '#22c55e';
       btn.style.color = '#000';
@@ -434,8 +434,8 @@ window.inlineResearch = async function(coKey, btn) {
 // To deploy: set your Anthropic API key here, then host on Netlify/GitHub Pages
 // Get a key at: https://console.anthropic.com/settings/keys
 // The key is stored only in this file and each user's browser — never on a server.
-window._FOXMARK_PROXY_URL = '';
-window._FOXMARK_DEFAULT_KEY = ''; // enter key via ⚙ API KEY button
+window._FOXMARK_PROXY_URL = 'https://green-block-cf0a.rickkrohn.workers.dev';
+window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
 // ──────────────────────────────────────────────────────────────────────────────
 var FOXMARK_API_KEY_STORE = 'foxmark_api_key';
 
@@ -8248,14 +8248,23 @@ function buildOrgHtml(org) {
   h += liBtn(org.ceo.name, org.ceo.title);
   h += '</div></div>';
 
+  // Load all contacts for this company once
+  var allContacts = getOrgContacts(coSlug);
+
   org.nodes.forEach(function(n, ni) {
     var tc   = n.target ? '#f59e0b' : '#444';
     var star = n.target ? '<span style="color:#f59e0b;font-size:.85rem;margin-left:.3rem;">&#9733;</span>' : '';
 
-    // Load any saved name for this node slot
+    // Load any saved name for this node slot — check unified storage by roleKey first, fallback to old key
     var savedKey  = 'org_name_' + coSlug + '_' + ni;
     var savedName = '';
-    try { savedName = localStorage.getItem(savedKey) || ''; } catch(e){}
+    var rk = orgRoleKey(n.title || '');
+    var contactMatch = allContacts.find(function(c){ return c.roleKey === rk; });
+    if (contactMatch && contactMatch.name) {
+      savedName = contactMatch.name;
+    } else {
+      try { savedName = localStorage.getItem(savedKey) || ''; } catch(e){}
+    }
 
     var rawName      = n.name || '';
     var isUnverified = rawName.toLowerCase().indexOf('verify') !== -1;
@@ -8297,7 +8306,7 @@ function buildOrgHtml(org) {
     var emailTarget  = isResolved ? savedName : (isPlaceholder ? '' : rawName);
     h += '<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">';
     h += nameHtml;
-
+    if (isResolved) h += '<span style="font-size:.58rem;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(10,102,194,.25);color:#5aabff;border:1px solid rgba(10,102,194,.4);padding:.05rem .28rem;">&#128279; LI</span>';
     h += star;
     h += ' <span style="color:#666;font-size:.88rem;">&mdash; ' + n.title + '</span>';
     if (n.target && emailTarget) h += emailBtn(emailTarget, n.title);
@@ -8332,11 +8341,20 @@ function buildOrgHtml(org) {
     h += '</div></div>';
   });
 
-  // ── Inline AI Research button — shown when escalate nodes exist ──────────
-  var escCount = org.nodes.filter(function(n){ return n.target && n.name && n.name.toLowerCase().indexOf('escalate') === 0; }).length;
+  // ── Inline AI Research button — shown when escalate nodes still need names ──
+  var escCount = org.nodes.filter(function(n){
+    if (!n.target || !n.name || n.name.toLowerCase().indexOf('escalate') !== 0) return false;
+    // Check if we already have a saved name for this role
+    var rk = orgRoleKey(n.title || '');
+    return !allContacts.some(function(c){ return c.roleKey === rk && c.name; });
+  }).length;
   if (escCount > 0) {
     var coEscAI = co.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    var missingRoles = org.nodes.filter(function(n){ return n.target && n.name && n.name.toLowerCase().indexOf('escalate') === 0; }).map(function(n){ return n.title; }).slice(0,5).join(', ');
+    var missingRoles = org.nodes.filter(function(n){
+      if (!n.target || !n.name || n.name.toLowerCase().indexOf('escalate') !== 0) return false;
+      var rk = orgRoleKey(n.title || '');
+      return !allContacts.some(function(c){ return c.roleKey === rk && c.name; });
+    }).map(function(n){ return n.title; }).slice(0,5).join(', ');
     var aiResId = 'ai-res-' + coSlug;
     h += '<div style="margin-bottom:.5rem;border:1px solid rgba(245,158,11,.25);background:rgba(245,158,11,.05);padding:.5rem .75rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">';
     h += '<span style="font-size:.72rem;color:#8a7840;flex:1;min-width:160px;">'+escCount+' role'+(escCount>1?'s':'')+' need names — <em style="color:#6a6030;">'+missingRoles.substring(0,60)+(missingRoles.length>60?'…':'')+'</em></span>';
@@ -8344,30 +8362,42 @@ function buildOrgHtml(org) {
     h += '</div>';
   }
 
-  // ── Manually added custom contacts ───────────────────────────────────────
-  var customKey = 'org_custom_contacts_' + coSlug;
-  var customContacts = [];
-  try { customContacts = JSON.parse(localStorage.getItem(customKey) || '[]'); } catch(e) {}
+  // ── Manually added / AI-found contacts (not role-matched to a node) ─────────
+  var customContacts = allContacts.filter(function(c){
+    // Show contacts whose roleKey doesn't match any node title exactly (truly "added" contacts)
+    // OR contacts that do match but we show them as additional entries
+    // Logic: show source=manual/ai entries that aren't already shown in the node list above
+    var matchedAsNode = org.nodes.some(function(n){
+      return orgRoleKey(n.title || '') === c.roleKey && (n.name.toLowerCase().indexOf('escalate') === 0 || n.name.toLowerCase().indexOf('verify') !== -1);
+    });
+    // If it matched and filled a node slot, don't show in the added section (it shows inline above)
+    if (matchedAsNode) return false;
+    return (c.source === 'manual' || c.source === 'ai') && c.name && c.name.length >= 3;
+  });
+  var badNames = ['search linkedin','linkedin opened','failed','error','searching','⏳','✗','⚙','set api'];
+  customContacts = customContacts.filter(function(c){
+    var nl = c.name.toLowerCase();
+    return !badNames.some(function(p){ return nl.indexOf(p) !== -1; });
+  });
   if (customContacts.length) {
     h += '<div style="margin-top:.5rem;border-top:1px solid rgba(200,16,46,.15);padding-top:.5rem;">';
     h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem;">' +
       '<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#C8102E;">&#9998; Added Contacts</span>' +
-      '<button onclick="event.stopPropagation();var k=\'org_custom_contacts_\'+crmKey(\''+coEscAI+'\');try{localStorage.removeItem(k);}catch(e){}var c=this;while(c&&!c.getAttribute(\'data-orgid\'))c=c.parentNode;if(c&&typeof toggleOrg===\'function\'){var o=c.getAttribute(\'data-orgid\');toggleOrg(o);toggleOrg(o);}" style="font-size:.6rem;color:#3a4a60;background:none;border:none;cursor:pointer;font-family:Barlow Condensed,sans-serif;letter-spacing:.08em;text-transform:uppercase;">clear all</button>' +
+      '<button onclick="event.stopPropagation();(function(){var slug=crmKey(\''+coEscAI+'\');var all=getOrgContacts(slug);var kept=all.filter(function(c){return c.source!==\'manual\'&&c.source!==\'ai\';});setOrgContacts(slug,kept);var c=event.target;while(c&&!c.getAttribute(\'data-orgid\'))c=c.parentNode;if(c&&typeof toggleOrg===\'function\'){var o=c.getAttribute(\'data-orgid\');toggleOrg(o);toggleOrg(o);}})();" style="font-size:.6rem;color:#3a4a60;background:none;border:none;cursor:pointer;font-family:Barlow Condensed,sans-serif;letter-spacing:.08em;text-transform:uppercase;">clear all</button>' +
       '</div>';
     customContacts.forEach(function(cc, ci) {
-      // Skip invalid entries from bad AI runs
-      if (!cc.name || cc.name.length < 3) return;
-      var _badNames = ['search linkedin','linkedin opened','failed','error','searching','⏳','✗','⚙','set api'];
-      if (_badNames.some(function(p){ return cc.name.toLowerCase().indexOf(p) !== -1; })) return;
       var coEscCC = co.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      // Find the true index in allContacts for deletion
+      var globalIdx = customContacts.indexOf(cc);
       h += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem;margin-left:1.2rem;flex-wrap:wrap;">';
-      h += '<div style="width:6px;height:6px;background:#C8102E;flex-shrink:0;border-radius:1px;"></div>';
+      h += '<div style="width:6px;height:6px;background:' + (cc.source === 'ai' ? '#f59e0b' : '#C8102E') + ';flex-shrink:0;border-radius:1px;"></div>';
       h += '<span style="color:#fff;font-size:.82rem;font-weight:600;">' + cc.name + '</span>';
       if (cc.title) h += '<span style="color:#8A8A8A;font-size:.78rem;">&mdash; ' + cc.title + '</span>';
       h += '<span style="color:#f59e0b;font-size:.85rem;">&#9733;</span>';
+      if (cc.source === 'ai') h += '<span style="font-family:Barlow Condensed,sans-serif;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.3);padding:.05rem .3rem;">AI</span>';
       h += emailBtn(cc.name, cc.title || '');
       h += liBtn(cc.name, cc.title || '');
-      h += '<button onclick="event.stopPropagation();orgDeleteContact(\'' + coEscCC + '\',' + ci + ')" style="background:none;border:none;color:#444;cursor:pointer;font-size:.7rem;padding:.05rem .2rem;" title="Remove">&#10005;</button>';
+      h += '<button onclick="event.stopPropagation();orgDeleteContact(\'' + coEscCC + '\',' + globalIdx + ')" style="background:none;border:none;color:#444;cursor:pointer;font-size:.7rem;padding:.05rem .2rem;" title="Remove">&#10005;</button>';
       h += '</div>';
     });
     h += '</div>';
@@ -8427,11 +8457,12 @@ window.orgAddContact = function(coKey, nameId, titleId) {
   var title = titleEl ? titleEl.value.trim() : '';
   if (!name) { if (nameEl) nameEl.focus(); return; }
   var slug = crmKey(coKey);
-  var storKey = 'org_custom_contacts_' + slug;
-  var contacts = [];
-  try { contacts = JSON.parse(localStorage.getItem(storKey) || '[]'); } catch(e) {}
-  contacts.push({ name: name, title: title || 'Contact', owns: '', note: 'Manually added contact.' });
-  try { localStorage.setItem(storKey, JSON.stringify(contacts)); } catch(e) {}
+  var contacts = getOrgContacts(slug);
+  // Avoid duplicates by name
+  if (!contacts.some(function(c){ return c.name === name; })) {
+    contacts.push({ name: name, title: title || 'Contact', roleKey: orgRoleKey(title || name), source: 'manual', verified: true, note: 'Manually added.' });
+    setOrgContacts(slug, contacts);
+  }
   if (nameEl)  nameEl.value  = '';
   if (titleEl) titleEl.value = '';
   // Re-render
@@ -8443,11 +8474,14 @@ window.orgAddContact = function(coKey, nameId, titleId) {
 };
 window.orgDeleteContact = function(coKey, idx) {
   var slug = crmKey(coKey);
-  var storKey = 'org_custom_contacts_' + slug;
-  var contacts = [];
-  try { contacts = JSON.parse(localStorage.getItem(storKey) || '[]'); } catch(e) {}
-  contacts.splice(idx, 1);
-  try { localStorage.setItem(storKey, JSON.stringify(contacts)); } catch(e) {}
+  var contacts = getOrgContacts(slug);
+  // idx refers to the index within the "added contacts" display list (source: manual or ai, not role-matched)
+  var addedOnly = contacts.filter(function(c){ return c.source === 'manual' || c.source === 'ai'; });
+  var toRemove = addedOnly[idx];
+  if (toRemove) {
+    contacts = contacts.filter(function(c){ return c !== toRemove; });
+    setOrgContacts(slug, contacts);
+  }
   // Re-render
   var btn = event && event.target;
   var container = btn;
@@ -8460,27 +8494,44 @@ window.orgDeleteContact = function(coKey, idx) {
 window.orgNameSave = function(coKey, ni, inputId) {
   var el = document.getElementById(inputId);
   var name = el ? el.value.trim() : '';
-  var savedKey = 'org_name_' + crmKey(coKey) + '_' + ni;
-  try { localStorage.setItem(savedKey, name); } catch(e){}
-  // Re-render the expanded org section
-  var rowId = 'onr_' + crmKey(coKey) + '_' + ni;
+  var slug = crmKey(coKey);
+  // Get the role title from MKT_ORGS node index
+  var org = (typeof MKT_ORGS !== 'undefined') && MKT_ORGS[coKey];
+  var node = org && org.nodes && org.nodes[ni];
+  var rk = orgRoleKey(node ? node.title : '');
+  var contacts = getOrgContacts(slug);
+  // Remove any existing entry for this roleKey, then add updated one
+  contacts = contacts.filter(function(c){ return c.roleKey !== rk; });
+  if (name) {
+    contacts.push({ name: name, title: node ? node.title : '', roleKey: rk, source: 'manual', verified: true, note: '' });
+  }
+  setOrgContacts(slug, contacts);
+  // Also keep old key for safety during transition
+  try { localStorage.setItem('org_name_' + slug + '_' + ni, name); } catch(e){}
+  // Re-render
+  var rowId = 'onr_' + slug + '_' + ni;
   var row = document.getElementById(rowId);
-  // Walk up to find the org chart container and re-render
   if (row) {
     var container = row;
     while (container && !container.getAttribute('data-orgid')) container = container.parentNode;
     if (container && typeof toggleOrg === 'function') {
       var orgId = container.getAttribute('data-orgid');
-      toggleOrg(orgId); toggleOrg(orgId); // collapse + re-expand
+      toggleOrg(orgId); toggleOrg(orgId);
     } else {
-      // Fallback: re-render sector table
       if (typeof renderMktTable === 'function' && typeof mktCurrentTab !== 'undefined') renderMktTable(mktCurrentTab);
     }
   }
 };
 window.orgNameClear = function(coKey, ni) {
-  var savedKey = 'org_name_' + crmKey(coKey) + '_' + ni;
-  try { localStorage.removeItem(savedKey); } catch(e){}
+  var slug = crmKey(coKey);
+  var org = (typeof MKT_ORGS !== 'undefined') && MKT_ORGS[coKey];
+  var node = org && org.nodes && org.nodes[ni];
+  var rk = orgRoleKey(node ? node.title : '');
+  var contacts = getOrgContacts(slug);
+  contacts = contacts.filter(function(c){ return c.roleKey !== rk; });
+  setOrgContacts(slug, contacts);
+  // Also clear old key
+  try { localStorage.removeItem('org_name_' + slug + '_' + ni); } catch(e){}
   if (typeof renderMktTable === 'function' && typeof mktCurrentTab !== 'undefined') renderMktTable(mktCurrentTab);
 };
 
@@ -8507,6 +8558,111 @@ var STAGE_SEQUENCE = {
 };
 
 function crmKey(coKey) { return 'crm_' + coKey.replace(/[^a-zA-Z0-9]/g,'_'); }
+
+// ── Unified Contact Storage Layer ─────────────────────────────────────────────
+// Converts a node title to a stable slug used as roleKey
+// e.g. "Director, Real Estate & Facilities" → "director_real_estate_facilities"
+function orgRoleKey(title) {
+  return (title || '').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+}
+
+// Read all contacts for a company from the unified key.
+// Falls back to old keys so nothing breaks before migration runs.
+function getOrgContacts(slug) {
+  try {
+    var raw = localStorage.getItem('contacts_' + slug);
+    if (raw) return JSON.parse(raw) || [];
+  } catch(e) {}
+  // Fallback: merge old org_name_* and org_custom_contacts_* into a live array
+  var merged = [];
+  // Old custom contacts
+  try {
+    var cc = JSON.parse(localStorage.getItem('org_custom_contacts_' + slug) || '[]');
+    cc.forEach(function(c) {
+      if (c && c.name) merged.push({ name: c.name, title: c.title || '', roleKey: orgRoleKey(c.title || ''), source: c.note && c.note.indexOf('AI') !== -1 ? 'ai' : 'manual', verified: false, note: c.note || '' });
+    });
+  } catch(e) {}
+  // Old org_name_* node overrides — need MKT_ORGS to know role titles
+  try {
+    var coKey = null;
+    if (typeof MKT_ORGS !== 'undefined') {
+      for (var k in MKT_ORGS) { if (crmKey(k) === slug) { coKey = k; break; } }
+    }
+    if (coKey && MKT_ORGS[coKey] && MKT_ORGS[coKey].nodes) {
+      MKT_ORGS[coKey].nodes.forEach(function(n, ni) {
+        var val = localStorage.getItem('org_name_' + slug + '_' + ni);
+        if (val && val.trim()) {
+          var rk = orgRoleKey(n.title || '');
+          if (!merged.some(function(m){ return m.roleKey === rk; })) {
+            merged.push({ name: val.trim(), title: n.title || '', roleKey: rk, source: 'manual', verified: true, note: '' });
+          }
+        }
+      });
+    }
+  } catch(e) {}
+  return merged;
+}
+
+// Write contacts array for a company to the unified key
+function setOrgContacts(slug, arr) {
+  try { localStorage.setItem('contacts_' + slug, JSON.stringify(arr)); } catch(e) {}
+}
+
+// One-time migration: copies all old keys into the new unified format, then sets a flag
+function migrateOrgContacts() {
+  try {
+    if (localStorage.getItem('contacts_migrated_v1')) return;
+    if (typeof MKT_ORGS === 'undefined') return;
+    var migratedCount = 0;
+    for (var coKey in MKT_ORGS) {
+      var slug = crmKey(coKey);
+      // Skip if already migrated (new key exists)
+      if (localStorage.getItem('contacts_' + slug)) continue;
+      var merged = [];
+      // Old custom contacts
+      try {
+        var cc = JSON.parse(localStorage.getItem('org_custom_contacts_' + slug) || '[]');
+        cc.forEach(function(c) {
+          if (c && c.name && c.name.length >= 3) {
+            var badNames = ['search linkedin','linkedin opened','failed','error','searching','set api'];
+            var nl = c.name.toLowerCase();
+            if (!badNames.some(function(p){ return nl.indexOf(p) !== -1; })) {
+              merged.push({ name: c.name, title: c.title || '', roleKey: orgRoleKey(c.title || ''), source: c.note && c.note.indexOf('AI') !== -1 ? 'ai' : 'manual', verified: false, note: c.note || '' });
+            }
+          }
+        });
+      } catch(e) {}
+      // Old org_name_* node overrides
+      var org = MKT_ORGS[coKey];
+      if (org && org.nodes) {
+        org.nodes.forEach(function(n, ni) {
+          try {
+            var val = localStorage.getItem('org_name_' + slug + '_' + ni);
+            if (val && val.trim()) {
+              var rk = orgRoleKey(n.title || '');
+              if (!merged.some(function(m){ return m.roleKey === rk; })) {
+                merged.push({ name: val.trim(), title: n.title || '', roleKey: rk, source: 'manual', verified: true, note: 'Migrated from saved name.' });
+              }
+            }
+          } catch(e) {}
+        });
+      }
+      if (merged.length > 0) {
+        setOrgContacts(slug, merged);
+        migratedCount++;
+      }
+    }
+    localStorage.setItem('contacts_migrated_v1', '1');
+    if (migratedCount > 0) console.log('[Foxmark] Migrated contacts for ' + migratedCount + ' companies to unified storage.');
+  } catch(e) { console.warn('[Foxmark] Migration error:', e); }
+}
+
+// Run migration after MKT_ORGS is defined (called at bottom of script)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', migrateOrgContacts);
+} else {
+  setTimeout(migrateOrgContacts, 0);
+}
 
 // Open email composer with stage-aware template, falling back to sector/company auto-select
 window.crmOpenEmailWithStage = function(coKey, stageTpl) {
@@ -11499,7 +11655,9 @@ window.emailComposerSend = function() {
   </div>
 </div>
 
-<script>
+</body>
+</html>
+
 function saveProxyUrl() {
   var inp = document.getElementById('proxy-url-input');
   var stat = document.getElementById('proxy-status');
@@ -11532,7 +11690,4 @@ function copyWorkerCode() {
   var inp = document.getElementById('proxy-url-input');
   if (saved && inp) inp.value = saved;
 })();
-</script>
 
-</body>
-</html>
