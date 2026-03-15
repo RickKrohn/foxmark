@@ -178,7 +178,7 @@ async function callClaudeForContacts(coKey, roles) {
     '\nReturn ONLY JSON, no markdown:\n{"contacts":[{"role":"1","name":"Full Name or null","title":"actual title","confidence":"high|medium|low"}]}\n' +
     'Only include names you are confident about. Set name to null if unknown.';
 
-  var payload = { model: 'claude-sonnet-4-6', max_tokens: 800, messages: [{ role: 'user', content: prompt }] };
+  var payload = { model: 'claude-haiku-4-5-20251001', max_tokens: 1024, messages: [{ role: 'user', content: prompt }] };
 
   // Try the Cloudflare worker proxy first (works from any origin)
   // Fall back to direct API call (works from localhost)
@@ -206,7 +206,7 @@ async function callClaudeForContacts(coKey, roles) {
 
   var data = await resp.json();
   var text = (data.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('');
-  if (!text) throw new Error('Empty response');
+  if (!text) { var stopReason = data.stop_reason || 'unknown'; throw new Error('Empty text in response (stop_reason: ' + stopReason + ', model: ' + (data.model||'?') + ')'); }
   var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
   if (!m) throw new Error('No JSON in response');
   return JSON.parse(m[0]);
