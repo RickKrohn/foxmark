@@ -395,12 +395,11 @@ window.inlineResearch = async function(coKey, btn) {
     var isCorsFile = errMsg === 'CORS_FILE';
     if (isCorsFile) {
       // Show the HTTP server instructions inline
-      btn.textContent = '⚙ Deploy to Netlify to enable — see API KEY';
-      btn.style.background = 'rgba(245,158,11,.15)';
-      btn.style.color = '#f59e0b';
+      btn.textContent = '✗ Network error — check connection';
+      btn.style.background = 'rgba(200,16,46,.2)';
+      btn.style.color = '#C8102E';
       btn.style.pointerEvents = '';
-      btn.title = 'Click ⚙ API KEY in the nav for deployment instructions (takes 2 minutes)';
-      btn.onclick = function(e){ e.stopPropagation(); openApiKeySettings(); };
+      btn.title = 'API connection failed. Must be on HTTPS (rickkrohn.github.io), not file://';
     } else {
       btn.textContent = '✗ ' + errMsg.substring(0, 40);
       btn.style.background = 'rgba(200,16,46,.2)';
