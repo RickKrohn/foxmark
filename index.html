@@ -343,8 +343,8 @@ window.inlineResearch = async function(coKey, btn) {
     var slug = crmKey(coKey);
     var added = 0;
 
-    // Match each AI result back to its node index and save into the org node slot
-    // so names appear inline in the org chart — not in a separate section
+    // Map each result back to its escalate node by role index
+    // and save directly into the org node slot so names appear inline
     var escNodes = (orgData.nodes || []).map(function(n, i) {
       return { node: n, index: i };
     }).filter(function(x) {
@@ -356,11 +356,8 @@ window.inlineResearch = async function(coKey, btn) {
       var roleIndex = parseInt(c.role) - 1;
       var escEntry = escNodes[roleIndex];
       if (!escEntry) return;
-      var nodeIndex = escEntry.index;
-      var savedKey = 'org_name_' + slug + '_' + nodeIndex;
-      // Don't overwrite if already saved
-      var existing = '';
-      try { existing = localStorage.getItem(savedKey) || ''; } catch(e) {}
+      var savedKey = 'org_name_' + slug + '_' + escEntry.index;
+      var existing = ''; try { existing = localStorage.getItem(savedKey) || ''; } catch(e) {}
       if (existing) return;
       try { localStorage.setItem(savedKey, c.name); } catch(e) {}
       added++;
@@ -8284,7 +8281,7 @@ function buildOrgHtml(org) {
     var emailTarget  = isResolved ? savedName : (isPlaceholder ? '' : rawName);
     h += '<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">';
     h += nameHtml;
-    if (isResolved) h += '<span style="font-size:.58rem;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(10,102,194,.25);color:#5aabff;border:1px solid rgba(10,102,194,.4);padding:.05rem .28rem;">&#128279; LI</span>';
+    // LI button appears after title — no badge needed next to name
     h += star;
     h += ' <span style="color:#666;font-size:.88rem;">&mdash; ' + n.title + '</span>';
     if (n.target && emailTarget) h += emailBtn(emailTarget, n.title);
