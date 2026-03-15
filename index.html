@@ -185,30 +185,27 @@ async function callClaudeForContacts(coKey, roles) {
   var proxyUrl = localStorage.getItem('foxmark_proxy_url') || window._FOXMARK_PROXY_URL || '';
   var apiUrl = proxyUrl || 'https://api.anthropic.com/v1/messages';
 
-  var headers = { 'Content-Type': 'application/json', 'x-api-key': key };
-  if (!proxyUrl) {
-    headers['anthropic-version'] = '2023-06-01';
-    headers['anthropic-dangerous-direct-browser-access'] = 'true';
-  }
+  var headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': key,
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-access': 'true'
+  };
 
   var resp;
   try {
     resp = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(payload) });
   } catch(fetchErr) {
-    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed') + '. Set up proxy — see ⚙ API KEY');
+    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed'));
   }
 
-  if (!resp.ok) {
-    var errJson; try { errJson = await resp.json(); } catch(e2) {}
-    var msg = errJson && errJson.error ? errJson.error.message : ('HTTP ' + resp.status);
-    throw new Error(msg);
-  }
+  var data;
+  try { data = await resp.json(); } catch(e2) { throw new Error('HTTP ' + resp.status + ' — bad response'); }
+  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
 
-  var data = await resp.json();
-  // Log full response for debugging
-  var debugInfo = 'stop:' + (data.stop_reason||'?') + ' model:' + (data.model||'?') + ' blocks:' + (data.content||[]).length + ' err:' + (data.error ? data.error.message : 'none');
   var text = (data.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('');
-  if (!text) throw new Error(debugInfo);
+  if (!text) throw new Error('Empty response from API');
   var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
   if (!m) throw new Error('No JSON: ' + text.substring(0,80));
   return JSON.parse(m[0]);
@@ -432,8 +429,8 @@ window.inlineResearch = async function(coKey, btn) {
 // To deploy: set your Anthropic API key here, then host on Netlify/GitHub Pages
 // Get a key at: https://console.anthropic.com/settings/keys
 // The key is stored only in this file and each user's browser — never on a server.
-window._FOXMARK_PROXY_URL = 'https://green-block-cf0a.rickkrohn.workers.dev';
-window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
+window._FOXMARK_PROXY_URL = ''; // proxy disabled — direct API works from GitHub Pages HTTPS
+window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
 // ──────────────────────────────────────────────────────────────────────────────
 var FOXMARK_API_KEY_STORE = 'foxmark_api_key';
 
@@ -11497,9 +11494,7 @@ window.emailComposerSend = function() {
   </div>
 </div>
 
-</body>
-</html>
-
+<script>
 function saveProxyUrl() {
   var inp = document.getElementById('proxy-url-input');
   var stat = document.getElementById('proxy-status');
@@ -11532,4 +11527,7 @@ function copyWorkerCode() {
   var inp = document.getElementById('proxy-url-input');
   if (saved && inp) inp.value = saved;
 })();
+</script>
 
+</body>
+</html>
