@@ -173,28 +173,46 @@ async function callClaudeForContacts(coKey, roles) {
   var key = getApiKey();
   if (!key) throw new Error('No API key — click ⚙ API KEY in nav');
 
-  var prompt = 'Find who holds these roles at ' + coKey + ' in Chicago. Search the web and LinkedIn for each.\n' +
-    roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
-    '\nReturn ONLY JSON, no other text:\n{"contacts":[{"role":"1","name":"First Last or null","title":"actual title","confidence":"high|medium|low"}]}';
+  var allContacts = [];
+  var apiUrl = 'https://api.anthropic.com/v1/messages';
+  var headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': key,
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-access': 'true'
+  };
 
-  var resp;
-  try {
-    resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true' },
-      body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:800, tools:[{type:'web_search_20250305',name:'web_search'}], messages:[{role:'user',content:prompt}] })
-    });
-  } catch(e) { throw new Error('Network error: ' + e.message); }
+  for (var i = 0; i < roles.length; i++) {
+    // Pause between calls to stay within token rate limits
+    if (i > 0) await new Promise(function(r){ setTimeout(r, 4000); });
 
-  var data;
-  try { data = await resp.json(); } catch(e) { throw new Error('Bad API response'); }
-  if (data.error) throw new Error(data.error.message || 'API error');
+    var prompt = 'Search LinkedIn and the web to find the real name of the person who holds this role at ' + coKey + ': ' + roles[i] + '. ' +
+      'Return ONLY JSON, no other text: {"contacts":[{"role":"' + (i+1) + '","name":"First Last or null","title":"actual title","confidence":"high|medium|low"}]}';
 
-  var text = (data.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('');
-  if (!text) throw new Error('No response from API');
-  var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
-  if (!m) throw new Error('Could not parse response');
-  return JSON.parse(m[0]);
+    try {
+      var resp = await fetch(apiUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:300, tools:[{type:'web_search_20250305',name:'web_search'}], messages:[{role:'user',content:prompt}] })
+      });
+      var data = await resp.json();
+      if (data.error) {
+        // Rate limited — skip this role rather than failing entirely
+        if (data.error.type === 'rate_limit_error') { allContacts.push({role:String(i+1),name:null,title:roles[i],confidence:'low'}); continue; }
+        throw new Error(data.error.message);
+      }
+      var text = (data.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('');
+      var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
+      if (m) {
+        var parsed = JSON.parse(m[0]);
+        (parsed.contacts||[]).forEach(function(c){ allContacts.push(c); });
+      }
+    } catch(e) {
+      allContacts.push({role:String(i+1),name:null,title:roles[i],confidence:'low'});
+    }
+  }
+
+  return { contacts: allContacts };
 }
 
 
@@ -343,8 +361,6 @@ window.inlineResearch = async function(coKey, btn) {
     var slug = crmKey(coKey);
     var added = 0;
 
-    // Map each result back to its escalate node by role index
-    // and save directly into the org node slot so names appear inline
     var escNodes = (orgData.nodes || []).map(function(n, i) {
       return { node: n, index: i };
     }).filter(function(x) {
@@ -8281,7 +8297,7 @@ function buildOrgHtml(org) {
     var emailTarget  = isResolved ? savedName : (isPlaceholder ? '' : rawName);
     h += '<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">';
     h += nameHtml;
-    // LI button appears after title — no badge needed next to name
+
     h += star;
     h += ' <span style="color:#666;font-size:.88rem;">&mdash; ' + n.title + '</span>';
     if (n.target && emailTarget) h += emailBtn(emailTarget, n.title);
