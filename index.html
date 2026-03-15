@@ -173,52 +173,63 @@ async function callClaudeForContacts(coKey, roles) {
   var key = getApiKey();
   if (!key) throw new Error('No API key — click ⚙ API KEY in nav');
 
-  var prompt = 'Search LinkedIn and the web to find the real names of executives at ' + coKey + ' who hold these roles:\n' +
-    roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
-    '\n\nFor each role, search the web to find the actual person. Then return ONLY a JSON object, no markdown:\n' +
-    '{"contacts":[{"role":"1","name":"First Last","title":"their actual title","confidence":"high|medium|low","note":"source or context"}]}\n' +
-    'Always attempt a real name based on your search. Use confidence=low if uncertain. Use null only if the role does not exist at this company.';
+  var apiUrl = 'https://api.anthropic.com/v1/messages';
+  var headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': key,
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-access': 'true'
+  };
 
-  var payload = {
+  // Step 1: Web search pass — find real names using live search
+  var searchPrompt = 'You are a B2B sales researcher. Search the web and LinkedIn to find the real current names of executives at ' + coKey + ' who hold these roles:\n' +
+    roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
+    '\n\nThis is a real company. Search thoroughly. For each role, find the actual person currently in that seat. ' +
+    'Check LinkedIn, the company website, press releases, and news articles. ' +
+    'After searching, summarize what you found: for each role number, state the person\'s name, actual title, and where you found them.';
+
+  var searchPayload = {
     model: 'claude-haiku-4-5-20251001',
     max_tokens: 2048,
     tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-    messages: [{ role: 'user', content: prompt }]
+    messages: [{ role: 'user', content: searchPrompt }]
   };
 
-  // Try the Cloudflare worker proxy first (works from any origin)
-  // Fall back to direct API call (works from localhost)
-  var proxyUrl = localStorage.getItem('foxmark_proxy_url') || window._FOXMARK_PROXY_URL || '';
-  var apiUrl = proxyUrl || 'https://api.anthropic.com/v1/messages';
+  var resp1;
+  try { resp1 = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(searchPayload) }); }
+  catch(e) { throw new Error('Network error: ' + e.message); }
 
-  var headers = { 'Content-Type': 'application/json', 'x-api-key': key };
-  if (!proxyUrl) {
-    headers['anthropic-version'] = '2023-06-01';
-    headers['anthropic-dangerous-direct-browser-access'] = 'true';
-  }
+  var d1;
+  try { d1 = await resp1.json(); } catch(e) { throw new Error('Bad response from API'); }
+  if (d1.error) throw new Error(d1.error.message || 'API error');
 
-  var resp;
-  try {
-    resp = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(payload) });
-  } catch(fetchErr) {
-    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed') + '. Set up proxy — see ⚙ API KEY');
-  }
+  var searchSummary = (d1.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('\n');
 
-  if (!resp.ok) {
-    var errJson; try { errJson = await resp.json(); } catch(e2) {}
-    var msg = errJson && errJson.error ? errJson.error.message : ('HTTP ' + resp.status);
-    throw new Error(msg);
-  }
+  // Step 2: JSON extraction pass — convert the research summary into clean JSON
+  var jsonPrompt = 'Based on this research summary, extract the contacts into JSON.\n\nResearch:\n' + searchSummary +
+    '\n\nRoles requested:\n' + roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
+    '\n\nReturn ONLY a JSON object, absolutely no other text:\n' +
+    '{"contacts":[{"role":"1","name":"First Last","title":"their actual title","confidence":"high|medium|low","source":"where found"}]}\n' +
+    'Use the role number as the "role" value. If a name was found, use it even if confidence is low. Only use null for name if truly not found.';
 
-  var data = await resp.json();
-  // Log full response for debugging
-  var debugInfo = 'stop:' + (data.stop_reason||'?') + ' model:' + (data.model||'?') + ' blocks:' + (data.content||[]).length + ' err:' + (data.error ? data.error.message : 'none');
-  // With web_search the final answer may be in last text block after tool use blocks
-  var textBlocks = (data.content || []).filter(function(b){ return b.type==='text'; });
-  var text = textBlocks.map(function(b){ return b.text; }).join('');
+  var jsonPayload = {
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 1024,
+    messages: [{ role: 'user', content: jsonPrompt }]
+  };
+
+  var resp2;
+  try { resp2 = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(jsonPayload) }); }
+  catch(e) { throw new Error('Network error: ' + e.message); }
+
+  var d2;
+  try { d2 = await resp2.json(); } catch(e) { throw new Error('Bad response from API'); }
+  if (d2.error) throw new Error(d2.error.message || 'API error');
+
+  var text = (d2.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('');
   if (!text) throw new Error('Empty response from API');
   var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
-  if (!m) throw new Error('No JSON: ' + text.substring(0,80));
+  if (!m) throw new Error('Could not parse results');
   return JSON.parse(m[0]);
 }
 
@@ -440,8 +451,8 @@ window.inlineResearch = async function(coKey, btn) {
 // To deploy: set your Anthropic API key here, then host on Netlify/GitHub Pages
 // Get a key at: https://console.anthropic.com/settings/keys
 // The key is stored only in this file and each user's browser — never on a server.
-window._FOXMARK_PROXY_URL = 'https://green-block-cf0a.rickkrohn.workers.dev';
-window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
+window._FOXMARK_PROXY_URL = ''; // direct API — works from GitHub Pages HTTPS
+window._FOXMARK_DEFAULT_KEY = ''; // key stored in localStorage only — enter via ⚙ API KEY button
 // ──────────────────────────────────────────────────────────────────────────────
 var FOXMARK_API_KEY_STORE = 'foxmark_api_key';
 
