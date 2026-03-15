@@ -173,38 +173,49 @@ async function callClaudeForContacts(coKey, roles) {
   var key = getApiKey();
   if (!key) throw new Error('No API key — click ⚙ API KEY in nav');
 
-  var prompt = 'B2B sales researcher. Find real names of executives at: ' + coKey + ' (Chicago, IL).\n' +
-    'Roles:\n' + roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
-    '\nReturn ONLY JSON, no markdown:\n{"contacts":[{"role":"1","name":"Full Name or null","title":"actual title","confidence":"high|medium|low"}]}\n' +
-    'Only include names you are confident about. Set name to null if unknown.';
+  var prompt = 'Search LinkedIn and the web to find the real names of executives at ' + coKey + ' who hold these roles:\n' +
+    roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
+    '\n\nFor each role, search the web to find the actual person. Then return ONLY a JSON object, no markdown:\n' +
+    '{"contacts":[{"role":"1","name":"First Last","title":"their actual title","confidence":"high|medium|low","note":"source or context"}]}\n' +
+    'Always attempt a real name based on your search. Use confidence=low if uncertain. Use null only if the role does not exist at this company.';
 
-  var payload = { model: 'claude-haiku-4-5-20251001', max_tokens: 1024, messages: [{ role: 'user', content: prompt }] };
+  var payload = {
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: 2048,
+    tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+    messages: [{ role: 'user', content: prompt }]
+  };
 
   // Try the Cloudflare worker proxy first (works from any origin)
   // Fall back to direct API call (works from localhost)
   var proxyUrl = localStorage.getItem('foxmark_proxy_url') || window._FOXMARK_PROXY_URL || '';
   var apiUrl = proxyUrl || 'https://api.anthropic.com/v1/messages';
 
-  var headers = {
-    'Content-Type': 'application/json',
-    'x-api-key': key,
-    'anthropic-version': '2023-06-01',
-    'anthropic-dangerous-direct-browser-access': 'true'
-  };
+  var headers = { 'Content-Type': 'application/json', 'x-api-key': key };
+  if (!proxyUrl) {
+    headers['anthropic-version'] = '2023-06-01';
+    headers['anthropic-dangerous-direct-browser-access'] = 'true';
+  }
 
   var resp;
   try {
     resp = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(payload) });
   } catch(fetchErr) {
-    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed'));
+    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed') + '. Set up proxy — see ⚙ API KEY');
   }
 
-  var data;
-  try { data = await resp.json(); } catch(e2) { throw new Error('HTTP ' + resp.status + ' — bad response'); }
-  if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
-  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  if (!resp.ok) {
+    var errJson; try { errJson = await resp.json(); } catch(e2) {}
+    var msg = errJson && errJson.error ? errJson.error.message : ('HTTP ' + resp.status);
+    throw new Error(msg);
+  }
 
-  var text = (data.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('');
+  var data = await resp.json();
+  // Log full response for debugging
+  var debugInfo = 'stop:' + (data.stop_reason||'?') + ' model:' + (data.model||'?') + ' blocks:' + (data.content||[]).length + ' err:' + (data.error ? data.error.message : 'none');
+  // With web_search the final answer may be in last text block after tool use blocks
+  var textBlocks = (data.content || []).filter(function(b){ return b.type==='text'; });
+  var text = textBlocks.map(function(b){ return b.text; }).join('');
   if (!text) throw new Error('Empty response from API');
   var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
   if (!m) throw new Error('No JSON: ' + text.substring(0,80));
@@ -256,7 +267,7 @@ function renderResearchResults(result, company, role) {
 
   var html = '';
 
-  if (!result.found || !result.contacts || !result.contacts.length) {
+  if (!result.contacts || !result.contacts.length || result.contacts.every(function(c){ return !c.name || c.name === 'null'; })) {
     html = `<div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);padding:.85rem 1rem;margin-bottom:.75rem;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#f59e0b;margin-bottom:.4rem;">No confirmed name found</div>
       <div style="font-size:.82rem;color:#8a9070;line-height:1.6;">${result.research_note || 'This person\'s name is not publicly available. Use the LinkedIn search button below.'}</div>
@@ -361,7 +372,7 @@ window.inlineResearch = async function(coKey, btn) {
 
     var added = 0;
     contacts.forEach(function(c) {
-      if (!c.name || c.name === 'null' || c.confidence === 'low') return;
+      if (!c.name || c.name === 'null' || c.name === null) return;
       if (saved.some(function(s) { return s.name === c.name; })) return;
       var roleIndex = parseInt(c.role) - 1;
       saved.push({
@@ -429,8 +440,8 @@ window.inlineResearch = async function(coKey, btn) {
 // To deploy: set your Anthropic API key here, then host on Netlify/GitHub Pages
 // Get a key at: https://console.anthropic.com/settings/keys
 // The key is stored only in this file and each user's browser — never on a server.
-window._FOXMARK_PROXY_URL = ''; // proxy disabled — direct API works from GitHub Pages HTTPS
-window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
+window._FOXMARK_PROXY_URL = 'https://green-block-cf0a.rickkrohn.workers.dev';
+window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
 // ──────────────────────────────────────────────────────────────────────────────
 var FOXMARK_API_KEY_STORE = 'foxmark_api_key';
 
