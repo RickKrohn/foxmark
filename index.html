@@ -341,26 +341,32 @@ window.inlineResearch = async function(coKey, btn) {
     var contacts = result.contacts || [];
 
     var slug = crmKey(coKey);
-    var storKey = 'org_custom_contacts_' + slug;
-    var saved = [];
-    try { saved = JSON.parse(localStorage.getItem(storKey) || '[]'); } catch(e) {}
-
     var added = 0;
+
+    // Match each AI result back to its node index and save into the org node slot
+    // so names appear inline in the org chart — not in a separate section
+    var escNodes = (orgData.nodes || []).map(function(n, i) {
+      return { node: n, index: i };
+    }).filter(function(x) {
+      return x.node.target && x.node.name && x.node.name.toLowerCase().indexOf('escalate') === 0;
+    });
+
     contacts.forEach(function(c) {
       if (!c.name || c.name === 'null' || c.name === null) return;
-      if (saved.some(function(s) { return s.name === c.name; })) return;
       var roleIndex = parseInt(c.role) - 1;
-      saved.push({
-        name: c.name,
-        title: c.title || missingRoles[roleIndex] || 'Executive',
-        owns: '',
-        note: 'AI Research (' + (c.confidence || '?') + '). Verify on LinkedIn before outreach.'
-      });
+      var escEntry = escNodes[roleIndex];
+      if (!escEntry) return;
+      var nodeIndex = escEntry.index;
+      var savedKey = 'org_name_' + slug + '_' + nodeIndex;
+      // Don't overwrite if already saved
+      var existing = '';
+      try { existing = localStorage.getItem(savedKey) || ''; } catch(e) {}
+      if (existing) return;
+      try { localStorage.setItem(savedKey, c.name); } catch(e) {}
       added++;
     });
 
     if (added > 0) {
-      try { localStorage.setItem(storKey, JSON.stringify(saved)); } catch(e) {}
       btn.textContent = '✓ ' + added + ' name' + (added > 1 ? 's' : '') + ' found — reloading…';
       btn.style.background = '#22c55e';
       btn.style.color = '#000';
