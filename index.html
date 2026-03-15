@@ -167,51 +167,73 @@ function renderResearchPanel() {
 
 
 
-// ── Shared Claude API helper (knowledge-only, no multi-turn needed) ──────────
+// ── Shared Claude API helper — web search enabled, one role at a time ────────
 
 async function callClaudeForContacts(coKey, roles) {
   var key = getApiKey();
   if (!key) throw new Error('No API key — click ⚙ API KEY in nav');
 
-  var prompt = 'B2B sales researcher. Find real names of executives at: ' + coKey + ' (Chicago, IL).\n' +
-    'Roles:\n' + roles.map(function(r,i){ return (i+1)+'. '+r; }).join('\n') +
-    '\nReturn ONLY JSON, no markdown:\n{"contacts":[{"role":"1","name":"Full Name or null","title":"actual title","confidence":"high|medium|low"}]}\n' +
-    'Only include names you are confident about. Set name to null if unknown.';
+  var apiUrl = 'https://api.anthropic.com/v1/messages';
+  var headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': key,
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-access': 'true'
+  };
 
-  var payload = { model: 'claude-haiku-4-5-20251001', max_tokens: 1024, messages: [{ role: 'user', content: prompt }] };
+  var allContacts = [];
 
-  // Try the Cloudflare worker proxy first (works from any origin)
-  // Fall back to direct API call (works from localhost)
-  var proxyUrl = localStorage.getItem('foxmark_proxy_url') || window._FOXMARK_PROXY_URL || '';
-  var apiUrl = proxyUrl || 'https://api.anthropic.com/v1/messages';
+  for (var i = 0; i < roles.length; i++) {
+    if (i > 0) await new Promise(function(r){ setTimeout(r, 3500); });
 
-  var headers = { 'Content-Type': 'application/json', 'x-api-key': key };
-  if (!proxyUrl) {
-    headers['anthropic-version'] = '2023-06-01';
-    headers['anthropic-dangerous-direct-browser-access'] = 'true';
+    var prompt =
+      'You are a B2B sales researcher. Use web search to find the CURRENT person who holds this role at ' + coKey + '.\n\n' +
+      'Role to find: ' + roles[i] + '\n\n' +
+      'Instructions:\n' +
+      '- Search for the current person in this role RIGHT NOW (2025-2026)\n' +
+      '- If the expected person has left or been replaced, find their successor\n' +
+      '- Return their ACTUAL current title, not the search query title\n' +
+      '- If you find a relevant leadership change (e.g. new COO, restructured role), include it in the note\n' +
+      '- Only return someone you found via search, not from memory\n\n' +
+      'Return ONLY this JSON (no markdown, no explanation):\n' +
+      '{"name":"First Last or null","title":"their actual current title","confidence":"high|medium|low","note":"brief context or leadership change note","replaced":"name of person they replaced if applicable or null"}';
+
+    try {
+      var resp = await fetch(apiUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 400,
+          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      var data = await resp.json();
+      if (data.error) {
+        if (data.error.type === 'rate_limit_error') {
+          allContacts.push({ role: String(i+1), name: null, title: roles[i], confidence: 'low', note: 'Rate limited — try again in a moment.' });
+          continue;
+        }
+        throw new Error(data.error.message);
+      }
+
+      var text = (data.content || []).filter(function(b){ return b.type === 'text'; }).map(function(b){ return b.text; }).join('');
+      var m = text.replace(/```json|```/g, '').trim().match(/\{[\s\S]*?\}/);
+      if (m) {
+        var parsed = JSON.parse(m[0]);
+        parsed.role = String(i + 1);
+        allContacts.push(parsed);
+      } else {
+        allContacts.push({ role: String(i+1), name: null, title: roles[i], confidence: 'low', note: 'No structured result returned.' });
+      }
+    } catch(e) {
+      allContacts.push({ role: String(i+1), name: null, title: roles[i], confidence: 'low', note: e.message || 'Search failed.' });
+    }
   }
 
-  var resp;
-  try {
-    resp = await fetch(apiUrl, { method: 'POST', headers: headers, body: JSON.stringify(payload) });
-  } catch(fetchErr) {
-    throw new Error('Network error: ' + (fetchErr.message || 'fetch failed') + '. Set up proxy — see ⚙ API KEY');
-  }
-
-  if (!resp.ok) {
-    var errJson; try { errJson = await resp.json(); } catch(e2) {}
-    var msg = errJson && errJson.error ? errJson.error.message : ('HTTP ' + resp.status);
-    throw new Error(msg);
-  }
-
-  var data = await resp.json();
-  // Log full response for debugging
-  var debugInfo = 'stop:' + (data.stop_reason||'?') + ' model:' + (data.model||'?') + ' blocks:' + (data.content||[]).length + ' err:' + (data.error ? data.error.message : 'none');
-  var text = (data.content || []).filter(function(b){ return b.type==='text'; }).map(function(b){ return b.text; }).join('');
-  if (!text) throw new Error(debugInfo);
-  var m = text.replace(/```json|```/g,'').trim().match(/\{[\s\S]*\}/);
-  if (!m) throw new Error('No JSON: ' + text.substring(0,80));
-  return JSON.parse(m[0]);
+  return { contacts: allContacts };
 }
 
 
@@ -323,7 +345,6 @@ window.inlineResearch = async function(coKey, btn) {
   var orgData = (typeof MKT_ORGS !== 'undefined') && MKT_ORGS[coKey];
   if (!orgData) return;
 
-  // Check for API key first
   var apiKey = getApiKey();
   if (!apiKey) {
     btn.textContent = '⚙ Set API Key First';
@@ -334,13 +355,25 @@ window.inlineResearch = async function(coKey, btn) {
     return;
   }
 
-  var missingRoles = (orgData.nodes || [])
-    .filter(function(n){ return n.target && n.name && n.name.toLowerCase().indexOf('escalate') === 0; })
-    .map(function(n){ return n.title; });
+  var slug = crmKey(coKey);
+  var existingContacts = getOrgContacts(slug);
 
-  if (!missingRoles.length) { btn.textContent = 'All found ✓'; btn.style.background = '#22c55e'; return; }
+  // Search ALL target nodes that don't already have a confirmed name
+  var rolesToSearch = (orgData.nodes || []).filter(function(n) {
+    if (!n.target) return false;
+    var rk = orgRoleKey(n.title || '');
+    // Skip if we already have a verified name for this role
+    var already = existingContacts.find(function(c){ return c.roleKey === rk && c.name && c.verified; });
+    return !already;
+  }).map(function(n){ return n.title; });
 
-  btn.textContent = '⏳ Searching ' + missingRoles.length + ' roles…';
+  if (!rolesToSearch.length) {
+    btn.textContent = 'All roles confirmed ✓';
+    btn.style.background = '#22c55e';
+    btn.style.color = '#000';
+    return;
+  }
+
   btn.style.pointerEvents = 'none';
   btn.style.background = 'rgba(245,158,11,.3)';
   btn.style.color = '#f59e0b';
@@ -351,79 +384,89 @@ window.inlineResearch = async function(coKey, btn) {
     document.head.appendChild(s);
   }
 
+  // Show live progress in the button area
+  var progressId = 'ai-progress-' + slug;
+  var progressEl = document.getElementById(progressId);
+  if (progressEl) progressEl.style.display = 'block';
+
+  var added = 0;
+  var confirmed = 0;
+  var changed = 0;
+
   try {
-    var result = await callClaudeForContacts(coKey, missingRoles);
-    var contacts = result.contacts || [];
+    for (var i = 0; i < rolesToSearch.length; i++) {
+      btn.textContent = '⏳ ' + (i+1) + '/' + rolesToSearch.length + ' — ' + rolesToSearch[i].substring(0, 32) + '…';
 
-    var slug = crmKey(coKey);
-    var saved = getOrgContacts(slug);
+      var result = await callClaudeForContacts(coKey, [rolesToSearch[i]]);
+      var c = (result.contacts || [])[0];
+      if (!c || !c.name || c.name === 'null' || c.confidence === 'low') continue;
 
-    var added = 0;
-    contacts.forEach(function(c) {
-      if (!c.name || c.name === 'null' || c.confidence === 'low') return;
-      if (saved.some(function(s) { return s.name === c.name; })) return;
-      var roleIndex = parseInt(c.role) - 1;
-      var roleTitle = missingRoles[roleIndex] || c.title || 'Executive';
-      var rk = orgRoleKey(roleTitle);
-      // Replace existing entry for this roleKey if present
-      saved = saved.filter(function(s){ return s.roleKey !== rk; });
+      // Reload contacts fresh each iteration (avoids stale closures)
+      var saved = getOrgContacts(slug);
+      var rk = orgRoleKey(rolesToSearch[i]);
+      var actualRk = orgRoleKey(c.title || rolesToSearch[i]);
+
+      // Check if this name already exists
+      if (saved.some(function(s){ return s.name === c.name; })) continue;
+
+      // Remove any existing unverified entry for this role
+      saved = saved.filter(function(s){
+        return s.roleKey !== rk && s.roleKey !== actualRk;
+      });
+
+      var noteText = c.note || '';
+      if (c.replaced) noteText = (noteText ? noteText + ' ' : '') + 'Replaced: ' + c.replaced + '.';
+      noteText += ' AI Research (' + (c.confidence||'?') + ') — verify before outreach.';
+
       saved.push({
         name: c.name,
-        title: c.title || roleTitle,
-        roleKey: rk,
+        title: c.title || rolesToSearch[i],
+        roleKey: actualRk,
         source: 'ai',
         verified: false,
-        note: 'AI Research (' + (c.confidence || '?') + '). Verify on LinkedIn before outreach.'
+        note: noteText.trim()
       });
-      added++;
-    });
 
-    if (added > 0) {
       setOrgContacts(slug, saved);
-      btn.textContent = '✓ ' + added + ' name' + (added > 1 ? 's' : '') + ' found — reloading…';
+
+      // Track what happened
+      if (c.replaced) { changed++; } else { added++; }
+      if (c.confidence === 'high') confirmed++;
+
+      // Re-render the org chart live after each find
+      (function(btnRef, slugRef) {
+        var el = btnRef.parentElement;
+        for (var d = 0; d < 20 && el; d++) {
+          if (el.getAttribute && el.getAttribute('data-orgid')) {
+            if (typeof toggleOrg === 'function') { toggleOrg(el.getAttribute('data-orgid')); toggleOrg(el.getAttribute('data-orgid')); }
+            break;
+          }
+          el = el.parentElement;
+        }
+      })(btn, slug);
+    }
+
+    var total = added + changed;
+    if (total > 0) {
+      var summary = '✓ ' + total + ' found';
+      if (changed > 0) summary += ' (' + changed + ' leadership change' + (changed > 1 ? 's' : '') + ')';
+      btn.textContent = summary;
       btn.style.background = '#22c55e';
       btn.style.color = '#000';
-      setTimeout(function() {
-        try {
-          // Find the row ID from the btn's closest ancestor with data-orgid
-          var el = btn.parentElement;
-          var rowId = null;
-          for (var depth = 0; depth < 20 && el; depth++) {
-            if (el.id && el.id.length > 0) { rowId = el.id; break; }
-            el = el.parentElement;
-          }
-          if (rowId && typeof toggleOrg === 'function') {
-            toggleOrg(rowId);
-            toggleOrg(rowId);
-          } else {
-            location.reload();
-          }
-        } catch(e) { location.reload(); }
-      }, 800);
+      btn.style.pointerEvents = '';
     } else {
-      btn.textContent = 'No public names found';
+      btn.textContent = 'No new names found';
       btn.style.background = 'rgba(255,255,255,.06)';
       btn.style.color = '#5a7090';
       btn.style.pointerEvents = '';
-      btn.title = 'Claude has no training data for these specific roles. Try the LI buttons to search LinkedIn manually.';
+      btn.title = 'Could not confirm names via web search. Try LinkedIn buttons.';
     }
   } catch(err) {
-    var errMsg = err.message || 'Error';
-    var isCorsFile = errMsg === 'CORS_FILE';
-    if (isCorsFile) {
-      // Show the HTTP server instructions inline
-      btn.textContent = '✗ Network error — check connection';
-      btn.style.background = 'rgba(200,16,46,.2)';
-      btn.style.color = '#C8102E';
-      btn.style.pointerEvents = '';
-      btn.title = 'API connection failed. Must be on HTTPS (rickkrohn.github.io), not file://';
-    } else {
-      btn.textContent = '✗ ' + errMsg.substring(0, 40);
-      btn.style.background = 'rgba(200,16,46,.2)';
-      btn.style.color = '#C8102E';
-      btn.style.pointerEvents = '';
-      btn.title = errMsg + ' — check your key in ⚙ API KEY settings';
-    }
+    btn.textContent = '✗ ' + (err.message || 'Error').substring(0, 40);
+    btn.style.background = 'rgba(200,16,46,.2)';
+    btn.style.color = '#C8102E';
+    btn.style.pointerEvents = '';
+    btn.title = (err.message || '') + ' — check ⚙ API KEY';
   }
 };
 
@@ -8304,9 +8347,16 @@ function buildOrgHtml(org) {
 
     // Name row
     var emailTarget  = isResolved ? savedName : (isPlaceholder ? '' : rawName);
+    var contactNote  = contactMatch ? (contactMatch.note || '') : '';
+    var contactSrc   = contactMatch ? (contactMatch.source || '') : '';
     h += '<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">';
     h += nameHtml;
-    if (isResolved) h += '<span style="font-size:.58rem;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(10,102,194,.25);color:#5aabff;border:1px solid rgba(10,102,194,.4);padding:.05rem .28rem;">&#128279; LI</span>';
+    // Source badge — AI (unverified) vs confirmed (manual/verified)
+    if (isResolved && contactSrc === 'ai') {
+      h += '<span style="font-size:.58rem;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.4);padding:.05rem .28rem;">AI — verify</span>';
+    } else if (isResolved) {
+      h += '<span style="font-size:.58rem;font-family:Barlow Condensed,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(34,197,94,.15);color:#22c55e;border:1px solid rgba(34,197,94,.4);padding:.05rem .28rem;">confirmed</span>';
+    }
     h += star;
     h += ' <span style="color:#666;font-size:.88rem;">&mdash; ' + n.title + '</span>';
     if (n.target && emailTarget) h += emailBtn(emailTarget, n.title);
@@ -8317,6 +8367,11 @@ function buildOrgHtml(org) {
       h += '<button onclick="event.stopPropagation();orgNameToggle(\'' + rowId + '\')" style="background:none;border:none;color:#3a5a80;cursor:pointer;font-size:.75rem;padding:.05rem .2rem;" title="Set confirmed contact name">&#9998;</button>';
     }
     h += '</div>';
+    // Show AI research note (leadership change context) inline under resolved AI names
+    if (isResolved && contactSrc === 'ai' && contactNote) {
+      var noteClean = contactNote.replace(/AI Research.*?\./g,'').replace(/verify before outreach\./gi,'').trim().replace(/\.$/, '');
+      if (noteClean) h += '<div style="color:#7a6020;font-size:.72rem;font-style:italic;margin-top:.1rem;line-height:1.3;">&#8505; ' + noteClean + '</div>';
+    }
 
     // Inline edit row (hidden by default)
     if (isPlaceholder) {
@@ -8341,23 +8396,19 @@ function buildOrgHtml(org) {
     h += '</div></div>';
   });
 
-  // ── Inline AI Research button — shown when escalate nodes still need names ──
-  var escCount = org.nodes.filter(function(n){
-    if (!n.target || !n.name || n.name.toLowerCase().indexOf('escalate') !== 0) return false;
-    // Check if we already have a saved name for this role
+  // ── Inline AI Research button — shown when any target role lacks a confirmed name ──
+  var unconfirmedRoles = org.nodes.filter(function(n){
+    if (!n.target) return false;
     var rk = orgRoleKey(n.title || '');
-    return !allContacts.some(function(c){ return c.roleKey === rk && c.name; });
-  }).length;
+    return !allContacts.some(function(c){ return c.roleKey === rk && c.name && c.verified; });
+  });
+  var escCount = unconfirmedRoles.length;
   if (escCount > 0) {
     var coEscAI = co.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    var missingRoles = org.nodes.filter(function(n){
-      if (!n.target || !n.name || n.name.toLowerCase().indexOf('escalate') !== 0) return false;
-      var rk = orgRoleKey(n.title || '');
-      return !allContacts.some(function(c){ return c.roleKey === rk && c.name; });
-    }).map(function(n){ return n.title; }).slice(0,5).join(', ');
+    var missingRoles = unconfirmedRoles.map(function(n){ return n.title; }).slice(0,4).join(', ');
     var aiResId = 'ai-res-' + coSlug;
     h += '<div style="margin-bottom:.5rem;border:1px solid rgba(245,158,11,.25);background:rgba(245,158,11,.05);padding:.5rem .75rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">';
-    h += '<span style="font-size:.72rem;color:#8a7840;flex:1;min-width:160px;">'+escCount+' role'+(escCount>1?'s':'')+' need names — <em style="color:#6a6030;">'+missingRoles.substring(0,60)+(missingRoles.length>60?'…':'')+'</em></span>';
+    h += '<span style="font-size:.72rem;color:#8a7840;flex:1;min-width:160px;">'+escCount+' role'+(escCount>1?'s':'')+' to research — <em style="color:#6a6030;">'+missingRoles.substring(0,60)+(missingRoles.length>60?'…':'')+'</em></span>';
     h += '<button id="'+aiResId+'" onclick="event.stopPropagation();window.inlineResearch(\''+coEscAI+'\',this)" style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.08em;background:#f59e0b;color:#000;border:none;padding:.28rem .75rem;cursor:pointer;white-space:nowrap;flex-shrink:0;">🔍 AI Research</button>';
     h += '</div>';
   }
