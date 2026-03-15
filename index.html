@@ -382,13 +382,22 @@ window.inlineResearch = async function(coKey, btn) {
       btn.style.background = '#22c55e';
       btn.style.color = '#000';
       setTimeout(function() {
-        var container = btn;
-        while (container && !container.getAttribute('data-orgid')) container = container.parentNode;
-        if (container && typeof toggleOrg === 'function') {
-          var oid = container.getAttribute('data-orgid');
-          toggleOrg(oid); toggleOrg(oid);
-        }
-      }, 600);
+        try {
+          // Find the row ID from the btn's closest ancestor with data-orgid
+          var el = btn.parentElement;
+          var rowId = null;
+          for (var depth = 0; depth < 20 && el; depth++) {
+            if (el.id && el.id.length > 0) { rowId = el.id; break; }
+            el = el.parentElement;
+          }
+          if (rowId && typeof toggleOrg === 'function') {
+            toggleOrg(rowId);
+            toggleOrg(rowId);
+          } else {
+            location.reload();
+          }
+        } catch(e) { location.reload(); }
+      }, 800);
     } else {
       btn.textContent = 'No public names found';
       btn.style.background = 'rgba(255,255,255,.06)';
@@ -424,7 +433,7 @@ window.inlineResearch = async function(coKey, btn) {
 // Get a key at: https://console.anthropic.com/settings/keys
 // The key is stored only in this file and each user's browser — never on a server.
 window._FOXMARK_PROXY_URL = 'https://green-block-cf0a.rickkrohn.workers.dev';
-window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
+window._FOXMARK_DEFAULT_KEY = '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'; // Foxmark API key
 // ──────────────────────────────────────────────────────────────────────────────
 var FOXMARK_API_KEY_STORE = 'foxmark_api_key';
 
