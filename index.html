@@ -5211,7 +5211,7 @@ var MKT_IT_DATA = [
 var MKT_TABLES = {
   svc: [
     ['Archer Daniels Midland (ADM)','$85.5B','$3,200M','400+ facilities','CMO, VP Facilities — Chicago HQ (77 W Wacker); Fortune 50; 43K employees; global ag processing; major Chicago Loop campus + 400+ processing facilities worldwide'],
-    ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
+    ['Coyote Logistics (UPS)','$3.2B','$120M','10','⚠️ NOW RXO (acq. Sept 2024). Sisler GONE. Jack Gerstner SVP Ops Chicago = best entry. Logan Square office active but right-sizing.'],
     ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO, VP Ops — Chicago HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees'],
     ['Hyatt Hotels Corporation','$6.7B','$250M','1,000+ properties','CMO, VP Facilities — Chicago HQ; premium hotel brand standards; every property = branded environment program; 52K employees'],
     ['JLL','$23.4B','$860M','300+ offices','CMO, VP Workplace — Chicago HQ; world\'s 2nd largest CRE firm; 106K employees; massive workplace interior programs'],
@@ -5386,7 +5386,7 @@ var MKT_TABLES = {
     ['UFP Technologies','$400M est.','$2.4M','Illinois sites','VP Facilities — IL operations; specialty packaging + protective materials; plant environment graphics'],
     // ── LOGISTICS & SUPPLY CHAIN ──
     ['AIT Worldwide Logistics','$2.6B','—','50+ offices','COO, VP Facilities — Itasca IL; Crain\'s fastest-growing 2025 (+42%); freight forwarding + logistics; acquired European cos; multi-site rebranding'],
-    ['Coyote Logistics (UPS)','$3.2B','$120M','10','COO, VP Operations — Chicago HQ; UPS subsidiary; 4,500 employees; large office campus program buyer'],
+    ['Coyote Logistics (UPS)','$3.2B','$120M','10','⚠️ NOW RXO (acq. Sept 2024). Sisler GONE. Jack Gerstner SVP Ops Chicago = best entry. Logan Square office active but right-sizing.'],
     ['Echo Global Logistics','$1.0B','$40M','44','CMO, COO — Chicago River North HQ; TPG-backed; tech-enabled freight brokerage; 2,200 employees; large modern office campus'],
     ['GlobalTranz (Chicago office)','$1.8B est.','$7.2M','Chicago area','VP Operations — Chicago; freight brokerage; PE-backed; modern office environment; post-acquisition rebrand'],    ['Hub Group','$4.5B','$150M','Chicago HQ','CMO, VP Facilities — Downers Grove IL; publicly traded intermodal; 5,000 employees; premium HQ + terminal facility branding'],
     ['Loadsmart','$152M','$8M','Chicago HQ','CMO — Chicago; freight tech platform; PE-backed; modern office environment'],
@@ -5577,14 +5577,51 @@ var MKT_ORGS = {
 
   'Coyote Logistics (UPS)': {
     emailTpl: 'cs_industrial',
-    ceo: {name:'Jonathan Sisler', title:'CEO'},
+    intel: {
+      headline: '⚠️ MAJOR UPDATE: Coyote is no longer a UPS subsidiary — acquired by RXO (NYSE: RXO) Sept 16, 2024 for $1.025B. All prior leadership is gone. Chicago Logan Square office active but RXO is shedding space (Feb 2025). Decision authority now sits with RXO in Charlotte, NC.',
+      sections: [
+        {
+          label: 'What Changed (Critical)',
+          color: '#C8102E',
+          items: [
+            'Jonathan Sisler (CEO) — DEPARTED Sept 2023, now at Sweeping Corp of America',
+            'Sandeep Pisipati (replaced Sisler as CEO 2023) — DEPARTED, now President Last Mile at RXO post-acquisition',
+            'UPS sold Coyote to RXO (NYSE: RXO) on Sept 16, 2024 for $1.025 billion',
+            'RXO HQ is Charlotte, NC — Drew Wilkerson is RXO CEO; named RXO Board Chairman May 2025',
+            'Coyote brand still operates from Chicago Logan Square (2545 W Diversey Ave) but RXO listed Chicago office for sublease Feb 2025 (Crain\'s)',
+            'Integration described as "ahead of schedule" in RXO Q4 2024 earnings — org consolidation likely not complete'
+          ]
+        },
+        {
+          label: 'Foxmark Angle (Revised)',
+          color: '#5aabff',
+          items: [
+            'Chicago Logan Square office still exists — active integration = active workplace environment decisions',
+            'RXO integration = two office cultures merging = branded environment refresh opportunity',
+            'RXO is shedding part of Logan Square space = right-sizing + redesign of what remains',
+            'Approach RXO Chicago-side leaders, NOT Charlotte HQ — facility decisions for Chicago made locally',
+            'Jack Gerstner (SVP, Coverage & Operations, Greater Chicago Area) is a confirmed Chicago-based RXO/Coyote leader'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · UPDATE COMPANY NAME in dashboard to "Coyote / RXO" — the UPS branding is obsolete',
+            '2 · BEST ENTRY — Jack Gerstner, SVP Coverage & Operations at RXO, Greater Chicago Area (confirmed LinkedIn). Leads Chicago-side operations; recognized in 2025 Pros to Know. Search "Jack Gerstner RXO" on LinkedIn.',
+            '3 · SEARCH for Chicago-based RXO VP/Director of Real Estate or Facilities — integration is active, someone owns the Logan Square footprint decisions.',
+            '4 · Do NOT reach out to Jonathan Sisler or Sandeep Pisipati for Coyote/RXO — both have left the company.',
+            '5 · For RXO-wide programs: Drew Wilkerson (CEO, Charlotte) is the executive sponsor — but Chicago local ops is the right entry for facility work.'
+          ]
+        }
+      ]
+    },
+    ceo: {name:'Drew Wilkerson', title:'CEO, RXO (NYSE: RXO) — parent of Coyote Logistics since Sept 16, 2024; $1.025B acquisition from UPS; RXO HQ Charlotte NC; Coyote Chicago office at 2545 W Diversey Ave (Logan Square); ~4,500 combined employees; 3rd-largest NA freight broker'},
     nodes:[
-      {title:'CEO / President', name:'Jonathan Sisler', owns:'Full operations and major capital decisions', target:false, note:'Context only — escalation reference when Director-level contacts are unresponsive.'},
-      {title:'COO / VP Operations', name:'Escalate via CEO Jonathan Sisler', owns:'All operations including facilities, capital programs, vendor relationships — primary operating contact for branded environment decisions', target:true, note:'Coyote (UPS subsidiary) has Chicago HQ — corporate office environment. COO/VP Operations is the actionable entry point — owns facilities budget and capital programs. Route through CEO Jonathan if COO not publicly named.'},
-      {title:'Chief People Officer / VP HR', name:'Escalate via CEO', owns:'Employee experience, workplace environment, office design programs', target:true, note:'CPO often sponsors workplace redesign at logistics firms. Talent competition = branded office environments.'},
-      {title:'Director, Real Estate & Facilities', name:'Escalate via CEO or CFO', owns:'HQ + regional offices — facility management, renovation programs', target:true, note:'Primary Foxmark contact for HQ branded environment programs. → Click LI to find by title + company. Add confirmed name using ✎ to unlock email button.'},
-      {title:'Chief Marketing Officer', name:'Escalate via CEO Jonathan Sisler', owns:'Brand, marketing, visual identity in physical environments', target:true, note:'CMO owns brand standards including how brand is expressed in corporate environments.'},
-      {title:'Director, Workplace Design', name:'Escalate via Real Estate Director or CPO', owns:'Office design standards, branded interior environment at HQ and key offices', target:true, note:'Specs branded graphics and wayfinding into office renovation packages.'},
+      {title:'SVP, Coverage & Operations — RXO/Coyote Chicago', name:'Jack Gerstner', owns:'Chicago-area operations, coverage efficiency, carrier security — post-integration ops leadership', target:true, note:'CONFIRMED Chicago-based (Greater Chicago Area per LinkedIn). Named 2025 Supply & Demand Chain Executive Pros to Know. Led 15% YoY coverage efficiency gain in 2024 during Coyote integration. Best local entry point for Chicago facility/office environment conversations.'},
+      {title:'VP Operations — RXO/Coyote (Chicago)', name:'(Verify on LinkedIn — search "RXO" + "VP Operations" + Chicago)', owns:'Middle market and enterprise operations, Coyote integration execution', target:true, note:'Kait Parker (VP Operations, RXO) is confirmed integration leader for middle market/enterprise — based TBD. Search LinkedIn for Chicago-based RXO VPs post-integration. Integration "ahead of schedule" per Q4 2024 earnings.'},
+      {title:'Director, Real Estate & Facilities — RXO Chicago', name:'(Verify on LinkedIn — search "RXO" + "Real Estate" OR "Facilities" + Chicago)', owns:'Logan Square HQ + regional offices — active right-sizing and redesign post-acquisition', target:true, note:'PRIMARY TARGET. RXO is actively shedding part of Logan Square space (Crain\'s Feb 2025) = someone is making real estate decisions right now. Integration = office redesign opportunity. Search LinkedIn: "RXO" + "Facilities" + "Chicago".'},
+      {title:'Chief People Officer — RXO', name:'(Verify on LinkedIn — search "RXO" + "Chief People Officer" OR "CHRO")', owns:'Employee experience, workplace environment across combined RXO/Coyote workforce', target:true, note:'CPO co-sponsors workplace environment post-merger. Two cultures integrating = branded environment reset signal. RXO CPO likely Charlotte-based but Chicago office falls under their remit.'},
     ]
   },
 
@@ -8129,44 +8166,44 @@ var MKT_ORGS = {
           label: 'Company Snapshot',
           color: '#5aabff',
           items: [
-            'NYSE: ADM — $85.5B revenue, Fortune 50, 43,000 employees',
-            '400+ processing facilities globally; Chicago Loop HQ at 77 W Wacker Drive',
-            'Q4 2025 adjusted EPS $0.87 (beat $0.80 estimate); FY2025 adjusted EPS $3.43',
-            'Stock ~$72/share, +17% YTD 2026; market cap ~$32.4B',
-            '$500M–$750M multi-year cost savings program underway',
-            'SEC settlement Jan 2026 ($40M penalty, Nutrition accounting fraud) — leadership refresh moment'
+            'NYSE: ADM — $80.3B revenue (FY2025), Fortune 50, 44,000 employees',
+            '400+ processing + 420 crop procurement facilities globally; Chicago Loop HQ at 77 W Wacker Drive',
+            'Q4 2025 adjusted EPS $0.87 (beat $0.80 estimate); 2026 guidance $3.60–$4.25 EPS',
+            'Stock ~$67–$72/share range Mar 2026; market cap ~$32B; +17% YTD 2026',
+            '$500M–$750M multi-year cost savings program; $1.3B–$1.5B capex planned 2026',
+            'SEC settlement Jan 2026 ($40M, Nutrition accounting fraud) — investigation closed; leadership refresh in progress'
           ]
         },
         {
           label: 'Foxmark Angle',
           color: '#C8102E',
           items: [
-            'CMO + VP Real Estate & Facilities are the two primary targets',
+            'CPO Weber + CIO Folkwein are the two confirmed Executive Council entry points',
             'Major Chicago Loop campus (77 W Wacker) + 400+ processing/ag facilities = two parallel programs',
-            'Accounting investigation aftermath = HQ environment refresh as culture reset signal',
-            'Ag-tech innovation story needs physical environments to match — CIO Folkwein co-sponsors',
-            '45Z clean fuel credit + biofuel RVO resolution = capex investment cycle opening up'
+            'Post-investigation HQ environment refresh = culture reset signal — Weber owns this narrative',
+            'Ag-tech / GenAI digital transformation story needs physical innovation environments to match — Folkwein co-sponsors',
+            '$1.3B–$1.5B capex in 2026 = investment cycle open; biosolutions + nutrition facility builds active'
           ]
         },
         {
           label: 'Contact Approach Strategy',
           color: '#f59e0b',
           items: [
-            '1 · WARMEST ENTRY — Jennifer Weber (CHRO, SVP): Workplace culture + supplier diversity + employer brand angles. ADM coming through investigation = active mandate to refresh HQ environment as leadership signal.',
-            '2 · SECONDARY — Kristy Folkwein (CIO, SVP): Workplace modernization + innovation environments. ADM\'s ag-tech story needs physical spaces to match; CIO co-sponsors Real Estate decisions.',
-            '3 · PRIMARY TARGET — VP Real Estate & Facilities (unnamed): Route through Weber or Folkwein. Owns 77 W Wacker HQ + 400+ global facilities. Fortune 50 keeps VP-tier below public disclosure — must be escalated to.',
-            '4 · ALSO TARGET — VP Procurement / Strategic Sourcing (unnamed): Route through Weber (CHRO). Supplier diversity + 400+ facilities = non-discretionary safety/compliance signage regardless of HQ cycle.',
-            'Do NOT cold-outreach CEO Juan Luciano — use as credibility reference only ("working with ADM leadership on…").'
+            '1 · WARMEST — Jennifer Weber (CPO/CHRO, SVP): Chicago-based, i4cp CHRO of Year. Pitch: HQ culture reset after investigation + supplier diversity + employer brand. Confirmed active Feb 2026 (insider filing). Title = "Chief People Officer" on adm.com.',
+            '2 · SECONDARY — Kristy Folkwein (CIO, SVP): Cincinnati-based, Executive Council = Chicago presence. Pitch: physical innovation environments to match ADM\'s S/4HANA + GenAI digital transformation. 9 years in role = deep institutional knowledge.',
+            '3 · PRIMARY TARGET — VP Real Estate & Facilities (name not public): Route through Weber or Folkwein. Confirmed not publicly disclosed after deep search. Owns 77 W Wacker HQ + 400+ global facilities.',
+            '4 · ALSO TARGET — VP Procurement (name not public): Route through Weber (CPO). Her Total Rewards & HR Operations remit (confirmed SEC filing) = direct bridge to indirect spend / supplier diversity vendors.',
+            'Do NOT cold-outreach CEO Juan Luciano — use as credibility anchor only. Weber sold shares Feb 17, 2026 = still active, not a departure signal (standard executive liquidity).'
           ]
         }
       ]
     },
-    ceo: {name:'Juan Luciano', title:'Chairman, President & CEO, ADM — NYSE: ADM; $85.5B revenue; Fortune 50; 43,000 employees; 400+ processing facilities globally; 77 W Wacker Drive, Chicago Loop HQ'},
+    ceo: {name:'Juan Luciano', title:'Chairman, President & CEO, ADM — NYSE: ADM; $80.3B revenue (FY2025); Fortune 50; 44,000 employees; 400+ processing facilities globally; 77 W Wacker Drive, Chicago Loop HQ'},
     nodes: [
-      {title:'SVP & Chief Human Resources Officer', name:'Jennifer Weber', owns:'43,000-person workforce, Chicago HQ workplace experience, employer brand', target:false, note:'CHRO co-sponsors HQ environment as culture reset signal. ADM is coming through an accounting investigation = active leadership refresh moment at 77 W Wacker.'},
-      {title:'SVP & Chief Information Officer', name:'Kristy Folkwein', owns:'Digital transformation, operations centers, innovation environments', target:true, note:'CIO co-sponsors workplace modernization alongside Real Estate. ADM ag-tech story needs physical innovation environments to match.'},
-      {title:'VP Real Estate & Facilities', name:'Escalate via Jennifer Weber (CHRO) or Kristy Folkwein (CIO)', owns:'77 W Wacker HQ, 400+ global processing facilities and offices', target:true, note:'PRIMARY. ADM VP Real Estate not publicly named — Fortune 50 keeps VP-tier below disclosure threshold. Route through confirmed CHRO Jennifer Weber (workplace culture angle) or CIO Kristy Folkwein (workplace modernization angle). Both are confirmed entry points to facilities decision-maker.'},
-      {title:'VP Procurement / Strategic Sourcing', name:'Escalate via Jennifer Weber (CHRO)', owns:'Indirect procurement, signage category, vendor qualification across 400+ facilities', target:true, note:'ADM procurement VP not publicly named. CHRO Weber is the warmest entry point — supplier diversity program and workplace experience both connect to indirect procurement. 400+ facilities = non-discretionary safety/compliance signage is a recurring budget regardless of HQ cycles.'}
+      {title:'SVP & Chief People Officer (CPO / CHRO)', name:'Jennifer Weber', owns:'44,000-person workforce, Chicago HQ workplace experience, employer brand, supplier diversity, Total Rewards', target:false, note:'CONFIRMED active Mar 2026 — sold 25,000 ADM shares Feb 17, 2026 (insider filing). Title is "Chief People Officer" per Bloomberg + ADM LinkedIn; also carries CHRO / Chief Diversity Officer. Won i4cp CHRO of the Year. Chicago-based. Warmest entry point: workplace culture reset after accounting investigation + supplier diversity angle. adm.com confirms Executive Council member.'},
+      {title:'SVP & Chief Information Officer', name:'Kristy Folkwein', owns:'Digital transformation, ERP (S/4HANA), AI/ML, operations centers, innovation environments', target:true, note:'CONFIRMED active — InformationWeek profile June 2025; adm.com leadership page; 9 years as ADM CIO. Based Cincinnati OH but Executive Council = Chicago presence. Leads ERP modernization + GenAI flavor innovation platform. Co-sponsors workplace modernization with Real Estate. ADM ag-tech story needs physical innovation environments to match the digital transformation narrative.'},
+      {title:'VP Real Estate & Facilities', name:'Escalate via Jennifer Weber (CPO) or Kristy Folkwein (CIO)', owns:'77 W Wacker HQ, 400+ global processing facilities and offices', target:true, note:'PRIMARY TARGET — confirmed NOT publicly named after deep LinkedIn + SEC + news search. Fortune 50 keeps VP-tier below public disclosure. Route through Weber (CPO) using workplace culture / supplier diversity angle, or Folkwein (CIO) using workplace modernization angle. Both confirmed Executive Council members and active as of Mar 2026.'},
+      {title:'VP Procurement / Strategic Sourcing', name:'Escalate via Jennifer Weber (CPO)', owns:'Indirect procurement, signage category, vendor qualification across 400+ facilities', target:true, note:'CONFIRMED not publicly named after deep search. CPO Weber is warmest route — her Total Rewards & HR Operations remit (confirmed via SEC filing Jan 2025) connects directly to indirect spend and supplier diversity programs. 400+ facilities = non-discretionary safety/compliance signage = recurring budget line regardless of HQ cycle.'}
     ]
   },
 
@@ -10054,7 +10091,7 @@ function initMktCharts() {
 var TIER_DATA = {
   t1: [
     {key:'Echo Global Logistics',   rev:'$1.0B',  it:'$40M',   locs:'44',        contacts:'CMO, COO, VP Ops',          strategy:'Chicago HQ — TPG-backed; tech-enabled freight brokerage. Studio Lab demo + same-day pitch.'},
-    {key:'Coyote Logistics (UPS)',  rev:'$3.2B',  it:'$120M',  locs:'10',        contacts:'COO, VP Operations',         strategy:'Chicago HQ, UPS subsidiary. Large office campus; interior brand under UPS umbrella — rebrand opportunity.'},
+    {key:'Coyote Logistics (UPS)',  rev:'$3.2B',  it:'$120M',  locs:'10',        contacts:'Jack Gerstner (SVP Ops, Chicago)',  strategy:'⚠️ ACQUIRED BY RXO Sept 2024. Sisler gone. Logan Square Chicago office active but right-sizing. Integration = redesign opportunity. Best entry: Jack Gerstner SVP Ops Chicago.'},
     {key:'JLL',                     rev:'$23.4B', it:'$860M',  locs:'300+',      contacts:'CMO, VP Workplace',          strategy:'Chicago HQ; manages interiors for clients worldwide — position Foxmark as preferred IL vendor for JLL projects.'},
     {key:'RR Donnelley (RRD)',      rev:'$5.0B',  it:'$185M',  locs:'100+',      contacts:'CMO, CIO, COO',              strategy:'Chicago HQ, private. Acquired Williams Lea 2024 — integration means new signage/branding cycle.'},
     {key:'Walgreens (Sycamore Partners)', rev:'$147B', it:'$3,200M', locs:'~8,000', contacts:'CMO, VP Real Estate',    strategy:'Deerfield HQ, taken private Aug 2025. Heavy store rebrand needed. Largest single rollout opportunity in portfolio.'},
