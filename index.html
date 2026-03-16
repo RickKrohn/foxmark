@@ -8122,6 +8122,45 @@ var MKT_ORGS = {
     _coKey: 'Archer Daniels Midland (ADM)',
     _tabKey: 'svc',
     emailTpl: 'intro',
+    intel: {
+      headline: 'Fortune 50 ag giant in active leadership reset — 77 W Wacker HQ + 400+ global facilities',
+      sections: [
+        {
+          label: 'Company Snapshot',
+          color: '#5aabff',
+          items: [
+            'NYSE: ADM — $85.5B revenue, Fortune 50, 43,000 employees',
+            '400+ processing facilities globally; Chicago Loop HQ at 77 W Wacker Drive',
+            'Q4 2025 adjusted EPS $0.87 (beat $0.80 estimate); FY2025 adjusted EPS $3.43',
+            'Stock ~$72/share, +17% YTD 2026; market cap ~$32.4B',
+            '$500M–$750M multi-year cost savings program underway',
+            'SEC settlement Jan 2026 ($40M penalty, Nutrition accounting fraud) — leadership refresh moment'
+          ]
+        },
+        {
+          label: 'Foxmark Angle',
+          color: '#C8102E',
+          items: [
+            'CMO + VP Real Estate & Facilities are the two primary targets',
+            'Major Chicago Loop campus (77 W Wacker) + 400+ processing/ag facilities = two parallel programs',
+            'Accounting investigation aftermath = HQ environment refresh as culture reset signal',
+            'Ag-tech innovation story needs physical environments to match — CIO Folkwein co-sponsors',
+            '45Z clean fuel credit + biofuel RVO resolution = capex investment cycle opening up'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · WARMEST ENTRY — Jennifer Weber (CHRO, SVP): Workplace culture + supplier diversity + employer brand angles. ADM coming through investigation = active mandate to refresh HQ environment as leadership signal.',
+            '2 · SECONDARY — Kristy Folkwein (CIO, SVP): Workplace modernization + innovation environments. ADM\'s ag-tech story needs physical spaces to match; CIO co-sponsors Real Estate decisions.',
+            '3 · PRIMARY TARGET — VP Real Estate & Facilities (unnamed): Route through Weber or Folkwein. Owns 77 W Wacker HQ + 400+ global facilities. Fortune 50 keeps VP-tier below public disclosure — must be escalated to.',
+            '4 · ALSO TARGET — VP Procurement / Strategic Sourcing (unnamed): Route through Weber (CHRO). Supplier diversity + 400+ facilities = non-discretionary safety/compliance signage regardless of HQ cycle.',
+            'Do NOT cold-outreach CEO Juan Luciano — use as credibility reference only ("working with ADM leadership on…").'
+          ]
+        }
+      ]
+    },
     ceo: {name:'Juan Luciano', title:'Chairman, President & CEO, ADM — NYSE: ADM; $85.5B revenue; Fortune 50; 43,000 employees; 400+ processing facilities globally; 77 W Wacker Drive, Chicago Loop HQ'},
     nodes: [
       {title:'SVP & Chief Human Resources Officer', name:'Jennifer Weber', owns:'43,000-person workforce, Chicago HQ workplace experience, employer brand', target:false, note:'CHRO co-sponsors HQ environment as culture reset signal. ADM is coming through an accounting investigation = active leadership refresh moment at 77 W Wacker.'},
@@ -8282,7 +8321,52 @@ function buildOrgHtml(org) {
     return '<button style="' + liBtnStyle + '" onclick="event.stopPropagation();window.open(\'' + url.replace(/'/g,'%27') + '\',\'_blank\');">&#128279; LI</button>';
   };
 
-  var h = '<div style="padding:.6rem 0 .3rem;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:#C8102E;font-family:Barlow Condensed,sans-serif;font-weight:700;">Decision-Maker Org Chart</div>';
+  var h = '<div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;padding:.6rem 0 .3rem;">';
+  h += '<div style="font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:#C8102E;font-family:Barlow Condensed,sans-serif;font-weight:700;">Decision-Maker Org Chart</div>';
+
+  // ── Company Intel button (shown when org has intel data) ──────────────────
+  if (org.intel) {
+    var intelPanelId = 'intel_panel_' + coSlug;
+    var intelBtnId   = 'intel_btn_'   + coSlug;
+    h += '<button id="' + intelBtnId + '" onclick="event.stopPropagation();(function(){'
+       + 'var p=document.getElementById(\'' + intelPanelId + '\');'
+       + 'var b=document.getElementById(\'' + intelBtnId + '\');'
+       + 'if(!p)return;'
+       + 'var open=p.style.display!==\'none\';'
+       + 'p.style.display=open?\'none\':\'block\';'
+       + 'b.style.background=open?\'rgba(90,171,255,.15)\':\'rgba(90,171,255,.35)\';'
+       + 'b.style.color=open?\'#5aabff\':\'#fff\';'
+       + '})()" '
+       + 'style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(90,171,255,.15);color:#5aabff;border:1px solid rgba(90,171,255,.45);padding:.15rem .55rem;cursor:pointer;white-space:nowrap;flex-shrink:0;">'
+       + '&#9432; Company Intel &amp; Approach</button>';
+    h += '</div>'; // close flex row
+
+    // Build the intel panel (hidden by default)
+    var ip = org.intel;
+    h += '<div id="' + intelPanelId + '" style="display:none;margin-bottom:.75rem;border:1px solid rgba(90,171,255,.2);background:rgba(10,20,40,.6);padding:.65rem .85rem;">';
+    if (ip.headline) {
+      h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;color:#e8f0ff;margin-bottom:.55rem;line-height:1.4;">' + ip.headline + '</div>';
+    }
+    if (ip.sections && ip.sections.length) {
+      ip.sections.forEach(function(sec) {
+        h += '<div style="margin-bottom:.5rem;">';
+        h += '<div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:' + sec.color + ';margin-bottom:.3rem;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:.2rem;">' + sec.label + '</div>';
+        if (sec.items && sec.items.length) {
+          sec.items.forEach(function(item) {
+            h += '<div style="display:flex;gap:.4rem;margin-bottom:.18rem;">';
+            h += '<span style="color:' + sec.color + ';flex-shrink:0;font-size:.75rem;margin-top:.05rem;">&#8250;</span>';
+            h += '<span style="color:#c8d8ef;font-size:.77rem;line-height:1.45;">' + item + '</span>';
+            h += '</div>';
+          });
+        }
+        h += '</div>';
+      });
+    }
+    h += '</div>';
+  } else {
+    h += '</div>'; // close flex row (no intel)
+  }
+
   h += '<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;">';
   h += '<div style="width:10px;height:10px;background:#C8102E;flex-shrink:0;"></div>';
   h += '<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">';
