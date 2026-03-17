@@ -5218,7 +5218,10 @@ var MKT_TABLES = {
     ['MAT Holdings','$2.0B','$70M','31','⚠️ OFFICE MOVE APRIL 2026. CEO Steve Wang (not Bob Mullen). Paul Thomas = President NA. $2B rev, 14K employees, private family co.'],
     ['RR Donnelley (RRD)','$5.0B','$185M','100+','CCO DuPont, COO Pecaric, CFO Coxhead — 227 W Monroe Chicago; Williams Lea closed Q1 2025 (+7K employees); ~41K total; Chatham PE'],
     ['Exelon / ComEd','$22B','$850M','100+ IL offices','Calvin Butler (CEO Exelon); Gil Quiniones (CEO ComEd); Cynthia McCabe (SVP CCO) — Chicago Loop HQ; Fortune 200; 6 utilities; 20K employees; ComEd brand cascade across 100+ northern IL district offices'],
-    ['United Airlines (UAL)','$57.1B','$1,800M','366 airports','VP Corp RE (Molloy DEPARTED to British Airways — find successor); Kaveh Dabiran (MD Planning & Dev); Alex Dorow (Head Lounges); Aaron McMillan (MD Hospitality); Maggie Schmerin (Chief Advertising Officer) — Willis Tower HQ; $1B+ lounge program active']
+    ['United Airlines (UAL)','$57.1B','$1,800M','366 airports','VP Corp RE (Molloy DEPARTED to British Airways — find successor); Kaveh Dabiran (MD Planning & Dev); Alex Dorow (Head Lounges); Aaron McMillan (MD Hospitality); Maggie Schmerin (Chief Advertising Officer) — Willis Tower HQ; $1B+ lounge program active'],
+    ['Walsh Group','$7.6B','$280M','Chicago HQ + 26 offices','CEO Matthew Walsh; Midwest Pres. Scan Fitzpatrick — Chicago HQ; CHANNEL PARTNER: every commercial project = signage spec opportunity; airport, data center, healthcare + TI focus'],
+    ['JE Dunn Construction','$7.4B','$270M','26 offices','President Donn Doerfler (Illinois); Michael Heistand (SVP Midwest) — Chicago office; CHANNEL PARTNER: healthcare, mission critical, corporate interiors — get Foxmark on preferred subcontractor list'],
+    ['Clayco','$6.8B','$250M','Chicago HQ + 6 offices','CEO Bob Clark; COO Cameron Trefry — Chicago HQ; CHANNEL PARTNER: design-build specialist; corporate campuses + industrial; ENR Midwest Contractor of Year 2024; every project = signage opportunity']
   ],
   fin: [
     ['Allstate','$64.1B','$1,800M','363','Suren Gupta (President, Enterprise Svcs — RE+Procurement exec umbrella; retiring early 2026); Elizabeth Brady (EVP & CMO); Michael Thomas (VP Admin & Real Estate); Cheryl Harris (SVP & CPO, $12B spend) — Northbrook IL HQ; 2024 rev up 12%; 54K employees; active rebrand/divestiture cycle (Benefits → The Standard; Group Health → Nationwide)'],
@@ -5468,7 +5471,14 @@ var MKT_TABLES = {
     ['Exelon / ComEd','$22B','NASDAQ: EXC','Chicago Loop + northern IL','ComEd CEO Gil Quiniones, CCO Cynthia McCabe — two Loop HQs; 6-utility brand standard cascade; 100+ ComEd district offices across northern IL; safety/compliance signage recurring spend'],
     ['Ingredion','$7.5B','NYSE: INGR','Westchester IL','CCO Larry Fernandes, CHRO Nancy Wolfe — Idea Lab customer innovation centers; 60+ manufacturing facilities globally; B2B ingredients CPG clients'],
     ['Brunswick Corporation','$5.8B','NYSE: BC','Mettawa IL','CMO Lauren Beckstedt, CHRO Jill Wrobel — Mercury Marine ~10,000 dealer network; Fond du Lac WI manufacturing campus; Lake Forest/North Shore corridor'],
-    ['Suntory Global Spirits (fka Beam Suntory)','$5.5B','—','Chicago Merchandise Mart','CEO Greg Hughes, CPO Sarah Langley — 2024 rebrand = live brand environment refresh; Maker\'s Mark + Jim Beam distillery visitor centers; 222 W. Merchandise Mart Plaza HQ']
+    ['Suntory Global Spirits (fka Beam Suntory)','$5.5B','—','Chicago Merchandise Mart','CEO Greg Hughes, CPO Sarah Langley — 2024 rebrand = live brand environment refresh; Maker\'s Mark + Jim Beam distillery visitor centers; 222 W. Merchandise Mart Plaza HQ'],
+    // ── IL GENERAL CONTRACTORS — CHANNEL PARTNERS ──
+    ['Clune Construction','$2.1B','—','10 S Riverside Plaza Chicago','CEO Dave Hall; Midwest Pres. Vince Gutekanst; MD Ops Joe Van Oosbree — ESOP; pure interior/TI DNA (Salesforce Tower, Delta LAX Lounge, Barstool Sports); 700+ employees; 7 offices; get on preferred vendor list'],
+    ['Skender Construction','$547M','—','1330 W Fulton Market Chicago','CEO Jerry Ball; President Andy Halik; COO Brian Bukowski; VP Interiors Ashlee Pforr — Google Thompson Center $85M interior; 61 Chicago permits 2025; mission critical + interiors + healthcare'],
+    ['Leopardo Construction','$472M+','—','Hoffman Estates + Chicago','CEO Giancarlo Pacini; CFO Todd Welch — +49 spots on ENR 2025 Top 400; tenant interiors, hospitality (Hyatt Regency, Hilton), office-to-residential conversions; JLL + Hyatt Regency overlap'],
+    ['Pepper Construction','$1B+ est.','—','Barrington IL','CEO Stan Pepper III; President Chris Averill (July 2023) — family-owned since 1927; healthcare ~50% of revenue = hospital wayfinding + donor recognition; commercial TI; IL + IN + OH + TX'],
+    ['Berglund Construction','$293M','—','Chicago HQ','CEO Fred Berglund; CFO Kevin Geshwender — family-owned since 1911; historic preservation + commercial TI; Northwestern + U of Chicago campus work; National Preservation Award'],
+    ['Executive Construction','$196M','—','Chicago','72 building permits in 2025 — highest count of any top-20 Chicago GC; high-volume TI specialist; get on preferred vendor list = access to largest TI permit pipeline in Chicago']
   ]
 };
 var mktCurrentTab = 'f500';
@@ -5523,6 +5533,45 @@ var MKT_ORGS = {
     _coKey: 'United Airlines (UAL)',
     _tabKey: 'svc',
     emailTpl: 'cs_united',
+    intel: {
+      headline: 'NYSE: UAL — $57.1B revenue; 107K employees; Willis Tower HQ (233 S Wacker, Chicago); 366 airports; $1B+ annual customer investment program active. Active lounge renovation: Houston megaclub 2026, Denver expansion complete July 2025.',
+      sections: [
+        {
+          label: 'Company Snapshot',
+          color: '#5aabff',
+          items: [
+            'NYSE: UAL — $57.1B revenue; 107,000+ employees; Willis Tower HQ 740K sqft at 233 S Wacker, Chicago',
+            '$1B+ invested in customer experience in 2025; $1B+ more planned 2026 — lounge renovation program is the core',
+            'Active lounge buildout: Houston megaclub 2026 (50K+ sqft); Denver 4th club opened July 2025 (33K sqft); Chicago Polaris reopened April 2025 (50% larger, 25K sqft)',
+            '9+ United Clubs renovated since 2022; 45+ lounge locations across network',
+            '$350M LAX hangar capital project active (Kaveh Dabiran leads)',
+            '⚠️ VP Corporate Real Estate (Gavin Molloy) DEPARTED to British Airways — successor not yet publicly named'
+          ]
+        },
+        {
+          label: 'Foxmark Angle',
+          color: '#C8102E',
+          items: [
+            'United Club lounge renovation program = #1 Foxmark opportunity — Alex Dorow (Head Lounges) owns design standards for 45+ locations',
+            'Willis Tower HQ 740K sqft = major branded environment; $2.5B lease obligation through 2033 = long-term investment mindset',
+            'Kaveh Dabiran (MD Corporate Real Estate Planning & Dev) is the hands-on capital projects contact — confirmed speaker FTE Global 2024 + 2025',
+            'Tosha S. (Director Business Services, joined Dec 2024) = working-level facilities contact, most accessible entry point',
+            'Maggie Schmerin (Chief Advertising Officer) owns brand standards including environmental graphics across all touchpoints'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · LOUNGE PROGRAM — Alex Dorow (Head of Lounges & Premium Products): Confirmed Feb 2025 TPG interview. Owns all United Club and Polaris design standards and renovation program. #1 Foxmark target — Houston megaclub 2026 is live.',
+            '2 · CAPITAL PROJECTS — Kaveh Dabiran (MD Corporate Real Estate Planning & Dev): Confirmed active FTE Global 2025. Owns design standards and capital project execution for all United facilities. Willis Tower + LAX + hubs.',
+            '3 · WORKING LEVEL — Tosha S. (Director Business Services, Dec 2024): Most accessible. Route daily facilities and interior program work through her. Search LinkedIn "Tosha" + "United Airlines".',
+            '4 · BRAND — Maggie Schmerin (Chief Advertising Officer): Confirmed active 2025. Owns brand visual vocabulary that flows into environmental specifications. Christina O\'Rourke (Director Creative Strategy, Oct 2024) reports to her.',
+            '5 · VP CORP RE SUCCESSOR: Gavin Molloy departed to British Airways. Find replacement via LinkedIn: "United Airlines" + "VP Real Estate" or route through Brett Hart (President, oversees Corp RE) or Kaveh Dabiran.'
+          ]
+        }
+      ]
+    },
     ceo: {name:'Scott Kirby', title:'CEO & Chief Sustainability Officer'},
     nodes:[
       {title:'VP, Corporate Real Estate & Environmental Affairs', name:'(Verify on LinkedIn — Gavin Molloy DEPARTED to British Airways; search "United Airlines" + "VP Corporate Real Estate" OR "Real Estate" + Chicago)', owns:'Willis Tower HQ 740K sqft + all airport and off-airport facilities worldwide; $2.5B lease and landing fee obligations; environmental compliance', target:true, note:'⚠️ GAVIN MOLLOY DEPARTED — confirmed at British Airways as Director of Alliances (LinkedIn 2025 posts). His replacement has not been publicly named. Route through Brett Hart (President, oversees Corporate Real Estate) or Kaveh Dabiran (MD Planning & Development) who is already a confirmed contact below. Search LinkedIn: "United Airlines" + "VP Real Estate" OR "Corporate Real Estate" + Chicago to find successor.'},
@@ -8575,6 +8624,278 @@ var MKT_ORGS = {
     ]
   },
 
+  // ── ILLINOIS GENERAL CONTRACTORS — CHANNEL PARTNERS (TIER 1) ─────────────
+
+  'Walsh Group': {
+    _coKey: 'Walsh Group',
+    _tabKey: 'svc',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $7.6B revenue; family-owned since 1898; Chicago HQ (929 W Adams). Every Walsh commercial project = Foxmark signage spec opportunity. Airport, healthcare, data center, corporate interiors. 26 offices nationwide.',
+      sections: [
+        { label: 'Why Walsh = Foxmark Channel', color: '#C8102E', items: [
+          'Every commercial interior project Walsh manages requires environmental graphics and signage — Foxmark needs to be on their preferred subcontractor list',
+          'Airport work: O\'Hare, Midway, and national airport terminal renovations = wayfinding + brand environment programs',
+          'Healthcare: hospital campuses, medical office buildings = donor recognition walls, wayfinding, safety signage',
+          'Corporate HQ builds: branded lobby graphics, dimensional signage, environmental graphics specs written by Walsh PM',
+          'Family-owned = relationship-driven vendor qualification; get in with Midwest leadership'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Sean Fitzpatrick (EVP Midwest / Chicago leadership) — primary relationship target for Foxmark vendor qualification',
+          '2 · VP Estimating / Preconstruction Chicago — the person who writes specs and selects signage subcontractors',
+          '3 · Pitch: "We work with your clients — let\'s make Foxmark your preferred signage vendor so you can offer it on every TI project."'
+        ]}
+      ]
+    },
+    ceo: {name:'Matthew Walsh', title:'CEO, The Walsh Group — family-owned since 1898; $7.6B+ revenue; 10,000+ employees; HQ 929 W Adams St Chicago IL; 26 offices; airport, healthcare, data center, corporate TI'},
+    nodes:[
+      {title:'EVP / President, Midwest Region', name:'Sean Fitzpatrick', owns:'All Walsh Midwest operations, project pipeline, subcontractor relationships', target:true, note:'CONFIRMED — Walsh Group website. Primary Chicago relationship contact. Midwest Region covers IL, WI, MN, MO — the core Foxmark geography. Vendor qualification happens at the regional level.'},
+      {title:'VP Preconstruction / Chief Estimator', name:'(Verify on LinkedIn — search "Walsh Group" + "Preconstruction" OR "Estimating" + Chicago)', owns:'Subcontractor specs, bid lists, preferred vendor programs for all Walsh Midwest projects', target:true, note:'PRIMARY TARGET for vendor qualification. Preconstruction writes the specs that include signage and environmental graphics. Get Foxmark on the preferred list here = automatic inclusion in every project bid. Route through Fitzpatrick (EVP Midwest).'},
+      {title:'VP, Corporate Interiors / TI Practice', name:'(Verify on LinkedIn — search "Walsh Group" + "Interiors" OR "Tenant Improvement")', owns:'Tenant improvement and commercial interior projects — the segment where Foxmark work is most directly specified', target:true, note:'Walsh\'s TI practice builds office environments for the F500 companies already in this dashboard. Getting Foxmark specified here means being inside the exact client environments on the target list.'}
+    ]
+  },
+
+  'JE Dunn Construction': {
+    _coKey: 'JE Dunn Construction',
+    _tabKey: 'svc',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $7.4B revenue; employee-owned (ESOP); KC HQ with major Chicago office. Healthcare, mission critical, corporate interiors. 8th largest domestic GC. Chicago office active on Northwestern Medicine, Salesforce, and Loop projects.',
+      sections: [
+        { label: 'Why JE Dunn = Foxmark Channel', color: '#C8102E', items: [
+          'Healthcare is 50%+ of revenue — hospital campuses, medical office buildings = donor recognition, wayfinding, patient-facing brand environments',
+          'Corporate interiors: active in Chicago Loop TI projects including Salesforce Tower and major financial firms',
+          'ESOP = employee-owners who care about relationships and long-term vendor partnerships — ideal Foxmark culture fit',
+          'Mission critical (data centers) = less signage but growing; focus on healthcare + corporate TI'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Michael Heistand (SVP / Chicago Midwest leadership) — primary relationship target',
+          '2 · Director of Preconstruction, Chicago — vendor spec authority for all Chicago projects',
+          '3 · Healthcare sector lead — hospital projects have the richest signage scope (donor walls, wayfinding systems, exterior monument signs)'
+        ]}
+      ]
+    },
+    ceo: {name:'Gordon Lansford', title:'President & CEO, JE Dunn Construction — employee-owned (ESOP); $7.4B revenue; 4,000+ employees; KC HQ + 26 offices including Chicago; healthcare, mission critical, corporate TI; 8th largest domestic GC'},
+    nodes:[
+      {title:'SVP / Illinois Market Leader', name:'Michael Heistand', owns:'All JE Dunn Illinois operations, project pipeline, client relationships, subcontractor selection', target:true, note:'CONFIRMED — JE Dunn website. Primary Chicago contact. Illinois market leader controls vendor relationships and subcontractor preferred lists for all Chicago/IL projects.'},
+      {title:'Healthcare Sector Lead, Midwest', name:'(Verify on LinkedIn — search "JE Dunn" + "Healthcare" + Chicago OR Midwest)', owns:'Healthcare construction projects across Midwest — Northwestern Medicine, Advocate, Rush, etc.', target:true, note:'Healthcare = largest signage opportunity at JE Dunn. Hospital projects require wayfinding systems, donor recognition, exterior signage, patient-experience graphics. Get Foxmark specified in healthcare sector = access to IL hospital pipeline.'},
+      {title:'Director, Preconstruction / Estimating', name:'(Verify on LinkedIn — search "JE Dunn" + "Preconstruction" OR "Estimating" + Chicago)', owns:'Subcontractor specs and bid lists for all Chicago projects', target:true, note:'Writes the specs that include signage. Preferred vendor list qualification happens here. Route through Heistand (SVP Illinois).'}
+    ]
+  },
+
+  'Clayco': {
+    _coKey: 'Clayco',
+    _tabKey: 'svc',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $6.8B revenue; full design-build (architecture + construction + development); Chicago HQ. ENR Midwest Contractor of Year 2024. Corporate campus, industrial, data center, mixed-use. Every Clayco project includes interior environment specs.',
+      sections: [
+        { label: 'Why Clayco = Foxmark Channel', color: '#C8102E', items: [
+          'Design-build = Clayco controls both architecture AND construction specs — one relationship qualifies Foxmark across both disciplines',
+          'Corporate campus specialization: Google Midwest HQ, Amazon fulfillment centers, major F500 campuses = premium branded environments',
+          'Chicago HQ in Fulton Market — active on the exact buildings where Foxmark\'s F500 targets are tenants',
+          'ENR Midwest Contractor of Year 2024 = marquee clients, premium projects, brand-conscious owners',
+          'Industrial + data center growing fast — facility branding and safety signage at scale'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Michael Fassnacht (Chief Growth Officer, confirmed) — brand + growth focus, understands brand environment value',
+          '2 · Cameron Trefry (COO) — owns all construction operations including subcontractor qualification',
+          '3 · Director of Preconstruction — writes the specs; preferred vendor list is the target',
+          '4 · Pitch angle: "Your design-build model means you control the full spec — let\'s make Foxmark the default signage partner on every corporate campus project."'
+        ]}
+      ]
+    },
+    ceo: {name:'Bob Clark', title:'Founder & CEO, Clayco — $6.8B revenue; 4,000+ employees; Chicago Fulton Market HQ (1 N Dearborn); design-build specialist; ENR Midwest Contractor of Year 2024; corporate campus, industrial, data center, mixed-use'},
+    nodes:[
+      {title:'Chief Growth Officer', name:'Michael Fassnacht', owns:'Growth strategy, business development, brand positioning, client relationships', target:true, note:'CONFIRMED — quoted in Real Deal March 2026 Chicago GC ranking article. CGO focus on brand + growth = ideal Foxmark entry. Understands that premium branded environments are a competitive differentiator for clients.'},
+      {title:'Chief Operating Officer', name:'Cameron Trefry', owns:'All construction operations, subcontractor qualification, project execution', target:true, note:'CONFIRMED — Clayco leadership. COO controls subcontractor programs and preferred vendor lists. Vendor qualification for signage and environmental graphics runs through COO org.'},
+      {title:'Director, Corporate Interiors / TI Practice', name:'(Verify on LinkedIn — search "Clayco" + "Interiors" OR "Corporate" + Chicago)', owns:'Corporate office and campus interior projects — the highest-value Foxmark spec opportunity', target:true, note:'Clayco\'s corporate interior work includes some of Chicago\'s most high-profile environments. This is where Foxmark signage gets specified. Route through Fassnacht (CGO) or Trefry (COO).'},
+      {title:'Director, Preconstruction / Estimating', name:'(Verify on LinkedIn — search "Clayco" + "Preconstruction" OR "Estimating")', owns:'Subcontractor specs, bid lists, preferred vendor programs across all Clayco projects', target:true, note:'Preferred vendor list qualification here = automatic inclusion in every Clayco project bid. Design-build model means Clayco controls both arch and construction specs — highest leverage vendor qualification in the GC market.'}
+    ]
+  },
+
+  // ── ILLINOIS GENERAL CONTRACTORS — CHANNEL PARTNERS (TIER 2/3) ──────────
+
+  'Clune Construction': {
+    _coKey: 'Clune Construction',
+    _tabKey: 'mid',
+    emailTpl: 'intro',
+    intel: {
+      headline: '#1 CHANNEL PARTNER TARGET — $2.1B revenue; ESOP; 10 S Riverside Plaza Chicago HQ. CEO Dave Hall. Pure interior/TI DNA: Salesforce Tower, Delta One LAX Lounge, Barstool Sports HQ, Guinness Open Gate Brewery. 700+ employees, 7 offices. Turning down ~$1B of work due to staffing — high standards, high-quality clients.',
+      sections: [
+        { label: 'Why Clune Is the #1 Channel Partner', color: '#C8102E', items: [
+          'Every project Clune builds is a branded environment — corporate offices, airports, data centers, healthcare. Foxmark needs to be the default signage vendor on every bid.',
+          'Salesforce Tower TI (27 floors), Delta One Lounge LAX, Barstool Sports Chicago HQ, Guinness Open Gate Brewery = the exact premium brand environments Foxmark specializes in',
+          'ESOP culture = relationship-driven vendor selection; long-term partnerships valued over lowest bid',
+          '"We turned down almost a billion dollars of work" — they only take premium clients, meaning Foxmark gets positioned with premium brands',
+          'Data center work exploded (Elk Grove Village); aviation (O\'Hare, Midway); healthcare growing — all require signage'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Vince Gutekanst (Executive MD / Midwest President) — primary relationship; controls vendor qualification for all Chicago/Midwest projects',
+          '2 · Joe Van Oosbree (MD, Midwest Operations) — co-leads Chicago office; day-to-day project pipeline visibility',
+          '3 · VP Preconstruction / Estimating — writes the specs; get Foxmark on the bid list here',
+          '4 · Dave Hall (CEO) — use for intro letters and relationship escalation; ESOP CEO responsive to partner culture pitch'
+        ]}
+      ]
+    },
+    ceo: {name:'Dave Hall', title:'CEO, Clune Construction — ESOP; $2.1B revenue; 700+ employees; 7 offices (Chicago HQ + NY, DC, LA, TX, SF, Boston); founded 1997; pure interior/TI DNA; Best Managed Company (Deloitte); Best Place to Work (national)'},
+    nodes:[
+      {title:'Executive MD / President, Midwest', name:'Vince Gutekanst', owns:'All Clune Midwest operations, project pipeline, subcontractor and vendor relationships', target:true, note:'CONFIRMED — Clune website + ENR 2024 Midwest Contractor of Year article. 23-year Clune veteran. Controls vendor qualification and preferred lists for all Chicago/Midwest projects. This is the #1 Foxmark relationship target for channel partner access.'},
+      {title:'Managing Director, Midwest Operations', name:'Joe Van Oosbree', owns:'Day-to-day operations for all Chicago projects, subcontractor management, project execution', target:true, note:'CONFIRMED — Clune website + ENR article. Co-leads Chicago office with Gutekanst. Built Chicago Cubs office at Wrigley — relationship-driven exec. Preferred vendor list input comes from this level.'},
+      {title:'VP Preconstruction / Estimating (Chicago)', name:'(Verify on LinkedIn — search "Clune Construction" + "Preconstruction" OR "Estimating" + Chicago)', owns:'Subcontractor specs, bid lists, preferred vendor programs for all Chicago TI projects', target:true, note:'HIGHEST LEVERAGE TARGET. Preconstruction writes the specs that include signage and environmental graphics packages. Preferred vendor qualification here = automatic Foxmark inclusion in every Clune TI bid. Route through Van Oosbree (MD Operations).'},
+      {title:'CEO', name:'Dave Hall', owns:'Corporate strategy, ESOP culture, client relationships — ENR quoted as Midwest GC of Year 2024', target:false, note:'Context / escalation only. ESOP CEO responsive to partner culture narrative. Use for relationship letters once Gutekanst + Van Oosbree relationship is established. Quoted: "I can do things other CEOs can\'t" — responds to long-term partnership pitches.'}
+    ]
+  },
+
+  'Skender Construction': {
+    _coKey: 'Skender Construction',
+    _tabKey: 'mid',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $547M revenue; 1330 W Fulton Market Chicago HQ. New C-suite Jan 2026: CEO Jerry Ball, President Andy Halik, COO Brian Bukowski. VP Interiors Ashlee Pforr = DIRECT Foxmark spec contact. Google Thompson Center $85M interior. 61 Chicago permits in 2025.',
+      sections: [
+        { label: 'Why Skender = Channel Partner', color: '#C8102E', items: [
+          'Interiors group is a named, dedicated business unit — VP Ashlee Pforr runs it. This is exactly where Foxmark signage gets specified',
+          'Google Thompson Center ($85M interior buildout) = landmark Chicago interior project Skender won — brand environment at that scale requires premium signage',
+          '61 building permits in 2025 = 61 active TI projects in Chicago market, many requiring Foxmark-scope signage',
+          'Mission Critical data center team (Halik + Bukowski led it) = facility branding and wayfinding at new construction scale',
+          'Healthcare (Northwestern Medicine) = hospital campus wayfinding + donor recognition'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Ashlee Pforr (VP Interiors) — DIRECT. She specs the interiors buildouts. This is the Foxmark relationship target.',
+          '2 · Andy Halik (President, new Jan 2026) — strategic relationship; championed interiors group for 14 years at Skender',
+          '3 · Stacy (CFO, since 2012) — financial buyer relationship if needed for larger programs',
+          '4 · Pitch: "Interiors clients expect premium branded environments. Let\'s make Foxmark your default signage partner so you can offer it in every proposal."'
+        ]}
+      ]
+    },
+    ceo: {name:'Jerry Ball', title:'CEO, Skender Construction — $547M revenue (ENR 2025 Top 400); 1330 W Fulton Market Chicago HQ; Interiors, Healthcare, Mission Critical, Multifamily; Best Places to Work (Crain\'s, 6x); CEO since Jan 2025 (was President+CEO, now CEO only)'},
+    nodes:[
+      {title:'VP, Interiors', name:'Ashlee Pforr', owns:'All Skender interiors projects — tenant improvement, commercial buildouts, corporate environments. Specs signage and environmental graphics.', target:true, note:'CONFIRMED — promoted Jan 1, 2026 (REJournals, Construction Dive). Has led Skender\'s largest and most complex interiors projects since 2010. VP Interiors = the person who specifies signage vendors on every TI project. This is the #1 Foxmark contact at Skender.'},
+      {title:'President', name:'Andy Halik', owns:'Corporate growth strategy, market leadership, client relationships — particularly interiors and mission critical', target:true, note:'CONFIRMED — promoted to President Jan 1, 2026. 14-year Skender veteran, championed interiors group. New to President role = receptive to new strategic partnerships. Building his own leadership identity — Foxmark as a preferred partner fits that narrative.'},
+      {title:'Chief Operating Officer', name:'Brian Bukowski', owns:'All Skender operations, subcontractor qualification, project execution excellence', target:true, note:'CONFIRMED — promoted to COO Jan 1, 2026. 18-year Skender veteran. COO controls the operational vendor lists. Route through Halik (President) or Pforr (VP Interiors) for introduction.'},
+      {title:'CEO', name:'Jerry Ball', owns:'Corporate strategy, financial direction, culture — stepped back from day-to-day (was P+CEO, now CEO only)', target:false, note:'Context only. Ball transitioned from President+CEO to CEO-only in Jan 2026, handing operations to Halik + Bukowski. Reachable for relationship-level conversations but not the day-to-day spec decision-maker.'}
+    ]
+  },
+
+  'Leopardo Construction': {
+    _coKey: 'Leopardo Construction',
+    _tabKey: 'mid',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $472M+ revenue; Hoffman Estates + Chicago offices. CEO Giancarlo Pacini. CFO Todd Welch (promoted 2024). +49 spots on ENR 2025 Top 400 = fastest-climbing GC in Illinois. Tenant interiors, hospitality (Hyatt Regency, Hilton Canopy, Hilton Garden Inn), office-to-residential conversions, multifamily.',
+      sections: [
+        { label: 'Why Leopardo = Channel Partner', color: '#C8102E', items: [
+          'Hospitality portfolio = Hyatt Regency + Hilton brands already in this dashboard. Foxmark can be introduced to these clients through Leopardo',
+          'Tenant interiors group (EVP Rick, 40+ year veteran) = dedicated team that specs signage for commercial buildouts',
+          '+49 ENR spots = major growth = more projects = more signage specifications needed',
+          'Office-to-residential conversions = high-profile Chicago adaptive reuse = branded environment moments',
+          'Finalist for IL RE Journal\'s General Contractor of Year (Multifamily) 2025'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Rick (EVP, Tenant Interiors group head) — veteran exec who oversees the interiors revenue line; direct spec authority',
+          '2 · Giancarlo Pacini (CEO) — active public spokesperson; ENR + IL RE Journal quotes 2025; approach via LinkedIn',
+          '3 · Seth (VP, Tenant Interior Projects, 27 years experience) — day-to-day spec authority for TI projects',
+          '4 · Pitch overlap with Hyatt + Hilton: "We\'ve done signage for Hyatt Regency properties — let us be your preferred vendor on hospitality projects."'
+        ]}
+      ]
+    },
+    ceo: {name:'Giancarlo Pacini', title:'President & CEO, Leopardo Construction — $472M+ revenue; Hoffman Estates IL HQ + Chicago office; tenant interiors, hospitality, multifamily, office-to-residential; +49 spots ENR 2025 Top 400'},
+    nodes:[
+      {title:'EVP, Tenant Interiors Group', name:'Rick (Last name: verify on LinkedIn — search "Leopardo" + "Interiors" + EVP)', owns:'Entire tenant interiors business unit — build-outs, renovations, commercial space restorations. Specs signage vendors.', target:true, note:'CONFIRMED as EVP, Tenant Interiors lead — Leopardo About page + Bluebook ProView. 40+ year Leopardo veteran (started as laborer 1983). Inducted into Midwest Real Estate News CRE Hall of Fame 2016. Direct authority over interiors vendor selection. Primary Foxmark channel partner contact.'},
+      {title:'VP, Tenant Interior Projects', name:'Seth (Last name: verify on LinkedIn — search "Leopardo" + "Tenant Interiors" + VP)', owns:'Day-to-day execution of tenant interior projects — specs signage, wayfinding, environmental graphics for corporate clients including Kia, Colliers, Morgan Stanley', target:true, note:'CONFIRMED — Leopardo About page: 27 years experience, VP Tenant Interior Projects. Worked with Kia, Colliers, Morgan Stanley. Daily spec authority for TI signage vendors.'},
+      {title:'CEO / President', name:'Giancarlo Pacini', owns:'Corporate strategy, growth, client relationships, ENR ranking momentum', target:true, note:'CONFIRMED — ENR 2025 Top 400 quote (June 2025) + IL RE Journal awards 2025. Active public figure. LinkedIn reachable. New CEO role (previously just President). Receptive to strategic partner conversations given growth momentum.'},
+      {title:'CFO', name:'Todd Welch', owns:'Financial operations, vendor payment terms, ESOP-like financial culture', target:false, note:'CONFIRMED — promoted to CFO in Leopardo 2024 leadership announcement. With Leopardo since 2004. Context only; not a primary signage spec decision-maker.'}
+    ]
+  },
+
+  'Pepper Construction': {
+    _coKey: 'Pepper Construction',
+    _tabKey: 'mid',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $1B+ revenue; Barrington IL HQ. CEO Stan Pepper III (grandson of founder). President Chris Averill (July 2023). Family-owned since 1927. Healthcare ~50% of revenue (Northwestern, Loyola, Texas Heart Institute, NASA). Commercial TI, higher education, mission critical.',
+      sections: [
+        { label: 'Why Pepper = Channel Partner', color: '#C8102E', items: [
+          'Healthcare 50%+ of revenue = hospital campuses, medical office buildings, surgery centers — wayfinding systems, donor recognition walls, patient-experience graphics at scale',
+          'Clients include UBS, Northwestern University, University of Notre Dame, NASA — premium branded environment clients',
+          'Family-owned since 1927 = relationship-driven vendor selection; long-term partnerships valued',
+          'IL + IN + OH + TX divisions = multi-state vendor relationship opportunity',
+          'Stan Pepper III leadership since 2015 = modern management philosophy, technology-forward, receptive to new partnerships'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Chris Averill (President, July 2023) — new President = building his own vendor relationships; ideal time to get Foxmark positioned',
+          '2 · VP, Healthcare Division — healthcare is the signage-richest sector; hospital wayfinding + donor walls are major Pepper scopes',
+          '3 · Director of Preconstruction — writes the specs; preferred vendor list qualification here',
+          '4 · Stan Pepper III (CEO) — receptive to partner culture pitch given family-owned, values-driven culture'
+        ]}
+      ]
+    },
+    ceo: {name:'Stan Pepper III', title:'CEO, The Pepper Companies — family-owned since 1927 (founded by grandfather Stanley F. Pepper); Barrington IL HQ; $1B+ revenue est.; healthcare, commercial TI, higher ed, mission critical; IL + IN + OH + TX divisions'},
+    nodes:[
+      {title:'President', name:'Chris Averill', owns:'Day-to-day operations, strategic growth, client relationships, subcontractor programs', target:true, note:'CONFIRMED — Crain\'s Chicago Business July 2023. New President = actively building leadership identity and vendor relationships. Best time to get Foxmark established as preferred partner before existing vendor relationships solidify.'},
+      {title:'Division VP / Healthcare Sector Lead', name:'(Verify on LinkedIn — search "Pepper Construction" + "Healthcare" + VP OR Director)', owns:'Healthcare construction projects — Northwestern, Loyola, Texas Heart Institute; largest Foxmark-scope signage opportunity at Pepper', target:true, note:'Healthcare = 50%+ of Pepper revenue. Hospital projects require comprehensive wayfinding systems, donor recognition walls, exterior monument signage, patient-experience environmental graphics. Healthcare Division lead specifies these vendors.'},
+      {title:'Director, Preconstruction / Estimating', name:'(Verify on LinkedIn — search "Pepper Construction" + "Preconstruction" OR "Estimating" + Illinois)', owns:'Subcontractor specs and bid lists for all Illinois and regional projects', target:true, note:'Preferred vendor list qualification happens at Preconstruction level. Route through Averill (President) for introduction.'},
+      {title:'CEO', name:'Stan Pepper III', owns:'Corporate strategy, family values, long-term direction — grandson of company founder', target:false, note:'Context / relationship escalation. Returned to Pepper in 2015 after PE and software experience. Modern management philosophy. Responds to partner culture and long-term relationship pitches. ESOP-adjacent culture.'}
+    ]
+  },
+
+  'Berglund Construction': {
+    _coKey: 'Berglund Construction',
+    _tabKey: 'mid',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $293M revenue; Chicago HQ; family-owned since 1911. CEO Fred Berglund. CFO Kevin Geshwender. Historic preservation + commercial TI. Northwestern University, University of Chicago campus work. National Preservation Award from National Trust for Historic Preservation.',
+      sections: [
+        { label: 'Why Berglund = Channel Partner', color: '#C8102E', items: [
+          'Historic preservation + institutional TI = premium brand environments at landmark Chicago buildings and university campuses',
+          'Northwestern + U of Chicago campus work = the exact branded environment clients that invest in wayfinding and environmental graphics',
+          'Family-owned since 1911 = relationship-driven vendor selection; 115-year track record of long-term partnerships',
+          'Construction Excellence Award from US General Services Administration = government + institutional client base',
+          'ENR Top 400 national firm = credentialed for premium project specifications'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · Fred Berglund (CEO) — 30+ year veteran; reachable via industry associations (Chicago AGC, etc.)',
+          '2 · VP Operations / Project Executive — controls subcontractor specs for TI + preservation projects',
+          '3 · Pitch: "Historic preservation projects demand signage that respects the architectural context. We specialize in period-appropriate and premium branded environments."'
+        ]}
+      ]
+    },
+    ceo: {name:'Fred Berglund', title:'CEO / President, Berglund Construction — family-owned since 1911 (Chicago); $293M revenue (2025); historic preservation + commercial TI; Northwestern, U of Chicago; National Preservation Award; ENR Top 400'},
+    nodes:[
+      {title:'CEO / President', name:'Fred Berglund', owns:'Full corporate strategy and operations; 30+ year veteran; vendor relationships', target:true, note:'CONFIRMED — multiple industry sources; 30+ years with Berglund. Family-owned CEO is the primary relationship contact. Reachable via Chicagoland AGC, Illinois AGC, and CRE industry events.'},
+      {title:'CFO / EVP', name:'Kevin Geshwender', owns:'Financial operations and vendor payment/contract management', target:false, note:'CONFIRMED — RocketReach: EVP & CFO. Context only for financial discussions once relationship established.'},
+      {title:'VP Operations / Senior Project Executive', name:'(Verify on LinkedIn — search "Berglund Construction" + "VP" OR "Project Executive" + Chicago)', owns:'Day-to-day project operations, subcontractor selection, spec authority for TI and preservation projects', target:true, note:'PRIMARY operational contact for vendor qualification. Route through Fred Berglund (CEO) for introduction given family-owned culture.'}
+    ]
+  },
+
+  'Executive Construction': {
+    _coKey: 'Executive Construction',
+    _tabKey: 'mid',
+    emailTpl: 'intro',
+    intel: {
+      headline: 'CHANNEL PARTNER — $196M revenue; Chicago TI specialist. 72 building permits in 2025 — highest permit count of ANY top-20 Chicago GC. High-volume interior buildout shop. Getting Foxmark on their preferred vendor list = access to the highest-volume TI permit pipeline in Chicago.',
+      sections: [
+        { label: 'Why Executive Construction = Channel Partner', color: '#C8102E', items: [
+          '72 permits in 2025 = 72 active TI projects in Chicago — the most of any top-20 GC by permit count',
+          'High-volume TI shop means Foxmark signage could be specified across dozens of Chicago commercial interiors annually',
+          'Smaller firm = easier to get on preferred vendor list; less bureaucracy, faster relationship',
+          'Every permit = a commercial tenant improving their space = a potential Foxmark signage project'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · CEO / Principal — small firm = direct access to decision-maker; find on LinkedIn',
+          '2 · VP Estimating / Preconstruction — writes the signage specs on every one of those 72 permits',
+          '3 · Pitch: "You\'re doing more TI projects in Chicago than anyone. Let Foxmark be your go-to signage partner so you can offer it on every bid without sourcing a new vendor each time."'
+        ]}
+      ]
+    },
+    ceo: {name:'(Verify on LinkedIn — search "Executive Construction Chicago" + CEO OR Principal)', title:'CEO / Principal, Executive Construction — Chicago TI specialist; $196M revenue; 72 Chicago building permits in 2025 (highest count of any top-20 Chicago GC); high-volume commercial interior buildout'},
+    nodes:[
+      {title:'CEO / Principal', name:'(Verify on LinkedIn — search "Executive Construction" + "Chicago" + CEO OR Principal)', owns:'Full firm operations, client relationships, vendor selection — small firm = CEO is involved in vendor decisions', target:true, note:'Small firm = CEO/Principal is the primary relationship target. High-volume TI shop with 72 permits in 2025. Direct outreach via LinkedIn most effective. Pitch: "Be your permanent signage partner across your entire project pipeline."'},
+      {title:'VP Estimating / Preconstruction', name:'(Verify on LinkedIn — search "Executive Construction" + "Estimating" OR "Preconstruction" + Chicago)', owns:'Subcontractor specs and bid lists for all 72+ annual TI projects', target:true, note:'HIGHEST LEVERAGE contact for volume vendor qualification. 72 permits = Preconstruction spec authority is worth more here than at a firm doing 15 projects/year. Getting on the bid list here = access to the full Chicago TI pipeline.'}
+    ]
+  }
+
 };
 window.ecBtnClick = function(btn) {
   var rid = btn.getAttribute('data-rid');
@@ -9490,6 +9811,15 @@ function renderF500Dashboard() {
   // angle: [label, color]  urg: [label, color, bgColor]
   // Foxmark angle + urgency badge — edit here to update master list
 var ANGLE_URG_MAP = {
+  'Clune Construction':        {a:['CHANNEL PARTNER','#22c55e'], u:['#1 TI PIPELINE · ESOP','#22c55e','rgba(34,197,94,.12)']},
+  'Skender Construction':      {a:['CHANNEL PARTNER','#22c55e'], u:['VP INTERIORS · JAN 2026','#22c55e','rgba(34,197,94,.12)']},
+  'Leopardo Construction':     {a:['CHANNEL PARTNER','#22c55e'], u:['+49 ENR SPOTS · 2025','#22c55e','rgba(34,197,94,.12)']},
+  'Pepper Construction':       {a:['CHANNEL PARTNER','#22c55e'], u:['HEALTHCARE + TI · 1927','#22c55e','rgba(34,197,94,.12)']},
+  'Berglund Construction':     {a:['CHANNEL PARTNER','#22c55e'], u:['HISTORIC PRES · 1911','#22c55e','rgba(34,197,94,.12)']},
+  'Executive Construction':    {a:['CHANNEL PARTNER','#22c55e'], u:['72 PERMITS · HIGHEST VOL','#22c55e','rgba(34,197,94,.12)']},
+  'Walsh Group':           {a:['CHANNEL PARTNER','#22c55e'], u:['PREFERRED VENDOR','#22c55e','rgba(34,197,94,.12)']},
+  'JE Dunn Construction':  {a:['CHANNEL PARTNER','#22c55e'], u:['HEALTHCARE + TI','#22c55e','rgba(34,197,94,.12)']},
+  'Clayco':                {a:['CHANNEL PARTNER','#22c55e'], u:['DESIGN-BUILD · ENR 2024','#22c55e','rgba(34,197,94,.12)']},
   'United Airlines (UAL)': {a:['MULTI-SITE ROLLOUT','#4a9eff'], u:null},
   'RR Donnelley (RRD)': {a:['INTEGRATION ACTIVE','#C8102E'], u:['WILLIAMS LEA Q1 2025','#f59e0b','rgba(245,158,11,.12)']},
   'JLL': {a:['ACCELERATE 2030','#C8102E'], u:['CHANNEL PARTNER','#4a9eff','rgba(74,158,255,.12)']},
@@ -9888,7 +10218,15 @@ function renderMktTable(key) {
       // ── DEALER / NETWORK ROLLOUTS ────────────────────────────────────────
       { name:'Atkore International',         urgency:'50+ PLANTS · NYSE: ATKR',   color:'#4a9eff', why:'Harvey IL. NYSE listed. 50+ manufacturing plants globally. CMO controls brand standards across entire manufacturing and distribution network. Multi-site rollout opportunity.' },
       { name:'Chamberlain Group (dealer)',   urgency:'30,000 DEALER NETWORK',     color:'#4a9eff', why:'30,000+ residential and commercial dealers/installers need co-branded point-of-sale and showroom environments. Corporate-to-dealer co-brand program = Foxmark largest potential mid-market rollout.' },
-      { name:'Levy Restaurants',             urgency:'150+ VENUES · COMPASS',     color:'#4a9eff', why:'Chicago-based Compass Group division. 150+ premium sports and entertainment venues nationally. Every new venue opening or refresh = full branded environment package.' }
+      { name:'Levy Restaurants',             urgency:'150+ VENUES · COMPASS',     color:'#4a9eff', why:'Chicago-based Compass Group division. 150+ premium sports and entertainment venues nationally. Every new venue opening or refresh = full branded environment package.' },
+
+      // ── IL GENERAL CONTRACTORS — CHANNEL PARTNERS ───────────────────────
+      { name:'Clune Construction',           urgency:'CHANNEL PARTNER · $2.1B',   color:'#22c55e', why:'ESOP-owned. 10 S Riverside Plaza Chicago HQ. CEO Dave Hall. Midwest President Vince Gutekanst + MD Operations Joe Van Oosbree. PURE interior/TI DNA — Salesforce Tower, Delta LAX Lounge, Barstool Sports HQ. #1 channel partner target: every Clune TI project = Foxmark signage spec. Get on preferred vendor list ASAP.' },
+      { name:'Skender Construction',         urgency:'CHANNEL PARTNER · $547M',   color:'#22c55e', why:'1330 W Fulton Market Chicago HQ. CEO Jerry Ball; President Andy Halik (Jan 1 2026); COO Brian Bukowski; VP Interiors Ashlee Pforr. Google Thompson Center $85M interior buildout. 61 Chicago permits in 2025. Mission critical + interiors + healthcare. Pforr (VP Interiors) = direct Foxmark spec contact.' },
+      { name:'Leopardo Construction',        urgency:'CHANNEL PARTNER · $472M+',  color:'#22c55e', why:'Hoffman Estates + Chicago offices. CEO Giancarlo Pacini. CFO Todd Welch. Climbed 49 spots on ENR 2025 Top 400. Tenant interiors, hospitality (Hyatt Regency, Hilton), office-to-residential conversions. EVP Rick (Tenant Interiors group head) = key signage spec contact.' },
+      { name:'Pepper Construction',          urgency:'CHANNEL PARTNER · PRIVATE',  color:'#22c55e', why:'Barrington IL HQ. CEO Stan Pepper III (grandson of founder Stanley F. Pepper, est. 1927). President Chris Averill (named July 2023). Healthcare + commercial TI. ~$1B+ revenue. Health care projects ~50% of revenue = hospital wayfinding + donor walls + patient-experience graphics.' },
+      { name:'Berglund Construction',        urgency:'CHANNEL PARTNER · $293M',   color:'#22c55e', why:'Chicago HQ. CEO Fred Berglund. CFO Kevin Geshwender. Family-owned since 1911. Historic preservation + commercial TI — Northwestern, U of Chicago campuses. National Preservation Award recipient. Landmark buildings = premium branded environment client base.' },
+      { name:'Executive Construction',       urgency:'CHANNEL PARTNER · 72 PERMITS', color:'#22c55e', why:'Chicago TI specialist. 72 building permits in 2025 — highest permit count of any top-20 Chicago GC. High-volume interior buildout shop. $196M revenue. Getting Foxmark on their preferred vendor list = automatic inclusion in the highest-volume TI pipeline in Chicago.' }
     ];
     t += '<div style="background:rgba(200,16,46,.03);border:1px solid rgba(200,16,46,.18);padding:1.1rem;margin-top:1.25rem;" id="mid-catalyst-anchor">';
     t += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;">';
@@ -10107,6 +10445,16 @@ function renderMktTable(key) {
 
   // ── FOXMARK ANGLE MAP ─────────────────────────────────────────────────────
   var FOXMARK_ANGLE = {
+    // SVC — GENERAL CONTRACTORS (CHANNEL PARTNERS)
+    'Clune Construction':           ['CHANNEL PARTNER','#22c55e'],
+    'Skender Construction':         ['CHANNEL PARTNER','#22c55e'],
+    'Leopardo Construction':        ['CHANNEL PARTNER','#22c55e'],
+    'Pepper Construction':          ['CHANNEL PARTNER','#22c55e'],
+    'Berglund Construction':        ['CHANNEL PARTNER','#22c55e'],
+    'Executive Construction':       ['CHANNEL PARTNER','#22c55e'],
+    'Walsh Group':                  ['CHANNEL PARTNER','#22c55e'],
+    'JE Dunn Construction':         ['CHANNEL PARTNER','#22c55e'],
+    'Clayco':                       ['CHANNEL PARTNER','#22c55e'],
     // SVC
     'United Airlines (UAL)':        ['MULTI-SITE ROLLOUT','#4a9eff'],
     'RR Donnelley (RRD)':           ['INTEGRATION ACTIVE','#C8102E'],
@@ -10339,6 +10687,9 @@ function initMktCharts() {
 // ── TIER COMPANY DATA ──────────────────────────────────────────────────────
 var TIER_DATA = {
   t1: [
+    {key:'Walsh Group',            rev:'$7.6B',  it:'$280M',  locs:'26 offices',   contacts:'CEO Matthew Walsh; EVP Midwest Sean Fitzpatrick', strategy:'CHANNEL PARTNER — 929 W Adams Chicago HQ. Family-owned since 1898. Airport, healthcare, data center, TI. Get Foxmark on preferred vendor list = automatic inclusion in every Walsh Midwest project bid. Route through Sean Fitzpatrick (EVP Midwest).'},
+    {key:'JE Dunn Construction',   rev:'$7.4B',  it:'$270M',  locs:'26 offices',   contacts:'CEO Gordon Lansford; SVP IL Michael Heistand',    strategy:'CHANNEL PARTNER — ESOP, KC HQ + Chicago office. Healthcare 50%+ of revenue = hospital wayfinding + donor walls. Corporate TI active on Salesforce Tower + Loop projects. Heistand (SVP IL) = primary vendor qualification contact.'},
+    {key:'Clayco',                 rev:'$6.8B',  it:'$250M',  locs:'Chicago HQ + 6', contacts:'CEO Bob Clark; COO Cameron Trefry; CGO Michael Fassnacht', strategy:'CHANNEL PARTNER — Design-build controls BOTH arch + construction specs = highest leverage vendor qualification in GC market. ENR Midwest Contractor of Year 2024. Corporate campus + industrial. Fassnacht (CGO) = ideal Foxmark entry angle.'},
     {key:'Echo Global Logistics',   rev:'$2.5B',  it:'$40M',   locs:'30+',       contacts:'COO Menzel, CFO Rogers, CHRO Frey',  strategy:'600 W Chicago HQ (185,000 SF). TJC PE-backed (not TPG). Acquiring ITS Logistics June 2026 = active integration signage cycle. CHRO Frey = warmest entry.'},
     {key:'Coyote Logistics (UPS)',  rev:'$3.2B',  it:'$120M',  locs:'10',        contacts:'Jack Gerstner (SVP Ops, Chicago)',  strategy:'⚠️ ACQUIRED BY RXO Sept 2024. Sisler gone. Logan Square Chicago office active but right-sizing. Integration = redesign opportunity. Best entry: Jack Gerstner SVP Ops Chicago.'},
     {key:'JLL',                     rev:'$26.1B', it:'$860M',  locs:'300+',      contacts:'CMO Taparia (Dallas), COO Morgan (Chicago)',  strategy:'200 E Randolph HQ. Accelerate 2030 launched Mar 12, 2026. TWO angles: JLL own HQ + channel partner into 51K-person Workplace Mgmt client portfolio via Paul Morgan.'},
