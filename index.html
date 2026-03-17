@@ -5225,7 +5225,7 @@ var MKT_TABLES = {
   ],
   fin: [
     ['Allstate','$64.1B','$1,800M','363','Suren Gupta (President, Enterprise Svcs — RE+Procurement exec umbrella; retiring early 2026); Elizabeth Brady (EVP & CMO); Michael Thomas (VP Admin & Real Estate); Cheryl Harris (SVP & CPO, $12B spend) — Northbrook IL HQ; 2024 rev up 12%; 54K employees; active rebrand/divestiture cycle (Benefits → The Standard; Group Health → Nationwide)'],
-    ['Arthur J. Gallagher','$11.5B','$440M','150+','Christopher Mead (CMO); Patrick Gallagher (EVP & COO); Susan Pietrucha (CHRO); Rolling Meadows IL HQ; 55K employees; 80+ acquisitions/yr = relentless rebrand pipeline'],
+    ['Arthur J. Gallagher','$13.8B','$440M','500+ offices','CMO Mead (age 57, since 2017); COO Patrick Gallagher (age 45, since 2024); CFO Howell (since 2003); CHRO Pietrucha (since 2007) — Rolling Meadows IL HQ; 66,000+ employees post-AssuredPartners; $13.8B acq. closed Aug 2025; 33 mergers in 2025 = relentless rebrand pipeline'],
     ['CNA Financial','$11.0B','$420M','42','Daniel Franzetti (EVP & CAO — owns Corporate Real Estate + Procurement); Chicago Loop HQ 151 N Franklin; 6K employees; commercial P&C insurer'],
     ['CME Group','$6.1B','$240M','Chicago HQ','CMO, VP Facilities — Chicago Loop HQ; world\'s largest derivatives exchange; 3,760 employees; premium financial district flagship environment'],
     ['Discover Financial (Capital One)','$16.9B','$650M','53','CPO Clint Grimes, VP Workplace — Riverwoods IL HQ; Capital One acquisition CLOSED May 2025; Discover sign still at entrance Oct 2025; rebrand rollout active across 53 locations'],
@@ -5871,18 +5871,46 @@ var MKT_ORGS = {
   },
 
   'Allstate': {
+    _coKey: 'Allstate',
+    _tabKey: 'fin',
     emailTpl: 'cs_allstate',
+    intel: {
+      headline: 'NYSE: ALL · $67.7B revenue FY2025 (record) · $10.2B net income · Northbrook IL HQ · 54,000 employees · 10,000+ agency offices nationwide. Pure P&C insurer now — Health & Benefits fully divested ($3.25B) in 2025. Brand environment refresh underway to reflect leaner, sharper identity.',
+      sections: [
+        { label: 'Company Snapshot & Catalyst', color: '#C8102E', items: [
+          'FY2025 record: $67.7B revenue (+5.6% YOY), $10.2B net income (+123% YOY) — Allstate is flush with capital and actively deploying it ($4B share buyback program announced)',
+          'Health & Benefits FULLY DIVESTED: EVB → The Standard (April 1, 2025, $2.0B); Group Health → Nationwide (July 1, 2025, $1.25B). $3.25B total. Allstate is now a pure P&C insurer — the brand identity needs to reflect this simpler, stronger story',
+          '⚠️ Suren Gupta (President, Enterprise Solutions — owns Real Estate + Procurement) announced retirement "early 2026" on LinkedIn. Successor NOT yet publicly named. This is a live leadership transition — vendor relationships may reset',
+          'Agency network: 10,000+ Allstate-branded agency offices nationwide. Each rebrand, redesign, or refresh cycle = Foxmark-scope environmental graphics and signage at scale',
+          'Northbrook IL HQ campus: massive physical footprint; ongoing renovation programs under VP Thomas (Admin & Real Estate)'
+        ]},
+        { label: 'Foxmark Angle', color: '#4a9eff', items: [
+          'REBRAND CATALYST: Post-divestiture brand clarification — Allstate is no longer a health+benefits company. The physical environments (HQ, agency offices, marketing materials) still carry the old multi-line identity. This is a live refresh moment',
+          'AGENCY NETWORK SCALE: 10,000+ agency offices = the largest branded environment rollout opportunity in the Chicago market. Even a partial refresh program is a 7-figure engagement',
+          'HQ CAMPUS: Northbrook campus is a flagship brand expression asset. Tom Wilson (CEO) has been explicit that Allstate is reinvesting in its core P&C identity — the physical campus should reflect that',
+          'SUPPLIER DIVERSITY: Harris (CPO) oversees Supplier Diversity program — Foxmark qualifies as a diverse supplier pathway into the $12B procurement portfolio',
+          'POST-GUPTA TRANSITION: Gupta retiring = VP Thomas (Admin & Real Estate) and Harris (CPO) gain autonomy. New vendor relationships often get established during leadership transitions'
+        ]},
+        { label: 'Contact Approach Strategy', color: '#f59e0b', items: [
+          '1 · WARMEST NOW — Michael Thomas (VP Admin & Real Estate): Direct owner of HQ campus and all Allstate-controlled real estate. Gupta retirement = Thomas has more autonomy. Primary Foxmark working relationship. Approach: HQ campus environmental graphics + agency office brand standards',
+          '2 · PROCUREMENT TRACK — Cheryl Harris (SVP & CPO): $12B spend portfolio; Facilities is her category. Route Foxmark supplier qualification through her Facilities category manager. Supplier Diversity angle is the fastest path into her organization',
+          '3 · BRAND TRACK — Elizabeth Brady (EVP & CMO): Owns brand standards including physical environment expression across all 10,000+ agency locations. Approach: post-divestiture brand environment refresh — "the physical spaces should reflect the new Allstate story"',
+          '4 · WATCH — Gupta successor (role not yet named): When Allstate announces Gupta replacement, immediately re-qualify Foxmark with new leadership. Transition = open door for new vendor relationships',
+          'DO NOT cold-outreach Tom Wilson (CEO) — use as credibility anchor only'
+        ]}
+      ]
+    },
     ceo: {name:'Tom Wilson', title:'Chairman, President & CEO'},
     nodes:[
-      {title:'President, Protection Products & Enterprise Services', name:'Suren Gupta', owns:'Real estate portfolio, sourcing & procurement solutions, technology, international operations — executive umbrella over both Thomas and Harris', target:true, note:'CONFIRMED. Gupta is the C-suite owner of Real Estate AND Procurement at Allstate as of Nov 2022 (promoted from EVP Technology). He is the executive sponsor for any major Foxmark vendor program. Approach Brady (CMO) or Thomas for working-level access, but Gupta greenlights large programs. Note: Gupta posted on LinkedIn that he is retiring in early 2026 — confirm successor when announced.'},
-      {title:'VP, Administration & Real Estate', name:'Michael Thomas', owns:'Corporate real estate portfolio — site selection, transaction mgmt, design & construction PM, facilities maintenance, aviation, energy, security, food services, vehicle fleet', target:true, note:'CONFIRMED. Primary Foxmark contact for all HQ campus environmental work. Thomas joined Allstate in Sept 2006 from United Airlines. He led an $85M (30%) real estate cost reduction through density increases. Deep facility operations expertise — the working-level decision-maker for Northbrook campus renovation and signage programs. Reports to Suren Gupta.'},
-      {title:'SVP & Chief Procurement Officer', name:'Cheryl Harris', owns:'$12B third-party spend portfolio — Technology, Marketing, Claims, Professional Services, Facilities categories. Oversees Supplier Diversity program.', target:true, note:'CONFIRMED. Harris manages Allstate\'s full $12B spend portfolio (updated from $4B — scope significantly expanded). She is the vendor qualification authority. Her title is Chief Procurement Officer (CPO), not just SVP Global Sourcing. Foxmark vendor qualification runs through her Facilities category team. She holds a PhD in Leadership from Benedictine University. Reports to Suren Gupta.'},
-      {title:'Director, Corporate Real Estate & Facilities', name:'Escalate via VP Thomas', owns:'Day-to-day Northbrook HQ campus operations, facility management, renovation program execution', target:true, note:'Working-level contact for ongoing HQ environment programs. Reports through Michael Thomas. Get name through Thomas — this is the hands-on PM for Foxmark project coordination.'},
+      {title:'President, Protection Products & Enterprise Services', name:'Suren Gupta', owns:'Real estate portfolio, sourcing & procurement solutions, technology, international operations — executive umbrella over both Thomas and Harris', target:true, note:'⚠️ RETIRING EARLY 2026 — confirmed on LinkedIn ("After 15 rewarding years with Allstate, I have decided to retire in early 2026"). NO SUCCESSOR NAMED as of March 2026. This is a live leadership transition — vendor relationships reporting through Gupta (Thomas + Harris) may reset. Joined Allstate 2011 from Wells Fargo (Group CIO). Harvard AMP. 15-year tenure.'},
+      {title:'VP, Administration & Real Estate', name:'Michael Thomas', owns:'Corporate real estate portfolio — site selection, transaction mgmt, design & construction PM, facilities maintenance, aviation, energy, security, food services, vehicle fleet', target:true, note:'CONFIRMED active — Metropolitan Planning Council bio current. PRIMARY Foxmark contact for all HQ campus environmental work. Thomas joined Allstate Sept 2006 after 14 years at United Airlines (real estate + airport construction). Led $85M (30%) real estate cost reduction through density strategy. Reports to Gupta — with Gupta retiring, Thomas gains autonomy. Deep facility operations expertise.'},
+      {title:'SVP & Chief Procurement Officer', name:'Cheryl Harris', owns:'$12B third-party spend portfolio — Technology, Marketing, Claims, Professional Services, Facilities categories. Oversees Supplier Diversity + Business Inclusion programs.', target:true, note:'CONFIRMED active — Conference Board bio + Lake Zurich IL LinkedIn confirmed. CPO since 2011, formerly Accenture Americas Procurement MD ($10B spend). $12B portfolio (upgraded from $4B). Facilities is her category — Foxmark vendor qualification runs through her team. Supplier Diversity focus: minority, women, LGBT, veteran, disabled-owned businesses. Executive Leadership Council member. Florida A&M + Benedictine (MS + doctoral candidate, Values-Driven Leadership). Reports to Gupta.'},
+      {title:'Director, Corporate Real Estate & Facilities', name:'Escalate via VP Thomas', owns:'Day-to-day Northbrook HQ campus operations, facility management, renovation program execution', target:true, note:'Working-level contact for ongoing HQ environment programs. Reports through Michael Thomas. Get name through Thomas introduction — this is the hands-on PM for Foxmark project coordination at the Northbrook campus.'},
       {title:'Director, Workplace Design & Experience', name:'Escalate via VP Thomas', owns:'Workplace design standards, office renovation programs, interior design specs at Northbrook campus', target:true, note:'Specs branded graphics, wayfinding, and dimensional signage into renovation packages. Critical Foxmark contact — this is the person who writes the scope for environmental graphics in renovation projects. Get name through Thomas.'},
       {title:'Director, Capital Projects', name:'Escalate via VP Thomas', owns:'Capital renovation programs at Northbrook HQ and other Allstate facilities', target:true, note:'Controls capital deployment for campus renovation projects. Manages vendor selection and bid processes. Get name through Thomas — this is the budget owner for Foxmark-type projects.'},
-      {title:'Director, Interior Design', name:'Escalate via Workplace Design Director', owns:'Interior design standards for Allstate offices and agency locations nationwide', target:true, note:'In addition to HQ, Allstate has hundreds of agency offices. Interior design standards apply to all owned/controlled locations — this role defines what Foxmark must match across the entire portfolio.'},
-      {title:'EVP & Chief Marketing, Customer & Communications Officer', name:'Elizabeth Brady', owns:'All brand marketing, enterprise innovation, customer experience, communications, philanthropy — brand expression in physical environments', target:true, note:'CONFIRMED. Brady joined Allstate Aug 2018 from Kohler Co. (SVP Global Brand Mgmt). She leads brand for ALL Allstate brands. CMO angle: Allstate\'s HQ campus and 10,000+ agency locations are brand expression assets. Brady is the executive sponsor for brand environment standards. Also a trustee of The Allstate Foundation. Member of Allstate\'s Operating Committee.'},
-      {title:'Director, Category Management (Facilities)', name:'Escalate via CPO Cheryl Harris', owns:'Category-specific procurement for facilities-related indirect spend including signage, graphics, interiors', target:true, note:'Route Foxmark vendor qualification through Harris for introduction to the Facilities category manager. This is the buyer who manages the vendor list for environmental graphics and branded interiors spend. Harris manages $12B total — Facilities is one of her key categories.'},
+      {title:'Director, Interior Design', name:'Escalate via Workplace Design Director', owns:'Interior design standards for Allstate offices and agency locations nationwide', target:true, note:'In addition to HQ, Allstate has 10,000+ agency offices. Interior design standards apply to all owned/controlled locations — this role defines what Foxmark must match across the entire portfolio.'},
+      {title:'EVP & Chief Marketing, Customer & Communications Officer', name:'Elizabeth Brady', owns:'All brand marketing, enterprise innovation, customer experience, communications, philanthropy — brand expression in physical environments', target:true, note:'CONFIRMED active — Allstate leadership page + Comparably. Joined Aug 2018 from Kohler Co. (SVP Global Brand Mgmt, 33 global brands). Prior: Publicis EVP/GM, BBDO SVP, DDB SVP (9 years), Cramer-Krasselt VP. University of Kansas (Journalism) + Maryville MBA. Leads brand for ALL Allstate brands including agency network. CMO angle: 10,000+ agency offices are brand expression assets requiring consistent physical identity standards.'},
+      {title:'Director, Category Management (Facilities)', name:'Escalate via CPO Cheryl Harris', owns:'Category-specific procurement for facilities-related indirect spend including signage, graphics, interiors', target:true, note:'Route Foxmark vendor qualification through Harris for introduction to the Facilities category manager. This is the buyer who manages the vendor list for environmental graphics and branded interiors spend. Supplier Diversity angle: pitch Foxmark as a qualified diverse vendor — Harris\'s program actively seeks them.'},
     ]
   },
 
@@ -5938,15 +5966,36 @@ var MKT_ORGS = {
   },
 
   'Arthur J. Gallagher': {
+    _coKey: 'Arthur J. Gallagher',
+    _tabKey: 'fin',
     emailTpl: 'cs_financial',
-    ceo: {name:'J. Patrick Gallagher Jr.', title:'Chairman & CEO'},
+    intel: {
+      headline: 'NYSE: AJG · $13.778B revenue FY2025 (+21%) · Rolling Meadows IL HQ (2850 Golf Rd) · 66,000+ employees · 500+ offices globally. AssuredPartners closed Aug 18, 2025 for $13.8B — largest acquisition in AJG history, added 10,900 employees + hundreds of US/UK/Ireland offices. Integration is ACTIVE NOW. 33 additional mergers in 2025 = $3.5B annualized acquired revenue. 40+ term sheets in pipeline for 2026. Every acquired company physically rebrands to Gallagher. This is a permanent, structural, perpetual signage production pipeline.',
+      sections: [
+        { label: 'The Machine: Why AJG Is Different', color: '#C8102E', items: [
+          'Gallagher closes 30–50 acquisitions per year, every year. This is not a one-time rebrand — it is a standing program. Each acquired firm operates briefly under its own brand then physically converts to Gallagher identity across every office: exterior signage, lobby graphics, wayfinding, environmental brand',
+          'AssuredPartners alone = 10,900 new employees + hundreds of offices across US, UK, Ireland actively converting RIGHT NOW (closed Aug 18, 2025). ajg.com/merger-partners/assured-partners-is-now-gallagher/ is live — brand conversion is in progress',
+          '$160M in projected 2026 synergies = budget pressure on integration costs. Foxmark positioning: "fastest, highest-quality, most cost-efficient signage partner" wins this category',
+          '40+ term sheets signed or in progress for 2026 acquisitions (~$350M annualized) = the pipeline never stops. A Foxmark preferred vendor agreement would cover every deal in perpetuity',
+          'Family culture: J. Patrick Gallagher Jr. (CEO since 1995, age 72), Thomas J. Gallagher (President), Patrick M. Gallagher (COO). Relationship-driven firm — once in, you stay in'
+        ]},
+        { label: 'Foxmark Pitch: The One-Sentence Close', color: '#4a9eff', items: [
+          '"You close 30+ acquisitions a year. Each one needs a Gallagher rebrand on day one. Let Foxmark be your standing signage vendor — same specs, same quality, same pricing, whether it\'s one office or forty."',
+          'The pitch is operational efficiency, not just brand: every new acquisition PM calls the same number, gets the same turnaround, same install quality, nationally. Foxmark HQ in Houston + Chicago Studio = national + local coverage',
+          'AssuredPartners is the live proof of concept: hundreds of offices, all needing exterior + interior rebrand, all happening simultaneously. If Foxmark had been the preferred vendor on day 1 of that deal, the revenue would have been enormous'
+        ]},
+        { label: 'Contact Approach', color: '#f59e0b', items: [
+          '1 · Christopher Mead (CMO) — ONLY contact needed for brand conversation. Reports directly to CEO. Chicago-native. Set the meeting as "assuring brand consistency across the acquisition integration program." Everything else flows from this relationship',
+          '2 · Patrick M. Gallagher (COO) — only if Mead routes there. COO owns operational integration of every acquisition = facilities rebrand budget. Son of CEO.',
+          '3 · VP Real Estate & Facilities (unnamed) — the working PM. Mead or COO Gallagher introduces this person once the relationship is established. Don\'t cold-approach this level'
+        ]}
+      ]
+    },
+    ceo: {name:'J. Patrick Gallagher Jr.', title:'Chairman & CEO since 1995 — age 72; company founded by grandfather Arthur J. Gallagher 1927; $13.778B revenue FY2025; 66,000+ employees; family-led, multi-generational'},
     nodes:[
-      {title:'CMO', name:'Christopher Mead', owns:'Brand, marketing, 150+ global offices, acquisition integration identity', target:true, note:'Rolling Meadows IL HQ. CMO since May 2017, formerly CME Group CMO — understands Chicago corporate brand environment. Multi-building campus + acquired offices globally = ongoing refresh program.'},
-      {title:'EVP & COO', name:'Patrick Gallagher', owns:'Global operations, M&A integration, 150+ office network', target:true, note:'Age 45; oversees post-acquisition operational integration — every acquired office needs new signage/interiors; M&A pace at AJG is relentless (80+ deals/year)'},
-      {title:'CFO', name:'Douglas Howell', owns:'Finance, M&A budget, capex', target:false, note:'Controls M&A spend — context only; brand decisions run through Mead and COO Gallagher'},
-      {title:'CHRO', name:'Susan Pietrucha', owns:'HR, employee experience, workplace standards across acquisitions', target:false, note:'Each acquisition absorbs new employees into Gallagher culture; workplace environment and interior standards = cultural integration tool; CHRO co-sponsors'},
-      {title:'VP / Director Real Estate & Facilities', name:'Escalate via Patrick Gallagher (COO) or Christopher Mead (CMO)', owns:'Rolling Meadows HQ, 150+ acquired offices', target:true, note:'Gallagher VP Real Estate not publicly named — private at VP level for insurance brokerage. COO Patrick Gallagher oversees M&A integration (80+ acquisitions/yr) = he controls the facilities rebrand budget. CMO Mead owns brand standards. Either is a valid entry for the acquisition integration signage program.'},
-      {title:'VP / Director Procurement', name:'Escalate via Patrick Gallagher (COO)', owns:'Vendor management, sourcing, facilities category', target:true, note:'Procurement VP not publicly named at Gallagher. COO Patrick Gallagher controls operational vendor relationships for the acquired office integration program. Each acquisition = new signage + interior program. Approach COO directly with the M&A integration story — 80+ deals/year is an ongoing production pipeline.'}
+      {title:'Corporate VP & Chief Marketing Officer', name:'Christopher Mead', owns:'Global brand standards, marketing, communications — every acquired company\'s identity conversion to Gallagher brand runs through him', target:true, note:'CONFIRMED active — Jan 6, 2026 LinkedIn post ("reflecting on a whirlwind first few months" re: AssuredPartners integration). CMO since May 1, 2017 — reports DIRECTLY to CEO J. Patrick Gallagher Jr. (confirmed press release + SEC 10-K). Glen Ellyn IL — Chicago suburban. Career: CME Group Managing Director Marketing 2005–2017 (world\'s largest futures exchange); VP Corporate Marketing at CNA Financial 2000–2005 (Chicago); prior agency work in sports, retail, restaurant, healthcare. Kellogg MBA (Northwestern) + Keene State undergrad. He was hired specifically because Gallagher was "doubling in size" through acquisitions and needed someone to manage brand at M&A pace. AssuredPartners is now his largest-ever integration challenge. This is the Foxmark relationship.'},
+      {title:'EVP & Chief Operating Officer', name:'Patrick M. Gallagher', owns:'Operational integration of all acquisitions — the physical office rebrand program, facilities, vendor relationships', target:true, note:'CONFIRMED — SEC 10-K 2024 (age 45, COO since 2024). Son of CEO J. Patrick Gallagher Jr. Career within AJG: COO (2024–present), President P/C Americas (2021–2024), Chairman Canada/Caribbean + CEO Latin America (2019–2021), President Midwest (2016–2019). Each acquisition\'s operational integration — including physical rebrand of offices — is his responsibility. Secondary Foxmark contact if Mead routes there or for direct M&A integration pitch. COO controls the facilities rebrand budget across 33+ annual acquisitions.'},
+      {title:'VP / Director, Real Estate & Facilities', name:'Escalate via Mead (CMO) or P. Gallagher (COO)', owns:'Rolling Meadows HQ (2850 Golf Rd) + all acquired offices — facility management, renovation, rebrand programs', target:true, note:'Not publicly named — standard at VP level for insurance brokerage. This is the working PM who would coordinate Foxmark on individual office projects. Do NOT cold-approach this level. Get the introduction from CMO Mead after the brand relationship is established. Once in, this contact manages the day-to-day volume.'}
     ]
   },
 
@@ -12420,6 +12469,52 @@ window.emailComposerSend = function() {
       <button onclick="copyWorkerCode()" style="background:#5aabff;color:#000;border:none;padding:.4rem 1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;cursor:pointer;">COPY CODE</button>
       <a href="https://workers.cloudflare.com" target="_blank" style="background:rgba(90,171,255,.15);color:#5aabff;border:1px solid rgba(90,171,255,.3);padding:.4rem 1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-decoration:none;">OPEN CLOUDFLARE →</a>
       <button onclick="document.getElementById('worker-code-modal').style.display='none'" style="background:none;border:none;color:#4a6080;cursor:pointer;margin-left:auto;font-size:1.1rem;">✕</button>
+    </div>
+    <div style="margin-top:.75rem;font-size:.72rem;color:#3a4a60;line-height:1.6;">
+      Steps: 1) Copy code above → 2) Go to workers.cloudflare.com → Create Worker → paste → Deploy<br>
+      3) Copy the <strong style="color:#5aabff;">.workers.dev</strong> URL → paste into Proxy URL field → Save
+    </div>
+  </div>
+</div>
+
+<script>
+function saveProxyUrl() {
+  var inp = document.getElementById('proxy-url-input');
+  var stat = document.getElementById('proxy-status');
+  var val = inp ? inp.value.trim() : '';
+  if (!val) {
+    try { localStorage.removeItem('foxmark_proxy_url'); } catch(e) {}
+    if (stat) { stat.textContent = 'Proxy cleared — using direct API.'; stat.style.color = '#f59e0b'; }
+    return;
+  }
+  if (!val.startsWith('https://')) {
+    if (stat) { stat.textContent = '✗ URL must start with https://'; stat.style.color = '#C8102E'; }
+    return;
+  }
+  try { localStorage.setItem('foxmark_proxy_url', val); } catch(e) {}
+  if (stat) { stat.textContent = '✓ Proxy saved! AI Research will use this URL.'; stat.style.color = '#22c55e'; }
+}
+
+function copyWorkerCode() {
+  var pre = document.getElementById('worker-code-pre');
+  if (!pre) return;
+  navigator.clipboard && navigator.clipboard.writeText(pre.textContent).then(function(){
+    pre.style.borderColor = '#22c55e';
+    setTimeout(function(){ pre.style.borderColor = 'rgba(255,255,255,.08)'; }, 1500);
+  });
+}
+
+// Pre-fill proxy input if already saved
+(function() {
+  var saved = localStorage.getItem('foxmark_proxy_url');
+  var inp = document.getElementById('proxy-url-input');
+  if (saved && inp) inp.value = saved;
+})();
+</script>
+</body>
+</html>
+
+;">✕</button>
     </div>
     <div style="margin-top:.75rem;font-size:.72rem;color:#3a4a60;line-height:1.6;">
       Steps: 1) Copy code above → 2) Go to workers.cloudflare.com → Create Worker → paste → Deploy<br>
