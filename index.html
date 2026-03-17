@@ -5214,11 +5214,11 @@ var MKT_TABLES = {
     ['Coyote Logistics (UPS)','$3.2B','$120M','10','⚠️ NOW RXO (acq. Sept 2024). Sisler GONE. Jack Gerstner SVP Ops Chicago = best entry. Logan Square office active but right-sizing.'],
     ['Echo Global Logistics','$2.5B','$40M','30+','COO Menzel, CFO Rogers, CHRO Frey — 600 W Chicago HQ (185,000 SF); TJC-backed (not TPG); acquiring ITS Logistics June 2026'],
     ['Hyatt Hotels Corporation','$6.7B','$250M','1,500+ hotels','CCO Vondrasek, SVP Weinberg, CFO Bottarini — HQ 150 N Riverside Chicago; NO CMO (eliminated 2018); Hoplamazian now Chairman+CEO Feb 2026'],
-    ['JLL','$23.4B','$860M','300+ offices','CMO, VP Workplace — Chicago HQ; world\'s 2nd largest CRE firm; 106K employees; massive workplace interior programs'],
-    ['MAT Holdings','$1.6B','$70M','41','COO, VP Facilities — Long Grove IL; private; global hardware & tools manufacturer; 5K employees'],
-    ['RR Donnelley (RRD)','$5.0B','$185M','100+ facilities','CMO, CIO, COO — Chicago HQ; went private 2022 (Chatham); 40K employees; acquired Williams Lea 2024'],
+    ['JLL','$26.1B','$860M','300+ offices','CMO Taparia (Dallas), COO Morgan (Chicago), CFO Howe (new July 2025) — 200 E Randolph HQ; Accelerate 2030 launched Mar 12, 2026'],
+    ['MAT Holdings','$2.0B','$70M','31','⚠️ OFFICE MOVE APRIL 2026. CEO Steve Wang (not Bob Mullen). Paul Thomas = President NA. $2B rev, 14K employees, private family co.'],
+    ['RR Donnelley (RRD)','$5.0B','$185M','100+','CCO DuPont, COO Pecaric, CFO Coxhead — 227 W Monroe Chicago; Williams Lea closed Q1 2025 (+7K employees); ~41K total; Chatham PE'],
     ['Exelon / ComEd','$22B','$850M','100+ IL offices','Calvin Butler (CEO Exelon); Gil Quiniones (CEO ComEd); Cynthia McCabe (SVP CCO) — Chicago Loop HQ; Fortune 200; 6 utilities; 20K employees; ComEd brand cascade across 100+ northern IL district offices'],
-    ['United Airlines (UAL)','$57.1B','$1,800M','366 airports','Gavin Molloy (VP Corporate RE — verify still in role); Kaveh Dabiran (MD Planning & Development); Tosha S. (Director Business Services, Dec 2024); Alex Dorow (Head Lounges & Premium Products); Aaron McMillan (MD Hospitality Programs); Maggie Schmerin (Chief Advertising Officer) — Willis Tower HQ; 107K employees; $1B+ lounge renovation program active; Houston megaclub 2026']
+    ['United Airlines (UAL)','$57.1B','$1,800M','366 airports','VP Corp RE (Molloy DEPARTED to British Airways — find successor); Kaveh Dabiran (MD Planning & Dev); Alex Dorow (Head Lounges); Aaron McMillan (MD Hospitality); Maggie Schmerin (Chief Advertising Officer) — Willis Tower HQ; $1B+ lounge program active']
   ],
   fin: [
     ['Allstate','$64.1B','$1,800M','363','Suren Gupta (President, Enterprise Svcs — RE+Procurement exec umbrella; retiring early 2026); Elizabeth Brady (EVP & CMO); Michael Thomas (VP Admin & Real Estate); Cheryl Harris (SVP & CPO, $12B spend) — Northbrook IL HQ; 2024 rev up 12%; 54K employees; active rebrand/divestiture cycle (Benefits → The Standard; Group Health → Nationwide)'],
@@ -5520,10 +5520,12 @@ var MKT_ORGS = {
 
   // ── SERVICES ─────────────────────────────────────────────────────────────
   'United Airlines (UAL)': {
+    _coKey: 'United Airlines (UAL)',
+    _tabKey: 'svc',
     emailTpl: 'cs_united',
     ceo: {name:'Scott Kirby', title:'CEO & Chief Sustainability Officer'},
     nodes:[
-      {title:'VP, Corporate Real Estate & Environmental Affairs', name:'Gavin Molloy', owns:'Willis Tower HQ 740K sqft + all airport and off-airport facilities worldwide; $2.5B lease and landing fee obligations; environmental compliance', target:true, note:'CONFIRMED as of last public record. ⚠️ VERIFY STATUS — The Org now shows Molloy at British Airways (Director of Alliances, interim); ZoomInfo still lists at United. ZoomInfo/Bullfincher data may lag. Confirm on LinkedIn before outreach. If departed, escalate to Brett Hart (President) who explicitly oversees Corporate Real Estate. Molloy was the lead on Willis Tower workspace reimagination — his replacement would be the new primary contact.'},
+      {title:'VP, Corporate Real Estate & Environmental Affairs', name:'(Verify on LinkedIn — Gavin Molloy DEPARTED to British Airways; search "United Airlines" + "VP Corporate Real Estate" OR "Real Estate" + Chicago)', owns:'Willis Tower HQ 740K sqft + all airport and off-airport facilities worldwide; $2.5B lease and landing fee obligations; environmental compliance', target:true, note:'⚠️ GAVIN MOLLOY DEPARTED — confirmed at British Airways as Director of Alliances (LinkedIn 2025 posts). His replacement has not been publicly named. Route through Brett Hart (President, oversees Corporate Real Estate) or Kaveh Dabiran (MD Planning & Development) who is already a confirmed contact below. Search LinkedIn: "United Airlines" + "VP Real Estate" OR "Corporate Real Estate" + Chicago to find successor.'},
       {title:'Managing Director, Corporate Real Estate Planning & Development', name:'Kaveh Dabiran', owns:'Planning, design & construction for all United facilities — West Region (SFO, LAX, GUM), international line stations, hub capital projects including $350M LAX hangar', target:true, note:'CONFIRMED. Dabiran was featured speaker at FTE Global 2024 (Oct 2024) and FTE Global 2025 (Sept 2025) — actively in role. He is the hands-on capital projects decision-maker below VP level. Manages design standards, master planning, baggage strategy, facility growth for United Next. KEY Foxmark contact for HQ and terminal build-outs.'},
       {title:'Director, Business Services', name:'Tosha S. (last name unconfirmed)', owns:'Facilities ops, capital portfolio management, airport real estate day-to-day execution', target:true, note:'CONFIRMED title and start date (Dec 2024). Joined from Frontier Airlines where she managed $200M+ capital portfolio and $400M lease portfolio. Most accessible working-level contact for ongoing facility and interior programs. Last name not publicly confirmed — LI search: "Tosha" + "United Airlines" + "Business Services" to find and verify.'},
       {title:'Head of Lounges & Premium Products', name:'Alex Dorow', owns:'Entire United Club and Polaris Lounge network — design standards, renovation program, new club openings across 45+ locations', target:true, note:'CONFIRMED. Named in TPG exclusive interview Feb 2025 discussing 2025 lounge roadmap. This is the #1 Foxmark target for lounge environmental graphics. Active $1B+ program: 9+ clubs renovated since 2022; Chicago Polaris reopened April 2025 (50% larger, 25K sqft); Denver 4th club opened July 2025 (33K sqft); Houston megaclub 2026 (50K+ sqft). Dorow drives design decisions for every new club opening.'},
@@ -5537,29 +5539,109 @@ var MKT_ORGS = {
   },
 
   'RR Donnelley (RRD)': {
+    _coKey: 'RR Donnelley (RRD)',
+    _tabKey: 'svc',
     emailTpl: 'cs_industrial',
-    ceo: {name:'Thomas Quinlan III', title:'President & CEO'},
+    intel: {
+      headline: 'Chatham PE-owned since Feb 2022. Quinlan back as CEO. Williams Lea acquisition closed Q1 2025 (+7,000 employees, BPO capabilities). HQ: 227 W Monroe St, Chicago. ~41K employees. Active integration = active brand environment cycle.',
+      sections: [
+        {
+          label: 'Company Snapshot',
+          color: '#5aabff',
+          items: [
+            'Private — Chatham Asset Management acquired Feb 2022 for $10.85/share; Quinlan returned as CEO',
+            '$5.0B revenue; ~41,000 employees (Feb 2026); 100+ facilities; HQ 227 W Monroe St, Chicago IL 60606',
+            'Williams Lea acquisition announced Dec 2024, closed Q1 2025 — adds ~7,000 employees, legal/financial BPO capabilities',
+            'CFO: Drew Coxhead (since 2022); COO: John Pecaric (EVP & COO); CCO: Al DuPont',
+            'No standalone CMO — Al DuPont (CCO) owns commercial and brand strategy',
+            'Post-Williams Lea integration = two brand identities merging = new HQ environment program'
+          ]
+        },
+        {
+          label: 'Foxmark Angle',
+          color: '#C8102E',
+          items: [
+            'Williams Lea integration (closed Q1 2025) = two office cultures + two brand identities merging = branded environment refresh',
+            'RRD is a marketing services company — their own HQ at 227 W Monroe is a brand showcase for clients who visit',
+            'No CMO means brand/environment decisions sit with CCO DuPont and COO Pecaric — both are reachable',
+            'PE ownership (Chatham) = exit horizon = HQ as brand showcase for valuation story',
+            'Williams Lea was a global BPO with premium London-style office environments — integration could include Chicago HQ upgrade'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · COMMERCIAL/BRAND — Al DuPont (CCO): Confirmed CCO per Craft.co. No standalone CMO — DuPont owns brand strategy including physical brand expression. Williams Lea integration = brand standards reconciliation across two companies.',
+            '2 · OPERATIONS — John Pecaric (EVP & COO): Confirmed per RocketReach. Owns all operations including facilities and capital programs. Primary escalation for 227 W Monroe HQ programs.',
+            '3 · FINANCIAL — Drew Coxhead (CFO): Confirmed since 2022. Owns capital allocation for facilities investment. Williams Lea integration = new combined real estate portfolio being evaluated.',
+            '4 · PRIMARY TARGETS (verify LinkedIn): VP/Director Real Estate & Facilities (227 W Monroe HQ + 100+ locations) + Director Capital Projects (post-Williams Lea integration buildout). Search: "RR Donnelley" OR "RRD" + "Real Estate" OR "Facilities" + Chicago.',
+            '5 · PITCH: "The Williams Lea integration gives RRD a new story to tell — we help companies make that story visible in their environments."'
+          ]
+        }
+      ]
+    },
+    ceo: {name:'Thomas Quinlan III', title:'President & CEO, RR Donnelley (RRD) — Chatham PE since Feb 2022; $5.0B revenue; ~41,000 employees; 100+ facilities; HQ 227 W Monroe St Chicago IL 60606; Williams Lea acquired Q1 2025'},
     nodes:[
-      {title:'CEO / Principal', name:'Thomas Quinlan III', owns:'Full operations and major decisions', target:true, note:'RRD is a major print and marketing services company with Chicago HQ.'},
-      {title:'VP / Director, Real Estate & Facilities', name:'Escalate via CEO or COO', owns:'Corporate HQ and locations — renovation programs, branded environments', target:true, note:'Primary Foxmark contact for environment and renovation programs.'},
-      {title:'Director, Workplace Design & Experience', name:'Escalate via Real Estate Director', owns:'Office design standards, renovation specs, branded interior environment', target:true, note:'Specs branded graphics, wayfinding, and signage into renovation packages — this is the person who writes the RFP. → Click LI to find them; search will use title + company automatically.'},
-      {title:'Chief Marketing Officer', name:'Escalate via CEO', owns:'Brand standards, visual identity, environmental brand expression', target:true, note:'CMO owns brand standards for physical environments — the standards Foxmark must meet in every project. → Click LI to find the current CMO; add name using ✎.'},
-      {title:'Director, Capital Projects', name:'Escalate via Real Estate Director', owns:'Capital renovation programs', target:true, note:'This director manages vendor selection for capital projects — gets Foxmark on bid lists. → Click LI to find them by title + company name.'},
+      {title:'Chief Commercial Officer', name:'Al DuPont', owns:'Commercial strategy, brand standards, client engagement — no standalone CMO at RRD; DuPont owns brand expression', target:true, note:'CONFIRMED — Craft.co leadership page. CCO is the brand decision-maker at RRD. Williams Lea integration = brand standards reconciliation across two global marketing services companies. Physical brand expression at 227 W Monroe HQ = brand showcase for marketing services clients.'},
+      {title:'EVP & Chief Operating Officer', name:'John Pecaric', owns:'All operations including facilities, capital programs, Williams Lea integration execution, 100+ locations', target:true, note:'CONFIRMED — RocketReach and Comparably. COO owns all operations including facilities and real estate. Williams Lea integration is running through his org. Primary escalation for HQ environment and capital project programs.'},
+      {title:'Chief Financial Officer', name:'Drew Coxhead', owns:'Capital allocation, real estate investment, Williams Lea integration balance sheet, facilities budget', target:false, note:'CONFIRMED — GlobalData; CFO since 2022. Context for large programs — owns capital that funds facility investments. Williams Lea integration = combined real estate portfolio being evaluated. Route through Pecaric (COO) or DuPont (CCO) for working-level access.'},
+      {title:'VP / Director, Real Estate & Facilities', name:'(Verify on LinkedIn — search "RR Donnelley" OR "RRD" + "Real Estate" OR "Facilities" + Chicago)', owns:'227 W Monroe Chicago HQ + 100+ facilities — renovation programs, branded environments, Williams Lea integration real estate', target:true, note:'PRIMARY TARGET. 227 W Monroe HQ + Williams Lea office integration = active real estate decisions. Route through Pecaric (COO) or DuPont (CCO). Search LinkedIn: "RR Donnelley" + "Facilities" OR "Real Estate".'},
+      {title:'Director, Capital Projects', name:'(Verify on LinkedIn — search "RRD" OR "RR Donnelley" + "Capital Projects" OR "Construction")', owns:'Capital renovation programs at HQ and integration facilities', target:true, note:'Williams Lea integration = new combined facility buildout decisions being made now. Get Foxmark on the capital projects bid list. Route through Pecaric (COO).'},
     ]
   },
 
   'JLL': {
+    _coKey: 'JLL',
+    _tabKey: 'svc',
     emailTpl: 'cs_allstate',
-    ceo: {name:'Christian Ulbrich', title:'President & CEO'},
+    intel: {
+      headline: 'NYSE: JLL — $26.1B revenue (FY2025), 113,000+ employees, 80+ countries. Accelerate 2030 strategy launched March 12, 2026 (5 days ago). 7 consecutive quarters of double-digit revenue growth. HQ: 200 E Randolph, Chicago.',
+      sections: [
+        {
+          label: 'Company Snapshot',
+          color: '#5aabff',
+          items: [
+            'NYSE: JLL — $26.1B revenue FY2025 (up 11% YoY, all-time high), 113,000+ employees',
+            'HQ: 200 E Randolph, Chicago — world\'s 2nd largest CRE firm',
+            'Accelerate 2030 strategy launched March 12, 2026 — targets 8% annual revenue growth, 12% EBITDA growth; $3B share repurchase authorization',
+            'New CFO: Kelly Howe (effective July 1, 2025, replaced Karen Brennan who moved to CEO Leasing Advisory)',
+            'Work Dynamics / Real Estate Management Services (REMS): 87,000+ specialists; Workplace Management restructured April 23, 2025 under Paul Morgan',
+            'JLL Accelerate 2030 = AI + data platform investment cycle = physical environments as smart building integration layer'
+          ]
+        },
+        {
+          label: 'Foxmark Angle',
+          color: '#C8102E',
+          items: [
+            'TWO separate opportunities: (1) JLL\'s own 200 E Randolph HQ — showcase branded environment; (2) JLL as CHANNEL PARTNER specifying vendors into client projects',
+            'Paul Morgan\'s 51,000-person Workplace Management unit specs branded environments for JLL-managed client campuses — get Foxmark on the preferred vendor list here = access to entire client portfolio',
+            'Project & Development Services (PDS) manages client renovations and specifies all vendors including signage — channel partner opportunity',
+            'Accelerate 2030 = data + AI platform = digital signage integration angle for technology-forward clients',
+            'Taparia (CMO, Dallas) owns JLL brand standards for its own offices — 200 E Randolph is a showcase environment for what JLL recommends to clients'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · BRAND — Siddharth Taparia (Global CMO, Dallas-based): Confirmed active, leads 800-person marketing team. Owns JLL brand standards including how JLL\'s own offices are expressed. Pitch: JLL\'s own office = brand showcase for what they sell clients.',
+            '2 · WORKPLACE CHANNEL — Paul Morgan (Global COO REMS / Global Head Workplace Management, Chicago): CONFIRMED active Feb 2026 (Bisnow Chicago panel). Owns 51,000 FM specialists managing client environments. Getting Foxmark specified here = entire client portfolio access.',
+            '3 · FINANCIAL — Kelly Howe (CFO, new July 2025): Fresh mandate. Owns capital allocation for JLL\'s own real estate. New CFO = fresh eyes on vendor relationships.',
+            '4 · PRIMARY TARGETS (verify LinkedIn): Director JLL Corporate Real Estate (200 E Randolph HQ) + Director Project & Development Services (client renovation specs) + Director Brand & Communications (JLL own office brand standards).',
+            '5 · ACCELERATE 2030 ANGLE: New March 12, 2026 strategy emphasizes data, AI, and platform — digital environmental graphics integration into smart buildings is a growth pitch that aligns directly with JLL\'s stated direction.'
+          ]
+        }
+      ]
+    },
+    ceo: {name:'Christian Ulbrich', title:'President & CEO, JLL — NYSE: JLL; $26.1B revenue FY2025; 113,000+ employees; 80+ countries; HQ 200 E Randolph Chicago; Accelerate 2030 strategy launched March 12, 2026'},
     nodes:[
-      {title:'Global Chief Marketing Officer', name:'Siddharth Taparia', owns:'Global marketing strategy, brand, digital — appointed 2021 from SAP; Chicago HQ', target:true, note:'CONFIRMED. Chicago-based. Owns full global brand expression including JLL\'s own office environments as brand showcases. Direct target for studio and environmental graphics intro.'},
-      {title:'Global Head of Workplace Management', name:'Paul Morgan', owns:'~51,000 FM/engineering staff + all JLL-managed client workplace environments worldwide', target:true, note:'CONFIRMED. Manages the environments Foxmark would serve — all JLL-managed offices, campuses, and facilities. If JLL specifies Foxmark for client projects, the scale is enormous.'},
-      {title:'Director, JLL Corporate Real Estate', name:'Escalate via Siddharth Taparia (CMO) or Paul Morgan (Global Workplace Head)', owns:'JLL\'s own Chicago HQ + all JLL-occupied offices globally — the company\'s internal branded environments', target:true, note:'JLL\'s own office at 200 E. Randolph, Chicago, is a showcase branded environment. What JLL does in their own space, they recommend to clients. Highest leverage contact.'},
-      {title:'Director, Workplace Design & Advisory', name:'Escalate via Global Workplace Head Morgan', owns:'Interior design advisory services for JLL clients — specifies vendors and systems for client projects', target:true, note:'JLL\'s advisory practice recommends branded interiors vendors to clients. This director is a CHANNEL PARTNER opportunity — getting Foxmark specified into JLL-advised projects.'},
-      {title:'Director, Project & Development Services', name:'Escalate via JLL Project Management leadership', owns:'JLL\'s PDS business — manages construction and renovation projects for clients, specifies all vendors', target:true, note:'PDS is the JLL practice that manages client renovations and specifies all vendors including signage and graphics. Channel partner opportunity — specification into PDS projects means access to JLL\'s entire client portfolio.'},
-      {title:'Director, Brand & Communications', name:'Escalate via CMO Taparia', owns:'JLL brand standards, communications, how JLL\'s brand is expressed in its physical environments', target:true, note:'JLL\'s own office environments are brand showcases. This director specs the branded environment standards for JLL offices.'},
-      {title:'Director, Technology Product Management', name:'Escalate via COO or CTO', owns:'JLL Spark / technology products — relevant for smart building and digital signage integration', target:true, note:'JLL is investing heavily in smart building technology. Digital environmental graphics integration is a growth area where Foxmark could partner.'},
-      {title:'VP, Property Management', name:'Escalate via Global Workplace Head', owns:'JLL-managed properties — the buildings where branded interiors work is specified', target:true, note:'Property managers specify signage and environmental graphics for tenant improvements and common area upgrades in JLL-managed buildings.'},
+      {title:'Global Chief Marketing Officer', name:'Siddharth Taparia', owns:'Global marketing strategy, brand, digital — JLL\'s own office environments as brand showcases, all brand standards', target:true, note:'CONFIRMED — jll.com leadership page; appointed Sept 2021 from SAP; Dallas-based (NOT Chicago). Leads 800-person marketing team. Owns full global brand expression including JLL\'s own office environments. Direct target for studio and environmental graphics intro. Pitch: JLL\'s 200 E Randolph office = showcase for what they recommend to clients.'},
+      {title:'Global COO, Real Estate Management Services / Global Head, Workplace Management', name:'Paul Morgan', owns:'~51,000 FM/engineering staff + all JLL-managed client workplace environments worldwide; Workplace Management unit restructured April 2025', target:true, note:'CONFIRMED — jll.com; confirmed active Feb 2026 (Bisnow Chicago panel + LinkedIn). Global COO REMS and leads Workplace Management sub-business line (restructured April 23, 2025). Manages the environments Foxmark would serve. Getting Foxmark specified into WPM = access to JLL\'s entire client portfolio. Greatest leverage contact in the dashboard.'},
+      {title:'Chief Financial Officer', name:'Kelly Howe', owns:'Capital allocation, JLL\'s own real estate investment, vendor relationships for corporate facilities', target:false, note:'CONFIRMED — appointed CFO July 1, 2025 (replaced Karen Brennan). From BCG where she was North America CFO. Fresh mandate = active review of vendor relationships for JLL\'s own office portfolio. 200 E Randolph HQ + 300+ global offices. Route through Howe for JLL\'s own corporate real estate program.'},
+      {title:'Director, JLL Corporate Real Estate', name:'(Verify on LinkedIn — search "JLL" + "Corporate Real Estate" + Chicago)', owns:'JLL\'s own 200 E Randolph Chicago HQ + all JLL-occupied offices globally', target:true, note:'PRIMARY TARGET for JLL\'s own internal program. 200 E Randolph is a showcase branded environment — what JLL does in their own space, they recommend to clients. Route through Paul Morgan or Kelly Howe (CFO).'},
+      {title:'Director, Project & Development Services', name:'(Verify on LinkedIn — search "JLL" + "Project Development Services" OR "PDS" + Chicago)', owns:'JLL\'s PDS business — manages construction and renovation projects for clients, specifies all vendors including signage and graphics', target:true, note:'CHANNEL PARTNER opportunity. PDS manages client renovations and specifies all vendors. Getting Foxmark on the PDS preferred vendor list = access to JLL\'s entire renovation client portfolio. Route through Paul Morgan (Global COO REMS).'},
+      {title:'Director, Brand & Communications', name:'(Verify on LinkedIn — search "JLL" + "Brand" OR "Communications" + Chicago)', owns:'JLL brand standards, how JLL\'s brand is expressed in its own physical environments', target:true, note:'Specs the branded environment standards for JLL\'s own offices. Accelerate 2030 = new brand chapter = active brand standards review. Route through Taparia (CMO).'},
     ]
   },
 
@@ -5671,16 +5753,55 @@ var MKT_ORGS = {
   },
 
   'MAT Holdings': {
+    _coKey: 'MAT Holdings',
+    _tabKey: 'svc',
     emailTpl: 'cs_industrial',
-    ceo: {name:'Bob Mullen', title:'CEO'},
+    intel: {
+      headline: '⚠️ OFFICE MOVE: April 2026 — MAT Holdings relocating from 6700 Wildlife Way, Long Grove IL. Live trigger. Private family company; Steve Wang is CEO (not Bob Mullen). $2B revenue, 14,000 employees, 31 locations.',
+      sections: [
+        {
+          label: 'Company Snapshot',
+          color: '#5aabff',
+          items: [
+            'Private family-owned; founded 1984 as Midwest Air Technologies; HQ 6700 Wildlife Way, Long Grove IL 60047',
+            '$2B revenue (2025), 14,000+ employees, 31 locations across 3 continents',
+            'Two sectors: Automotive (MAT Foundry Group, Friction Group, Suspension) + Consumer (fencing, lawn/garden, air compressors)',
+            'Acquired SI Irrigation Systems May 2025 — active acquisition mode',
+            'OFFICE MOVE confirmed for April 2026 (ZoomInfo) — someone is actively managing this relocation right now',
+            'Extremely private — no CMO, CFO, or VP Facilities publicly named; CEO barely surfaces publicly'
+          ]
+        },
+        {
+          label: 'Foxmark Angle',
+          color: '#C8102E',
+          items: [
+            'April 2026 office move = new HQ buildout = active branded environment program RIGHT NOW',
+            '31 locations including 14 manufacturing facilities = safety signage, wayfinding, and facility branding at scale',
+            'Consumer brands (Master Lock, Homax, others) need co-brand environments at retail and corporate level',
+            'Private family company = CEO/owner decides quickly — no procurement committee; relationship-driven',
+            'Jackson TN manufacturing expansion ($9M, 30 new jobs) = new facility branded environment opportunity'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · CEO — Steve Wang (confirmed via MAT Holdings LinkedIn): Family company = CEO is the decision-maker. Approach directly on the April 2026 office move. Do NOT reference Bob Mullen.',
+            '2 · PRESIDENT NA — Paul Thomas (President, North America & Global Friction, confirmed RocketReach): Owns North America operations including Long Grove HQ and US manufacturing facilities.',
+            '3 · VP MARKETING — "J.S." (initials only per LeadIQ as of Oct 2025 — VP of Marketing and Product Management): Search LinkedIn "MAT Holdings" + "VP Marketing" to identify.',
+            '4 · OFFICE MOVE TIMING: Move is planned for April 2026 — that is weeks away. Whoever is managing the relocation is actively making environment decisions right now. This is the most time-sensitive opportunity in the dashboard.',
+            '5 · Entry angle: "Saw you\'re relocating your Long Grove HQ — we work with manufacturers on branded environments for new facilities. Would love 15 minutes."'
+          ]
+        }
+      ]
+    },
+    ceo: {name:'Steve Wang', title:'CEO, MAT Holdings — private family company; $2B revenue; 14,000+ employees; 31 locations; HQ 6700 Wildlife Way Long Grove IL; office relocation planned April 2026'},
     nodes:[
-      {title:'CEO / President', name:'Bob Mullen', owns:'Full operations and major capital decisions', target:false, note:'Context only — escalation reference when Director-level contacts are unresponsive.'},
-      {title:'COO / VP Operations', name:'Escalate via CEO Bob Mullen', owns:'All operations including facilities, capital programs, vendor relationships — primary operating contact for branded environment decisions', target:true, note:'MAT Holdings is a private industrial manufacturer with Long Grove IL HQ. COO/VP Operations is the actionable entry point — owns facilities budget and capital programs. Route through CEO Bob if COO not publicly named.'},
-      {title:'VP / Director, Real Estate & Facilities', name:'Escalate via CEO or CFO', owns:'Corporate HQ + manufacturing/operational facilities — renovation programs, branded environments', target:true, note:'Primary Foxmark contact for corporate campus environmental programs. Manufacturing facilities also benefit from branded safety signage and wayfinding.'},
-      {title:'Director, Workplace Design & Experience', name:'Escalate via Real Estate/Facilities Director', owns:'Corporate workplace design standards, HQ renovation specs, branded interior environment', target:true, note:'Specs branded graphics, wayfinding, dimensional signage into renovation packages at corporate HQ.'},
-      {title:'Director, Capital Projects', name:'Escalate via Facilities Director', owns:'Capital renovation programs at HQ and key facilities', target:true, note:'This director manages vendor selection for capital projects — gets Foxmark on bid lists. → Click LI to find them by title + company name.'},
-      {title:'Chief Marketing Officer', name:'Escalate via CEO', owns:'Brand, marketing, environmental brand expression at corporate locations', target:true, note:'CMO angle: corporate campus as brand showcase for talent attraction and customer visits.'},
-      {title:'Director, Procurement (Indirect)', name:'Escalate via CFO or COO', owns:'Vendor qualification for indirect spend including facilities and marketing services', target:true, note:'Procurement contact for vendor qualification.'},
+      {title:'President, North America & Global Friction', name:'Paul Thomas', owns:'North America operations including Long Grove HQ, US manufacturing facilities, Friction Group globally', target:true, note:'CONFIRMED — RocketReach; President North America & Global Friction. Primary operating contact below CEO level. Owns Long Grove HQ + US manufacturing facilities. April 2026 office move = active in his purview right now.'},
+      {title:'VP, Marketing & Product Management', name:'(Verify on LinkedIn — search "MAT Holdings" + "VP Marketing" OR "Marketing")', owns:'Brand, marketing, product branding across automotive and consumer segments, corporate brand expression', target:true, note:'Confirmed exists per LeadIQ Oct 2025 (initials "J.S."). Private company keeps names off public record. Search LinkedIn: "MAT Holdings" + "VP Marketing" + "Long Grove". Consumer brand portfolio = branded retail and corporate environments.'},
+      {title:'VP / Director, Real Estate & Facilities', name:'(Verify on LinkedIn — search "MAT Holdings" + "Real Estate" OR "Facilities")', owns:'Long Grove HQ + 31 global locations — ACTIVE: office relocation April 2026', target:true, note:'PRIMARY TARGET. April 2026 office move = this person is actively managing a new HQ buildout right now. Also owns 14+ manufacturing facilities. Search LinkedIn: "MAT Holdings" + "Facilities" OR "Real Estate". Route through Paul Thomas (President NA) if not publicly named.'},
+      {title:'Director, Capital Projects', name:'(Verify on LinkedIn — search "MAT Holdings" + "Capital Projects" OR "Construction")', owns:'Capital renovation and construction programs at HQ and manufacturing facilities', target:true, note:'Jackson TN manufacturing expansion ($9M, 30 new jobs announced 2025) = active capital project. New Long Grove HQ = active capital project. Get Foxmark on the bid list here. Route through VP Facilities or Paul Thomas.'},
+      {title:'Director, Procurement (Indirect)', name:'(Verify on LinkedIn — search "MAT Holdings" + "Procurement" OR "Sourcing")', owns:'Vendor qualification for indirect spend including facilities, marketing services, branded environments', target:true, note:'Private company procurement = relationship-driven, not RFP-heavy. Get in through CEO Wang or Paul Thomas. April 2026 move = urgent procurement decisions being made right now.'},
     ]
   },
 
@@ -8179,15 +8300,57 @@ var MKT_ORGS = {
   },
 
   'Exelon / ComEd': {
+    _coKey: 'Exelon / ComEd',
+    _tabKey: 'fin',
     emailTpl: 'cs_kraftheinz',
-    ceo: {name:'Calvin Butler', title:'President & CEO, Exelon Corporation; NASDAQ: EXC; Fortune 200; ~$22B revenue; 10.7M customers across 6 utilities'},
+    intel: {
+      headline: 'NASDAQ: EXC — Fortune 200; nation\'s largest utility by customer count; 10.7M customers across 6 utilities; ~$22B revenue; 20,000+ employees. Two Chicago Loop HQs: 10 S. Dearborn (Exelon) + 1 S. Dearborn (ComEd). 100+ ComEd district offices across northern IL.',
+      sections: [
+        {
+          label: 'Company Snapshot',
+          color: '#5aabff',
+          items: [
+            'NASDAQ: EXC — Fortune 200; ~$22B revenue; 10.7M customers; 20,000+ employees across 6 utilities',
+            '6 utilities: ComEd (IL), BGE (MD), PECO (PA), Pepco, Delmarva Power, Atlantic City Electric',
+            'HQ: 10 S. Dearborn, Chicago; ComEd HQ: 1 S. Dearborn, Chicago; 100+ ComEd district offices across northern IL',
+            'Calvin Butler: EEI Chair 2025-2026 cycle (elected June 2025) — most influential utility CEO in the US right now',
+            'New Jan 2026: Beth Pitts-Madonna (CHRO, from Northrop Grumman) + Tim Peterson (Chief Customer & Technology Officer, Jan 8, 2026)',
+            'ComEd named #1 most reliable utility in America by PA Consulting (Nov 2025)'
+          ]
+        },
+        {
+          label: 'Foxmark Angle',
+          color: '#C8102E',
+          items: [
+            'TWO Chicago Loop HQs (10 S. Dearborn + 1 S. Dearborn) = two branded environment programs',
+            '100+ ComEd district offices across northern Illinois = recurring safety/compliance signage program at scale',
+            'Brand cascade: Exelon brand standards must flow down to ComEd, BGE, PECO, Pepco, Delmarva, ACE — McCabe (CCO) owns this',
+            'Supplier diversity program is a confirmed entry angle — Exelon actively promotes diverse suppliers; qualifying Foxmark here unlocks all 6 utilities',
+            'New CHRO (Beth Pitts-Madonna, Jan 2026) = fresh eyes on workplace environment across 20,000-person workforce'
+          ]
+        },
+        {
+          label: 'Contact Approach Strategy',
+          color: '#f59e0b',
+          items: [
+            '1 · BRAND/COMMS — Cynthia McCabe (SVP & CCO, Nov 2024): Owns brand standards across all 6 Exelon utilities. Supplier diversity angle = warmest Foxmark entry. Confirmed on exeloncorp.com.',
+            '2 · COMED ENTRY — Gil Quiniones (President & CEO, ComEd): Chicago-based, deeply embedded in civic community. Warm intro carries weight. 100+ district offices = the scale opportunity.',
+            '3 · OPERATIONS — Mike Innocenzo (EVP & COO, Philadelphia-based): All 6 utility CEOs report to him. Primary escalation for VP Real Estate across the portfolio. Confirmed SEC filing April 2024.',
+            '4 · PRIMARY TARGETS: VP Real Estate & Workplace Services (route via Innocenzo/Quiniones) + VP Strategic Sourcing (route via Innocenzo/McCabe supplier diversity angle). Neither is publicly named.',
+            '5 · NEW ANGLES: Tim Peterson (Chief Customer & Technology Officer, Jan 8, 2026) = digital + physical customer experience integration. Beth Pitts-Madonna (CHRO, Jan 2026) = new workplace environment mandate.'
+          ]
+        }
+      ]
+    },
+    ceo: {name:'Calvin Butler', title:'President & CEO, Exelon Corporation; NASDAQ: EXC; Fortune 200; ~$22B revenue; 10.7M customers across 6 utilities; EEI Chair 2025-2026'},
     nodes:[
-      {title:'President & CEO, ComEd', name:'Gil Quiniones', owns:'Commonwealth Edison — 4 million customers, northern Illinois including Chicago; ComEd HQ at 1 S. Dearborn; 100+ district offices and operations centers across northern IL', target:true, note:'Quiniones confirmed as ComEd President & CEO. Deeply embedded in Chicago civic community — a warm intro carries significant weight here. Search: "ComEd" + Chicago.'},
-      {title:'SVP, Chief of Staff & Chief Communications Officer, Exelon', name:'Cynthia McCabe', owns:'Communications, marketing and branding across Exelon and all six utilities (ComEd, PECO, BGE, Pepco, Delmarva, ACE); external communications; reputation; employee communications', target:true, note:'McCabe promoted to expanded role Nov 2024 — owns brand standards for all six Exelon utility subsidiaries. Key contact for brand environment consistency across the Exelon portfolio.'},
-      {title:'SVP & Chief Human Resources Officer, Exelon', name:'Elizabeth (Beth) Pitts-Madonna', owns:'~20,000 employees across Exelon utilities; workplace experience; talent strategy; culture', target:false, note:'New CHRO effective Jan 2026, joined from Northrop Grumman. Fresh eyes on the Exelon workplace environment portfolio. Search: "CHRO" + "Exelon" + Chicago.'},
-      {title:'EVP & Chief Operating Officer, Exelon', name:'Mike Innocenzo', owns:'All utility operations — ComEd, BGE, PECO, and Pepco Holdings CEOs all report to Innocenzo; Cyber & IT; Safety; Supply; Transmission; Corporate Physical Security', target:true, note:'Innocenzo oversees all utility operations including ComEd. He is the operational decision-maker above VP Real Estate for major facility programs across the Exelon portfolio.'},
-      {title:'VP Real Estate & Workplace Services, Exelon', name:'Escalate via Mike Innocenzo (COO)', owns:'10 S. Dearborn Chicago corporate HQ; 1 S. Dearborn ComEd HQ; Exelon utility offices across IL, PA, MD, DC, NJ, DE; ~100+ ComEd district offices and operations centers in northern Illinois', target:true, note:'PRIMARY #1. Exelon keeps VP Real Estate below public disclosure threshold. Route through COO Mike Innocenzo or ComEd President Gil Quiniones — both confirmed contacts — to reach the VP Real Estate who controls the 100+ location interior refresh budget.'},
-      {title:'VP Strategic Sourcing & Supply Chain, Exelon', name:'Escalate via Mike Innocenzo (COO)', owns:'Indirect procurement including facilities, branded environment, signage, safety graphics; supplier diversity; vendor qualification across all six utilities', target:true, note:'PRIMARY #2. Exelon procurement VP not publicly named. Approach via Innocenzo (COO) or leverage Cynthia McCabe (CCO) supplier diversity angle — Exelon actively promotes diverse supplier programs, which is a strong entry point for vendor qualification.'}
+      {title:'President & CEO, ComEd', name:'Gil Quiniones', owns:'Commonwealth Edison — 4 million customers, northern Illinois including Chicago; ComEd HQ at 1 S. Dearborn; 100+ district offices and operations centers across northern IL', target:true, note:'CONFIRMED — exeloncorp.com; ComEd President & CEO since Nov 2021. ComEd named #1 most reliable utility in US Nov 2025. Deeply embedded in Chicago civic community (Greater Chicago Food Depository, World Business Chicago, Corporate Coalition of Chicago) — warm intro carries significant weight. Best entry for Chicago-specific programs.'},
+      {title:'SVP & Chief Communications Officer, Exelon', name:'Cynthia McCabe', owns:'Communications, marketing and branding across Exelon and all six utilities; brand standards; external communications; reputation', target:true, note:'CONFIRMED — exeloncorp.com; promoted to SVP & CCO Nov 2024 (title is CCO only; Chief of Staff role ended with promotion). Owns brand standards for all six Exelon utility subsidiaries. Supplier diversity angle = warmest Foxmark entry for vendor qualification. Key contact for brand environment consistency across the portfolio.'},
+      {title:'SVP & Chief Human Resources Officer, Exelon', name:'Elizabeth (Beth) Pitts-Madonna', owns:'~20,000 employees across Exelon utilities; workplace experience; talent strategy; culture', target:false, note:'CONFIRMED — new CHRO effective Jan 1, 2026; joined from Northrop Grumman (25 years, VP Talent for ~100,000 employees). Fresh eyes on workplace environment portfolio across all 6 utilities. Co-sponsors HQ environment investment as talent signal.'},
+      {title:'Chief Customer & Technology Officer, Exelon', name:'Tim Peterson', owns:'Customer experience, technology strategy — digital + physical customer touchpoints across all 6 utilities', target:false, note:'CONFIRMED — new appointment Jan 8, 2026 per exeloncorp.com newsroom. Digital + physical customer experience integration = potential smart signage / digital environmental graphics angle. Context contact — route Foxmark through McCabe or Quiniones.'},
+      {title:'EVP & Chief Operating Officer, Exelon', name:'Mike Innocenzo', owns:'All utility operations — ComEd, BGE, PECO, and Pepco Holdings CEOs all report to Innocenzo; Cyber & IT; Safety; Supply; Transmission; Corporate Physical Security', target:true, note:'CONFIRMED — SEC filing Feb 2024, effective April 1, 2024; exeloncorp.com. Philadelphia-based (Greater Philadelphia per LinkedIn). Oversees all utility operations including ComEd. Primary escalation for VP Real Estate across the Exelon portfolio.'},
+      {title:'VP Real Estate & Workplace Services, Exelon', name:'(Verify on LinkedIn — search "Exelon" + "Real Estate" OR "Workplace" + Chicago)', owns:'10 S. Dearborn Chicago corporate HQ; 1 S. Dearborn ComEd HQ; Exelon utility offices across IL, PA, MD, DC, NJ, DE; ~100+ ComEd district offices', target:true, note:'PRIMARY #1. Exelon keeps VP Real Estate below public disclosure threshold. Route through COO Mike Innocenzo or ComEd President Gil Quiniones to reach the VP who controls the 100+ location interior refresh budget.'},
+      {title:'VP Strategic Sourcing & Supply Chain, Exelon', name:'(Verify on LinkedIn — search "Exelon" + "Strategic Sourcing" OR "Supply Chain" + Chicago)', owns:'Indirect procurement including facilities, branded environment, signage, safety graphics; supplier diversity; vendor qualification across all six utilities', target:true, note:'PRIMARY #2. Not publicly named. Leverage Cynthia McCabe (CCO) supplier diversity angle — Exelon actively promotes diverse supplier programs, which is a strong entry point for vendor qualification across all 6 utilities.'}
     ]
   },
 
@@ -9328,11 +9491,11 @@ function renderF500Dashboard() {
   // Foxmark angle + urgency badge — edit here to update master list
 var ANGLE_URG_MAP = {
   'United Airlines (UAL)': {a:['MULTI-SITE ROLLOUT','#4a9eff'], u:null},
-  'RR Donnelley (RRD)': {a:['REBRAND IN PROGRESS','#C8102E'], u:['ACQUISITION 2024','#f59e0b','rgba(245,158,11,.12)']},
-  'JLL': {a:['WORKPLACE PROGRAMS','#4a9eff'], u:['MULTI-SITE','#4a9eff','rgba(74,158,255,.12)']},
+  'RR Donnelley (RRD)': {a:['INTEGRATION ACTIVE','#C8102E'], u:['WILLIAMS LEA Q1 2025','#f59e0b','rgba(245,158,11,.12)']},
+  'JLL': {a:['ACCELERATE 2030','#C8102E'], u:['CHANNEL PARTNER','#4a9eff','rgba(74,158,255,.12)']},
   'Echo Global Logistics': {a:['ACQ · JUNE 2026','#C8102E'], u:['ITS INTEGRATION','#C8102E','rgba(200,16,46,.15)']},
   'Coyote Logistics (UPS)': {a:['NOW RXO · 2024','#f59e0b'], u:['OFFICE RIGHT-SIZING','#f59e0b','rgba(245,158,11,.12)']},
-  'MAT Holdings': {a:['MULTI-PLANT','#f59e0b'], u:null},
+  'MAT Holdings': {a:['OFFICE MOVE · APR 2026','#C8102E'], u:['NEW HQ BUILDOUT','#C8102E','rgba(200,16,46,.15)']},
   'Hyatt Hotels Corporation': {a:['BRAND STANDARDS','#4a9eff'], u:['NEW CHAIRMAN · FEB 2026','#C8102E','rgba(200,16,46,.15)']},
   'State Farm': {a:['MULTI-SITE ROLLOUT','#4a9eff'], u:null},
   'Allstate': {a:['REBRAND IN PROGRESS','#C8102E'], u:['REBRAND CYCLE','#f59e0b','rgba(245,158,11,.12)']},
@@ -9946,11 +10109,11 @@ function renderMktTable(key) {
   var FOXMARK_ANGLE = {
     // SVC
     'United Airlines (UAL)':        ['MULTI-SITE ROLLOUT','#4a9eff'],
-    'RR Donnelley (RRD)':           ['REBRAND IN PROGRESS','#C8102E'],
-    'JLL':                          ['WORKPLACE PROGRAMS','#4a9eff'],
+    'RR Donnelley (RRD)':           ['INTEGRATION ACTIVE','#C8102E'],
+    'JLL':                          ['ACCELERATE 2030','#C8102E'],
     'Echo Global Logistics':        ['ACQ · JUNE 2026','#C8102E'],
     'Coyote Logistics (UPS)':       ['NOW RXO · 2024','#f59e0b'],
-    'MAT Holdings':                 ['MULTI-PLANT','#f59e0b'],
+    'MAT Holdings':                 ['OFFICE MOVE · APR 2026','#C8102E'],
     // FIN
     'State Farm':                   ['MULTI-SITE ROLLOUT','#4a9eff'],
     'Allstate':                     ['REBRAND IN PROGRESS','#C8102E'],
@@ -10178,14 +10341,14 @@ var TIER_DATA = {
   t1: [
     {key:'Echo Global Logistics',   rev:'$2.5B',  it:'$40M',   locs:'30+',       contacts:'COO Menzel, CFO Rogers, CHRO Frey',  strategy:'600 W Chicago HQ (185,000 SF). TJC PE-backed (not TPG). Acquiring ITS Logistics June 2026 = active integration signage cycle. CHRO Frey = warmest entry.'},
     {key:'Coyote Logistics (UPS)',  rev:'$3.2B',  it:'$120M',  locs:'10',        contacts:'Jack Gerstner (SVP Ops, Chicago)',  strategy:'⚠️ ACQUIRED BY RXO Sept 2024. Sisler gone. Logan Square Chicago office active but right-sizing. Integration = redesign opportunity. Best entry: Jack Gerstner SVP Ops Chicago.'},
-    {key:'JLL',                     rev:'$23.4B', it:'$860M',  locs:'300+',      contacts:'CMO, VP Workplace',          strategy:'Chicago HQ; manages interiors for clients worldwide — position Foxmark as preferred IL vendor for JLL projects.'},
-    {key:'RR Donnelley (RRD)',      rev:'$5.0B',  it:'$185M',  locs:'100+',      contacts:'CMO, CIO, COO',              strategy:'Chicago HQ, private. Acquired Williams Lea 2024 — integration means new signage/branding cycle.'},
+    {key:'JLL',                     rev:'$26.1B', it:'$860M',  locs:'300+',      contacts:'CMO Taparia (Dallas), COO Morgan (Chicago)',  strategy:'200 E Randolph HQ. Accelerate 2030 launched Mar 12, 2026. TWO angles: JLL own HQ + channel partner into 51K-person Workplace Mgmt client portfolio via Paul Morgan.'},
+    {key:'RR Donnelley (RRD)',      rev:'$5.0B',  it:'$185M',  locs:'100+',      contacts:'CCO DuPont, COO Pecaric',    strategy:'227 W Monroe Chicago HQ. Williams Lea closed Q1 2025 — integration = brand environment refresh. No CMO; DuPont (CCO) owns brand. Pitch: Williams Lea integration = new story to tell in their environments.'},
     {key:'Walgreens (Sycamore Partners)', rev:'$147B', it:'$3,200M', locs:'~8,000', contacts:'CMO, VP Real Estate',    strategy:'Deerfield HQ, taken private Aug 2025. Heavy store rebrand needed. Largest single rollout opportunity in portfolio.'},
     {key:'Abbott Laboratories',     rev:'$22.0B', it:'$850M',  locs:'833',       contacts:'VP Facilities, CHRO',        strategy:'Abbott Park IL. Major campus remodel cycle underway. Medical device #1 segment drives premium workplace investment.'},
     {key:'Motorola Solutions',      rev:'$10.8B', it:'$400M',  locs:'500+',      contacts:'CMO, VP Facilities',         strategy:'Chicago HQ; record 2024 revenue. Global public safety brand — Chicago campus is flagship interior opportunity.'}
   ],
   t2: [
-    {key:'MAT Holdings',            rev:'$1.6B',  it:'$70M',   locs:'41',        contacts:'COO, VP Facilities',         strategy:'Long Grove IL, private. Global hardware & tools; 41 facilities = phased rollout opportunity. Decision-maker is COO.'},
+    {key:'MAT Holdings',            rev:'$2.0B',  it:'$70M',   locs:'31',        contacts:'CEO Wang, President Thomas',  strategy:'⚠️ OFFICE MOVE APRIL 2026 — weeks away. Private family co; Steve Wang CEO. Paul Thomas = President NA. 31 locations + manufacturing facilities. Call now.'},
     {key:'Caterpillar Inc.',        rev:'$64.8B', it:'$2,400M',locs:'853',       contacts:'COO, VP Operations',         strategy:'Deerfield IL exec hub (HQ moved to TX). 853 facilities + global dealer network — recurring signage at massive scale.'},
     {key:'Dover Corporation',       rev:'$7.7B',  it:'$290M',  locs:'30+',       contacts:'COO, VP Facilities',         strategy:'Downers Grove IL HQ. 25K employees, 6 diversified industrial segments. Campus interior refresh buyer.'},
     {key:'Illinois Tool Works (ITW)',rev:'$15.9B',it:'$600M',  locs:'600',       contacts:'COO, VP Operations',         strategy:'Glenview IL HQ. 84 operating divisions — divisional branding + 600 facilities is an enterprise rollout program.'},
